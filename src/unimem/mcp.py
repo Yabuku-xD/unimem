@@ -7,6 +7,7 @@ from typing import Any
 from .config import Settings
 from .db import Database, MemoryError
 from .policy import TRIGGER_TYPES, compact_recall_items, contains_secret, validate_recall
+from .semantic import DEFAULT_SEMANTIC_MODEL
 
 
 TOOL_SCHEMA: dict[str, Any] = {
@@ -33,6 +34,8 @@ TOOL_SCHEMA: dict[str, Any] = {
         "kind": {"type": "string", "description": "preference, decision, fact, hypothesis, or procedure"},
         "session_id": {"type": "string"},
         "expires_at": {"type": "string"},
+        "semantic": {"type": "boolean"},
+        "semantic_model": {"type": "string"},
     },
     "required": ["action"],
     "additionalProperties": False,
@@ -56,7 +59,14 @@ def _bounded_recall(items: list[Any]) -> tuple[list[dict[str, Any]], int, int]:
 def run_tool(arguments: dict[str, Any], settings: Settings) -> dict[str, Any]:
     database = Database(settings)
     database.initialize()
+    semantic_model = str(arguments.get("semantic_model") or "").strip()
+    use_semantic = bool(arguments.get("semantic")) or bool(semantic_model)
     action = str(arguments.get("action", ""))
+    if use_semantic and action in {"recall", "remember"}:
+        database.enable_semantic(
+            model_name=semantic_model or DEFAULT_SEMANTIC_MODEL,
+            embed_on_write=action == "remember",
+        )
     if action == "status":
         return {"ok": True, **database.stats()}
     if action == "recall":
@@ -90,6 +100,7 @@ def run_tool(arguments: dict[str, Any], settings: Settings) -> dict[str, Any]:
             project_id=settings.project_id,
             session_id=settings.session_id,
             limit=3,
+            semantic=use_semantic,
         )
         items, count, estimated = _bounded_recall(records)
         database.audit_recall(
@@ -143,6 +154,8 @@ def run_tool(arguments: dict[str, Any], settings: Settings) -> dict[str, Any]:
             )
         except MemoryError as error:
             return {"ok": False, "error": {"code": "invalid_memory", "message": str(error)}}
+        if use_semantic:
+            database.embed_pending()
         return {"ok": True, "created": created, **memory.public_dict()}
     return {
         "ok": False,

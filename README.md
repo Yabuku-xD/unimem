@@ -103,6 +103,18 @@ unimem distill transcript.jsonl --apply --session-id ses_...
 
 Accepted claims are limited to explicit durable cues. The command reports accepted and rejected candidates, including rejection reasons. It does not persist the input transcript.
 
+## Enrich the index (optional, Apple Silicon)
+
+`enrich` runs a small local model once over memories that have not been enriched yet. For each memory it writes standalone facts with names and absolute dates, the questions the memory answers, and related keywords, and adds that text to the keyword index. Recall still returns only the original memory, so output size and recall latency do not change.
+
+```bash
+uv sync --extra enrich
+uv run unimem enrich            # LFM2.5 1.2B Instruct, 4-bit MLX
+uv run unimem enrich --limit 200
+```
+
+The model loads only for the duration of the command and exits with it, so there is no daemon and no cost on routine turns. Relative dates ("yesterday", "last year") are resolved in code from each memory's date before the model sees them. Run it after `distill --apply`, from a scheduled job, or whenever convenient; unenriched memories remain searchable by their original text. Pass `--model` to try another MLX model; memories enriched by a different model are re-enriched. On LoCoMo this raised evidence recall @10 from 0.65 to 0.76; see [`benchmarks/README.md`](benchmarks/README.md).
+
 ## MCP clients
 
 `unimem init` writes the local MCP command into the supported client configuration. The server exposes one tool, `unimem`, with three actions:

@@ -7,11 +7,16 @@ import sqlite3
 import uuid
 from contextlib import contextmanager
 from dataclasses import dataclass
-from typing import Any, Iterator
+from datetime import date
+from typing import TYPE_CHECKING, Any, Callable, Iterator
 
 from .config import Settings, iso_after, now_iso, parse_iso
 from .models import MemoryRecord
 from .policy import contains_secret
+from .semantic import DEFAULT_SEMANTIC_MODEL, LocalSemanticEmbedder
+
+if TYPE_CHECKING:
+    from .enrich import LocalEnricher
 
 
 SCHEMA = """
@@ -32,7 +37,9 @@ CREATE TABLE IF NOT EXISTS memories (
     last_confirmed_at TEXT NOT NULL,
     expires_at TEXT,
     supersedes TEXT,
-    content_hash TEXT NOT NULL
+    content_hash TEXT NOT NULL,
+    enrichment TEXT NOT NULL DEFAULT '',
+    enrichment_model TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_memories_scope_project
     ON memories(scope, project_id, status, expires_at);
@@ -67,30 +74,43 @@ CREATE TABLE IF NOT EXISTS audit_log (
     retrieval_performed INTEGER NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS memory_embeddings (
+    memory_id TEXT PRIMARY KEY,
+    model TEXT NOT NULL,
+    dimensions INTEGER NOT NULL,
+    embedding BLOB NOT NULL,
+    content_hash TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (memory_id) REFERENCES memories(id) ON DELETE CASCADE
+);
 """
 
 FTS_SCHEMA = """
 CREATE VIRTUAL TABLE IF NOT EXISTS memories_fts USING fts5(
     content,
     evidence,
+    enrichment,
     content='memories',
     content_rowid='rowid'
 );
 CREATE TRIGGER IF NOT EXISTS memories_fts_ai AFTER INSERT ON memories BEGIN
-    INSERT INTO memories_fts(rowid, content, evidence)
-    VALUES (new.rowid, new.content, new.evidence);
+    INSERT INTO memories_fts(rowid, content, evidence, enrichment)
+    VALUES (new.rowid, new.content, new.evidence, new.enrichment);
 END;
 CREATE TRIGGER IF NOT EXISTS memories_fts_ad AFTER DELETE ON memories BEGIN
-    INSERT INTO memories_fts(memories_fts, rowid, content, evidence)
-    VALUES ('delete', old.rowid, old.content, old.evidence);
+    INSERT INTO memories_fts(memories_fts, rowid, content, evidence, enrichment)
+    VALUES ('delete', old.rowid, old.content, old.evidence, old.enrichment);
 END;
 CREATE TRIGGER IF NOT EXISTS memories_fts_au AFTER UPDATE ON memories BEGIN
-    INSERT INTO memories_fts(memories_fts, rowid, content, evidence)
-    VALUES ('delete', old.rowid, old.content, old.evidence);
-    INSERT INTO memories_fts(rowid, content, evidence)
-    VALUES (new.rowid, new.content, new.evidence);
+    INSERT INTO memories_fts(memories_fts, rowid, content, evidence, enrichment)
+    VALUES ('delete', old.rowid, old.content, old.evidence, old.enrichment);
+    INSERT INTO memories_fts(rowid, content, evidence, enrichment)
+    VALUES (new.rowid, new.content, new.evidence, new.enrichment);
 END;
 """
+
+FTS_OBJECTS = ("memories_fts_ai", "memories_fts_ad", "memories_fts_au")
 
 SEARCH_STOPWORDS = {
     "a",
@@ -176,6 +196,15 @@ class Database:
         self.settings = settings
         self.settings.ensure_home()
         self.fts_enabled = False
+        self.semantic_embedder: LocalSemanticEmbedder | None = None
+        self.semantic_embed_on_write = True
+        self.hybrid_fts_weight = 2.0
+        self.hybrid_semantic_weight = 1.0
+        self.hybrid_rrf_k = 60
+        # bm25 column weights for (content, evidence, enrichment). Enrichment is
+        # down-weighted so generated text widens matching without outranking
+        # the original memory; measured in benchmarks/README.md.
+        self.fts_column_weights = (1.0, 1.0, 0.25)
 
     @contextmanager
     def connection(self) -> Iterator[sqlite3.Connection]:
@@ -196,7 +225,9 @@ class Database:
     def initialize(self) -> None:
         with self.connection() as connection:
             connection.executescript(SCHEMA)
+            self._migrate_enrichment_columns(connection)
             try:
+                self._migrate_fts(connection)
                 connection.executescript(FTS_SCHEMA)
                 self.fts_enabled = True
             except sqlite3.OperationalError:
@@ -206,6 +237,192 @@ class Database:
                     "(rowid INTEGER PRIMARY KEY, content TEXT, evidence TEXT)"
                 )
             self.expire_sessions(connection)
+
+    @staticmethod
+    def _migrate_enrichment_columns(connection: sqlite3.Connection) -> None:
+        columns = {row["name"] for row in connection.execute("PRAGMA table_info(memories)")}
+        if "enrichment" not in columns:
+            connection.execute(
+                "ALTER TABLE memories ADD COLUMN enrichment TEXT NOT NULL DEFAULT ''"
+            )
+        if "enrichment_model" not in columns:
+            connection.execute("ALTER TABLE memories ADD COLUMN enrichment_model TEXT")
+
+    @staticmethod
+    def _migrate_fts(connection: sqlite3.Connection) -> None:
+        """Rebuild an FTS index created before the enrichment column existed."""
+        exists = connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'memories_fts'"
+        ).fetchone()
+        if not exists:
+            return
+        columns = {row["name"] for row in connection.execute("PRAGMA table_info(memories_fts)")}
+        if "enrichment" in columns:
+            return
+        for trigger in FTS_OBJECTS:
+            connection.execute(f"DROP TRIGGER IF EXISTS {trigger}")
+        connection.execute("DROP TABLE memories_fts")
+        connection.executescript(FTS_SCHEMA)
+        connection.execute("INSERT INTO memories_fts(memories_fts) VALUES ('rebuild')")
+
+    def enrich_pending(
+        self,
+        enricher: "LocalEnricher",
+        *,
+        limit: int | None = None,
+        observed_on: Callable[[sqlite3.Row], date | None] | None = None,
+        fetch_size: int = 64,
+    ) -> int:
+        """Enrich active memories not yet indexed with the enricher's model.
+
+        Generation happens outside any open transaction so concurrent clients
+        are not blocked while the model runs.
+        """
+        from .enrich import EnrichmentInput
+
+        def created_on(row: sqlite3.Row) -> date | None:
+            created = parse_iso(row["created_at"])
+            return created.date() if created else None
+
+        self.initialize()
+        observed = observed_on or created_on
+        enriched = 0
+        while limit is None or enriched < limit:
+            size = fetch_size if limit is None else min(fetch_size, limit - enriched)
+            with self.connection() as connection:
+                rows = connection.execute(
+                    f"""
+                    SELECT rowid, * FROM memories
+                    WHERE {self._active_memory_sql()}
+                      AND (enrichment_model IS NULL OR enrichment_model != ?)
+                    ORDER BY rowid
+                    LIMIT ?
+                    """,
+                    (enricher.model_name, size),
+                ).fetchall()
+                inputs = []
+                for row in rows:
+                    context = connection.execute(
+                        """
+                        SELECT content FROM memories
+                        WHERE scope = ? AND IFNULL(project_id, '') = ?
+                          AND IFNULL(session_id, '') = ? AND rowid < ?
+                        ORDER BY rowid DESC LIMIT 2
+                        """,
+                        (row["scope"], row["project_id"] or "", row["session_id"] or "", row["rowid"]),
+                    ).fetchall()
+                    inputs.append(
+                        EnrichmentInput(
+                            message=row["content"],
+                            context=tuple(item["content"] for item in reversed(context)),
+                            observed_on=observed(row),
+                        )
+                    )
+            if not rows:
+                break
+            texts = enricher.enrich_many(inputs)
+            with self.connection() as connection:
+                connection.executemany(
+                    "UPDATE memories SET enrichment = ?, enrichment_model = ? WHERE id = ?",
+                    [(text, enricher.model_name, row["id"]) for row, text in zip(rows, texts)],
+                )
+            enriched += len(rows)
+        return enriched
+
+    def enable_semantic(
+        self,
+        *,
+        model_name: str = DEFAULT_SEMANTIC_MODEL,
+        cache_dir: str | None = None,
+        embed_on_write: bool = True,
+    ) -> dict[str, Any]:
+        self.semantic_embedder = LocalSemanticEmbedder(model_name=model_name, cache_dir=cache_dir)
+        self.semantic_embed_on_write = embed_on_write
+        return {"enabled": True, "model": model_name}
+
+    def _store_embedding(
+        self,
+        connection: sqlite3.Connection,
+        *,
+        memory_id: str,
+        content: str,
+        content_hash: str,
+    ) -> None:
+        if not self.semantic_embedder or not self.semantic_embed_on_write:
+            return
+        embedding = self.semantic_embedder.embed_text(content)
+        connection.execute(
+            """
+            INSERT INTO memory_embeddings
+            (memory_id, model, dimensions, embedding, content_hash, created_at)
+            VALUES (?, ?, ?, ?, ?, ?)
+            ON CONFLICT(memory_id) DO UPDATE SET
+                model = excluded.model,
+                dimensions = excluded.dimensions,
+                embedding = excluded.embedding,
+                content_hash = excluded.content_hash,
+                created_at = excluded.created_at
+            """,
+            (
+                memory_id,
+                self.semantic_embedder.model_name,
+                len(embedding) // 4,
+                embedding,
+                content_hash,
+                now_iso(),
+            ),
+        )
+
+    def embed_pending(self, *, batch_size: int = 32) -> int:
+        self.initialize()
+        if not self.semantic_embedder:
+            raise MemoryError("semantic embeddings are not enabled")
+        embedded = 0
+        while True:
+            with self.connection() as connection:
+                rows = connection.execute(
+                    f"""
+                    SELECT m.id, m.content, m.content_hash
+                    FROM memories m
+                    LEFT JOIN memory_embeddings e ON e.memory_id = m.id
+                    WHERE {self._active_memory_sql("m")}
+                      AND (
+                          e.memory_id IS NULL
+                          OR e.content_hash != m.content_hash
+                          OR e.model != ?
+                      )
+                    ORDER BY m.created_at
+                    LIMIT ?
+                    """,
+                    (self.semantic_embedder.model_name, batch_size),
+                ).fetchall()
+                if not rows:
+                    break
+                vectors = self.semantic_embedder.embed_many([row["content"] for row in rows])
+                for row, embedding in zip(rows, vectors):
+                    connection.execute(
+                        """
+                        INSERT INTO memory_embeddings
+                        (memory_id, model, dimensions, embedding, content_hash, created_at)
+                        VALUES (?, ?, ?, ?, ?, ?)
+                        ON CONFLICT(memory_id) DO UPDATE SET
+                            model = excluded.model,
+                            dimensions = excluded.dimensions,
+                            embedding = excluded.embedding,
+                            content_hash = excluded.content_hash,
+                            created_at = excluded.created_at
+                        """,
+                        (
+                            row["id"],
+                            self.semantic_embedder.model_name,
+                            len(embedding) // 4,
+                            embedding,
+                            row["content_hash"],
+                            now_iso(),
+                        ),
+                    )
+                embedded += len(rows)
+        return embedded
 
     def expire_sessions(self, connection: sqlite3.Connection | None = None) -> int:
         def run(conn: sqlite3.Connection) -> int:
@@ -346,6 +563,12 @@ class Database:
                 row = connection.execute(
                     "SELECT * FROM memories WHERE id = ?", (existing["id"],)
                 ).fetchone()
+                self._store_embedding(
+                    connection,
+                    memory_id=existing["id"],
+                    content=normalized,
+                    content_hash=content_hash,
+                )
                 return MemoryRecord.from_row(row), False
 
             memory_id = f"mem_{uuid.uuid4().hex[:16]}"
@@ -384,6 +607,12 @@ class Database:
             row = connection.execute(
                 "SELECT * FROM memories WHERE id = ?", (memory_id,)
             ).fetchone()
+            self._store_embedding(
+                connection,
+                memory_id=memory_id,
+                content=normalized,
+                content_hash=content_hash,
+            )
             return MemoryRecord.from_row(row), True
 
     def get_memory(self, memory_id: str) -> MemoryRecord | None:
@@ -440,7 +669,7 @@ class Database:
                 return list(
                     connection.execute(
                         f"""
-                        SELECT m.*, bm25(memories_fts) AS rank
+                        SELECT m.*, bm25(memories_fts, ?, ?, ?) AS rank
                         FROM memories m
                         JOIN memories_fts ON m.rowid = memories_fts.rowid
                         WHERE memories_fts MATCH ?
@@ -452,7 +681,7 @@ class Database:
                             m.updated_at DESC
                         LIMIT ?
                         """,
-                        (fts_query, *scope_args, limit),
+                        (*self.fts_column_weights, fts_query, *scope_args, limit),
                     ).fetchall()
                 )
             except sqlite3.OperationalError:
@@ -466,15 +695,92 @@ class Database:
                 FROM memories m
                 WHERE {active_sql}
                   AND ({scope_sql})
-                  AND (m.content LIKE ? OR m.evidence LIKE ?)
+                  AND (m.content LIKE ? OR m.evidence LIKE ? OR m.enrichment LIKE ?)
                 ORDER BY
                     CASE m.scope WHEN 'user' THEN 0 WHEN 'project' THEN 1 ELSE 2 END,
                     m.updated_at DESC
                 LIMIT ?
                 """,
-                (*scope_args, like, like, limit),
+                (*scope_args, like, like, like, limit),
             ).fetchall()
         )
+
+    def _semantic_rows(
+        self,
+        connection: sqlite3.Connection,
+        *,
+        query: str,
+        project_id: str,
+        session_id: str | None,
+        limit: int,
+        scopes: tuple[str, ...],
+    ) -> list[tuple[sqlite3.Row, float]]:
+        if not self.semantic_embedder:
+            return []
+        scope_clauses: list[str] = []
+        scope_args: list[str] = []
+        if "user" in scopes:
+            scope_clauses.append("m.scope = 'user'")
+        if "project" in scopes:
+            scope_clauses.append("(m.scope = 'project' AND m.project_id = ?)")
+            scope_args.append(project_id)
+        if "session" in scopes and session_id:
+            scope_clauses.append("(m.scope = 'session' AND m.session_id = ?)")
+            scope_args.append(session_id)
+        if not scope_clauses:
+            return []
+        cursor = connection.execute(
+            f"""
+            SELECT m.*, e.embedding
+            FROM memories m
+            JOIN memory_embeddings e ON e.memory_id = m.id
+            WHERE {self._active_memory_sql("m")}
+              AND e.model = ?
+              AND ({' OR '.join(scope_clauses)})
+            """,
+            [self.semantic_embedder.model_name, *scope_args],
+        )
+        ranked = self.semantic_embedder.rank(
+            query,
+            ((row["id"], row["embedding"]) for row in cursor),
+            limit=limit,
+        )
+        if not ranked:
+            return []
+        placeholders = ", ".join("?" for _ in ranked)
+        rows = connection.execute(
+            f"SELECT * FROM memories WHERE id IN ({placeholders})",
+            [memory_id for memory_id, _ in ranked],
+        ).fetchall()
+        by_id = {row["id"]: row for row in rows}
+        return [(by_id[memory_id], score) for memory_id, score in ranked if memory_id in by_id]
+
+    def _fuse_rows(
+        self,
+        lexical_rows: list[sqlite3.Row],
+        semantic_rows: list[tuple[sqlite3.Row, float]],
+        limit: int,
+    ) -> list[sqlite3.Row]:
+        if not semantic_rows:
+            return lexical_rows[:limit]
+        lexical_ids = [row["id"] for row in lexical_rows]
+        semantic_ids = [row["id"] for row, _ in semantic_rows]
+        scores: dict[str, float] = {}
+        rows: dict[str, sqlite3.Row] = {}
+        for rank, memory_id in enumerate(lexical_ids):
+            scores[memory_id] = scores.get(memory_id, 0.0) + self.hybrid_fts_weight / (
+                self.hybrid_rrf_k + rank + 1
+            )
+        for rank, (row, _) in enumerate(semantic_rows):
+            scores[row["id"]] = scores.get(row["id"], 0.0) + self.hybrid_semantic_weight / (
+                self.hybrid_rrf_k + rank + 1
+            )
+        for row in lexical_rows:
+            rows[row["id"]] = row
+        for row, _ in semantic_rows:
+            rows[row["id"]] = row
+        ordered = sorted(scores, key=lambda memory_id: (-scores[memory_id], memory_id))
+        return [rows[memory_id] for memory_id in ordered[:limit]]
 
     def recall(
         self,
@@ -484,20 +790,34 @@ class Database:
         session_id: str | None,
         limit: int = 3,
         scopes: tuple[str, ...] = ("user", "project", "session"),
+        semantic: bool = True,
     ) -> list[MemoryRecord]:
         self.initialize()
         limit = max(1, min(int(limit), 20))
         with self.connection() as connection:
             self.expire_sessions(connection)
-            rows = self._search_rows(
+            lexical_rows = self._search_rows(
                 connection,
                 query=query,
                 project_id=project_id,
                 session_id=session_id,
-                limit=limit * 4,
+                limit=max(limit * 8, 50),
                 scopes=scopes,
             )
-        return [MemoryRecord.from_row(row) for row in rows[:limit]]
+            semantic_rows = (
+                self._semantic_rows(
+                    connection,
+                    query=query,
+                    project_id=project_id,
+                    session_id=session_id,
+                    limit=max(limit * 8, 50),
+                    scopes=scopes,
+                )
+                if semantic
+                else []
+            )
+            rows = self._fuse_rows(lexical_rows, semantic_rows, limit)
+        return [MemoryRecord.from_row(row) for row in rows]
 
     def list_memories(self, *, project_id: str, session_id: str | None = None) -> list[MemoryRecord]:
         self.initialize()
@@ -681,10 +1001,22 @@ class Database:
             sessions = connection.execute(
                 "SELECT status, COUNT(*) AS count FROM sessions GROUP BY status"
             ).fetchall()
+            semantic_count = connection.execute(
+                "SELECT COUNT(*) AS count FROM memory_embeddings"
+            ).fetchone()["count"]
+            enriched = connection.execute(
+                "SELECT enrichment_model AS model, COUNT(*) AS count FROM memories "
+                "WHERE enrichment_model IS NOT NULL AND " + self._active_memory_sql() + " "
+                "GROUP BY enrichment_model"
+            ).fetchall()
         return {
             "database": str(self.settings.db_path),
             "project_id": self.settings.project_id,
             "fts5": self.fts_enabled,
+            "semantic_enabled": self.semantic_embedder is not None,
+            "semantic_model": self.semantic_embedder.model_name if self.semantic_embedder else None,
+            "semantic_embeddings": semantic_count,
+            "enriched_memories": {row["model"]: row["count"] for row in enriched},
             "memory_counts": {
                 f"{row['scope']}/{row['lifecycle']}": row["count"] for row in counts
             },

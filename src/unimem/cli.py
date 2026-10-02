@@ -42,6 +42,7 @@ def _parser() -> argparse.ArgumentParser:
     remember.add_argument("--confidence", type=float, default=0.8)
     remember.add_argument("--expires-at")
     remember.add_argument("--session-id")
+    remember.add_argument("--semantic-model")
 
     recall = sub.add_parser("recall", help="Recall memory after a missing-context trigger")
     recall.add_argument("query")
@@ -55,6 +56,7 @@ def _parser() -> argparse.ArgumentParser:
     recall.add_argument("--evidence", required=True)
     recall.add_argument("--limit", type=int, default=3)
     recall.add_argument("--session-id")
+    recall.add_argument("--semantic-model")
 
     route = sub.add_parser("route", help="Decide whether a task warrants memory retrieval")
     route.add_argument("task")
@@ -78,6 +80,7 @@ def _parser() -> argparse.ArgumentParser:
     distill.add_argument("--session-id")
     distill.add_argument("--ttl-hours", type=float, default=24.0)
     distill.add_argument("--source")
+    distill.add_argument("--semantic-model")
 
     forget = sub.add_parser("forget", help="Mark a memory deleted")
     forget.add_argument("memory_id")
@@ -87,6 +90,13 @@ def _parser() -> argparse.ArgumentParser:
 
     audit = sub.add_parser("audit", help="Inspect retrieval audit events")
     audit.add_argument("--limit", type=int, default=50)
+
+    enrich = sub.add_parser(
+        "enrich",
+        help="Index memories with facts, questions, and keywords from a local model",
+    )
+    enrich.add_argument("--model", help="MLX model id (default: LFM2.5 1.2B Instruct 4-bit)")
+    enrich.add_argument("--limit", type=int, help="Maximum memories to enrich in this pass")
 
     sub.add_parser("doctor", help="Report local runtime and prompt overhead")
     sub.add_parser("mcp", help="Run the stdio MCP server")
@@ -129,6 +139,7 @@ def _recall_payload(
     evidence: str,
     limit: int,
     session_id: str | None,
+    semantic: bool,
 ) -> dict[str, Any]:
     validate_recall(trigger, evidence)
     records = database.recall(
@@ -136,6 +147,7 @@ def _recall_payload(
         project_id=settings.project_id,
         session_id=session_id or settings.session_id,
         limit=max(1, min(limit, 20)),
+        semantic=semantic,
     )
     items, count, estimated = compact_recall_items(records)
     database.audit_recall(
@@ -185,6 +197,14 @@ def main(argv: list[str] | None = None) -> int:
 
         database = Database(settings)
         database.initialize()
+        semantic_model = getattr(args, "semantic_model", None)
+        if semantic_model:
+            database.enable_semantic(
+                model_name=semantic_model,
+                embed_on_write=args.command != "recall",
+            )
+            if args.command == "recall":
+                database.embed_pending()
 
         if args.command == "init":
             result = install_integrations(
@@ -211,6 +231,8 @@ def main(argv: list[str] | None = None) -> int:
                 session_id=(args.session_id or settings.session_id) if args.scope == "session" else None,
                 expires_at=args.expires_at,
             )
+            if semantic_model:
+                database.embed_pending()
             result = {"ok": True, "created": created, **memory.public_dict()}
             _emit(result, json_mode=json_mode, text=f"{memory.id} {memory.scope}:{memory.lifecycle}")
             return 0
@@ -224,6 +246,7 @@ def main(argv: list[str] | None = None) -> int:
                 evidence=args.evidence,
                 limit=args.limit,
                 session_id=args.session_id,
+                semantic=bool(semantic_model),
             )
             _emit(result, json_mode=json_mode, text=json.dumps(result["items"], indent=2))
             return 0
@@ -269,6 +292,8 @@ def main(argv: list[str] | None = None) -> int:
                 session_ttl_hours=args.ttl_hours,
                 apply=args.apply,
             )
+            if semantic_model and args.apply:
+                database.embed_pending()
             _emit(
                 result,
                 json_mode=json_mode,
@@ -296,6 +321,18 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "audit":
             result = {"ok": True, "events": database.list_audit(project_id=settings.project_id, limit=args.limit)}
             _emit(result, json_mode=json_mode, text=json.dumps(result["events"], indent=2))
+            return 0
+
+        if args.command == "enrich":
+            from .enrich import DEFAULT_ENRICH_MODEL, EnrichUnavailableError, LocalEnricher
+
+            try:
+                enricher = LocalEnricher(args.model or DEFAULT_ENRICH_MODEL)
+            except EnrichUnavailableError as error:
+                return _fail("enrich_unavailable", str(error), json_mode=json_mode)
+            count = database.enrich_pending(enricher, limit=args.limit)
+            result = {"ok": True, "enriched": count, "model": enricher.model_name}
+            _emit(result, json_mode=json_mode, text=f"enriched {count} with {enricher.model_name}")
             return 0
 
         if args.command == "doctor":
