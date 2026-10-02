@@ -1,9 +1,9 @@
 {
-  "passed": false,
-  "command": "uv run python benchmarks/run_memory_quality.py --locomo /tmp/unimem-locomo10.json --capacity 1000 --capacity-queries 50",
-  "started_at": "2026-10-02T04:51:15.184199+00:00",
-  "finished_at": "2026-10-02T04:51:29.245016+00:00",
-  "python": "3.14.7 (main, Sep 24 2026, 17:46:50) [Clang 22.1.3 ]",
+  "passed": true,
+  "command": "uv run python benchmarks/run_memory_quality.py ",
+  "started_at": "2026-10-02T20:22:56.181809+00:00",
+  "finished_at": "2026-10-02T20:22:57.706638+00:00",
+  "python": "3.14.7 (main, Sep 29 2026, 14:50:11) [Clang 22.1.3 ]",
   "hard_gates": {
     "secret_leakage": true,
     "scope_leakage": true,
@@ -17,7 +17,7 @@
     "fixture_retrieval": true,
     "knowledge_update": true,
     "test_time_learning": true,
-    "locomo": false
+    "locomo": true
   },
   "metrics": {
     "routing": {
@@ -52,8 +52,8 @@
       "recall_at_3": 1.0,
       "foreign_project_hits": 0,
       "latency_ms": {
-        "p50": 1.5221665089484304,
-        "p95": 2.349062284338288
+        "p50": 1.0943330125883222,
+        "p95": 1.1804270325228572
       },
       "target": 0.8,
       "meets_target": true,
@@ -70,22 +70,22 @@
       "target": true
     },
     "lifecycle": {
-      "active_recall_count": 1,
-      "closed_recall_count": 0,
+      "active_target_visible": true,
+      "closed_target_visible": false,
       "forgetting_rate": 1.0
     },
     "capacity_and_efficiency": {
       "memory_count": 1000,
       "query_count": 50,
-      "insert_seconds": 1.6769183750147931,
-      "inserts_per_second": 596.331947278697,
+      "insert_seconds": 1.2453285409719683,
+      "inserts_per_second": 803.0009488255272,
       "insert_latency_ms": {
-        "p50": 1.5561875188723207,
-        "p95": 2.2758160397643223
+        "p50": 1.241353980731219,
+        "p95": 1.4718917023856193
       },
       "recall_latency_ms": {
-        "p50": 2.4590829852968454,
-        "p95": 2.8785460483049974
+        "p50": 2.044103981461376,
+        "p95": 2.2371876810211684
       },
       "estimated_output_tokens": {
         "p50": 163.0,
@@ -95,522 +95,24 @@
     },
     "cli_mcp_parity": {
       "database_ids": [
-        "mem_383e5ebf6f594c55"
+        "mem_4821f10c69a64717"
       ],
       "mcp_ids": [
-        "mem_383e5ebf6f594c55"
+        "mem_4821f10c69a64717"
       ],
       "cli_ids": [
-        "mem_383e5ebf6f594c55"
+        "mem_4821f10c69a64717"
       ],
       "equal": true,
       "cli_returncode": 0
     },
+    "semantic": {
+      "enabled": false,
+      "model": null
+    },
     "locomo": {
-      "dataset": "LoCoMo",
-      "dataset_url": "https://github.com/snap-research/LoCoMo",
-      "dataset_license": "CC BY-NC 4.0",
-      "dataset_sha256": "79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4",
-      "samples": 10,
-      "questions": 1986,
-      "evidence_questions": 1982,
-      "evidence_recall_at_3": 0.5025227043390514,
-      "evidence_recall_at_10": 0.6488395560040363,
-      "full_evidence_recall_at_10": 0.5645812310797175,
-      "mrr_at_10": 0.6669085882149646,
-      "latency_ms": {
-        "p50": 1.7342919891234487,
-        "p95": 3.662896424066275
-      },
-      "by_category": {
-        "temporal": {
-          "questions": 321,
-          "evidence_questions": 321,
-          "hit3": 192,
-          "hit10": 238,
-          "full10": 218,
-          "recall_at_3": 0.5981308411214953,
-          "recall_at_10": 0.7414330218068536,
-          "full_recall_at_10": 0.6791277258566978
-        },
-        "commonsense": {
-          "questions": 96,
-          "evidence_questions": 92,
-          "hit3": 26,
-          "hit10": 37,
-          "full10": 19,
-          "recall_at_3": 0.2826086956521739,
-          "recall_at_10": 0.40217391304347827,
-          "full_recall_at_10": 0.20652173913043478
-        },
-        "multi_hop": {
-          "questions": 282,
-          "evidence_questions": 282,
-          "hit3": 84,
-          "hit10": 130,
-          "full10": 30,
-          "recall_at_3": 0.2978723404255319,
-          "recall_at_10": 0.46099290780141844,
-          "full_recall_at_10": 0.10638297872340426
-        },
-        "single_hop": {
-          "questions": 841,
-          "evidence_questions": 841,
-          "hit3": 462,
-          "hit10": 586,
-          "full10": 563,
-          "recall_at_3": 0.549346016646849,
-          "recall_at_10": 0.6967895362663495,
-          "full_recall_at_10": 0.6694411414982164
-        },
-        "adversarial": {
-          "questions": 446,
-          "evidence_questions": 446,
-          "hit3": 232,
-          "hit10": 295,
-          "full10": 289,
-          "recall_at_3": 0.5201793721973094,
-          "recall_at_10": 0.6614349775784754,
-          "full_recall_at_10": 0.647982062780269
-        }
-      },
-      "miss_examples": [
-        {
-          "question": "What fields would Caroline be likely to pursue in her educaton?",
-          "category": "commonsense",
-          "expected_sources": [
-            "locomo:conv-26:D1:9",
-            "locomo:conv-26:D1:11"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D4:14",
-            "locomo:conv-26:D13:18",
-            "locomo:conv-26:D12:12",
-            "locomo:conv-26:D13:7",
-            "locomo:conv-26:D8:36",
-            "locomo:conv-26:D10:20",
-            "locomo:conv-26:D14:5",
-            "locomo:conv-26:D7:8",
-            "locomo:conv-26:D13:11",
-            "locomo:conv-26:D11:10"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "What is Caroline's identity?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D1:5"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D13:13",
-            "locomo:conv-26:D11:12",
-            "locomo:conv-26:D16:9",
-            "locomo:conv-26:D3:3",
-            "locomo:conv-26:D19:13",
-            "locomo:conv-26:D15:27",
-            "locomo:conv-26:D7:27",
-            "locomo:conv-26:D15:13",
-            "locomo:conv-26:D10:15",
-            "locomo:conv-26:D7:21"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "What is Caroline's relationship status?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D3:13",
-            "locomo:conv-26:D2:14"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D16:14",
-            "locomo:conv-26:D16:15",
-            "locomo:conv-26:D19:13",
-            "locomo:conv-26:D15:27",
-            "locomo:conv-26:D7:27",
-            "locomo:conv-26:D15:13",
-            "locomo:conv-26:D10:15",
-            "locomo:conv-26:D7:21",
-            "locomo:conv-26:D10:1",
-            "locomo:conv-26:D18:24"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "When did Caroline give a speech at a school?",
-          "category": "temporal",
-          "expected_sources": [
-            "locomo:conv-26:D3:1"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D18:10",
-            "locomo:conv-26:D1:7",
-            "locomo:conv-26:D2:8",
-            "locomo:conv-26:D3:10",
-            "locomo:conv-26:D18:9",
-            "locomo:conv-26:D3:1",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D14:27",
-            "locomo:conv-26:D5:3",
-            "locomo:conv-26:D3:11"
-          ],
-          "expected_ranks": [
-            6
-          ]
-        },
-        {
-          "question": "How long has Caroline had her current group of friends for?",
-          "category": "temporal",
-          "expected_sources": [
-            "locomo:conv-26:D3:13"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D12:15",
-            "locomo:conv-26:D6:11",
-            "locomo:conv-26:D6:1",
-            "locomo:conv-26:D1:7",
-            "locomo:conv-26:D3:11",
-            "locomo:conv-26:D3:12",
-            "locomo:conv-26:D8:38",
-            "locomo:conv-26:D3:15",
-            "locomo:conv-26:D16:14",
-            "locomo:conv-26:D12:14"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "What career path has Caroline decided to persue?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D4:13",
-            "locomo:conv-26:D1:11"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D1:9",
-            "locomo:conv-26:D4:12",
-            "locomo:conv-26:D15:23",
-            "locomo:conv-26:D6:1",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D1:7",
-            "locomo:conv-26:D7:24",
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D15:11"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
-          "category": "commonsense",
-          "expected_sources": [
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D3:5"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D7:5",
-            "locomo:conv-26:D4:14",
-            "locomo:conv-26:D7:7",
-            "locomo:conv-26:D5:3",
-            "locomo:conv-26:D4:12",
-            "locomo:conv-26:D17:16",
-            "locomo:conv-26:D1:11",
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D17:25"
-          ],
-          "expected_ranks": [
-            9
-          ]
-        },
-        {
-          "question": "What activities does Melanie partake in?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D5:4",
-            "locomo:conv-26:D9:1",
-            "locomo:conv-26:D1:12",
-            "locomo:conv-26:D1:18"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D17:22",
-            "locomo:conv-26:D15:10",
-            "locomo:conv-26:D13:2",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D11:13",
-            "locomo:conv-26:D5:4",
-            "locomo:conv-26:D7:27",
-            "locomo:conv-26:D10:1",
-            "locomo:conv-26:D8:18",
-            "locomo:conv-26:D19:14"
-          ],
-          "expected_ranks": [
-            6
-          ]
-        },
-        {
-          "question": "Where has Melanie camped?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D6:16",
-            "locomo:conv-26:D4:6",
-            "locomo:conv-26:D8:32"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D7:24",
-            "locomo:conv-26:D6:1",
-            "locomo:conv-26:D1:7",
-            "locomo:conv-26:D16:14",
-            "locomo:conv-26:D5:2",
-            "locomo:conv-26:D16:10",
-            "locomo:conv-26:D6:13",
-            "locomo:conv-26:D19:11"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "What do Melanie's kids like?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D6:6",
-            "locomo:conv-26:D4:8"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D8:3",
-            "locomo:conv-26:D9:17",
-            "locomo:conv-26:D13:10",
-            "locomo:conv-26:D17:20",
-            "locomo:conv-26:D19:4",
-            "locomo:conv-26:D3:14",
-            "locomo:conv-26:D15:28",
-            "locomo:conv-26:D17:18",
-            "locomo:conv-26:D1:15",
-            "locomo:conv-26:D18:7"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
-          "category": "commonsense",
-          "expected_sources": [
-            "locomo:conv-26:D6:9"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D6:7",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D2:8",
-            "locomo:conv-26:D6:9",
-            "locomo:conv-26:D17:21",
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D14:5",
-            "locomo:conv-26:D3:16",
-            "locomo:conv-26:D6:8",
-            "locomo:conv-26:D17:22"
-          ],
-          "expected_ranks": [
-            4
-          ]
-        },
-        {
-          "question": "What books has Melanie read?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D7:8",
-            "locomo:conv-26:D6:10"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D6:7",
-            "locomo:conv-26:D6:8",
-            "locomo:conv-26:D6:9",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D7:24",
-            "locomo:conv-26:D7:9",
-            "locomo:conv-26:D4:18",
-            "locomo:conv-26:D17:10",
-            "locomo:conv-26:D6:1"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "What does Melanie do to destress?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D5:4"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D17:22",
-            "locomo:conv-26:D13:2",
-            "locomo:conv-26:D7:20",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D11:13",
-            "locomo:conv-26:D7:27",
-            "locomo:conv-26:D10:1",
-            "locomo:conv-26:D8:18",
-            "locomo:conv-26:D19:14",
-            "locomo:conv-26:D15:25"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "When did Melanie read the book \"nothing is impossible\"?",
-          "category": "temporal",
-          "expected_sources": [
-            "locomo:conv-26:D7:8"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D6:7",
-            "locomo:conv-26:D17:10",
-            "locomo:conv-26:D6:10",
-            "locomo:conv-26:D7:8",
-            "locomo:conv-26:D4:18",
-            "locomo:conv-26:D6:8",
-            "locomo:conv-26:D6:9",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D7:9",
-            "locomo:conv-26:D4:11"
-          ],
-          "expected_ranks": [
-            4
-          ]
-        },
-        {
-          "question": "Would Caroline pursue writing as a career option?",
-          "category": "commonsense",
-          "expected_sources": [
-            "locomo:conv-26:D7:5",
-            "locomo:conv-26:D7:9"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D1:9",
-            "locomo:conv-26:D7:7",
-            "locomo:conv-26:D4:14",
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D7:8",
-            "locomo:conv-26:D19:13",
-            "locomo:conv-26:D15:27",
-            "locomo:conv-26:D7:27",
-            "locomo:conv-26:D15:13",
-            "locomo:conv-26:D10:15"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "When did Melanie go camping in June?",
-          "category": "temporal",
-          "expected_sources": [
-            "locomo:conv-26:D4:8"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D2:7",
-            "locomo:conv-26:D4:6",
-            "locomo:conv-26:D9:1",
-            "locomo:conv-26:D8:32",
-            "locomo:conv-26:D10:13",
-            "locomo:conv-26:D10:12",
-            "locomo:conv-26:D18:20",
-            "locomo:conv-26:D14:22",
-            "locomo:conv-26:D9:3",
-            "locomo:conv-26:D1:8"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "When did Caroline go to a pride parade during the summer?",
-          "category": "temporal",
-          "expected_sources": [
-            "locomo:conv-26:D5:1"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D8:17",
-            "locomo:conv-26:D18:14",
-            "locomo:conv-26:D2:7",
-            "locomo:conv-26:D8:29",
-            "locomo:conv-26:D15:16",
-            "locomo:conv-26:D5:1",
-            "locomo:conv-26:D11:6",
-            "locomo:conv-26:D5:2",
-            "locomo:conv-26:D8:19",
-            "locomo:conv-26:D10:7"
-          ],
-          "expected_ranks": [
-            6
-          ]
-        },
-        {
-          "question": "What events has Caroline participated in to help children?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D9:2",
-            "locomo:conv-26:D3:3"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D16:10",
-            "locomo:conv-26:D6:15",
-            "locomo:conv-26:D6:1",
-            "locomo:conv-26:D7:2",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D1:7",
-            "locomo:conv-26:D10:6",
-            "locomo:conv-26:D7:24",
-            "locomo:conv-26:D7:27",
-            "locomo:conv-26:D8:32"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "What did Melanie paint recently?",
-          "category": "multi_hop",
-          "expected_sources": [],
-          "returned_sources": [
-            "locomo:conv-26:D14:30",
-            "locomo:conv-26:D13:8",
-            "locomo:conv-26:D8:6",
-            "locomo:conv-26:D17:14",
-            "locomo:conv-26:D1:13",
-            "locomo:conv-26:D1:14",
-            "locomo:conv-26:D17:13",
-            "locomo:conv-26:D16:12",
-            "locomo:conv-26:D1:15",
-            "locomo:conv-26:D11:8"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "What activities has Melanie done with her family?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D8:4",
-            "locomo:conv-26:D8:6",
-            "locomo:conv-26:D9:1",
-            "locomo:conv-26:D6:4",
-            "locomo:conv-26:D1:18",
-            "locomo:conv-26:D3:14"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D6:13",
-            "locomo:conv-26:D6:16",
-            "locomo:conv-26:D15:10",
-            "locomo:conv-26:D1:6",
-            "locomo:conv-26:D3:11",
-            "locomo:conv-26:D13:18",
-            "locomo:conv-26:D12:12",
-            "locomo:conv-26:D5:4",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D7:10"
-          ],
-          "expected_ranks": []
-        }
-      ],
-      "targets": {
-        "evidence_recall_at_3": 0.7,
-        "evidence_recall_at_10": 0.9
-      },
-      "meets_targets": false,
-      "scope": "retrieval-only; not answer-generation accuracy"
+      "status": "not_run",
+      "reason": "LoCoMo dataset path not provided"
     },
     "longmemeval": {
       "status": "not_run",

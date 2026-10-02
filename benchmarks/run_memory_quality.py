@@ -18,7 +18,7 @@ import subprocess
 import sys
 import tempfile
 import time
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
@@ -344,6 +344,7 @@ def run_lifecycle(database: Database) -> dict[str, Any]:
         session_id=session.id,
         limit=5,
     )
+    before_target = any("Temporary lifecycle hypothesis" in record.content for record in before)
     database.end_session(session.id)
     after = database.recall(
         query="lifecycle hypothesis disappear",
@@ -351,10 +352,11 @@ def run_lifecycle(database: Database) -> dict[str, Any]:
         session_id=session.id,
         limit=5,
     )
+    after_target = any("Temporary lifecycle hypothesis" in record.content for record in after)
     return {
-        "active_recall_count": len(before),
-        "closed_recall_count": len(after),
-        "forgetting_rate": 1.0 if before and not after else 0.0,
+        "active_target_visible": before_target,
+        "closed_target_visible": after_target,
+        "forgetting_rate": 1.0 if before_target and not after_target else 0.0,
     }
 
 
@@ -376,6 +378,8 @@ def run_capacity(database: Database, *, count: int, queries: int) -> dict[str, A
         )
         insert_latencies.append(latency)
     total_insert_seconds = time.perf_counter() - start
+    if database.semantic_embedder:
+        database.embed_pending()
 
     query_latencies: list[float] = []
     estimated_tokens: list[int] = []
@@ -417,6 +421,7 @@ def run_parity(
     database: Database,
     settings: Settings,
     home: Path,
+    semantic_model: str | None,
 ) -> dict[str, Any]:
     query = "package manager preference"
     db_records = database.recall(
@@ -431,6 +436,8 @@ def run_parity(
             "query": query,
             "trigger": "memory_query",
             "evidence": "Quality benchmark parity query.",
+            "semantic": bool(semantic_model),
+            "semantic_model": semantic_model,
         },
         settings,
     )
@@ -452,12 +459,15 @@ def run_parity(
         "Quality benchmark parity query.",
         "--json",
     ]
+    if semantic_model:
+        command.extend(["--semantic-model", semantic_model])
     result = subprocess.run(command, text=True, capture_output=True, check=False, env=env)
     try:
         cli_payload = json.loads(result.stdout)
     except json.JSONDecodeError:
         cli_payload = {}
-    db_ids = [record.id for record in db_records]
+    db_items, _, _ = compact_recall_items(db_records)
+    db_ids = [item["id"] for item in db_items]
     mcp_ids = [item["id"] for item in mcp_payload.get("items", [])]
     cli_ids = [item["id"] for item in cli_payload.get("items", [])]
     equal = db_ids == mcp_ids == cli_ids
@@ -478,6 +488,7 @@ def iter_locomo_turns(sample: dict[str, Any]) -> list[dict[str, str]]:
             continue
         if not isinstance(value, list):
             continue
+        session_date = str(conversation.get(f"{key}_date_time", "")).strip()
         for turn in value:
             if not isinstance(turn, dict):
                 continue
@@ -490,11 +501,68 @@ def iter_locomo_turns(sample: dict[str, Any]) -> list[dict[str, str]]:
             ]
             context = " ".join(part for part in [text, *metadata] if part)
             if dia_id and text:
-                turns.append({"dia_id": dia_id, "content": f"{speaker}: {context}"})
+                turns.append(
+                    {"dia_id": dia_id, "content": f"{speaker}: {context}", "date": session_date}
+                )
     return turns
 
 
-def run_locomo(path: Path, *, database: Database, limit: int | None = None) -> dict[str, Any]:
+def parse_locomo_date(value: str) -> date | None:
+    try:
+        return datetime.strptime(value, "%I:%M %p on %d %B, %Y").date()
+    except ValueError:
+        return None
+
+
+class CachedEnricher:
+    """Disk cache around LocalEnricher so benchmark reruns skip generation."""
+
+    def __init__(self, enricher: Any, cache_path: Path):
+        self._enricher = enricher
+        self.model_name = enricher.model_name
+        self.cache_path = cache_path
+        self._cache: dict[str, str] = (
+            json.loads(cache_path.read_text(encoding="utf-8")) if cache_path.exists() else {}
+        )
+        self.generated = 0
+        self.generation_seconds = 0.0
+
+    def enrich_many(self, items: list[Any]) -> list[str]:
+        from unimem.enrich import build_prompt
+
+        keys = [
+            hashlib.sha256(f"{self.model_name}\n{build_prompt(item)}".encode()).hexdigest()
+            for item in items
+        ]
+        missing = [index for index, key in enumerate(keys) if key not in self._cache]
+        if missing:
+            start = time.perf_counter()
+            texts = self._enricher.enrich_many([items[index] for index in missing])
+            self.generation_seconds += time.perf_counter() - start
+            self.generated += len(missing)
+            for index, text in zip(missing, texts):
+                self._cache[keys[index]] = text
+            self.cache_path.parent.mkdir(parents=True, exist_ok=True)
+            self.cache_path.write_text(json.dumps(self._cache), encoding="utf-8")
+        return [self._cache[key] for key in keys]
+
+
+def make_enricher(model: str | None, cache_dir: Path) -> CachedEnricher | None:
+    if not model:
+        return None
+    from unimem.enrich import LocalEnricher
+
+    safe = model.replace("/", "--")
+    return CachedEnricher(LocalEnricher(model), cache_dir / f"enrich-{safe}.json")
+
+
+def run_locomo(
+    path: Path,
+    *,
+    database: Database,
+    limit: int | None = None,
+    enricher: Any = None,
+) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     categories = {
         1: "multi_hop",
@@ -514,9 +582,11 @@ def run_locomo(path: Path, *, database: Database, limit: int | None = None) -> d
         sample_id = str(sample["sample_id"])
         project_id = f"locomo:{sample_id}"
         source_for_dia = {}
+        dates: dict[str, date | None] = {}
         for turn in iter_locomo_turns(sample):
             source = f"locomo:{sample_id}:{turn['dia_id']}"
             source_for_dia[turn["dia_id"]] = source
+            dates[source] = parse_locomo_date(turn["date"])
             database.add_memory(
                 content=turn["content"][:4000],
                 scope="project",
@@ -527,6 +597,10 @@ def run_locomo(path: Path, *, database: Database, limit: int | None = None) -> d
                 project_id=project_id,
                 confidence=1.0,
             )
+        if database.semantic_embedder:
+            database.embed_pending()
+        if enricher:
+            database.enrich_pending(enricher, observed_on=lambda row: dates.get(row["source"]))
 
         for qa in sample.get("qa", []):
             total_questions += 1
@@ -635,6 +709,8 @@ def run_longmemeval(path: Path, *, database: Database, limit: int | None = None)
                     project_id=project_id,
                     confidence=1.0,
                 )
+        if database.semantic_embedder:
+            database.embed_pending()
         records = database.recall(
             query=str(item["question"]),
             project_id=project_id,
@@ -673,6 +749,7 @@ def main() -> int:
     parser.add_argument("--limit", type=int)
     parser.add_argument("--capacity", type=int, default=1000)
     parser.add_argument("--capacity-queries", type=int, default=50)
+    parser.add_argument("--semantic-model")
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts/memory-quality.json")
     args = parser.parse_args()
 
@@ -686,14 +763,24 @@ def main() -> int:
         )
         database = Database(settings)
         database.initialize()
+        semantic_model = args.semantic_model or None
+        if semantic_model:
+            database.enable_semantic(model_name=semantic_model, embed_on_write=False)
         seed_fixture_memories(database)
+        if semantic_model:
+            database.embed_pending()
 
         routing = run_routing(cases["routing"])
         extraction = run_extraction(cases["extraction"], database=database, settings=settings)
         fixture_retrieval = run_fixture_retrieval(cases["retrieval"], database=database)
         lifecycle = run_lifecycle(database)
         capacity = run_capacity(database, count=args.capacity, queries=args.capacity_queries)
-        parity = run_parity(database=database, settings=settings, home=home)
+        parity = run_parity(
+            database=database,
+            settings=settings,
+            home=home,
+            semantic_model=semantic_model,
+        )
         locomo = (
             run_locomo(args.locomo, database=database, limit=args.limit)
             if args.locomo
@@ -745,6 +832,10 @@ def main() -> int:
             "lifecycle": lifecycle,
             "capacity_and_efficiency": capacity,
             "cli_mcp_parity": parity,
+            "semantic": {
+                "enabled": bool(semantic_model),
+                "model": semantic_model,
+            },
             "locomo": locomo,
             "longmemeval": longmemeval,
         },

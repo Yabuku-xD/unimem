@@ -1,0 +1,1433 @@
+{
+  "passed": false,
+  "command": "uv run --extra semantic --extra benchmark python benchmarks/measure_memory.py --lexical-only --limit 25 --capacity 50 --capacity-queries 5 --output artifacts/measure-memory-lexical-sample.json",
+  "started_at": "2026-10-02T08:08:27.351844+00:00",
+  "finished_at": "2026-10-02T08:08:32.639376+00:00",
+  "python": "3.14.7 (main, Sep 24 2026, 17:46:50) [Clang 22.1.3 ]",
+  "semantic": {
+    "enabled": false,
+    "model": null
+  },
+  "primary": {
+    "name": "balanced_public_retrieval",
+    "value": 0.75,
+    "target": 0.95,
+    "direction": "maximize"
+  },
+  "hard_gates": {
+    "secret_leakage": true,
+    "project_leakage": true,
+    "session_forgetting_rate": true,
+    "max_recall_tokens": true,
+    "cli_mcp_parity": true
+  },
+  "diagnostics": {
+    "balanced_public_retrieval_at_3": 0.5700000000000001,
+    "routing_f1": 1.0,
+    "extraction_f1": 1.0,
+    "recall_latency_p95_ms": 6.911791779566554,
+    "estimated_output_tokens_p95": 162.0,
+    "max_recall_tokens": 357,
+    "max_rss_mb": 107.265625,
+    "cpu_seconds": 4.706656,
+    "wall_seconds": 5.2873559999861754
+  },
+  "metrics": {
+    "routing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "trigger_accuracy": 1.0,
+      "true_positive": 10,
+      "false_positive": 0,
+      "true_negative": 10,
+      "false_negative": 0,
+      "misses": [],
+      "target": 0.9,
+      "meets_target": true
+    },
+    "extraction": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "scope_accuracy": 1.0,
+      "kind_accuracy": 1.0,
+      "lifecycle_accuracy": 1.0,
+      "secret_leakage": 0,
+      "misses": [],
+      "precision_target": 0.9,
+      "recall_target": 0.8,
+      "meets_target": true
+    },
+    "fixture_retrieval": {
+      "top1_accuracy": 1.0,
+      "recall_at_3": 1.0,
+      "foreign_project_hits": 0,
+      "latency_ms": {
+        "p50": 0.9248960122931749,
+        "p95": 1.0907917458098382
+      },
+      "target": 0.8,
+      "meets_target": true,
+      "misses": [],
+      "knowledge_update_current_first": true,
+      "test_time_learning_recalled": true
+    },
+    "lifecycle": {
+      "active_target_visible": true,
+      "closed_target_visible": false,
+      "forgetting_rate": 1.0
+    },
+    "capacity_and_efficiency": {
+      "memory_count": 50,
+      "query_count": 5,
+      "insert_seconds": 0.05810866696992889,
+      "inserts_per_second": 860.4568407304007,
+      "insert_latency_ms": {
+        "p50": 1.1146875040140003,
+        "p95": 1.596410051570274
+      },
+      "recall_latency_ms": {
+        "p50": 1.074666972272098,
+        "p95": 1.384900405537337
+      },
+      "estimated_output_tokens": {
+        "p50": 162.0,
+        "p95": 162.0,
+        "max": 162
+      }
+    },
+    "cli_mcp_parity": {
+      "database_ids": [
+        "mem_578d42d190c44cfa"
+      ],
+      "mcp_ids": [
+        "mem_578d42d190c44cfa"
+      ],
+      "cli_ids": [
+        "mem_578d42d190c44cfa"
+      ],
+      "equal": true,
+      "cli_returncode": 0
+    },
+    "locomo": {
+      "dataset": "LoCoMo",
+      "dataset_url": "https://github.com/snap-research/LoCoMo",
+      "dataset_license": "CC BY-NC 4.0",
+      "dataset_sha256": "79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4",
+      "samples": 10,
+      "questions": 25,
+      "evidence_questions": 25,
+      "evidence_recall_at_3": 0.56,
+      "evidence_recall_at_10": 0.64,
+      "full_evidence_recall_at_10": 0.52,
+      "mrr_at_10": 0.6848958333333334,
+      "latency_ms": {
+        "p50": 1.3861249899491668,
+        "p95": 1.8885499681346116
+      },
+      "by_category": {
+        "temporal": {
+          "questions": 12,
+          "evidence_questions": 12,
+          "hit3": 11,
+          "hit10": 11,
+          "full10": 11,
+          "recall_at_3": 0.9166666666666666,
+          "recall_at_10": 0.9166666666666666,
+          "full_recall_at_10": 0.9166666666666666
+        },
+        "commonsense": {
+          "questions": 3,
+          "evidence_questions": 3,
+          "hit3": 1,
+          "hit10": 2,
+          "full10": 1,
+          "recall_at_3": 0.3333333333333333,
+          "recall_at_10": 0.6666666666666666,
+          "full_recall_at_10": 0.3333333333333333
+        },
+        "multi_hop": {
+          "questions": 10,
+          "evidence_questions": 10,
+          "hit3": 2,
+          "hit10": 3,
+          "full10": 1,
+          "recall_at_3": 0.2,
+          "recall_at_10": 0.3,
+          "full_recall_at_10": 0.1
+        }
+      },
+      "miss_examples": [
+        {
+          "question": "What fields would Caroline be likely to pursue in her educaton?",
+          "category": "commonsense",
+          "expected_sources": [
+            "locomo:conv-26:D1:9",
+            "locomo:conv-26:D1:11"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D4:14",
+            "locomo:conv-26:D13:7",
+            "locomo:conv-26:D7:8",
+            "locomo:conv-26:D13:18",
+            "locomo:conv-26:D12:12",
+            "locomo:conv-26:D10:20",
+            "locomo:conv-26:D8:36",
+            "locomo:conv-26:D12:4",
+            "locomo:conv-26:D14:5",
+            "locomo:conv-26:D14:30"
+          ],
+          "expected_ranks": []
+        },
+        {
+          "question": "What is Caroline's identity?",
+          "category": "multi_hop",
+          "expected_sources": [
+            "locomo:conv-26:D1:5"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D11:12",
+            "locomo:conv-26:D13:13",
+            "locomo:conv-26:D16:9",
+            "locomo:conv-26:D3:3",
+            "locomo:conv-26:D12:18",
+            "locomo:conv-26:D9:5",
+            "locomo:conv-26:D12:12",
+            "locomo:conv-26:D9:10",
+            "locomo:conv-26:D8:35",
+            "locomo:conv-26:D18:12"
+          ],
+          "expected_ranks": []
+        },
+        {
+          "question": "What is Caroline's relationship status?",
+          "category": "multi_hop",
+          "expected_sources": [
+            "locomo:conv-26:D3:13",
+            "locomo:conv-26:D2:14"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D16:14",
+            "locomo:conv-26:D16:15",
+            "locomo:conv-26:D12:18",
+            "locomo:conv-26:D9:5",
+            "locomo:conv-26:D12:12",
+            "locomo:conv-26:D9:10",
+            "locomo:conv-26:D8:35",
+            "locomo:conv-26:D18:12",
+            "locomo:conv-26:D16:17",
+            "locomo:conv-26:D12:19"
+          ],
+          "expected_ranks": []
+        },
+        {
+          "question": "How long has Caroline had her current group of friends for?",
+          "category": "temporal",
+          "expected_sources": [
+            "locomo:conv-26:D3:13"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D12:15",
+            "locomo:conv-26:D6:11",
+            "locomo:conv-26:D3:11",
+            "locomo:conv-26:D6:1",
+            "locomo:conv-26:D1:7",
+            "locomo:conv-26:D3:12",
+            "locomo:conv-26:D16:14",
+            "locomo:conv-26:D16:1",
+            "locomo:conv-26:D8:2",
+            "locomo:conv-26:D15:20"
+          ],
+          "expected_ranks": []
+        },
+        {
+          "question": "What career path has Caroline decided to persue?",
+          "category": "multi_hop",
+          "expected_sources": [
+            "locomo:conv-26:D4:13",
+            "locomo:conv-26:D1:11"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D4:12",
+            "locomo:conv-26:D15:23",
+            "locomo:conv-26:D1:9",
+            "locomo:conv-26:D4:11",
+            "locomo:conv-26:D6:1",
+            "locomo:conv-26:D7:10",
+            "locomo:conv-26:D1:7",
+            "locomo:conv-26:D7:22",
+            "locomo:conv-26:D7:24",
+            "locomo:conv-26:D7:7"
+          ],
+          "expected_ranks": []
+        },
+        {
+          "question": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
+          "category": "commonsense",
+          "expected_sources": [
+            "locomo:conv-26:D4:15",
+            "locomo:conv-26:D3:5"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D4:11",
+            "locomo:conv-26:D7:5",
+            "locomo:conv-26:D4:14",
+            "locomo:conv-26:D5:3",
+            "locomo:conv-26:D7:7",
+            "locomo:conv-26:D4:12",
+            "locomo:conv-26:D17:16",
+            "locomo:conv-26:D4:15",
+            "locomo:conv-26:D17:25",
+            "locomo:conv-26:D1:11"
+          ],
+          "expected_ranks": [
+            8
+          ]
+        },
+        {
+          "question": "What activities does Melanie partake in?",
+          "category": "multi_hop",
+          "expected_sources": [
+            "locomo:conv-26:D5:4",
+            "locomo:conv-26:D9:1",
+            "locomo:conv-26:D1:12",
+            "locomo:conv-26:D1:18"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D17:22",
+            "locomo:conv-26:D15:10",
+            "locomo:conv-26:D13:2",
+            "locomo:conv-26:D13:15",
+            "locomo:conv-26:D11:13",
+            "locomo:conv-26:D5:4",
+            "locomo:conv-26:D7:27",
+            "locomo:conv-26:D10:1",
+            "locomo:conv-26:D8:18",
+            "locomo:conv-26:D19:14"
+          ],
+          "expected_ranks": [
+            6
+          ]
+        },
+        {
+          "question": "Where has Melanie camped?",
+          "category": "multi_hop",
+          "expected_sources": [
+            "locomo:conv-26:D6:16",
+            "locomo:conv-26:D4:6",
+            "locomo:conv-26:D8:32"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D6:1",
+            "locomo:conv-26:D7:22",
+            "locomo:conv-26:D7:10",
+            "locomo:conv-26:D1:7",
+            "locomo:conv-26:D7:24",
+            "locomo:conv-26:D16:14",
+            "locomo:conv-26:D5:2",
+            "locomo:conv-26:D15:11",
+            "locomo:conv-26:D16:10",
+            "locomo:conv-26:D6:13"
+          ],
+          "expected_ranks": []
+        },
+        {
+          "question": "What do Melanie's kids like?",
+          "category": "multi_hop",
+          "expected_sources": [
+            "locomo:conv-26:D6:6",
+            "locomo:conv-26:D4:8"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D8:3",
+            "locomo:conv-26:D9:17",
+            "locomo:conv-26:D11:7",
+            "locomo:conv-26:D19:4",
+            "locomo:conv-26:D3:14",
+            "locomo:conv-26:D13:10",
+            "locomo:conv-26:D10:15",
+            "locomo:conv-26:D16:16",
+            "locomo:conv-26:D15:28",
+            "locomo:conv-26:D18:8"
+          ],
+          "expected_ranks": []
+        },
+        {
+          "question": "What books has Melanie read?",
+          "category": "multi_hop",
+          "expected_sources": [
+            "locomo:conv-26:D7:8",
+            "locomo:conv-26:D6:10"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D6:7",
+            "locomo:conv-26:D7:10",
+            "locomo:conv-26:D7:9",
+            "locomo:conv-26:D6:9",
+            "locomo:conv-26:D6:8",
+            "locomo:conv-26:D4:18",
+            "locomo:conv-26:D6:1",
+            "locomo:conv-26:D17:19",
+            "locomo:conv-26:D7:22",
+            "locomo:conv-26:D1:7"
+          ],
+          "expected_ranks": []
+        },
+        {
+          "question": "What does Melanie do to destress?",
+          "category": "multi_hop",
+          "expected_sources": [
+            "locomo:conv-26:D7:22",
+            "locomo:conv-26:D5:4"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D17:22",
+            "locomo:conv-26:D7:20",
+            "locomo:conv-26:D13:2",
+            "locomo:conv-26:D13:15",
+            "locomo:conv-26:D11:13",
+            "locomo:conv-26:D7:27",
+            "locomo:conv-26:D10:1",
+            "locomo:conv-26:D8:18",
+            "locomo:conv-26:D19:14",
+            "locomo:conv-26:D15:25"
+          ],
+          "expected_ranks": []
+        }
+      ],
+      "targets": {
+        "evidence_recall_at_3": 0.7,
+        "evidence_recall_at_10": 0.9
+      },
+      "meets_targets": false,
+      "scope": "retrieval-only; not answer-generation accuracy"
+    },
+    "public_retrieval": {
+      "MemBench": {
+        "dataset": "MemBench",
+        "evidence_kind": "official target step IDs",
+        "dataset_paths": [
+          "/tmp/unimem-membench-source/MemData/FirstAgent/RecMultiSession.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/aggregative.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/comparative.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/conditional.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/highlevel.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/highlevel_rec.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/knowledge_update.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/lowlevel_rec.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/noisy.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/post_processing.json",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/simple.json",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/aggregative.json",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/comparative.json",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/conditional.json",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/highlevel.json",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/knowledge_update.json",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/noisy.json",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/post_processing.json",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/simple.json"
+        ],
+        "dataset_sha256": {
+          "/tmp/unimem-membench-source/MemData/FirstAgent/RecMultiSession.json": "c8c97a2fdfa1ac1a68615483c0c6764024d19e97a3fafb03b590e3e15a81e7ec",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/aggregative.json": "a05de17960dd41f298a5bf58df47e161526045ca4cc71fe2af6e9a3c5a9be97b",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/comparative.json": "aae21a7a0b9a755d3fba7ab212f6ab7f4b8bcad6cbbe94b1a6c70d3ab8099e2a",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/conditional.json": "9fa454f02b4f4fda075ef6cdc9199a9ec3e6243dacab5651d440d1b9876ced11",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/highlevel.json": "60a93a286c28bce01863f2f79ec4c6f5d0ad10905b030b13227c14d0c6385521",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/highlevel_rec.json": "81c19f8913cd905f53cec24e9c658e57afc99428cd0d9b8fd503bed438cf69a0",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/knowledge_update.json": "ab4851ff4689777bd620895aa0080ba94f3c499c34be6b90df2c5bfbd006d074",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/lowlevel_rec.json": "ff8d4a97021f483223354b57c6f524231906b5202a51068b9f3ded4327165d64",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/noisy.json": "64ac646966b165fddad6c2ab3d858a9714a6b6997550338bb2a01200df75f1a2",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/post_processing.json": "81070f1fd6bf394d92dc347e888a4b83ed6579e139846d42f0beb054ce371377",
+          "/tmp/unimem-membench-source/MemData/FirstAgent/simple.json": "0e3bc668d5fb4f012ac0f7f07013bd87f14fbd309faeaf33f6798a46a799490a",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/aggregative.json": "bf15dbd6da1a4025c8a80f795a18b4dbd577d6f3705b9d57dcfedbafbda40e28",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/comparative.json": "4388930408453e7b83d22bf6dc04f2410767a66cd69dec62b1d90d15c244af71",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/conditional.json": "6422b978fd35bad68a730de948d62d294f9910dfc9802bee8e3d58b6ea81ce3c",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/highlevel.json": "9f36a8681d263d27ade3c0a92814d9428065a8df83c15feb068bb2eaea9e6e31",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/knowledge_update.json": "309042284ed1a98a9c7632ce9de3f81b3e04c0a57bf2bbb49f2e2ce03454e670",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/noisy.json": "537b4c50642ab18530a7fb5f33cf6a7d33a8f137951fa0ced3162b5631314737",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/post_processing.json": "8304c17d4beb159b27c91cdd6acd2463c1f994fa2289f19ce51cda28fd594b9a",
+          "/tmp/unimem-membench-source/MemData/ThirdAgent/simple.json": "06969af221e7c710e6ab631efc4957b6a2dffcff83ba51c22adcfce66d0dc3c4"
+        },
+        "corpus_records": 2748,
+        "ingested_records": 2748,
+        "rejected_records": 0,
+        "rejected_record_examples": [],
+        "cases": 25,
+        "evaluated": 25,
+        "excluded_cases": 0,
+        "ingestion_excluded_cases": 0,
+        "evidence_recall_at_3": 0.2,
+        "evidence_recall_at_10": 0.56,
+        "full_evidence_recall_at_3": 0.2,
+        "full_evidence_recall_at_10": 0.56,
+        "mrr_at_10": 0.2383786848072562,
+        "latency_ms": {
+          "p50": 2.473749977070838,
+          "p95": 2.65761639457196
+        },
+        "estimated_output_tokens": {
+          "p50": 299.0,
+          "p95": 330.2,
+          "max": 337
+        },
+        "by_category": {
+          "FirstAgent/aggregative": {
+            "cases": 25,
+            "hit3": 5,
+            "hit10": 14,
+            "full3": 5,
+            "full10": 14,
+            "recall_at_3": 0.2,
+            "recall_at_10": 0.56,
+            "full_recall_at_10": 0.56
+          }
+        },
+        "miss_examples": [
+          {
+            "case_id": "FirstAgent:aggregative:5:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events are taking place in Portland, OR? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:5:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:5:0:43",
+              "membench:FirstAgent:aggregative:5:0:50",
+              "membench:FirstAgent:aggregative:5:0:70",
+              "membench:FirstAgent:aggregative:5:0:12",
+              "membench:FirstAgent:aggregative:5:0:61",
+              "membench:FirstAgent:aggregative:5:0:73",
+              "membench:FirstAgent:aggregative:5:0:62",
+              "membench:FirstAgent:aggregative:5:0:8",
+              "membench:FirstAgent:aggregative:5:0:53",
+              "membench:FirstAgent:aggregative:5:0:26"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:40:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events are taking place in Portland, OR? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:40:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:40:0:18",
+              "membench:FirstAgent:aggregative:40:0:50",
+              "membench:FirstAgent:aggregative:40:0:93",
+              "membench:FirstAgent:aggregative:40:0:58",
+              "membench:FirstAgent:aggregative:40:0:9",
+              "membench:FirstAgent:aggregative:40:0:19",
+              "membench:FirstAgent:aggregative:40:0:27",
+              "membench:FirstAgent:aggregative:40:0:103",
+              "membench:FirstAgent:aggregative:40:0:95",
+              "membench:FirstAgent:aggregative:40:0:46"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:51:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events are taking place in Portland, OR? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:51:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:51:0:62",
+              "membench:FirstAgent:aggregative:51:0:9",
+              "membench:FirstAgent:aggregative:51:0:50",
+              "membench:FirstAgent:aggregative:51:0:44",
+              "membench:FirstAgent:aggregative:51:0:103",
+              "membench:FirstAgent:aggregative:51:0:49",
+              "membench:FirstAgent:aggregative:51:0:38",
+              "membench:FirstAgent:aggregative:51:0:73",
+              "membench:FirstAgent:aggregative:51:0:20",
+              "membench:FirstAgent:aggregative:51:0:85"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:58:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events last longer than a week? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:58:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:58:0:50",
+              "membench:FirstAgent:aggregative:58:0:23",
+              "membench:FirstAgent:aggregative:58:0:17",
+              "membench:FirstAgent:aggregative:58:0:40",
+              "membench:FirstAgent:aggregative:58:0:70",
+              "membench:FirstAgent:aggregative:58:0:62",
+              "membench:FirstAgent:aggregative:58:0:0",
+              "membench:FirstAgent:aggregative:58:0:83",
+              "membench:FirstAgent:aggregative:58:0:51",
+              "membench:FirstAgent:aggregative:58:0:56"
+            ],
+            "expected_ranks": [
+              7
+            ]
+          },
+          {
+            "case_id": "FirstAgent:aggregative:76:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events last for a week or more? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:76:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:76:0:19",
+              "membench:FirstAgent:aggregative:76:0:69",
+              "membench:FirstAgent:aggregative:76:0:79",
+              "membench:FirstAgent:aggregative:76:0:18",
+              "membench:FirstAgent:aggregative:76:0:31",
+              "membench:FirstAgent:aggregative:76:0:47",
+              "membench:FirstAgent:aggregative:76:0:104",
+              "membench:FirstAgent:aggregative:76:0:0",
+              "membench:FirstAgent:aggregative:76:0:50",
+              "membench:FirstAgent:aggregative:76:0:82"
+            ],
+            "expected_ranks": [
+              8
+            ]
+          },
+          {
+            "case_id": "FirstAgent:aggregative:82:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events can hold around five hundred people or more? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:82:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:82:0:90",
+              "membench:FirstAgent:aggregative:82:0:14",
+              "membench:FirstAgent:aggregative:82:0:30",
+              "membench:FirstAgent:aggregative:82:0:83",
+              "membench:FirstAgent:aggregative:82:0:105",
+              "membench:FirstAgent:aggregative:82:0:70",
+              "membench:FirstAgent:aggregative:82:0:58",
+              "membench:FirstAgent:aggregative:82:0:45",
+              "membench:FirstAgent:aggregative:82:0:0",
+              "membench:FirstAgent:aggregative:82:0:50"
+            ],
+            "expected_ranks": [
+              9
+            ]
+          },
+          {
+            "case_id": "FirstAgent:aggregative:103:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events are taking place in Boston, MA? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:103:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:103:0:50",
+              "membench:FirstAgent:aggregative:103:0:84",
+              "membench:FirstAgent:aggregative:103:0:42",
+              "membench:FirstAgent:aggregative:103:0:52",
+              "membench:FirstAgent:aggregative:103:0:39",
+              "membench:FirstAgent:aggregative:103:0:7",
+              "membench:FirstAgent:aggregative:103:0:104",
+              "membench:FirstAgent:aggregative:103:0:9",
+              "membench:FirstAgent:aggregative:103:0:83",
+              "membench:FirstAgent:aggregative:103:0:2"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:121:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events are taking place in Portland, OR? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:121:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:121:0:70",
+              "membench:FirstAgent:aggregative:121:0:50",
+              "membench:FirstAgent:aggregative:121:0:86",
+              "membench:FirstAgent:aggregative:121:0:3",
+              "membench:FirstAgent:aggregative:121:0:55",
+              "membench:FirstAgent:aggregative:121:0:48",
+              "membench:FirstAgent:aggregative:121:0:103",
+              "membench:FirstAgent:aggregative:121:0:95",
+              "membench:FirstAgent:aggregative:121:0:96",
+              "membench:FirstAgent:aggregative:121:0:4"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:139:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events last for more than a week? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:139:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:139:0:35",
+              "membench:FirstAgent:aggregative:139:0:29",
+              "membench:FirstAgent:aggregative:139:0:50",
+              "membench:FirstAgent:aggregative:139:0:72",
+              "membench:FirstAgent:aggregative:139:0:2",
+              "membench:FirstAgent:aggregative:139:0:107",
+              "membench:FirstAgent:aggregative:139:0:14",
+              "membench:FirstAgent:aggregative:139:0:31",
+              "membench:FirstAgent:aggregative:139:0:97",
+              "membench:FirstAgent:aggregative:139:0:84"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:147:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events last longer than a week? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:147:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:147:0:22",
+              "membench:FirstAgent:aggregative:147:0:75",
+              "membench:FirstAgent:aggregative:147:0:68",
+              "membench:FirstAgent:aggregative:147:0:103",
+              "membench:FirstAgent:aggregative:147:0:21",
+              "membench:FirstAgent:aggregative:147:0:0",
+              "membench:FirstAgent:aggregative:147:0:50",
+              "membench:FirstAgent:aggregative:147:0:18",
+              "membench:FirstAgent:aggregative:147:0:87",
+              "membench:FirstAgent:aggregative:147:0:97"
+            ],
+            "expected_ranks": [
+              6
+            ]
+          },
+          {
+            "case_id": "FirstAgent:aggregative:177:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events feature a team size of more than five hundred people? | '2024-10-01 09:49' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:177:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:177:0:91",
+              "membench:FirstAgent:aggregative:177:0:74",
+              "membench:FirstAgent:aggregative:177:0:14",
+              "membench:FirstAgent:aggregative:177:0:27",
+              "membench:FirstAgent:aggregative:177:0:46",
+              "membench:FirstAgent:aggregative:177:0:0",
+              "membench:FirstAgent:aggregative:177:0:62",
+              "membench:FirstAgent:aggregative:177:0:82",
+              "membench:FirstAgent:aggregative:177:0:98",
+              "membench:FirstAgent:aggregative:177:0:40"
+            ],
+            "expected_ranks": [
+              6
+            ]
+          },
+          {
+            "case_id": "FirstAgent:aggregative:184:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events last a week or less? | '2024-10-01 09:49' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:184:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:184:0:21",
+              "membench:FirstAgent:aggregative:184:0:100",
+              "membench:FirstAgent:aggregative:184:0:76",
+              "membench:FirstAgent:aggregative:184:0:93",
+              "membench:FirstAgent:aggregative:184:0:49",
+              "membench:FirstAgent:aggregative:184:0:0",
+              "membench:FirstAgent:aggregative:184:0:53",
+              "membench:FirstAgent:aggregative:184:0:72",
+              "membench:FirstAgent:aggregative:184:0:84",
+              "membench:FirstAgent:aggregative:184:0:104"
+            ],
+            "expected_ranks": [
+              6
+            ]
+          },
+          {
+            "case_id": "FirstAgent:aggregative:187:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events last for more than a week? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:187:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:187:0:24",
+              "membench:FirstAgent:aggregative:187:0:50",
+              "membench:FirstAgent:aggregative:187:0:48",
+              "membench:FirstAgent:aggregative:187:0:10",
+              "membench:FirstAgent:aggregative:187:0:12",
+              "membench:FirstAgent:aggregative:187:0:42",
+              "membench:FirstAgent:aggregative:187:0:32",
+              "membench:FirstAgent:aggregative:187:0:0",
+              "membench:FirstAgent:aggregative:187:0:74",
+              "membench:FirstAgent:aggregative:187:0:78"
+            ],
+            "expected_ranks": [
+              8
+            ]
+          },
+          {
+            "case_id": "FirstAgent:aggregative:198:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events have over five hundred attendees? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:198:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:198:0:97",
+              "membench:FirstAgent:aggregative:198:0:50",
+              "membench:FirstAgent:aggregative:198:0:33",
+              "membench:FirstAgent:aggregative:198:0:19",
+              "membench:FirstAgent:aggregative:198:0:81",
+              "membench:FirstAgent:aggregative:198:0:100",
+              "membench:FirstAgent:aggregative:198:0:76",
+              "membench:FirstAgent:aggregative:198:0:60",
+              "membench:FirstAgent:aggregative:198:0:72",
+              "membench:FirstAgent:aggregative:198:0:23"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:214:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events are expected to accommodate or host more than four hundred people? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:214:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:214:0:81",
+              "membench:FirstAgent:aggregative:214:0:15",
+              "membench:FirstAgent:aggregative:214:0:38",
+              "membench:FirstAgent:aggregative:214:0:0",
+              "membench:FirstAgent:aggregative:214:0:94",
+              "membench:FirstAgent:aggregative:214:0:50",
+              "membench:FirstAgent:aggregative:214:0:16",
+              "membench:FirstAgent:aggregative:214:0:70",
+              "membench:FirstAgent:aggregative:214:0:51",
+              "membench:FirstAgent:aggregative:214:0:60"
+            ],
+            "expected_ranks": [
+              4
+            ]
+          },
+          {
+            "case_id": "FirstAgent:aggregative:229:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events take place in Seattle? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:229:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:229:0:20",
+              "membench:FirstAgent:aggregative:229:0:50",
+              "membench:FirstAgent:aggregative:229:0:87",
+              "membench:FirstAgent:aggregative:229:0:83",
+              "membench:FirstAgent:aggregative:229:0:62",
+              "membench:FirstAgent:aggregative:229:0:31",
+              "membench:FirstAgent:aggregative:229:0:43",
+              "membench:FirstAgent:aggregative:229:0:102",
+              "membench:FirstAgent:aggregative:229:0:96",
+              "membench:FirstAgent:aggregative:229:0:71"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:240:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events last more than a week? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:240:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:240:0:61",
+              "membench:FirstAgent:aggregative:240:0:54",
+              "membench:FirstAgent:aggregative:240:0:81",
+              "membench:FirstAgent:aggregative:240:0:109",
+              "membench:FirstAgent:aggregative:240:0:39",
+              "membench:FirstAgent:aggregative:240:0:66",
+              "membench:FirstAgent:aggregative:240:0:50",
+              "membench:FirstAgent:aggregative:240:0:91",
+              "membench:FirstAgent:aggregative:240:0:103",
+              "membench:FirstAgent:aggregative:240:0:63"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:267:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events last longer than a week? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:267:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:267:0:46",
+              "membench:FirstAgent:aggregative:267:0:36",
+              "membench:FirstAgent:aggregative:267:0:50",
+              "membench:FirstAgent:aggregative:267:0:22",
+              "membench:FirstAgent:aggregative:267:0:59",
+              "membench:FirstAgent:aggregative:267:0:18",
+              "membench:FirstAgent:aggregative:267:0:5",
+              "membench:FirstAgent:aggregative:267:0:87",
+              "membench:FirstAgent:aggregative:267:0:7",
+              "membench:FirstAgent:aggregative:267:0:72"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "FirstAgent:aggregative:272:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events have around five hundred attendees? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:272:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:272:0:13",
+              "membench:FirstAgent:aggregative:272:0:87",
+              "membench:FirstAgent:aggregative:272:0:46",
+              "membench:FirstAgent:aggregative:272:0:0",
+              "membench:FirstAgent:aggregative:272:0:7",
+              "membench:FirstAgent:aggregative:272:0:17",
+              "membench:FirstAgent:aggregative:272:0:18",
+              "membench:FirstAgent:aggregative:272:0:50",
+              "membench:FirstAgent:aggregative:272:0:99",
+              "membench:FirstAgent:aggregative:272:0:76"
+            ],
+            "expected_ranks": [
+              4
+            ]
+          },
+          {
+            "case_id": "FirstAgent:aggregative:278:0",
+            "category": "FirstAgent/aggregative",
+            "query": "How many events have a attendance of seven hundred people or more? | '2024-10-01 09:50' Tuesday",
+            "expected_sources": [
+              "membench:FirstAgent:aggregative:278:0:0"
+            ],
+            "returned_sources": [
+              "membench:FirstAgent:aggregative:278:0:83",
+              "membench:FirstAgent:aggregative:278:0:59",
+              "membench:FirstAgent:aggregative:278:0:9",
+              "membench:FirstAgent:aggregative:278:0:50",
+              "membench:FirstAgent:aggregative:278:0:39",
+              "membench:FirstAgent:aggregative:278:0:96",
+              "membench:FirstAgent:aggregative:278:0:68",
+              "membench:FirstAgent:aggregative:278:0:107",
+              "membench:FirstAgent:aggregative:278:0:35",
+              "membench:FirstAgent:aggregative:278:0:11"
+            ],
+            "expected_ranks": []
+          }
+        ],
+        "notes": "Retrieval-only adapter for MemBench; multiple-choice answer accuracy is not measured."
+      },
+      "MemoryAgentBench": {
+        "dataset": "MemoryAgentBench",
+        "evidence_kind": "derived answer-bearing context chunks",
+        "dataset_paths": [
+          "/tmp/unimem-memoryagentbench-conflict.parquet",
+          "/tmp/unimem-memoryagentbench-lru.parquet",
+          "/tmp/unimem-memoryagentbench-retrieval.parquet",
+          "/tmp/unimem-memoryagentbench-ttl.parquet"
+        ],
+        "dataset_sha256": {
+          "/tmp/unimem-memoryagentbench-conflict.parquet": "24d5c3f09ce0ce15625cb9f8a98f44f0d864ca6c94d7b4ad04eb697ca3a5ff45",
+          "/tmp/unimem-memoryagentbench-lru.parquet": "5ab175461954db67770d4a4cb69e569b513ebb96aceb9ee79b57f67488bcd539",
+          "/tmp/unimem-memoryagentbench-retrieval.parquet": "56c3cd80fb6731a3e53cd1a6be3148f54df60ff2d290ee50e28f8acebf9655c1",
+          "/tmp/unimem-memoryagentbench-ttl.parquet": "5338753be48f925d03318eed66117286e3489025fabe050a547bd086cd7d79c0"
+        },
+        "corpus_records": 1,
+        "ingested_records": 1,
+        "rejected_records": 0,
+        "rejected_record_examples": [],
+        "cases": 100,
+        "evaluated": 25,
+        "excluded_cases": 0,
+        "ingestion_excluded_cases": 0,
+        "evidence_recall_at_3": 0.96,
+        "evidence_recall_at_10": 0.96,
+        "full_evidence_recall_at_3": 0.96,
+        "full_evidence_recall_at_10": 0.96,
+        "mrr_at_10": 1.0,
+        "latency_ms": {
+          "p50": 1.0941249784082174,
+          "p95": 1.5937671880237756
+        },
+        "estimated_output_tokens": {
+          "p50": 126.0,
+          "p95": 126.0,
+          "max": 126
+        },
+        "by_category": {
+          "conflict": {
+            "cases": 25,
+            "hit3": 24,
+            "hit10": 24,
+            "full3": 24,
+            "full10": 24,
+            "recall_at_3": 0.96,
+            "recall_at_10": 0.96,
+            "full_recall_at_10": 0.96
+          }
+        },
+        "miss_examples": [
+          {
+            "case_id": "conflict:0:factconsolidation_mh_6k_no1",
+            "category": "conflict",
+            "query": "In which location did the spouse of Igor of Kiev pass away?",
+            "expected_sources": [
+              "memoryagentbench:conflict:0:chunk:0000"
+            ],
+            "returned_sources": [],
+            "expected_ranks": []
+          }
+        ],
+        "notes": "Retrieval proxy derived from accepted answers appearing in context chunks; official answer-generation accuracy is not measured."
+      },
+      "BEAM": {
+        "dataset": "BEAM",
+        "evidence_kind": "official source chat message IDs",
+        "dataset_paths": [
+          "/tmp/unimem-beam-100k.parquet"
+        ],
+        "dataset_sha256": {
+          "/tmp/unimem-beam-100k.parquet": "c0519be25907005ba873c927c50877471d550873039d96c041554d0075a78ace"
+        },
+        "corpus_records": 388,
+        "ingested_records": 319,
+        "rejected_records": 69,
+        "rejected_record_examples": [
+          {
+            "source": "beam:1:4",
+            "error": "secrets must not be stored in memory"
+          },
+          {
+            "source": "beam:1:5",
+            "error": "secrets must not be stored in memory"
+          },
+          {
+            "source": "beam:1:7",
+            "error": "secrets must not be stored in memory"
+          },
+          {
+            "source": "beam:1:17",
+            "error": "secrets must not be stored in memory"
+          },
+          {
+            "source": "beam:1:22",
+            "error": "secrets must not be stored in memory"
+          },
+          {
+            "source": "beam:1:23",
+            "error": "secrets must not be stored in memory"
+          },
+          {
+            "source": "beam:1:35",
+            "error": "secrets must not be stored in memory"
+          },
+          {
+            "source": "beam:1:43",
+            "error": "secrets must not be stored in memory"
+          },
+          {
+            "source": "beam:1:46",
+            "error": "secrets must not be stored in memory"
+          },
+          {
+            "source": "beam:1:47",
+            "error": "secrets must not be stored in memory"
+          }
+        ],
+        "cases": 36,
+        "evaluated": 25,
+        "excluded_cases": 0,
+        "ingestion_excluded_cases": 10,
+        "evidence_recall_at_3": 0.56,
+        "evidence_recall_at_10": 0.84,
+        "full_evidence_recall_at_3": 0.48,
+        "full_evidence_recall_at_10": 0.52,
+        "mrr_at_10": 0.6718820861678004,
+        "latency_ms": {
+          "p50": 3.7047499790787697,
+          "p95": 6.911791779566554
+        },
+        "estimated_output_tokens": {
+          "p50": 356.0,
+          "p95": 357.0,
+          "max": 357
+        },
+        "by_category": {
+          "event_ordering": {
+            "cases": 2,
+            "hit3": 0,
+            "hit10": 1,
+            "full3": 0,
+            "full10": 0,
+            "recall_at_3": 0.0,
+            "recall_at_10": 0.5,
+            "full_recall_at_10": 0.0
+          },
+          "information_extraction": {
+            "cases": 3,
+            "hit3": 2,
+            "hit10": 3,
+            "full3": 2,
+            "full10": 2,
+            "recall_at_3": 0.6666666666666666,
+            "recall_at_10": 1.0,
+            "full_recall_at_10": 0.6666666666666666
+          },
+          "instruction_following": {
+            "cases": 4,
+            "hit3": 2,
+            "hit10": 2,
+            "full3": 2,
+            "full10": 2,
+            "recall_at_3": 0.5,
+            "recall_at_10": 0.5,
+            "full_recall_at_10": 0.5
+          },
+          "knowledge_update": {
+            "cases": 3,
+            "hit3": 2,
+            "hit10": 3,
+            "full3": 2,
+            "full10": 2,
+            "recall_at_3": 0.6666666666666666,
+            "recall_at_10": 1.0,
+            "full_recall_at_10": 0.6666666666666666
+          },
+          "multi_session_reasoning": {
+            "cases": 4,
+            "hit3": 1,
+            "hit10": 3,
+            "full3": 1,
+            "full10": 1,
+            "recall_at_3": 0.25,
+            "recall_at_10": 0.75,
+            "full_recall_at_10": 0.25
+          },
+          "preference_following": {
+            "cases": 4,
+            "hit3": 2,
+            "hit10": 4,
+            "full3": 2,
+            "full10": 3,
+            "recall_at_3": 0.5,
+            "recall_at_10": 1.0,
+            "full_recall_at_10": 0.75
+          },
+          "temporal_reasoning": {
+            "cases": 3,
+            "hit3": 3,
+            "hit10": 3,
+            "full3": 3,
+            "full10": 3,
+            "recall_at_3": 1.0,
+            "recall_at_10": 1.0,
+            "full_recall_at_10": 1.0
+          },
+          "contradiction_resolution": {
+            "cases": 2,
+            "hit3": 2,
+            "hit10": 2,
+            "full3": 0,
+            "full10": 0,
+            "recall_at_3": 1.0,
+            "recall_at_10": 1.0,
+            "full_recall_at_10": 0.0
+          }
+        },
+        "miss_examples": [
+          {
+            "case_id": "1:event_ordering:1",
+            "category": "event_ordering",
+            "query": "Can you walk me through the order in which I brought up different aspects of my app development and deployment across our conversations? Mention ONLY and ONLY five items.",
+            "expected_sources": [
+              "beam:1:6",
+              "beam:1:62",
+              "beam:1:118",
+              "beam:1:120"
+            ],
+            "returned_sources": [
+              "beam:1:171",
+              "beam:1:125",
+              "beam:1:85",
+              "beam:1:50",
+              "beam:1:124",
+              "beam:1:127",
+              "beam:1:84",
+              "beam:1:181",
+              "beam:1:134",
+              "beam:1:118"
+            ],
+            "expected_ranks": [
+              10
+            ]
+          },
+          {
+            "case_id": "1:instruction_following:0",
+            "category": "instruction_following",
+            "query": "Could you show me how to implement a login feature?",
+            "expected_sources": [
+              "beam:1:54",
+              "beam:1:56"
+            ],
+            "returned_sources": [
+              "beam:1:29",
+              "beam:1:2",
+              "beam:1:150",
+              "beam:1:28",
+              "beam:1:84",
+              "beam:1:34",
+              "beam:1:8",
+              "beam:1:114",
+              "beam:1:109",
+              "beam:1:86"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "1:knowledge_update:0",
+            "category": "knowledge_update",
+            "query": "What is the average response time of the dashboard API?",
+            "expected_sources": [
+              "beam:1:86",
+              "beam:1:114"
+            ],
+            "returned_sources": [
+              "beam:1:104",
+              "beam:1:105",
+              "beam:1:186",
+              "beam:1:114",
+              "beam:1:177",
+              "beam:1:176",
+              "beam:1:121",
+              "beam:1:24",
+              "beam:1:26",
+              "beam:1:119"
+            ],
+            "expected_ranks": [
+              4
+            ]
+          },
+          {
+            "case_id": "1:multi_session_reasoning:1",
+            "category": "multi_session_reasoning",
+            "query": "How many different user roles and security features am I trying to implement across my sessions?",
+            "expected_sources": [
+              "beam:1:16",
+              "beam:1:84",
+              "beam:1:150"
+            ],
+            "returned_sources": [
+              "beam:1:178",
+              "beam:1:182",
+              "beam:1:184",
+              "beam:1:179",
+              "beam:1:34",
+              "beam:1:154",
+              "beam:1:16",
+              "beam:1:186",
+              "beam:1:8",
+              "beam:1:183"
+            ],
+            "expected_ranks": [
+              7
+            ]
+          },
+          {
+            "case_id": "1:preference_following:1",
+            "category": "preference_following",
+            "query": "I'm looking to improve the security features of my app. What steps would you suggest I take?",
+            "expected_sources": [
+              "beam:1:178"
+            ],
+            "returned_sources": [
+              "beam:1:186",
+              "beam:1:182",
+              "beam:1:122",
+              "beam:1:178",
+              "beam:1:120",
+              "beam:1:184",
+              "beam:1:118",
+              "beam:1:187",
+              "beam:1:125",
+              "beam:1:172"
+            ],
+            "expected_ranks": [
+              4
+            ]
+          },
+          {
+            "case_id": "2:event_ordering:1",
+            "category": "event_ordering",
+            "query": "Can you list the order in which I brought up different aspects of handling errors and promise rejections in my weather app code throughout our conversations in order? Mention ONLY and ONLY five items.",
+            "expected_sources": [
+              "beam:2:28",
+              "beam:2:162"
+            ],
+            "returned_sources": [
+              "beam:2:134",
+              "beam:2:77",
+              "beam:2:163",
+              "beam:2:53",
+              "beam:2:141",
+              "beam:2:108",
+              "beam:2:76",
+              "beam:2:109",
+              "beam:2:26",
+              "beam:2:14"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "2:information_extraction:1",
+            "category": "information_extraction",
+            "query": "How did you recommend managing the flow of requests when my app risks overwhelming the service due to frequent retries and bursts of activity?",
+            "expected_sources": [
+              "beam:2:33",
+              "beam:2:35",
+              "beam:2:37"
+            ],
+            "returned_sources": [
+              "beam:2:122",
+              "beam:2:103",
+              "beam:2:93",
+              "beam:2:37",
+              "beam:2:156",
+              "beam:2:105",
+              "beam:2:151",
+              "beam:2:99",
+              "beam:2:172",
+              "beam:2:81"
+            ],
+            "expected_ranks": [
+              4
+            ]
+          },
+          {
+            "case_id": "2:instruction_following:1",
+            "category": "instruction_following",
+            "query": "When building an application that communicates with a REST API, what typical errors should I be prepared to handle?",
+            "expected_sources": [
+              "beam:2:130"
+            ],
+            "returned_sources": [
+              "beam:2:115",
+              "beam:2:114",
+              "beam:2:134",
+              "beam:2:109",
+              "beam:2:131",
+              "beam:2:152",
+              "beam:2:139",
+              "beam:2:85",
+              "beam:2:63",
+              "beam:2:53"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "2:multi_session_reasoning:0",
+            "category": "multi_session_reasoning",
+            "query": "How many different features or concerns did I mention wanting to handle across my weather app conversations?",
+            "expected_sources": [
+              "beam:2:32",
+              "beam:2:34",
+              "beam:2:36",
+              "beam:2:122",
+              "beam:2:190"
+            ],
+            "returned_sources": [
+              "beam:2:77",
+              "beam:2:76",
+              "beam:2:28",
+              "beam:2:26",
+              "beam:2:14",
+              "beam:2:52",
+              "beam:2:134",
+              "beam:2:139",
+              "beam:2:137",
+              "beam:2:146"
+            ],
+            "expected_ranks": []
+          },
+          {
+            "case_id": "2:multi_session_reasoning:1",
+            "category": "multi_session_reasoning",
+            "query": "Between my fetch call latency and my autocomplete API response time, which one is currently faster based on my tests?",
+            "expected_sources": [
+              "beam:2:38",
+              "beam:2:80"
+            ],
+            "returned_sources": [
+              "beam:2:94",
+              "beam:2:52",
+              "beam:2:150",
+              "beam:2:92",
+              "beam:2:38",
+              "beam:2:148",
+              "beam:2:114",
+              "beam:2:62",
+              "beam:2:124",
+              "beam:2:74"
+            ],
+            "expected_ranks": [
+              5
+            ]
+          },
+          {
+            "case_id": "2:preference_following:1",
+            "category": "preference_following",
+            "query": "How can I track the status and results of each step in my deployment workflow?",
+            "expected_sources": [
+              "beam:2:182",
+              "beam:2:184"
+            ],
+            "returned_sources": [
+              "beam:2:185",
+              "beam:2:176",
+              "beam:2:145",
+              "beam:2:184",
+              "beam:2:183",
+              "beam:2:135",
+              "beam:2:147",
+              "beam:2:193",
+              "beam:2:195",
+              "beam:2:174"
+            ],
+            "expected_ranks": [
+              4
+            ]
+          }
+        ],
+        "notes": "Retrieval-only adapter for BEAM probing questions with source_chat_ids."
+      }
+    },
+    "longmemeval_v2": {
+      "status": "inventory_only",
+      "dataset": "LongMemEval-V2",
+      "dataset_url": "https://github.com/xiaowu0162/LongMemEval-V2",
+      "dataset_license": "MIT",
+      "questions": 451,
+      "evidence_cases": 451,
+      "question_evidence_id_overlap": 451,
+      "dataset_sha256": {
+        "/tmp/unimem-lme-v2-questions.jsonl": "0a3ae5ebea938c24d7800e1e0b0828e08ae1646f939a53853b2b8cdc08e292b7",
+        "/tmp/unimem-lme-v2-small.json": "9b5301defb23a088a5f06e45ff8d5f35e569d78305a66d492046a9fff9b46593"
+      },
+      "reason": "Official evaluation needs multimodal web-agent trajectories/screenshots; the local checkout contains question and evidence-step metadata only."
+    }
+  },
+  "limitations": [
+    "LoCoMo, MemBench, and BEAM tracks measure evidence retrieval rather than answer generation.",
+    "MemoryAgentBench evidence is derived from accepted answers appearing in context chunks.",
+    "LongMemEval-V2 is inventory-only until multimodal trajectory data is available.",
+    "Published system scores are not directly comparable unless model, judge, corpus, and budget match."
+  ]
+}
