@@ -24,7 +24,12 @@ def _parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     init = sub.add_parser("init", help="Initialize storage and client integrations")
-    init.add_argument("--client", choices=["all", "agents", "claude", "cursor", "codex"], default="all")
+    init.add_argument(
+        "--client",
+        choices=["all", "agents", "terminal", "claude", "claude-code", "cursor", "codex"],
+        default="all",
+        help="Install one client surface, or all surfaces at once",
+    )
     init.add_argument("--project-dir", help="Project directory to configure")
 
     remember = sub.add_parser("remember", help="Store a durable memory")

@@ -13,33 +13,51 @@
 
 ## Install
 
-For a normal installation:
+For a normal project environment:
 
 ```bash
-python3 -m pip install .
-unimem doctor
+uv sync
+uv run unimem doctor
 ```
 
-From this checkout without installing:
+To install the CLI as a standalone uv tool:
 
 ```bash
-PYTHONPATH=src python3 -m unimem doctor
+uv tool install .
+unimem doctor
 ```
 
 The database is `~/.unimem/unimem.db` by default. Override it with `UNIMEM_HOME` or `UNIMEM_DB`.
 
 ## Initialize a project
 
-Run this from the repository you want to configure:
+Configure every supported client in one repository:
 
 ```bash
 unimem init --client all
 ```
 
+Or configure only the surface you use:
+
+```bash
+unimem init --client claude     # Claude Code
+unimem init --client cursor     # Cursor
+unimem init --client codex      # Codex
+unimem init --client terminal   # terminal agents using AGENTS.md
+```
+
+`claude-code` is an alias for `claude`, and `agents` is the underlying name for `terminal`. To configure a different repository from anywhere:
+
+```bash
+unimem --project-dir /path/to/repo init --client cursor
+```
+
+Each command writes only the selected client surface plus the shared `AGENTS.md` pointer and skill guidance. All clients still use the same local database at `~/.unimem/unimem.db`.
+
 This creates:
 
-- `AGENTS.md`, `.agents/skills/unimem/SKILL.md`, and client-specific skill files;
-- project MCP configuration for Claude Code, Cursor, and Codex;
+- `AGENTS.md` and the selected client's skill file;
+- project MCP configuration only for the selected client;
 - no memory content in generated prompt files.
 
 The generated guidance tells agents to inspect the repository first and use memory only for prior-work references, missing constraints, handoffs, or conflicts.
@@ -109,12 +127,18 @@ Every successful or blocked retrieval is audited. `doctor` reports the local dat
 The reproducible end-to-end acceptance run is:
 
 ```bash
-python3 tests/e2e_unimem.py
+uv run python tests/e2e_unimem.py
 ```
 
 It writes [`artifacts/e2e-unimem.json`](artifacts/e2e-unimem.json) and covers routine routing, trigger gating, scope isolation, session expiry, extraction filtering, output budgets, MCP parity, and local operation.
 
 On the development machine used for this build, `doctor`, `route`, and a bounded `recall` each stayed at roughly 29-30 MB maximum resident memory and completed in about 0.1 seconds. Exact figures vary by Python runtime and database size.
+
+## Toolchain
+
+uv is the primary development and installation workflow. It gives reproducible environments through `uv.lock`, fast command execution through `uv run`, and standalone CLI installation through `uv tool install`.
+
+The tradeoffs are small but real: contributors need uv installed, `uv.lock` must be refreshed when Python constraints change, and `uv tool install` may require adding its tool directory to `PATH`. The package still uses standard `pyproject.toml` metadata, so downstream packaging tools remain compatible with the project.
 
 ## Limitations
 

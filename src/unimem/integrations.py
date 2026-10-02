@@ -13,6 +13,10 @@ MARKER_START = "<!-- unimem:start -->"
 MARKER_END = "<!-- unimem:end -->"
 TOML_START = "# BEGIN UNIMEM"
 TOML_END = "# END UNIMEM"
+CLIENT_ALIASES = {
+    "claude-code": "claude",
+    "terminal": "agents",
+}
 
 
 def skill_text() -> str:
@@ -104,7 +108,7 @@ def install_integrations(
     clients: tuple[str, ...],
     mcp_tool_schema_bytes: int,
 ) -> dict[str, Any]:
-    selected = set(clients)
+    selected = {CLIENT_ALIASES.get(client, client) for client in clients}
     if "all" in selected:
         selected = {"agents", "claude", "cursor", "codex"}
     files: list[str] = []

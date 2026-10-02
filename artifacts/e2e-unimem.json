@@ -1,8 +1,8 @@
 {
   "passed": true,
-  "command": "python3 tests/e2e_unimem.py",
-  "started_at": "2026-10-02T03:58:37.233871+00:00",
-  "finished_at": "2026-10-02T03:58:39.120808+00:00",
+  "command": "uv run python tests/e2e_unimem.py",
+  "started_at": "2026-10-02T04:17:18.804799+00:00",
+  "finished_at": "2026-10-02T04:17:20.979366+00:00",
   "python": "3.14.7 (main, Sep 24 2026, 17:46:50) [Clang 22.1.3 ]",
   "failure_modes_covered": [
     "prompt_bloat",
@@ -21,7 +21,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "init",
@@ -30,7 +30,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"clients\": [\n    \"agents\",\n    \"claude\",\n    \"codex\",\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.cursor/mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"-m\",\n      \"unimem\",\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/.venv/bin/python\",\n    \"env\": {\n      \"PYTHONPATH\": \"/Users/yabuku/Downloads/unimem/src\",\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"agents\",\n    \"claude\",\n    \"codex\",\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.cursor/mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"resident_instruction_bytes\": 906\n}\n",
         "stderr": ""
       }
     },
@@ -38,7 +38,7 @@
       "name": "init_payload_project_a",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"clients\": [\n    \"agents\",\n    \"claude\",\n    \"codex\",\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.cursor/mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"-m\",\n      \"unimem\",\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/.venv/bin/python\",\n    \"env\": {\n      \"PYTHONPATH\": \"/Users/yabuku/Downloads/unimem/src\",\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"agents\",\n    \"claude\",\n    \"codex\",\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.cursor/mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"resident_instruction_bytes\": 906\n}\n",
         "stderr": ""
       }
     },
@@ -46,20 +46,20 @@
       "name": "integration_files_exist",
       "ok": true,
       "details": [
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/AGENTS.md",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.agents/skills/unimem/SKILL.md",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.claude/skills/unimem/SKILL.md",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.cursor/skills/unimem/SKILL.md",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.mcp.json",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.cursor/mcp.json",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.codex/config.toml"
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/AGENTS.md",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.agents/skills/unimem/SKILL.md",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.claude/skills/unimem/SKILL.md",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.cursor/skills/unimem/SKILL.md",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.mcp.json",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.cursor/mcp.json",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.codex/config.toml"
       ]
     },
     {
       "name": "generated_files_have_no_memory_dump",
       "ok": true,
       "details": {
-        "bytes": 3829
+        "bytes": 3629
       }
     },
     {
@@ -73,30 +73,188 @@
           "cursor"
         ],
         "files": [
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/AGENTS.md",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.agents/skills/unimem/SKILL.md",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.claude/skills/unimem/SKILL.md",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.cursor/skills/unimem/SKILL.md",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.mcp.json",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.cursor/mcp.json",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-a/.codex/config.toml"
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/AGENTS.md",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.agents/skills/unimem/SKILL.md",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.claude/skills/unimem/SKILL.md",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.cursor/skills/unimem/SKILL.md",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.mcp.json",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.cursor/mcp.json",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-a/.codex/config.toml"
         ],
         "launcher": {
           "args": [
-            "-m",
-            "unimem",
             "mcp"
           ],
-          "command": "/Users/yabuku/.venv/bin/python",
+          "command": "/Users/yabuku/Downloads/unimem/.venv/bin/unimem",
           "env": {
-            "PYTHONPATH": "/Users/yabuku/Downloads/unimem/src",
-            "UNIMEM_HOME": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home"
+            "UNIMEM_HOME": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home"
           }
         },
         "mcp_tool_schema_bytes": 904,
         "ok": true,
-        "project_id": "path:5465da806a08250c",
+        "project_id": "path:28c1acd391f43174",
         "resident_instruction_bytes": 906
+      }
+    },
+    {
+      "name": "init_client_claude",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "claude",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"claude\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-claude/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-claude/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-claude/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-claude/.mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:6ec49985bfb6148e\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_client_claude_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"claude\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-claude/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-claude/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-claude/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-claude/.mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:6ec49985bfb6148e\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "client_claude_writes_only_selected_surface",
+      "ok": true,
+      "details": {
+        "expected": [
+          ".claude/skills/unimem/SKILL.md",
+          ".mcp.json"
+        ],
+        "forbidden": [
+          ".codex/config.toml",
+          ".cursor/skills/unimem/SKILL.md"
+        ]
+      }
+    },
+    {
+      "name": "init_client_cursor",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "cursor",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-cursor/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-cursor/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-cursor/.cursor/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:71ce62a321cdd125\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_client_cursor_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-cursor/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-cursor/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-cursor/.cursor/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:71ce62a321cdd125\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "client_cursor_writes_only_selected_surface",
+      "ok": true,
+      "details": {
+        "expected": [
+          ".cursor/mcp.json",
+          ".cursor/skills/unimem/SKILL.md"
+        ],
+        "forbidden": [
+          ".claude/skills/unimem/SKILL.md",
+          ".codex/config.toml"
+        ]
+      }
+    },
+    {
+      "name": "init_client_codex",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "codex",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"codex\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-codex/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-codex/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-codex/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:23df84400a2061c9\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_client_codex_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"codex\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-codex/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-codex/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-codex/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:23df84400a2061c9\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "client_codex_writes_only_selected_surface",
+      "ok": true,
+      "details": {
+        "expected": [
+          ".agents/skills/unimem/SKILL.md",
+          ".codex/config.toml"
+        ],
+        "forbidden": [
+          ".claude/skills/unimem/SKILL.md",
+          ".cursor/mcp.json"
+        ]
+      }
+    },
+    {
+      "name": "init_client_terminal",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "terminal",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-terminal/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-terminal/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:3ee1dae9f3bc12b2\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_client_terminal_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-terminal/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/client-terminal/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:3ee1dae9f3bc12b2\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "client_terminal_writes_only_selected_surface",
+      "ok": true,
+      "details": {
+        "expected": [
+          ".agents/skills/unimem/SKILL.md",
+          "AGENTS.md"
+        ],
+        "forbidden": [
+          ".codex/config.toml",
+          ".cursor/mcp.json",
+          ".mcp.json"
+        ]
       }
     },
     {
@@ -104,7 +262,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "route",
@@ -140,7 +298,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "route",
@@ -176,7 +334,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "route",
@@ -212,7 +370,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -230,7 +388,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Always use pnpm for package management.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:37.470073+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_4026822afd0a489c\",\n  \"kind\": \"preference\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:37.470073+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"user\",\n  \"session_id\": null,\n  \"source\": \"user-statement\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:37.470073+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Always use pnpm for package management.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:19.323362+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_cfd716f0b4eb4735\",\n  \"kind\": \"preference\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:19.323362+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"user\",\n  \"session_id\": null,\n  \"source\": \"user-statement\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:19.323362+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -238,7 +396,7 @@
       "name": "remember_user_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Always use pnpm for package management.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:37.470073+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_4026822afd0a489c\",\n  \"kind\": \"preference\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:37.470073+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"user\",\n  \"session_id\": null,\n  \"source\": \"user-statement\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:37.470073+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Always use pnpm for package management.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:19.323362+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_cfd716f0b4eb4735\",\n  \"kind\": \"preference\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:19.323362+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"user\",\n  \"session_id\": null,\n  \"source\": \"user-statement\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:19.323362+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -247,7 +405,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -265,7 +423,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"SQLite is the project store because it needs no service.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:37.517927+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_4c085505aa014e73\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:37.517927+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:37.517927+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"SQLite is the project store because it needs no service.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:19.377490+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_da38470ba2f54391\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:19.377490+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:19.377490+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -273,7 +431,7 @@
       "name": "remember_project_a_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"SQLite is the project store because it needs no service.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:37.517927+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_4c085505aa014e73\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:37.517927+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:37.517927+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"SQLite is the project store because it needs no service.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:19.377490+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_da38470ba2f54391\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:19.377490+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:19.377490+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -282,7 +440,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "init",
@@ -291,7 +449,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-b/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/project-b/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"-m\",\n      \"unimem\",\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/.venv/bin/python\",\n    \"env\": {\n      \"PYTHONPATH\": \"/Users/yabuku/Downloads/unimem/src\",\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:78404bc3028a4f4c\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-b/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/project-b/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 904,\n  \"ok\": true,\n  \"project_id\": \"path:fde3a5f0ca25a309\",\n  \"resident_instruction_bytes\": 906\n}\n",
         "stderr": ""
       }
     },
@@ -300,7 +458,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -318,7 +476,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Postgres is the project store for the second repository.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:37.612455+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_6a3bb73cbe164222\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:37.612455+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:78404bc3028a4f4c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:37.612455+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Postgres is the project store for the second repository.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:19.479012+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_6d4d7e1bd0e244f4\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:19.479012+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:fde3a5f0ca25a309\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:19.479012+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -326,7 +484,7 @@
       "name": "remember_project_b_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Postgres is the project store for the second repository.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:37.612455+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_6a3bb73cbe164222\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:37.612455+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:78404bc3028a4f4c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:37.612455+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Postgres is the project store for the second repository.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:19.479012+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_6d4d7e1bd0e244f4\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:19.479012+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:fde3a5f0ca25a309\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:19.479012+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -335,14 +493,14 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "doctor",
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home/unimem.db\",\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 904,\n  \"memory_counts\": {\n    \"project/semantic\": 2,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"git:github.com/acme/unimem-fixture\",\n  \"resident_instruction_bytes\": 906,\n  \"session_counts\": {}\n}\n",
+        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home/unimem.db\",\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 904,\n  \"memory_counts\": {\n    \"project/semantic\": 2,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"git:github.com/acme/unimem-fixture\",\n  \"resident_instruction_bytes\": 906,\n  \"session_counts\": {}\n}\n",
         "stderr": ""
       }
     },
@@ -350,7 +508,7 @@
       "name": "git_project_identity_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home/unimem.db\",\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 904,\n  \"memory_counts\": {\n    \"project/semantic\": 2,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"git:github.com/acme/unimem-fixture\",\n  \"resident_instruction_bytes\": 906,\n  \"session_counts\": {}\n}\n",
+        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home/unimem.db\",\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 904,\n  \"memory_counts\": {\n    \"project/semantic\": 2,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"git:github.com/acme/unimem-fixture\",\n  \"resident_instruction_bytes\": 906,\n  \"session_counts\": {}\n}\n",
         "stderr": ""
       }
     },
@@ -359,7 +517,7 @@
       "ok": true,
       "details": {
         "daemon_required": false,
-        "database": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home/unimem.db",
+        "database": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home/unimem.db",
         "external_api_calls": 0,
         "fts5": true,
         "mcp_tool_schema_bytes": 904,
@@ -377,7 +535,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "session",
@@ -389,7 +547,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T03:58:37.721228+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-02T04:58:37.721232+00:00\",\n    \"id\": \"ses_ab223e99832549ff\",\n    \"last_activity_at\": \"2026-10-02T03:58:37.721228+00:00\",\n    \"project_id\": \"path:5465da806a08250c\",\n    \"status\": \"active\",\n    \"title\": \"acceptance\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T04:17:19.594928+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-02T05:17:19.594932+00:00\",\n    \"id\": \"ses_22bb0c6ad3a2491f\",\n    \"last_activity_at\": \"2026-10-02T04:17:19.594928+00:00\",\n    \"project_id\": \"path:28c1acd391f43174\",\n    \"status\": \"active\",\n    \"title\": \"acceptance\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -397,7 +555,7 @@
       "name": "session_start_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T03:58:37.721228+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-02T04:58:37.721232+00:00\",\n    \"id\": \"ses_ab223e99832549ff\",\n    \"last_activity_at\": \"2026-10-02T03:58:37.721228+00:00\",\n    \"project_id\": \"path:5465da806a08250c\",\n    \"status\": \"active\",\n    \"title\": \"acceptance\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T04:17:19.594928+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-02T05:17:19.594932+00:00\",\n    \"id\": \"ses_22bb0c6ad3a2491f\",\n    \"last_activity_at\": \"2026-10-02T04:17:19.594928+00:00\",\n    \"project_id\": \"path:28c1acd391f43174\",\n    \"status\": \"active\",\n    \"title\": \"acceptance\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -408,12 +566,12 @@
         "ok": true,
         "session": {
           "client": null,
-          "created_at": "2026-10-02T03:58:37.721228+00:00",
+          "created_at": "2026-10-02T04:17:19.594928+00:00",
           "ended_at": null,
-          "expires_at": "2026-10-02T04:58:37.721232+00:00",
-          "id": "ses_ab223e99832549ff",
-          "last_activity_at": "2026-10-02T03:58:37.721228+00:00",
-          "project_id": "path:5465da806a08250c",
+          "expires_at": "2026-10-02T05:17:19.594932+00:00",
+          "id": "ses_22bb0c6ad3a2491f",
+          "last_activity_at": "2026-10-02T04:17:19.594928+00:00",
+          "project_id": "path:28c1acd391f43174",
           "status": "active",
           "title": "acceptance"
         }
@@ -424,7 +582,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -432,7 +590,7 @@
           "--scope",
           "session",
           "--session-id",
-          "ses_ab223e99832549ff",
+          "ses_22bb0c6ad3a2491f",
           "--lifecycle",
           "episodic",
           "--kind",
@@ -446,7 +604,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis: the retry bug may be caused by cache.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:37.768152+00:00\",\n  \"expires_at\": \"2000-01-01T00:00:00+00:00\",\n  \"id\": \"mem_2ad949cd2c984534\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:37.768152+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_ab223e99832549ff\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:37.768152+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis: the retry bug may be caused by cache.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:19.642543+00:00\",\n  \"expires_at\": \"2000-01-01T00:00:00+00:00\",\n  \"id\": \"mem_a3a1774bf94f4cbb\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:19.642543+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_22bb0c6ad3a2491f\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:19.642543+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -454,7 +612,7 @@
       "name": "remember_expired_session_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis: the retry bug may be caused by cache.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:37.768152+00:00\",\n  \"expires_at\": \"2000-01-01T00:00:00+00:00\",\n  \"id\": \"mem_2ad949cd2c984534\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:37.768152+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_ab223e99832549ff\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:37.768152+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis: the retry bug may be caused by cache.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:19.642543+00:00\",\n  \"expires_at\": \"2000-01-01T00:00:00+00:00\",\n  \"id\": \"mem_a3a1774bf94f4cbb\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:19.642543+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_22bb0c6ad3a2491f\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:19.642543+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -463,7 +621,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "recall",
@@ -475,7 +633,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 51,\n  \"items\": [\n    {\n      \"content\": \"Always use pnpm for package management.\",\n      \"id\": \"mem_4026822afd0a489c\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"user\",\n      \"source\": \"user-statement\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"explicit_reference\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 51,\n  \"items\": [\n    {\n      \"content\": \"Always use pnpm for package management.\",\n      \"id\": \"mem_cfd716f0b4eb4735\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"user\",\n      \"source\": \"user-statement\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"explicit_reference\"\n}\n",
         "stderr": ""
       }
     },
@@ -483,7 +641,7 @@
       "name": "recall_scoped_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 51,\n  \"items\": [\n    {\n      \"content\": \"Always use pnpm for package management.\",\n      \"id\": \"mem_4026822afd0a489c\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"user\",\n      \"source\": \"user-statement\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"explicit_reference\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 51,\n  \"items\": [\n    {\n      \"content\": \"Always use pnpm for package management.\",\n      \"id\": \"mem_cfd716f0b4eb4735\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"user\",\n      \"source\": \"user-statement\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"explicit_reference\"\n}\n",
         "stderr": ""
       }
     },
@@ -496,7 +654,7 @@
         "items": [
           {
             "content": "Always use pnpm for package management.",
-            "id": "mem_4026822afd0a489c",
+            "id": "mem_cfd716f0b4eb4735",
             "kind": "preference",
             "lifecycle": "semantic",
             "scope": "user",
@@ -515,7 +673,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "recall",
@@ -527,7 +685,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"SQLite is the project store because it needs no service.\",\n      \"id\": \"mem_4c085505aa014e73\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"SQLite is the project store because it needs no service.\",\n      \"id\": \"mem_da38470ba2f54391\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -535,7 +693,7 @@
       "name": "recall_project_scope_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"SQLite is the project store because it needs no service.\",\n      \"id\": \"mem_4c085505aa014e73\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"SQLite is the project store because it needs no service.\",\n      \"id\": \"mem_da38470ba2f54391\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -548,7 +706,7 @@
         "items": [
           {
             "content": "SQLite is the project store because it needs no service.",
-            "id": "mem_4c085505aa014e73",
+            "id": "mem_da38470ba2f54391",
             "kind": "decision",
             "lifecycle": "semantic",
             "scope": "project",
@@ -567,7 +725,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "recall",
@@ -579,7 +737,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"Postgres is the project store for the second repository.\",\n      \"id\": \"mem_6a3bb73cbe164222\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"Postgres is the project store for the second repository.\",\n      \"id\": \"mem_6d4d7e1bd0e244f4\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -587,7 +745,7 @@
       "name": "recall_project_b_scope_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"Postgres is the project store for the second repository.\",\n      \"id\": \"mem_6a3bb73cbe164222\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"Postgres is the project store for the second repository.\",\n      \"id\": \"mem_6d4d7e1bd0e244f4\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -600,7 +758,7 @@
         "items": [
           {
             "content": "Postgres is the project store for the second repository.",
-            "id": "mem_6a3bb73cbe164222",
+            "id": "mem_6d4d7e1bd0e244f4",
             "kind": "decision",
             "lifecycle": "semantic",
             "scope": "project",
@@ -619,7 +777,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "recall",
@@ -629,7 +787,7 @@
           "--evidence",
           "The current debugging context lacks the prior hypothesis.",
           "--session-id",
-          "ses_ab223e99832549ff",
+          "ses_22bb0c6ad3a2491f",
           "--json"
         ],
         "returncode": 0,
@@ -662,7 +820,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "session",
@@ -674,7 +832,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T03:58:38.007997+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-02T04:58:38.008002+00:00\",\n    \"id\": \"ses_cfac6105c0694727\",\n    \"last_activity_at\": \"2026-10-02T03:58:38.007997+00:00\",\n    \"project_id\": \"path:5465da806a08250c\",\n    \"status\": \"active\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T04:17:19.883928+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-02T05:17:19.883932+00:00\",\n    \"id\": \"ses_af8a594d4bc94dae\",\n    \"last_activity_at\": \"2026-10-02T04:17:19.883928+00:00\",\n    \"project_id\": \"path:28c1acd391f43174\",\n    \"status\": \"active\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -682,7 +840,7 @@
       "name": "closed_session_start_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T03:58:38.007997+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-02T04:58:38.008002+00:00\",\n    \"id\": \"ses_cfac6105c0694727\",\n    \"last_activity_at\": \"2026-10-02T03:58:38.007997+00:00\",\n    \"project_id\": \"path:5465da806a08250c\",\n    \"status\": \"active\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T04:17:19.883928+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-02T05:17:19.883932+00:00\",\n    \"id\": \"ses_af8a594d4bc94dae\",\n    \"last_activity_at\": \"2026-10-02T04:17:19.883928+00:00\",\n    \"project_id\": \"path:28c1acd391f43174\",\n    \"status\": \"active\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -691,7 +849,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -699,7 +857,7 @@
           "--scope",
           "session",
           "--session-id",
-          "ses_cfac6105c0694727",
+          "ses_af8a594d4bc94dae",
           "--lifecycle",
           "episodic",
           "--kind",
@@ -711,7 +869,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis that should disappear after session end.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.055723+00:00\",\n  \"expires_at\": \"2026-10-02T04:58:38.008002+00:00\",\n  \"id\": \"mem_c55de173f47342ce\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.055723+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_cfac6105c0694727\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.055723+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis that should disappear after session end.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:19.929494+00:00\",\n  \"expires_at\": \"2026-10-02T05:17:19.883932+00:00\",\n  \"id\": \"mem_4906c0be214648f3\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:19.929494+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_af8a594d4bc94dae\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:19.929494+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -720,16 +878,16 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "session",
           "end",
-          "ses_cfac6105c0694727",
+          "ses_af8a594d4bc94dae",
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T03:58:38.007997+00:00\",\n    \"ended_at\": \"2026-10-02T03:58:38.102915+00:00\",\n    \"expires_at\": \"2026-10-02T03:58:38.102915+00:00\",\n    \"id\": \"ses_cfac6105c0694727\",\n    \"last_activity_at\": \"2026-10-02T03:58:38.102915+00:00\",\n    \"project_id\": \"path:5465da806a08250c\",\n    \"status\": \"closed\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-02T04:17:19.883928+00:00\",\n    \"ended_at\": \"2026-10-02T04:17:19.975135+00:00\",\n    \"expires_at\": \"2026-10-02T04:17:19.975135+00:00\",\n    \"id\": \"ses_af8a594d4bc94dae\",\n    \"last_activity_at\": \"2026-10-02T04:17:19.975135+00:00\",\n    \"project_id\": \"path:28c1acd391f43174\",\n    \"status\": \"closed\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -738,7 +896,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "recall",
@@ -748,7 +906,7 @@
           "--evidence",
           "The current task needs the prior session hypothesis.",
           "--session-id",
-          "ses_cfac6105c0694727",
+          "ses_af8a594d4bc94dae",
           "--json"
         ],
         "returncode": 0,
@@ -781,7 +939,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "recall",
@@ -810,7 +968,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -845,20 +1003,20 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "distill",
-          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/transcript.jsonl",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/transcript.jsonl",
           "--apply",
           "--session-id",
-          "ses_ab223e99832549ff",
+          "ses_22bb0c6ad3a2491f",
           "--ttl-hours",
           "1",
           "--json"
         ],
         "returncode": 0,
-        "stdout": "reated\": false,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_4026822afd0a489c\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"user\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.88,\n      \"content\": \"For this repo, we decided to use SQLite for local memory because it needs no service.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_b54ab2b6c9c74f57\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"project\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.72,\n      \"content\": \"Maybe the retry bug is caused by cache; test tomorrow.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": \"2026-10-02T04:58:38.289815+00:00\",\n      \"id\": \"mem_3ed3a00671ab4e12\",\n      \"kind\": \"hypothesis\",\n      \"lifecycle\": \"episodic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"session\",\n      \"session_id\": \"ses_ab223e99832549ff\",\n      \"source\": \"distill:transcript.jsonl\"\n    }\n  ],\n  \"accepted_count\": 3,\n  \"applied\": true,\n  \"ok\": true,\n  \"rejected\": [\n    {\n      \"content\": \"Hi there!\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"Hello!\",\n      \"reason\": \"non_user_turn\"\n    },\n    {\n      \"content\": \"npm ERR! code ELIFECYCLE\",\n      \"reason\": \"tool_output\"\n    },\n    {\n      \"content\": \"Always failing during checkout.\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"API_KEY=sk-this-must-not-be-stored\",\n      \"reason\": \"secret\"\n    },\n    {\n      \"content\": \"```python\\nprint('transient output')\\n```\",\n      \"reason\": \"non_user_turn\"\n    }\n  ],\n  \"rejected_count\": 6,\n  \"source\": \"distill:transcript.jsonl\"\n}\n",
+        "stdout": "reated\": false,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_cfd716f0b4eb4735\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"user\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.88,\n      \"content\": \"For this repo, we decided to use SQLite for local memory because it needs no service.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_bcc3f94804434019\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"project\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.72,\n      \"content\": \"Maybe the retry bug is caused by cache; test tomorrow.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": \"2026-10-02T05:17:20.172508+00:00\",\n      \"id\": \"mem_43dd48f8963e4f4f\",\n      \"kind\": \"hypothesis\",\n      \"lifecycle\": \"episodic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"session\",\n      \"session_id\": \"ses_22bb0c6ad3a2491f\",\n      \"source\": \"distill:transcript.jsonl\"\n    }\n  ],\n  \"accepted_count\": 3,\n  \"applied\": true,\n  \"ok\": true,\n  \"rejected\": [\n    {\n      \"content\": \"Hi there!\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"Hello!\",\n      \"reason\": \"non_user_turn\"\n    },\n    {\n      \"content\": \"npm ERR! code ELIFECYCLE\",\n      \"reason\": \"tool_output\"\n    },\n    {\n      \"content\": \"Always failing during checkout.\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"API_KEY=sk-this-must-not-be-stored\",\n      \"reason\": \"secret\"\n    },\n    {\n      \"content\": \"```python\\nprint('transient output')\\n```\",\n      \"reason\": \"non_user_turn\"\n    }\n  ],\n  \"rejected_count\": 6,\n  \"source\": \"distill:transcript.jsonl\"\n}\n",
         "stderr": ""
       }
     },
@@ -866,7 +1024,7 @@
       "name": "distill_payload",
       "ok": true,
       "details": {
-        "stdout": "reated\": false,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_4026822afd0a489c\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"user\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.88,\n      \"content\": \"For this repo, we decided to use SQLite for local memory because it needs no service.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_b54ab2b6c9c74f57\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"project\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.72,\n      \"content\": \"Maybe the retry bug is caused by cache; test tomorrow.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": \"2026-10-02T04:58:38.289815+00:00\",\n      \"id\": \"mem_3ed3a00671ab4e12\",\n      \"kind\": \"hypothesis\",\n      \"lifecycle\": \"episodic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"session\",\n      \"session_id\": \"ses_ab223e99832549ff\",\n      \"source\": \"distill:transcript.jsonl\"\n    }\n  ],\n  \"accepted_count\": 3,\n  \"applied\": true,\n  \"ok\": true,\n  \"rejected\": [\n    {\n      \"content\": \"Hi there!\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"Hello!\",\n      \"reason\": \"non_user_turn\"\n    },\n    {\n      \"content\": \"npm ERR! code ELIFECYCLE\",\n      \"reason\": \"tool_output\"\n    },\n    {\n      \"content\": \"Always failing during checkout.\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"API_KEY=sk-this-must-not-be-stored\",\n      \"reason\": \"secret\"\n    },\n    {\n      \"content\": \"```python\\nprint('transient output')\\n```\",\n      \"reason\": \"non_user_turn\"\n    }\n  ],\n  \"rejected_count\": 6,\n  \"source\": \"distill:transcript.jsonl\"\n}\n",
+        "stdout": "reated\": false,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_cfd716f0b4eb4735\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"user\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.88,\n      \"content\": \"For this repo, we decided to use SQLite for local memory because it needs no service.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_bcc3f94804434019\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"project\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.72,\n      \"content\": \"Maybe the retry bug is caused by cache; test tomorrow.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": \"2026-10-02T05:17:20.172508+00:00\",\n      \"id\": \"mem_43dd48f8963e4f4f\",\n      \"kind\": \"hypothesis\",\n      \"lifecycle\": \"episodic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"session\",\n      \"session_id\": \"ses_22bb0c6ad3a2491f\",\n      \"source\": \"distill:transcript.jsonl\"\n    }\n  ],\n  \"accepted_count\": 3,\n  \"applied\": true,\n  \"ok\": true,\n  \"rejected\": [\n    {\n      \"content\": \"Hi there!\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"Hello!\",\n      \"reason\": \"non_user_turn\"\n    },\n    {\n      \"content\": \"npm ERR! code ELIFECYCLE\",\n      \"reason\": \"tool_output\"\n    },\n    {\n      \"content\": \"Always failing during checkout.\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"API_KEY=sk-this-must-not-be-stored\",\n      \"reason\": \"secret\"\n    },\n    {\n      \"content\": \"```python\\nprint('transient output')\\n```\",\n      \"reason\": \"non_user_turn\"\n    }\n  ],\n  \"rejected_count\": 6,\n  \"source\": \"distill:transcript.jsonl\"\n}\n",
         "stderr": ""
       }
     },
@@ -881,7 +1039,7 @@
             "created": false,
             "evidence": "Extracted from distill:transcript.jsonl",
             "expires_at": null,
-            "id": "mem_4026822afd0a489c",
+            "id": "mem_cfd716f0b4eb4735",
             "kind": "preference",
             "lifecycle": "semantic",
             "reason": "explicit durable cue",
@@ -895,7 +1053,7 @@
             "created": true,
             "evidence": "Extracted from distill:transcript.jsonl",
             "expires_at": null,
-            "id": "mem_b54ab2b6c9c74f57",
+            "id": "mem_bcc3f94804434019",
             "kind": "decision",
             "lifecycle": "semantic",
             "reason": "explicit durable cue",
@@ -908,13 +1066,13 @@
             "content": "Maybe the retry bug is caused by cache; test tomorrow.",
             "created": true,
             "evidence": "Extracted from distill:transcript.jsonl",
-            "expires_at": "2026-10-02T04:58:38.289815+00:00",
-            "id": "mem_3ed3a00671ab4e12",
+            "expires_at": "2026-10-02T05:17:20.172508+00:00",
+            "id": "mem_43dd48f8963e4f4f",
             "kind": "hypothesis",
             "lifecycle": "episodic",
             "reason": "explicit durable cue",
             "scope": "session",
-            "session_id": "ses_ab223e99832549ff",
+            "session_id": "ses_22bb0c6ad3a2491f",
             "source": "distill:transcript.jsonl"
           }
         ],
@@ -962,7 +1120,7 @@
             "created": false,
             "evidence": "Extracted from distill:transcript.jsonl",
             "expires_at": null,
-            "id": "mem_4026822afd0a489c",
+            "id": "mem_cfd716f0b4eb4735",
             "kind": "preference",
             "lifecycle": "semantic",
             "reason": "explicit durable cue",
@@ -976,7 +1134,7 @@
             "created": true,
             "evidence": "Extracted from distill:transcript.jsonl",
             "expires_at": null,
-            "id": "mem_b54ab2b6c9c74f57",
+            "id": "mem_bcc3f94804434019",
             "kind": "decision",
             "lifecycle": "semantic",
             "reason": "explicit durable cue",
@@ -989,13 +1147,13 @@
             "content": "Maybe the retry bug is caused by cache; test tomorrow.",
             "created": true,
             "evidence": "Extracted from distill:transcript.jsonl",
-            "expires_at": "2026-10-02T04:58:38.289815+00:00",
-            "id": "mem_3ed3a00671ab4e12",
+            "expires_at": "2026-10-02T05:17:20.172508+00:00",
+            "id": "mem_43dd48f8963e4f4f",
             "kind": "hypothesis",
             "lifecycle": "episodic",
             "reason": "explicit durable cue",
             "scope": "session",
-            "session_id": "ses_ab223e99832549ff",
+            "session_id": "ses_22bb0c6ad3a2491f",
             "source": "distill:transcript.jsonl"
           }
         ],
@@ -1037,11 +1195,11 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "distill",
-          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/transcript.jsonl",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/transcript.jsonl",
           "--ttl-hours",
           "inf",
           "--json"
@@ -1064,7 +1222,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1082,7 +1240,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 0: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.385875+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_ab8994627e52488e\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.385875+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.385875+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 0: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.266773+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_af425790c2584539\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.266773+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.266773+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1091,7 +1249,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1109,7 +1267,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 1: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.433842+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_1ebbcc18ae814676\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.433842+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.433842+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 1: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.311947+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_aa04e43f70104b57\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.311947+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.311947+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1118,7 +1276,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1136,7 +1294,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 2: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.484100+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_b7977eaa87044b23\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.484100+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.484100+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 2: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.358544+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_d0dff1bdfe444265\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.358544+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.358544+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1145,7 +1303,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1163,7 +1321,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 3: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.534019+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_f551aa21fe744a67\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.534019+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.534019+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 3: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.404125+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_4d3988962b5e4bc0\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.404125+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.404125+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1172,7 +1330,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1190,7 +1348,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 4: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.581512+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_727befbbc4834ded\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.581512+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.581512+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 4: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.451867+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_bac0096849c549d9\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.451867+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.451867+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1199,7 +1357,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1217,7 +1375,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 5: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.629547+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_2aed992041fc4311\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.629547+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.629547+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 5: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.498395+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_ae5241d3aeb5435a\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.498395+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.498395+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1226,7 +1384,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1244,7 +1402,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 6: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.677075+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_e394d9130bdf4590\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.677075+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.677075+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 6: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.545052+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_515c510e93a14e7f\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.545052+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.545052+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1253,7 +1411,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1271,7 +1429,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.724599+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_b5a3730f04f34527\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.724599+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.724599+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.592525+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_128c8de0b06d4223\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.592525+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.592525+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1280,7 +1438,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1298,7 +1456,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.771367+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_3099870cdb56428f\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.771367+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.771367+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.638940+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_522b0d60fc304213\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.638940+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.638940+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1307,7 +1465,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "remember",
@@ -1325,7 +1483,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T03:58:38.818073+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_4fe26549790d40f8\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T03:58:38.818073+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:5465da806a08250c\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T03:58:38.818073+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-02T04:17:20.685786+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_a7d997fac5bd41db\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-02T04:17:20.685786+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-02T04:17:20.685786+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1334,7 +1492,7 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "recall",
@@ -1348,7 +1506,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"count\": 3,\n  \"estimated_tokens\": 356,\n  \"items\": [\n    {\n      \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_4fe26549790d40f8\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_3099870cdb56428f\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_b5a3730f04f34527\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 3,\n  \"estimated_tokens\": 356,\n  \"items\": [\n    {\n      \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_a7d997fac5bd41db\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_522b0d60fc304213\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_128c8de0b06d4223\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -1356,7 +1514,7 @@
       "name": "bounded_recall_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"count\": 3,\n  \"estimated_tokens\": 356,\n  \"items\": [\n    {\n      \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_4fe26549790d40f8\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_3099870cdb56428f\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_b5a3730f04f34527\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 3,\n  \"estimated_tokens\": 356,\n  \"items\": [\n    {\n      \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_a7d997fac5bd41db\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_522b0d60fc304213\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_128c8de0b06d4223\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -1369,7 +1527,7 @@
         "items": [
           {
             "content": "Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...",
-            "id": "mem_4fe26549790d40f8",
+            "id": "mem_a7d997fac5bd41db",
             "kind": "fact",
             "lifecycle": "semantic",
             "scope": "project",
@@ -1379,7 +1537,7 @@
           },
           {
             "content": "Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...",
-            "id": "mem_3099870cdb56428f",
+            "id": "mem_522b0d60fc304213",
             "kind": "fact",
             "lifecycle": "semantic",
             "scope": "project",
@@ -1389,7 +1547,7 @@
           },
           {
             "content": "Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...",
-            "id": "mem_b5a3730f04f34527",
+            "id": "mem_128c8de0b06d4223",
             "kind": "fact",
             "lifecycle": "semantic",
             "scope": "project",
@@ -1408,14 +1566,14 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "audit",
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"events\": [\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:38.866743+00:00\",\n      \"estimated_tokens\": 356,\n      \"id\": 6,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"The current task needs a stored load-test fact.\",\n      \"result_count\": 3,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:38.151960+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 5,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"The current task needs the prior session hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_cfac6105c0694727\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:37.961315+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 4,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"The current debugging context lacks the prior hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_ab223e99832549ff\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:37.865414+00:00\",\n      \"estimated_tokens\": 57,\n      \"id\": 2,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"Repository inspection did not identify the storage decision.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:37.816792+00:00\",\n      \"estimated_tokens\": 51,\n      \"id\": 1,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"User referenced a prior preference.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"explicit_reference\"\n    }\n  ],\n  \"ok\": true\n}\n",
+        "stdout": "{\n  \"events\": [\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:20.733547+00:00\",\n      \"estimated_tokens\": 356,\n      \"id\": 6,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"The current task needs a stored load-test fact.\",\n      \"result_count\": 3,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:20.025354+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 5,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"The current task needs the prior session hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_af8a594d4bc94dae\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:19.836485+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 4,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"The current debugging context lacks the prior hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_22bb0c6ad3a2491f\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:19.742049+00:00\",\n      \"estimated_tokens\": 57,\n      \"id\": 2,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"Repository inspection did not identify the storage decision.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:19.694005+00:00\",\n      \"estimated_tokens\": 51,\n      \"id\": 1,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"User referenced a prior preference.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"explicit_reference\"\n    }\n  ],\n  \"ok\": true\n}\n",
         "stderr": ""
       }
     },
@@ -1423,7 +1581,7 @@
       "name": "audit_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"events\": [\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:38.866743+00:00\",\n      \"estimated_tokens\": 356,\n      \"id\": 6,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"The current task needs a stored load-test fact.\",\n      \"result_count\": 3,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:38.151960+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 5,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"The current task needs the prior session hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_cfac6105c0694727\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:37.961315+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 4,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"The current debugging context lacks the prior hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_ab223e99832549ff\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:37.865414+00:00\",\n      \"estimated_tokens\": 57,\n      \"id\": 2,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"Repository inspection did not identify the storage decision.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T03:58:37.816792+00:00\",\n      \"estimated_tokens\": 51,\n      \"id\": 1,\n      \"project_id\": \"path:5465da806a08250c\",\n      \"reason\": \"User referenced a prior preference.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"explicit_reference\"\n    }\n  ],\n  \"ok\": true\n}\n",
+        "stdout": "{\n  \"events\": [\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:20.733547+00:00\",\n      \"estimated_tokens\": 356,\n      \"id\": 6,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"The current task needs a stored load-test fact.\",\n      \"result_count\": 3,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:20.025354+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 5,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"The current task needs the prior session hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_af8a594d4bc94dae\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:19.836485+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 4,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"The current debugging context lacks the prior hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_22bb0c6ad3a2491f\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:19.742049+00:00\",\n      \"estimated_tokens\": 57,\n      \"id\": 2,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"Repository inspection did not identify the storage decision.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-02T04:17:19.694005+00:00\",\n      \"estimated_tokens\": 51,\n      \"id\": 1,\n      \"project_id\": \"path:28c1acd391f43174\",\n      \"reason\": \"User referenced a prior preference.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"explicit_reference\"\n    }\n  ],\n  \"ok\": true\n}\n",
         "stderr": ""
       }
     },
@@ -1434,10 +1592,10 @@
         "events": [
           {
             "action": "recall",
-            "created_at": "2026-10-02T03:58:38.866743+00:00",
+            "created_at": "2026-10-02T04:17:20.733547+00:00",
             "estimated_tokens": 356,
             "id": 6,
-            "project_id": "path:5465da806a08250c",
+            "project_id": "path:28c1acd391f43174",
             "reason": "The current task needs a stored load-test fact.",
             "result_count": 3,
             "retrieval_performed": true,
@@ -1446,34 +1604,34 @@
           },
           {
             "action": "recall",
-            "created_at": "2026-10-02T03:58:38.151960+00:00",
+            "created_at": "2026-10-02T04:17:20.025354+00:00",
             "estimated_tokens": 1,
             "id": 5,
-            "project_id": "path:5465da806a08250c",
+            "project_id": "path:28c1acd391f43174",
             "reason": "The current task needs the prior session hypothesis.",
             "result_count": 0,
             "retrieval_performed": true,
-            "session_id": "ses_cfac6105c0694727",
+            "session_id": "ses_af8a594d4bc94dae",
             "trigger": "missing_context"
           },
           {
             "action": "recall",
-            "created_at": "2026-10-02T03:58:37.961315+00:00",
+            "created_at": "2026-10-02T04:17:19.836485+00:00",
             "estimated_tokens": 1,
             "id": 4,
-            "project_id": "path:5465da806a08250c",
+            "project_id": "path:28c1acd391f43174",
             "reason": "The current debugging context lacks the prior hypothesis.",
             "result_count": 0,
             "retrieval_performed": true,
-            "session_id": "ses_ab223e99832549ff",
+            "session_id": "ses_22bb0c6ad3a2491f",
             "trigger": "missing_context"
           },
           {
             "action": "recall",
-            "created_at": "2026-10-02T03:58:37.865414+00:00",
+            "created_at": "2026-10-02T04:17:19.742049+00:00",
             "estimated_tokens": 57,
             "id": 2,
-            "project_id": "path:5465da806a08250c",
+            "project_id": "path:28c1acd391f43174",
             "reason": "Repository inspection did not identify the storage decision.",
             "result_count": 1,
             "retrieval_performed": true,
@@ -1482,10 +1640,10 @@
           },
           {
             "action": "recall",
-            "created_at": "2026-10-02T03:58:37.816792+00:00",
+            "created_at": "2026-10-02T04:17:19.694005+00:00",
             "estimated_tokens": 51,
             "id": 1,
-            "project_id": "path:5465da806a08250c",
+            "project_id": "path:28c1acd391f43174",
             "reason": "User referenced a prior preference.",
             "result_count": 1,
             "retrieval_performed": true,
@@ -1608,7 +1766,7 @@
             "content": [
               {
                 "type": "text",
-                "text": "{\"ok\":true,\"retrieval_performed\":true,\"trigger\":\"explicit_reference\",\"items\":[{\"id\":\"mem_4026822afd0a489c\",\"scope\":\"user\",\"lifecycle\":\"semantic\",\"kind\":\"preference\",\"content\":\"Always use pnpm for package management.\",\"source\":\"user-statement\",\"status\":\"active\",\"truncated\":false}],\"count\":1,\"estimated_tokens\":51}"
+                "text": "{\"ok\":true,\"retrieval_performed\":true,\"trigger\":\"explicit_reference\",\"items\":[{\"id\":\"mem_cfd716f0b4eb4735\",\"scope\":\"user\",\"lifecycle\":\"semantic\",\"kind\":\"preference\",\"content\":\"Always use pnpm for package management.\",\"source\":\"user-statement\",\"status\":\"active\",\"truncated\":false}],\"count\":1,\"estimated_tokens\":51}"
               }
             ],
             "isError": false
@@ -1848,14 +2006,14 @@
       "ok": true,
       "details": {
         "command": [
-          "/Users/yabuku/.venv/bin/python",
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
           "-m",
           "unimem",
           "doctor",
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home/unimem.db\",\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 904,\n  \"memory_counts\": {\n    \"project/semantic\": 13,\n    \"session/episodic\": 1,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"path:5465da806a08250c\",\n  \"resident_instruction_bytes\": 906,\n  \"session_counts\": {\n    \"active\": 1,\n    \"closed\": 1\n  }\n}\n",
+        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home/unimem.db\",\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 904,\n  \"memory_counts\": {\n    \"project/semantic\": 13,\n    \"session/episodic\": 1,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"resident_instruction_bytes\": 906,\n  \"session_counts\": {\n    \"active\": 1,\n    \"closed\": 1\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -1863,7 +2021,7 @@
       "name": "doctor_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home/unimem.db\",\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 904,\n  \"memory_counts\": {\n    \"project/semantic\": 13,\n    \"session/episodic\": 1,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"path:5465da806a08250c\",\n  \"resident_instruction_bytes\": 906,\n  \"session_counts\": {\n    \"active\": 1,\n    \"closed\": 1\n  }\n}\n",
+        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home/unimem.db\",\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 904,\n  \"memory_counts\": {\n    \"project/semantic\": 13,\n    \"session/episodic\": 1,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"path:28c1acd391f43174\",\n  \"resident_instruction_bytes\": 906,\n  \"session_counts\": {\n    \"active\": 1,\n    \"closed\": 1\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -1872,7 +2030,7 @@
       "ok": true,
       "details": {
         "daemon_required": false,
-        "database": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-zvsks1jp/home/unimem.db",
+        "database": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-f6f3y8f0/home/unimem.db",
         "external_api_calls": 0,
         "fts5": true,
         "mcp_tool_schema_bytes": 904,
@@ -1881,7 +2039,7 @@
           "session/episodic": 1,
           "user/semantic": 1
         },
-        "project_id": "path:5465da806a08250c",
+        "project_id": "path:28c1acd391f43174",
         "resident_instruction_bytes": 906,
         "session_counts": {
           "active": 1,

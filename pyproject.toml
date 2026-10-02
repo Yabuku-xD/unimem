@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "A local-first, lazy, cross-client memory layer for coding agents"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "unimem contributors" }]
 dependencies = []
 

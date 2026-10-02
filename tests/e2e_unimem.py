@@ -13,7 +13,7 @@ Failure modes covered:
 - normal operation requires an external API, database service, or daemon.
 
 Run:
-    python3 tests/e2e_unimem.py
+    uv run python tests/e2e_unimem.py
 
 The run writes artifacts/e2e-unimem.json and exits non-zero on the first failed
 check after recording all checks it can complete.
@@ -245,6 +245,39 @@ def main() -> int:
             int(init_payload.get("resident_instruction_bytes", 10_000)) <= 2_500,
             init_payload,
         )
+        client_matrix = {
+            "claude": {
+                "expected": {".claude/skills/unimem/SKILL.md", ".mcp.json"},
+                "forbidden": {".cursor/skills/unimem/SKILL.md", ".codex/config.toml"},
+            },
+            "cursor": {
+                "expected": {".cursor/skills/unimem/SKILL.md", ".cursor/mcp.json"},
+                "forbidden": {".claude/skills/unimem/SKILL.md", ".codex/config.toml"},
+            },
+            "codex": {
+                "expected": {".agents/skills/unimem/SKILL.md", ".codex/config.toml"},
+                "forbidden": {".claude/skills/unimem/SKILL.md", ".cursor/mcp.json"},
+            },
+            "terminal": {
+                "expected": {".agents/skills/unimem/SKILL.md", "AGENTS.md"},
+                "forbidden": {".mcp.json", ".cursor/mcp.json", ".codex/config.toml"},
+            },
+        }
+        for client, expectations in client_matrix.items():
+            client_dir = harness.base / f"client-{client}"
+            client_dir.mkdir()
+            client_result, client_payload = harness.run(
+                ["init", "--client", client, "--json"],
+                cwd=client_dir,
+                name=f"init_client_{client}",
+            )
+            harness.json_or_fail(f"init_client_{client}_payload", client_result, client_payload)
+            harness.check(
+                f"client_{client}_writes_only_selected_surface",
+                all((client_dir / path).exists() for path in expectations["expected"])
+                and not any((client_dir / path).exists() for path in expectations["forbidden"]),
+                {"expected": sorted(expectations["expected"]), "forbidden": sorted(expectations["forbidden"])},
+            )
 
         # 2. Route is deterministic and does not retrieve for routine work.
         routine_result, routine_payload = harness.run(
@@ -791,7 +824,7 @@ def main() -> int:
 
         artifact = {
             "passed": all(check["ok"] for check in harness.checks),
-            "command": "python3 tests/e2e_unimem.py",
+            "command": "uv run python tests/e2e_unimem.py",
             "started_at": harness.started,
             "finished_at": now_iso(),
             "python": sys.version,
