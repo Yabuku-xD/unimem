@@ -1,0 +1,312 @@
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+from typing import Any
+
+from .config import Settings, parse_iso
+from .db import Database, MemoryError
+from .extract import distill_messages, load_messages
+from .integrations import agents_section, install_integrations, skill_text
+from .mcp import serve as serve_mcp
+from .mcp import tool_schema_bytes
+from .policy import classify_route, compact_recall_items, validate_recall
+
+
+def _parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog="unimem", description="Local-first lazy memory for coding agents")
+    parser.add_argument("--home", help="Override UNIMEM_HOME")
+    parser.add_argument("--project-dir", help="Project directory used for project scope")
+    parser.add_argument("--project-id", help="Override the derived project id")
+    parser.add_argument("--session-id", help="Override UNIMEM_SESSION_ID")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    init = sub.add_parser("init", help="Initialize storage and client integrations")
+    init.add_argument("--client", choices=["all", "agents", "claude", "cursor", "codex"], default="all")
+    init.add_argument("--project-dir", help="Project directory to configure")
+
+    remember = sub.add_parser("remember", help="Store a durable memory")
+    remember.add_argument("content")
+    remember.add_argument("--scope", choices=["user", "project", "session"], default="project")
+    remember.add_argument("--lifecycle", choices=["semantic", "episodic", "procedural"], default="semantic")
+    remember.add_argument("--kind", default="fact")
+    remember.add_argument("--source", default="cli")
+    remember.add_argument("--evidence", required=True)
+    remember.add_argument("--confidence", type=float, default=0.8)
+    remember.add_argument("--expires-at")
+    remember.add_argument("--session-id")
+
+    recall = sub.add_parser("recall", help="Recall memory after a missing-context trigger")
+    recall.add_argument("query")
+    recall.add_argument("--trigger", required=True, choices=[
+        "explicit_reference",
+        "missing_context",
+        "cross_session",
+        "conflict",
+        "memory_query",
+    ])
+    recall.add_argument("--evidence", required=True)
+    recall.add_argument("--limit", type=int, default=3)
+    recall.add_argument("--session-id")
+
+    route = sub.add_parser("route", help="Decide whether a task warrants memory retrieval")
+    route.add_argument("task")
+
+    session = sub.add_parser("session", help="Manage short-lived session memory")
+    session_sub = session.add_subparsers(dest="session_command", required=True)
+    session_start = session_sub.add_parser("start")
+    session_start.add_argument("--title")
+    session_start.add_argument("--client")
+    session_start.add_argument("--ttl-seconds", type=float, default=24 * 60 * 60)
+    session_end = session_sub.add_parser("end")
+    session_end.add_argument("session_id")
+    session_end.add_argument("--status", choices=["closed", "expired"], default="closed")
+    session_expire = session_sub.add_parser("expire")
+    session_status = session_sub.add_parser("status")
+    session_status.add_argument("session_id")
+
+    distill = sub.add_parser("distill", help="Extract durable claims from a transcript")
+    distill.add_argument("input", type=Path)
+    distill.add_argument("--apply", action="store_true")
+    distill.add_argument("--session-id")
+    distill.add_argument("--ttl-hours", type=float, default=24.0)
+    distill.add_argument("--source")
+
+    forget = sub.add_parser("forget", help="Mark a memory deleted")
+    forget.add_argument("memory_id")
+
+    consolidate = sub.add_parser("consolidate", help="Supersede exact duplicate memories")
+    consolidate.add_argument("--session-id")
+
+    audit = sub.add_parser("audit", help="Inspect retrieval audit events")
+    audit.add_argument("--limit", type=int, default=50)
+
+    sub.add_parser("doctor", help="Report local runtime and prompt overhead")
+    sub.add_parser("mcp", help="Run the stdio MCP server")
+    return parser
+
+
+def _json_mode(raw: list[str]) -> tuple[list[str], bool]:
+    enabled = "--json" in raw
+    return [item for item in raw if item != "--json"], enabled
+
+
+def _emit(payload: dict[str, Any], *, json_mode: bool, text: str | None = None) -> None:
+    if json_mode:
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    else:
+        print(text if text is not None else json.dumps(payload, indent=2, sort_keys=True))
+
+
+def _fail(code: str, message: str, *, json_mode: bool) -> int:
+    payload = {"ok": False, "error": {"code": code, "message": message}}
+    _emit(payload, json_mode=json_mode, text=message)
+    return 2
+
+
+def _settings(args: argparse.Namespace, *, project_dir: str | Path | None = None) -> Settings:
+    return Settings.load(
+        project_dir=project_dir or getattr(args, "project_dir", None),
+        project_id=getattr(args, "project_id", None),
+        home=getattr(args, "home", None),
+        session_id=getattr(args, "session_id", None),
+    )
+
+
+def _recall_payload(
+    database: Database,
+    settings: Settings,
+    *,
+    query: str,
+    trigger: str,
+    evidence: str,
+    limit: int,
+    session_id: str | None,
+) -> dict[str, Any]:
+    validate_recall(trigger, evidence)
+    records = database.recall(
+        query=query,
+        project_id=settings.project_id,
+        session_id=session_id or settings.session_id,
+        limit=max(1, min(limit, 20)),
+    )
+    items, count, estimated = compact_recall_items(records)
+    database.audit_recall(
+        action="recall",
+        trigger=trigger,
+        reason=evidence,
+        project_id=settings.project_id,
+        session_id=session_id or settings.session_id,
+        result_count=count,
+        estimated_tokens=estimated,
+        retrieval_performed=True,
+    )
+    return {
+        "ok": True,
+        "retrieval_performed": True,
+        "trigger": trigger,
+        "items": items,
+        "count": count,
+        "estimated_tokens": estimated,
+    }
+
+
+def main(argv: list[str] | None = None) -> int:
+    raw = list(sys.argv[1:] if argv is None else argv)
+    raw, json_mode = _json_mode(raw)
+    parser = _parser()
+    try:
+        args = parser.parse_args(raw)
+    except SystemExit as error:
+        return int(error.code if error.code is not None else 0)
+
+    try:
+        if args.command == "mcp":
+            settings = _settings(args)
+            return serve_mcp(settings)
+
+        project_dir = getattr(args, "project_dir", None)
+        settings = _settings(args, project_dir=project_dir)
+        if args.command == "route":
+            result = classify_route(args.task).as_dict()
+            _emit(
+                result,
+                json_mode=json_mode,
+                text=f"recall={result['should_recall']} trigger={result['trigger'] or 'none'}",
+            )
+            return 0
+
+        database = Database(settings)
+        database.initialize()
+
+        if args.command == "init":
+            result = install_integrations(
+                settings,
+                project_dir=settings.cwd,
+                clients=(args.client,),
+                mcp_tool_schema_bytes=tool_schema_bytes(),
+            )
+            _emit(result, json_mode=json_mode, text=f"Initialized {settings.project_id}")
+            return 0
+
+        if args.command == "remember":
+            if args.expires_at:
+                parse_iso(args.expires_at)
+            memory, created = database.add_memory(
+                content=args.content,
+                scope=args.scope,
+                lifecycle=args.lifecycle,
+                kind=args.kind,
+                source=args.source,
+                evidence=args.evidence,
+                confidence=args.confidence,
+                project_id=settings.project_id if args.scope == "project" else None,
+                session_id=(args.session_id or settings.session_id) if args.scope == "session" else None,
+                expires_at=args.expires_at,
+            )
+            result = {"ok": True, "created": created, **memory.public_dict()}
+            _emit(result, json_mode=json_mode, text=f"{memory.id} {memory.scope}:{memory.lifecycle}")
+            return 0
+
+        if args.command == "recall":
+            result = _recall_payload(
+                database,
+                settings,
+                query=args.query,
+                trigger=args.trigger,
+                evidence=args.evidence,
+                limit=args.limit,
+                session_id=args.session_id,
+            )
+            _emit(result, json_mode=json_mode, text=json.dumps(result["items"], indent=2))
+            return 0
+
+        if args.command == "session":
+            if args.session_command == "start":
+                session = database.start_session(
+                    project_id=settings.project_id,
+                    client=args.client,
+                    title=args.title,
+                    ttl_seconds=args.ttl_seconds,
+                )
+                result = {"ok": True, "session": session.as_dict()}
+                _emit(result, json_mode=json_mode, text=session.id)
+                return 0
+            if args.session_command == "end":
+                session = database.end_session(args.session_id, status=args.status)
+                if not session:
+                    return _fail("session_not_found", "No active session with that id", json_mode=json_mode)
+                result = {"ok": True, "session": session.as_dict()}
+                _emit(result, json_mode=json_mode, text=session.id)
+                return 0
+            if args.session_command == "expire":
+                count = database.expire_sessions()
+                result = {"ok": True, "expired": count}
+                _emit(result, json_mode=json_mode, text=f"expired {count}")
+                return 0
+            session = database.get_session(args.session_id)
+            if not session:
+                return _fail("session_not_found", "No session with that id", json_mode=json_mode)
+            result = {"ok": True, "session": session.as_dict()}
+            _emit(result, json_mode=json_mode, text=session.id)
+            return 0
+
+        if args.command == "distill":
+            messages = load_messages(args.input)
+            result = distill_messages(
+                settings=settings,
+                database=database,
+                messages=messages,
+                source=args.source or f"distill:{args.input.name}",
+                session_id=args.session_id or settings.session_id,
+                session_ttl_hours=args.ttl_hours,
+                apply=args.apply,
+            )
+            _emit(
+                result,
+                json_mode=json_mode,
+                text=f"accepted {result['accepted_count']} rejected {result['rejected_count']}",
+            )
+            return 0
+
+        if args.command == "forget":
+            found = database.forget_memory(args.memory_id)
+            result = {"ok": found, "id": args.memory_id}
+            if not found:
+                return _fail("memory_not_found", "No active memory with that id", json_mode=json_mode)
+            _emit(result, json_mode=json_mode, text=args.memory_id)
+            return 0
+
+        if args.command == "consolidate":
+            count = database.consolidate(
+                project_id=settings.project_id,
+                session_id=args.session_id or settings.session_id,
+            )
+            result = {"ok": True, "superseded": count}
+            _emit(result, json_mode=json_mode, text=f"superseded {count}")
+            return 0
+
+        if args.command == "audit":
+            result = {"ok": True, "events": database.list_audit(project_id=settings.project_id, limit=args.limit)}
+            _emit(result, json_mode=json_mode, text=json.dumps(result["events"], indent=2))
+            return 0
+
+        if args.command == "doctor":
+            result = {
+                **database.stats(),
+                "resident_instruction_bytes": len(agents_section().encode("utf-8"))
+                + len(skill_text().split("---", 2)[-1].encode("utf-8")),
+                "mcp_tool_schema_bytes": tool_schema_bytes(),
+            }
+            _emit(result, json_mode=json_mode, text=json.dumps(result, indent=2))
+            return 0
+
+        return _fail("unknown_command", "Unknown command", json_mode=json_mode)
+    except (MemoryError, ValueError, OSError, json.JSONDecodeError) as error:
+        return _fail("invalid_operation", str(error), json_mode=json_mode)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

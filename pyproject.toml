@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unimem"
+version = "0.1.0"
+description = "A local-first, lazy, cross-client memory layer for coding agents"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "unimem contributors" }]
+dependencies = []
+
+[project.scripts]
+unimem = "unimem.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
