@@ -1,0 +1,39 @@
+# Python build and test output
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local unimem runtime data
+.unimem/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Local environment and logs
+.env
+.env.*
+!.env.example
+*.log
+
+# Editor and operating-system noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Working notes stay local
+TASKS.md
+
+# Scratch output; keep the checked-in E2E JSON evidence
+artifacts/*.tmp
