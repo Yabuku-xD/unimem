@@ -1,6 +1,7 @@
 # Memory System Research
 
 Research date: 2026-10-01
+Source re-check: 2026-10-02
 
 Scope: current coding-agent memory products, shared local memory systems, and primary research on memory retrieval, extraction, context overhead, and evaluation.
 
@@ -140,7 +141,7 @@ Assessment: excellent human-readable, private fallback when MCP calls are accept
 
 Mem0 combines LLM extraction/consolidation with vector storage and optional graph memory. Its open-source library defaults to OpenAI for the LLM and embeddings; the self-hosted server defaults to OpenAI plus Postgres/pgvector and is launched as a Docker stack. Local providers such as Ollama can be configured, but then the operator owns the model runtime and its resource cost. [Mem0 overview](https://docs.mem0.ai/overview) [Mem0 open source](https://docs.mem0.ai/open-source/overview) [Mem0 repository](https://github.com/mem0ai/mem0)
 
-OpenMemory is a related local MCP experience. The official Mem0 repository now carries a sunset notice and directs local users to the self-hosted Mem0 server. Its documented local setup requires Docker and an OpenAI API key by default, with Ollama configuration possible. [OpenMemory repository](https://github.com/mem0ai/mem0/tree/main/openmemory)
+OpenMemory is a related local MCP experience. The official Mem0 repository carries a sunset notice and directs local users to the self-hosted Mem0 server. Its documented local setup requires Docker and an OpenAI API key by default, with Ollama configuration possible. [OpenMemory repository](https://github.com/mem0ai/mem0/blob/3e6ab394/openmemory/README.md)
 
 Assessment: strong extraction and consolidation, poor default fit for zero external API cost and minimal maintenance. A local-model deployment is possible, but it is no longer a zero-ops small-footprint system.
 
@@ -168,7 +169,7 @@ LangGraph's memory documentation makes the same practical distinction: semantic 
 
 ### Selective extraction and filtering
 
-Generative Agents scores memories by recency, importance, and relevance, and periodically creates higher-level reflections. That is a useful baseline for ranking and for turning repeated experience into durable knowledge, although its importance scores are model-generated and not a guarantee of correctness. [Generative Agents](https://arxiv.org/abs/2304.03442) [ACM version](https://dl.acm.org/doi/fullHtml/10.1145/3586183.3606763)
+Generative Agents scores memories by recency, importance, and relevance, and periodically creates higher-level reflections. That is a useful baseline for ranking and for turning repeated experience into durable knowledge, although its importance scores are model-generated and not a guarantee of correctness. [Generative Agents](https://arxiv.org/abs/2304.03442)
 
 MemInsight autonomously mines attributes from interactions, annotates memories, and retrieves by those attributes. It reports improved recommendation persuasiveness and higher LoCoMo retrieval recall than a RAG baseline, supporting the idea that extraction should add structure and filter irrelevant memory rather than copy turns. [MemInsight](https://arxiv.org/abs/2503.21760) [ACL Anthology](https://aclanthology.org/2025.emnlp-main.1683/)
 
@@ -342,6 +343,35 @@ The requirements define a lazy, host-routed memory system, not merely a memory d
 
 The practical route is to use a local SQLite-based system as a substrate, keep only a tiny `AGENTS.md` policy resident, and add a shared trigger-based read path with bounded results and conservative background extraction. That route is close to turnkey today, but the trigger/router layer is still the one component that must be integrated explicitly.
 
+## 10. Source re-check and feasibility
+
+All cited source URLs were checked again on 2026-10-02. The final repeatable audit is implemented in [`benchmarks/check_sources.py`](benchmarks/check_sources.py) and checks 71/71 URLs successfully. The ACM HTML viewer and GitHub's OpenMemory directory page were not readable by the scraper, so this report now uses the arXiv paper and a stable OpenMemory README URL.
+
+The sources converge on a feasible cross-client pattern:
+
+1. **A shared local source of truth.** SQLite, Markdown, or another local store removes vendor lock-in and lets terminal and IDE clients read the same records. `memories.sh`, Memorix, Basic Memory, and MCP all demonstrate parts of this pattern.
+2. **A tiny portable policy layer.** `AGENTS.md` and client-specific skills say when memory should be used without copying conversation logs into every prompt. The AGENTS.md standard and native client documentation support this layer.
+3. **One compact tool boundary.** MCP provides a common callable interface. Lazy or deferred tool discovery can keep schemas out of routine context, although one small schema remains the portability cost.
+4. **Progressive disclosure.** Strong systems return a compact claim or task workset first and expose timeline/detail only when needed. Memorix and query-time construction research support this design.
+5. **A conservative write path.** Codex and Claude Code show how background extraction can reject short-lived sessions, secrets, derivable facts, and duplicate instructions. A local implementation should reproduce those rules before pursuing broader semantic extraction.
+
+These mechanisms make memory usable across clients. They do not eliminate representation limits: semantic multi-hop and commonsense recall still depend on retrieval quality, while answer quality depends on the model that reads the evidence.
+
+## 11. Real tests for `unimem`
+
+The full methodology and reproduction commands are in [`benchmarks/README.md`](benchmarks/README.md). The runner uses the real extraction, SQLite search, CLI, and MCP tool code paths and reports separate metrics rather than one composite score.
+
+| Source-derived capability | Real test | Current result |
+|---|---|---|
+| Self-RAG / Adaptive-RAG: retrieve only when useful | 20 routine and missing-context routing cases | Routing F1 1.00 |
+| Codex / Claude Code: selective extraction | 20 durable, noisy, secret, and transient cases | Precision 1.00, recall 1.00 |
+| LongMemEval: extraction and multi-session evidence | LoCoMo evidence-ID retrieval plus controlled update cases | LoCoMo evidence recall @3 0.50, @10 0.65 |
+| MemoryAgentBench: learning and forgetting | Test-time write/recall and closed-session expiry | Both pass; forgetting rate 1.00 |
+| MemBench / Harness the Memory: efficiency and capacity | 1,000 records and 50 bounded recalls | Recall p50 2.02 ms, p95 2.25 ms, max 163 output tokens |
+| MCP portability | Database, CLI, and MCP-tool parity | Identical result IDs |
+
+The system is strong on safety, scope, lifecycle, token bounds, and direct retrieval. It is below the predeclared LoCoMo targets, especially for multi-hop and commonsense questions. That is evidence for adding a local semantic embedding or learned reranker, not for increasing top-k indefinitely. Current details are in [`artifacts/memory-quality.json`](artifacts/memory-quality.json).
+
 ## Sources
 
 Primary product and protocol sources:
@@ -381,5 +411,16 @@ Research sources:
 - [ActiveContext](https://arxiv.org/abs/2604.11462)
 - [LazyMem](https://arxiv.org/abs/2607.22690)
 - [Harness the Memory](https://arxiv.org/abs/2608.15008)
+
+Evaluation repositories and datasets:
+
+- [LongMemEval repository](https://github.com/xiaowu0162/LongMemEval)
+- [LongMemEval-V2 repository](https://github.com/xiaowu0162/LongMemEval-V2)
+- [LongMemEval cleaned dataset](https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned)
+- [LoCoMo repository](https://github.com/snap-research/LoCoMo)
+- [MemoryAgentBench repository](https://github.com/HUST-AI-HYZ/MemoryAgentBench)
+- [MemoryAgentBench dataset](https://huggingface.co/datasets/ai-hyz/MemoryAgentBench)
+- [MemBench repository](https://github.com/import-myself/Membench)
+- [Mem0 memory benchmark suite](https://github.com/mem0ai/memory-benchmarks)
 
 Research confidence: high for documented product behavior and architecture; medium for comparative performance numbers; low-to-medium for 2026 preprints and vendor benchmark claims until independently reproduced.

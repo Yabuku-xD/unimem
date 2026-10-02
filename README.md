@@ -132,6 +132,15 @@ uv run python tests/e2e_unimem.py
 
 It writes [`artifacts/e2e-unimem.json`](artifacts/e2e-unimem.json) and covers routine routing, trigger gating, scope isolation, session expiry, extraction filtering, output budgets, MCP parity, and local operation.
 
+For memory-quality metrics and public-corpus retrieval tests:
+
+```bash
+uv run python benchmarks/run_memory_quality.py
+uv run python benchmarks/check_sources.py
+```
+
+The benchmark methodology, real LoCoMo command, source mapping, and current limitations are documented in [`benchmarks/README.md`](benchmarks/README.md).
+
 On the development machine used for this build, `doctor`, `route`, and a bounded `recall` each stayed at roughly 29-30 MB maximum resident memory and completed in about 0.1 seconds. Exact figures vary by Python runtime and database size.
 
 ## Toolchain

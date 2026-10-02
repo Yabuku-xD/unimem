@@ -34,6 +34,10 @@ Thumbs.db
 
 # Working notes stay local
 TASKS.md
+.context/
+
+# Downloaded benchmark data
+benchmarks/data/
 
 # Scratch output; keep the checked-in E2E JSON evidence
 artifacts/*.tmp

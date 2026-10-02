@@ -1,0 +1,436 @@
+{
+  "checked_at": "2026-10-02T04:54:45.139145+00:00",
+  "report": "MEMORY_SYSTEM_RESEARCH.md",
+  "report_sha256": "3b4e0cf30ef8b10b66b8db07aa580cca8203f109f35b97954d524b2c5d6cf922",
+  "source_count": 71,
+  "ok_count": 71,
+  "failed_count": 0,
+  "sources": [
+    {
+      "url": "https://aclanthology.org/2024.naacl-long.389/",
+      "status": "ok",
+      "title": "Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity",
+      "excerpt": "## [Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity](https://aclanthology.org/2024.naacl-long.389.pdf)  [Soyeong Jeong](https://aclanthology.org/people/soyeong-jeong/), [Jinheon Baek](ht"
+    },
+    {
+      "url": "https://aclanthology.org/2025.emnlp-main.1683/",
+      "status": "ok",
+      "title": "MemInsight: Autonomous Memory Augmentation for LLM Agents",
+      "excerpt": "## [MemInsight: Autonomous Memory Augmentation for LLM Agents](https://aclanthology.org/2025.emnlp-main.1683.pdf)  [Rana Salama](https://aclanthology.org/people/rana-salama/unverified/), [Jason Cai](https://aclanthology.org/people/jason-cai"
+    },
+    {
+      "url": "https://agents.md/",
+      "status": "ok",
+      "title": "AGENTS.md",
+      "excerpt": "# AGENTS.md  A simple, open format for guiding coding agents, used by over [60k open-source projects](https://github.com/search?q=path%3AAGENTS.md%20NOT%20is%3Afork%20NOT%20is%3Aarchived&type=code).  Think of AGENTS.md as a **README for age"
+    },
+    {
+      "url": "https://arxiv.org/abs/2304.03442",
+      "status": "ok",
+      "title": "[2304.03442] Generative Agents: Interactive Simulacra of Human Behavior",
+      "excerpt": "# Computer Science &gt; Human-Computer Interaction  \\[Submitted on 7 Apr 2023 ([v1](https://arxiv.org/abs/2304.03442v1)), last revised 6 Aug 2023 (this version, v2)]  # Title:Generative Agents: Interactive Simulacra of Human Behavior  Autho"
+    },
+    {
+      "url": "https://arxiv.org/abs/2309.02427",
+      "status": "ok",
+      "title": "[2309.02427] Cognitive Architectures for Language Agents",
+      "excerpt": "# Computer Science &gt; Artificial Intelligence  \\[Submitted on 5 Sep 2023 ([v1](https://arxiv.org/abs/2309.02427v1)), last revised 15 Mar 2024 (this version, v3)]  # Title:Cognitive Architectures for Language Agents  Authors:[Theodore R. S"
+    },
+    {
+      "url": "https://arxiv.org/abs/2310.08560",
+      "status": "ok",
+      "title": "[2310.08560] MemGPT: Towards LLMs as Operating Systems",
+      "excerpt": "# Computer Science &gt; Artificial Intelligence  \\[Submitted on 12 Oct 2023 ([v1](https://arxiv.org/abs/2310.08560v1)), last revised 12 Feb 2024 (this version, v2)]  # Title:MemGPT: Towards LLMs as Operating Systems  Authors:[Charles Packer"
+    },
+    {
+      "url": "https://arxiv.org/abs/2310.11511",
+      "status": "ok",
+      "title": "[2310.11511] Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 17 Oct 2023]  # Title:Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection  Authors:[Akari Asai](https://arxiv.org/search/cs?searchtype=author&query="
+    },
+    {
+      "url": "https://arxiv.org/abs/2403.14403",
+      "status": "ok",
+      "title": "[2403.14403] Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 21 Mar 2024 ([v1](https://arxiv.org/abs/2403.14403v1)), last revised 28 Mar 2024 (this version, v2)]  # Title:Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Languag"
+    },
+    {
+      "url": "https://arxiv.org/abs/2410.10813",
+      "status": "ok",
+      "title": "[2410.10813] LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 14 Oct 2024 ([v1](https://arxiv.org/abs/2410.10813v1)), last revised 4 Mar 2025 (this version, v2)]  # Title:LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive"
+    },
+    {
+      "url": "https://arxiv.org/abs/2501.13956",
+      "status": "ok",
+      "title": "[2501.13956] Zep: A Temporal Knowledge Graph Architecture for Agent Memory",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 20 Jan 2025]  # Title:Zep: A Temporal Knowledge Graph Architecture for Agent Memory  Authors:[Preston Rasmussen](https://arxiv.org/search/cs?searchtype=author&query=Rasmussen%"
+    },
+    {
+      "url": "https://arxiv.org/abs/2503.21760",
+      "status": "ok",
+      "title": "[2503.21760] MemInsight: Autonomous Memory Augmentation for LLM Agents",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 27 Mar 2025 ([v1](https://arxiv.org/abs/2503.21760v1)), last revised 31 Jul 2025 (this version, v2)]  # Title:MemInsight: Autonomous Memory Augmentation for LLM Agents  Author"
+    },
+    {
+      "url": "https://arxiv.org/abs/2504.19413",
+      "status": "ok",
+      "title": "[2504.19413] Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 28 Apr 2025]  # Title:Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory  Authors:[Prateek Chhikara](https://arxiv.org/search/cs?searchtype=author&query="
+    },
+    {
+      "url": "https://arxiv.org/abs/2506.21605",
+      "status": "ok",
+      "title": "[2506.21605] MemBench: Towards More Comprehensive Evaluation on the Memory of LLM-based Agents",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 20 Jun 2025]  # Title:MemBench: Towards More Comprehensive Evaluation on the Memory of LLM-based Agents  Authors:[Haoran Tan](https://arxiv.org/search/cs?searchtype=author&que"
+    },
+    {
+      "url": "https://arxiv.org/abs/2507.05257",
+      "status": "ok",
+      "title": "[2507.05257] Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 7 Jul 2025 ([v1](https://arxiv.org/abs/2507.05257v1)), last revised 28 Jun 2026 (this version, v4)]  # Title:Evaluating Memory in LLM Agents via Incremental Multi-Turn Interac"
+    },
+    {
+      "url": "https://arxiv.org/abs/2604.11462",
+      "status": "ok",
+      "title": "[2604.11462] Escaping the Context Bottleneck: Active Context Curation for LLM Agents via Reinforcement Learning",
+      "excerpt": "# Computer Science &gt; Artificial Intelligence  \\[Submitted on 13 Apr 2026]  # Title:Escaping the Context Bottleneck: Active Context Curation for LLM Agents via Reinforcement Learning  Authors:[Xiaozhe Li](https://arxiv.org/search/cs?searc"
+    },
+    {
+      "url": "https://arxiv.org/abs/2604.20572",
+      "status": "ok",
+      "title": "[2604.20572] Ask Only When Needed: Proactive Retrieval from Memory and Skills for Experience-Driven Lifelong Agents",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 22 Apr 2026 ([v1](https://arxiv.org/abs/2604.20572v1)), last revised 4 Jun 2026 (this version, v2)]  # Title:Ask Only When Needed: Proactive Retrieval from Memory and Skills f"
+    },
+    {
+      "url": "https://arxiv.org/abs/2607.22690",
+      "status": "ok",
+      "title": "[2607.22690] LazyMem: Retrieve Broadly, Construct Selectively for Efficient Long-Term Agent Memory",
+      "excerpt": "# Computer Science &gt; Artificial Intelligence  \\[Submitted on 17 Jul 2026 ([v1](https://arxiv.org/abs/2607.22690v1)), last revised 28 Jul 2026 (this version, v2)]  # Title:LazyMem: Retrieve Broadly, Construct Selectively for Efficient Lon"
+    },
+    {
+      "url": "https://arxiv.org/abs/2608.15008",
+      "status": "ok",
+      "title": "[2608.15008] Harness the Memory: A Holistic Evaluation of Memory Substrates in Memory Agents",
+      "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 15 Aug 2026]  # Title:Harness the Memory: A Holistic Evaluation of Memory Substrates in Memory Agents  Authors:[Wei-Chieh Huang](https://arxiv.org/search/cs?searchtype=author&"
+    },
+    {
+      "url": "https://code.claude.com/docs/en/mcp",
+      "status": "ok",
+      "title": "Connect Claude Code to tools via MCP",
+      "excerpt": "MCP  # Connect Claude Code to tools via MCP  Learn how to connect Claude Code to your tools with the Model Context Protocol.  Claude Code can connect to hundreds of external tools and data sources through the [Model Context Protocol (MCP)]("
+    },
+    {
+      "url": "https://code.claude.com/docs/en/memory",
+      "status": "ok",
+      "title": "How Claude remembers your project",
+      "excerpt": "Use Claude Code  # How Claude remembers your project  Give Claude persistent instructions with CLAUDE.md or AGENTS.md files, and let Claude accumulate learnings automatically with auto memory.  Each Claude Code session begins with a fresh c"
+    },
+    {
+      "url": "https://cursor.com/docs/cloud-agent/automations",
+      "status": "ok",
+      "title": "Automations",
+      "excerpt": "Cloud Agents  # Automations  Cursor Automations run [cloud agents](https://cursor.com/docs/cloud-agent) in the background, either on a schedule or in response to events from GitHub, GitLab, Slack, webhooks, Linear, and more.  Automations ca"
+    },
+    {
+      "url": "https://cursor.com/docs/rules",
+      "status": "ok",
+      "title": "Rules",
+      "excerpt": "Customize  # Rules  Rules provide system-level instructions to Agent. They bundle prompts, scripts, and more together, making it easy to manage and share workflows across your team.  Cursor supports four types of rules:  Project Rules  Stor"
+    },
+    {
+      "url": "https://developers.openai.com/codex/agent-configuration/agents-md",
+      "status": "ok",
+      "title": "Custom instructions with AGENTS.md",
+      "excerpt": "# Custom instructions with AGENTS.md  Give Codex extra instructions and context for your project  Codex reads `AGENTS.md` files before doing any work. By layering global guidance with project-specific overrides, you can start each task with"
+    },
+    {
+      "url": "https://developers.openai.com/codex/concepts/customization",
+      "status": "ok",
+      "title": "Customization",
+      "excerpt": "# Customization  How to customize Codex with project guidance, skills, MCP, and subagents  Customization is how you make Codex work the way your team works.  In Codex, customization comes from a few layers that work together:  - **Project g"
+    },
+    {
+      "url": "https://developers.openai.com/codex/config-file/config-reference",
+      "status": "ok",
+      "title": "Configuration Reference",
+      "excerpt": "# Configuration Reference  Complete reference for Codex config.toml and requirements.toml  Use this page as a searchable reference for Codex configuration files. For conceptual guidance and examples, start with [Config basics](https://devel"
+    },
+    {
+      "url": "https://developers.openai.com/codex/customization/memories",
+      "status": "ok",
+      "title": "Memories",
+      "excerpt": "# Memories  How ChatGPT and Codex carry useful context forward across chats  ChatGPT desktop app  Memories let ChatGPT and Codex carry useful context from earlier work into future work. ChatGPT web uses ChatGPT memory, while local Codex cli"
+    },
+    {
+      "url": "https://developers.openai.com/codex/mcp",
+      "status": "ok",
+      "title": "Model Context Protocol",
+      "excerpt": "# Model Context Protocol  Give Codex access to third-party tools and context  ChatGPT desktop app  Model Context Protocol (MCP) connects models to tools and context. Use it to give ChatGPT or Codex access to third-party documentation, or to"
+    },
+    {
+      "url": "https://docs.basicmemory.com/local/local-install",
+      "status": "ok",
+      "title": "Local install",
+      "excerpt": "Local  # Local install  Install Basic Memory locally and choose where notes live.  Local mode runs the MCP server on your machine and stores notes in local folders you control.  Followed [Quickstart: Local](https://docs.basicmemory.com/star"
+    },
+    {
+      "url": "https://docs.basicmemory.com/reference/technical-information",
+      "status": "ok",
+      "title": "Technical Information",
+      "excerpt": "Reference  # Technical Information  Technical details about Basic Memory implementation, architecture, licensing, and Model Context Protocol integration  This page describes the architecture of the open-source [Basic Memory](https://github."
+    },
+    {
+      "url": "https://docs.falkordb.com/agentic-memory/graphiti",
+      "status": "ok",
+      "title": "Graphiti: Dynamic Temporal Knowledge Graph Memory for AI Agents",
+      "excerpt": "Agentic Memory  # Graphiti: Dynamic Temporal Knowledge Graph Memory for AI Agents  Build temporally-aware, multi-tenant knowledge graphs with Graphiti and FalkorDB for AI systems with persistent memory, hybrid search, and real-time data int"
+    },
+    {
+      "url": "https://docs.falkordb.com/agentic-memory/graphiti-mcp-server.html",
+      "status": "ok",
+      "title": "Graphiti MCP Server: Model Context Protocol for Agent Memory",
+      "excerpt": "Agentic Memory  # Graphiti MCP Server: Model Context Protocol for Agent Memory  Run Graphiti MCP server with FalkorDB for persistent AI agent memory in Claude Desktop, Cursor IDE, and other MCP clients with temporally-aware knowledge graphs"
+    },
+    {
+      "url": "https://docs.langchain.com/oss/python/concepts/memory",
+      "status": "ok",
+      "title": "Memory overview",
+      "excerpt": "# Memory overview  [Memory](https://docs.langchain.com/oss/python/langgraph/add-memory) is a system that remembers information about previous interactions. For AI agents, memory is crucial because it lets them remember previous interactions"
+    },
+    {
+      "url": "https://docs.letta.com/guides/core-concepts/memory/memory-blocks",
+      "status": "ok",
+      "title": "Memory blocks (core memory)",
+      "excerpt": "# Memory blocks (core memory)  Create and manage structured memory blocks via the Letta API  Read our [blog post](https://www.letta.com/blog/memory-blocks) to learn more about the origin of memory blocks.  ## What are memory blocks?  Memory"
+    },
+    {
+      "url": "https://docs.letta.com/guides/docker",
+      "status": "ok",
+      "title": "Deploy a Letta server with Docker",
+      "excerpt": "# Deploy a Letta server with Docker  Manage your own Letta server using Docker  The Docker image is no longer an actively maintained or supported Letta product surface. If you want to use local models or OpenAI-compatible local providers, u"
+    },
+    {
+      "url": "https://docs.mem0.ai/open-source/overview",
+      "status": "ok",
+      "title": "Open Source Overview",
+      "excerpt": "Getting Started  # Open Source Overview  Self-host Mem0 with full control over your infrastructure and data  Mem0 Open Source is the same memory engine as the Platform, running on your own infrastructure. You own the stack, the data, and ev"
+    },
+    {
+      "url": "https://docs.mem0.ai/overview",
+      "status": "ok",
+      "title": "Platform Overview",
+      "excerpt": "Getting Started  # Platform Overview  Managed memory layer for AI agents, production-ready in minutes  Mem0 Platform is the fully managed memory layer for your AI apps and agents. Your users stop repeating themselves and your agents keep co"
+    },
+    {
+      "url": "https://github.com/AVIDS2/memorix",
+      "status": "ok",
+      "title": "AVIDS2/memorix: Open-source cross-agent memory layer for coding agents via MCP. Compatible with Claude Code, Codex, Cursor, Windsurf, Gemini CLI, Antigravity, OpenClaw, Hermes Agent, Oh-my-Pi, Pi, Copilot, Kiro, OpenCode, and Trae. \u00b7 GitHub",
+      "excerpt": "main  [Branches](https://github.com/AVIDS2/memorix/branches)[Tags](https://github.com/AVIDS2/memorix/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[.codegraph](https://github.com/AVIDS2/memorix/tre"
+    },
+    {
+      "url": "https://github.com/AVIDS2/memorix/blob/main/README.md",
+      "status": "ok",
+      "title": "Memorix",
+      "excerpt": "main  # README.md  \u00a0  main  # README.md  633 lines (501 loc) \u00b7 39.8 KB  [Raw](https://github.com/AVIDS2/memorix/raw/refs/heads/main/README.md)  [![Memorix](https://raw.githubusercontent.com/AVIDS2/memorix/main/assets/readme-hero.svg)](https"
+    },
+    {
+      "url": "https://github.com/AVIDS2/memorix/blob/main/docs/1.2.0-WORKSET-RETRIEVAL.md",
+      "status": "ok",
+      "title": "memorix/docs/1.2.0-WORKSET-RETRIEVAL.md at main \u00b7 AVIDS2/memorix \u00b7 GitHub",
+      "excerpt": "main  # 1.2.0-WORKSET-RETRIEVAL.md  \u00a0  main  # 1.2.0-WORKSET-RETRIEVAL.md  80 lines (58 loc) \u00b7 3.2 KB  [Raw](https://github.com/AVIDS2/memorix/raw/refs/heads/main/docs/1.2.0-WORKSET-RETRIEVAL.md)  # Memorix 1.2 Task Workset Retrieval  A Tas"
+    },
+    {
+      "url": "https://github.com/AVIDS2/memorix/blob/main/docs/API_REFERENCE.md",
+      "status": "ok",
+      "title": "memorix/docs/API_REFERENCE.md at main \u00b7 AVIDS2/memorix \u00b7 GitHub",
+      "excerpt": "main  # API\\_REFERENCE.md  \u00a0  main  # API\\_REFERENCE.md  1008 lines (721 loc) \u00b7 35.8 KB  [Raw](https://github.com/AVIDS2/memorix/raw/refs/heads/main/docs/API_REFERENCE.md)  # Memorix API Reference  This document covers the main Memorix MCP "
+    },
+    {
+      "url": "https://github.com/AVIDS2/memorix/blob/main/docs/ARCHITECTURE.md",
+      "status": "ok",
+      "title": "memorix/docs/ARCHITECTURE.md at main \u00b7 AVIDS2/memorix \u00b7 GitHub",
+      "excerpt": "main  # ARCHITECTURE.md  \u00a0  main  # ARCHITECTURE.md  565 lines (403 loc) \u00b7 15.7 KB  [Raw](https://github.com/AVIDS2/memorix/raw/refs/heads/main/docs/ARCHITECTURE.md)  # Memorix Architecture  Memorix is an open-source cross-agent memory laye"
+    },
+    {
+      "url": "https://github.com/AVIDS2/memorix/blob/main/docs/CONFIGURATION.md",
+      "status": "ok",
+      "title": "memorix/docs/CONFIGURATION.md at main \u00b7 AVIDS2/memorix \u00b7 GitHub",
+      "excerpt": "main  # CONFIGURATION.md  \u00a0  main  # CONFIGURATION.md  545 lines (414 loc) \u00b7 18.5 KB  [Raw](https://github.com/AVIDS2/memorix/raw/refs/heads/main/docs/CONFIGURATION.md)  # Memorix Configuration Guide  Memorix uses TOML as its main configura"
+    },
+    {
+      "url": "https://github.com/AVIDS2/memorix/blob/main/docs/SETUP.md",
+      "status": "ok",
+      "title": "memorix/docs/SETUP.md at main \u00b7 AVIDS2/memorix \u00b7 GitHub",
+      "excerpt": "main  # SETUP.md  \u00a0  main  # SETUP.md  758 lines (552 loc) \u00b7 23.1 KB  [Raw](https://github.com/AVIDS2/memorix/raw/refs/heads/main/docs/SETUP.md)  # Setup Guide  Memorix is a local-first shared memory layer for AI coding agents.  In the curr"
+    },
+    {
+      "url": "https://github.com/HUST-AI-HYZ/MemoryAgentBench",
+      "status": "ok",
+      "title": "HUST-AI-HYZ/MemoryAgentBench: Open source code for ICLR 2026 Paper: Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions \u00b7 GitHub",
+      "excerpt": "main  [Branches](https://github.com/HUST-AI-HYZ/MemoryAgentBench/branches)[Tags](https://github.com/HUST-AI-HYZ/MemoryAgentBench/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[assets](https://githu"
+    },
+    {
+      "url": "https://github.com/agentsmd/agents.md",
+      "status": "ok",
+      "title": "GitHub - agentsmd/agents.md: AGENTS.md",
+      "excerpt": "main  [Branches](https://github.com/agentsmd/agents.md/branches)[Tags](https://github.com/agentsmd/agents.md/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[components](https://github.com/agentsmd/a"
+    },
+    {
+      "url": "https://github.com/basicmachines-co/basic-memory/blob/main/README.md",
+      "status": "ok",
+      "title": "Basic Memory",
+      "excerpt": "main  # README.md  \u00a0  main  # README.md  697 lines (521 loc) \u00b7 23.9 KB  [Raw](https://github.com/basicmachines-co/basic-memory/raw/refs/heads/main/README.md)  [![MCP Toplist](https://camo.githubusercontent.com/657f5c7d9de68058d0b637fd1d1a2a"
+    },
+    {
+      "url": "https://github.com/import-myself/Membench",
+      "status": "ok",
+      "title": "import-myself/Membench: Membenchmark repository \u00b7 GitHub",
+      "excerpt": "main  [Branches](https://github.com/import-myself/Membench/branches)[Tags](https://github.com/import-myself/Membench/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[DialogueGeneration](https://githu"
+    },
+    {
+      "url": "https://github.com/langchain-ai/langmem/blob/main/docs/docs/concepts/conceptual_guide.md",
+      "status": "ok",
+      "title": "langmem/docs/docs/concepts/conceptual_guide.md at main \u00b7 langchain-ai/langmem \u00b7 GitHub",
+      "excerpt": "main  # conceptual\\_guide.md  \u00a0  main  # conceptual\\_guide.md  386 lines (290 loc) \u00b7 20.2 KB  [Raw](https://github.com/langchain-ai/langmem/raw/refs/heads/main/docs/docs/concepts/conceptual_guide.md)  |title|Core Concepts| |---|---|  # Long"
+    },
+    {
+      "url": "https://github.com/mem0ai/mem0",
+      "status": "ok",
+      "title": "GitHub - mem0ai/mem0: The Memory Layer for AI Agents",
+      "excerpt": "main  [Branches](https://github.com/mem0ai/mem0/branches)[Tags](https://github.com/mem0ai/mem0/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[.agents/plugins](https://github.com/mem0ai/mem0/tree/ma"
+    },
+    {
+      "url": "https://github.com/mem0ai/mem0/blob/3e6ab394/openmemory/README.md",
+      "status": "ok",
+      "title": "mem0/openmemory/README.md at 3e6ab39429f9215b31790807e51664495c2c03e5 \u00b7 mem0ai/mem0 \u00b7 GitHub",
+      "excerpt": "3e6ab39429f9215b31790807e51664495c2c03e5  # README.md  \u00a0  3e6ab39  # README.md  168 lines (121 loc) \u00b7 5.61 KB  [Raw](https://github.com/mem0ai/mem0/raw/3e6ab39429f9215b31790807e51664495c2c03e5/openmemory/README.md)  # OpenMemory  > **\u26a0\ufe0f Sun"
+    },
+    {
+      "url": "https://github.com/mem0ai/memory-benchmarks",
+      "status": "ok",
+      "title": "mem0ai/memory-benchmarks: Open-source evaluation suite for memory-augmented LLM systems \u00b7 GitHub",
+      "excerpt": "main  [Branches](https://github.com/mem0ai/memory-benchmarks/branches)[Tags](https://github.com/mem0ai/memory-benchmarks/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[benchmarks](https://github.co"
+    },
+    {
+      "url": "https://github.com/snap-research/LoCoMo",
+      "status": "ok",
+      "title": "snap-research/locomo \u00b7 GitHub",
+      "excerpt": "main  [Branches](https://github.com/snap-research/locomo/branches)[Tags](https://github.com/snap-research/locomo/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[data](https://github.com/snap-researc"
+    },
+    {
+      "url": "https://github.com/webrenew/memories",
+      "status": "ok",
+      "title": "webrenew/memories \u00b7 GitHub",
+      "excerpt": "main  [Branches](https://github.com/webrenew/memories/branches)[Tags](https://github.com/webrenew/memories/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[.agents](https://github.com/webrenew/memori"
+    },
+    {
+      "url": "https://github.com/webrenew/memories/blob/main/packages/cli/src/lib/agents-generator.ts",
+      "status": "ok",
+      "title": "memories/packages/cli/src/lib/agents-generator.ts at main \u00b7 webrenew/memories \u00b7 GitHub",
+      "excerpt": "main  # agents-generator.ts  \u00a0  main  # agents-generator.ts  407 lines (345 loc) \u00b7 13.3 KB  [Raw](https://github.com/webrenew/memories/raw/refs/heads/main/packages/cli/src/lib/agents-generator.ts)"
+    },
+    {
+      "url": "https://github.com/webrenew/memories/blob/main/packages/cli/src/lib/embeddings-models.ts",
+      "status": "ok",
+      "title": "memories/packages/cli/src/lib/embeddings-models.ts at main \u00b7 webrenew/memories \u00b7 GitHub",
+      "excerpt": "main  # embeddings-models.ts  \u00a0  main  # embeddings-models.ts  69 lines (65 loc) \u00b7 1.75 KB  [Raw](https://github.com/webrenew/memories/raw/refs/heads/main/packages/cli/src/lib/embeddings-models.ts)"
+    },
+    {
+      "url": "https://github.com/webrenew/memories/blob/main/packages/cli/src/lib/memory.ts",
+      "status": "ok",
+      "title": "memories/packages/cli/src/lib/memory.ts at main \u00b7 webrenew/memories \u00b7 GitHub",
+      "excerpt": "main  # memory.ts  \u00a0  main  # memory.ts  1827 lines (1580 loc) \u00b7 54.3 KB  [Raw](https://github.com/webrenew/memories/raw/refs/heads/main/packages/cli/src/lib/memory.ts)  [View remainder of file in raw view](https://github.com/webrenew/memor"
+    },
+    {
+      "url": "https://github.com/webrenew/memories/blob/main/packages/cli/src/mcp/index.ts",
+      "status": "ok",
+      "title": "memories/packages/cli/src/mcp/index.ts at main \u00b7 webrenew/memories \u00b7 GitHub",
+      "excerpt": "main  # index.ts  \u00a0  main  # index.ts  158 lines (135 loc) \u00b7 6.1 KB  [Raw](https://github.com/webrenew/memories/raw/refs/heads/main/packages/cli/src/mcp/index.ts)"
+    },
+    {
+      "url": "https://github.com/webrenew/memories/blob/main/packages/cli/src/mcp/tools.ts",
+      "status": "ok",
+      "title": "memories/packages/cli/src/mcp/tools.ts at main \u00b7 webrenew/memories \u00b7 GitHub",
+      "excerpt": "main  # tools.ts  \u00a0  main  # tools.ts  961 lines (904 loc) \u00b7 37.3 KB  [Raw](https://github.com/webrenew/memories/raw/refs/heads/main/packages/cli/src/mcp/tools.ts)"
+    },
+    {
+      "url": "https://github.com/xiaowu0162/LongMemEval",
+      "status": "ok",
+      "title": "xiaowu0162/LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory (ICLR 2025) \u00b7 GitHub",
+      "excerpt": "main  [Branches](https://github.com/xiaowu0162/LongMemEval/branches)[Tags](https://github.com/xiaowu0162/LongMemEval/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[assets](https://github.com/xiaowu"
+    },
+    {
+      "url": "https://github.com/xiaowu0162/LongMemEval-V2",
+      "status": "ok",
+      "title": "xiaowu0162/LongMemEval-V2: Official repository for LongMemEval-V2 \u00b7 GitHub",
+      "excerpt": "main  [Branches](https://github.com/xiaowu0162/LongMemEval-V2/branches)[Tags](https://github.com/xiaowu0162/LongMemEval-V2/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[data](https://github.com/xi"
+    },
+    {
+      "url": "https://help.getzep.com/graphiti/getting-started/quick-start",
+      "status": "ok",
+      "title": "Quick Start",
+      "excerpt": "# Quick Start  Getting started with Graphiti  For complete working examples, check out the [Graphiti Quickstart Examples](https://github.com/getzep/graphiti/tree/main/examples/quickstart) on GitHub.  ## Installation  Requirements:  - Python"
+    },
+    {
+      "url": "https://huggingface.co/datasets/ai-hyz/MemoryAgentBench",
+      "status": "ok",
+      "title": "ai-hyz/MemoryAgentBench \u00b7 Datasets at Hugging Face",
+      "excerpt": "# [Datasets:](https://huggingface.co/datasets) [ai-hyz](https://huggingface.co/ai-hyz) / [MemoryAgentBench](https://huggingface.co/datasets/ai-hyz/MemoryAgentBench)  Tasks:  [Question Answering](https://huggingface.co/datasets?task_categori"
+    },
+    {
+      "url": "https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned",
+      "status": "ok",
+      "title": "xiaowu0162/longmemeval-cleaned \u00b7 Datasets at Hugging Face",
+      "excerpt": "# [Datasets:](https://huggingface.co/datasets) [xiaowu0162](https://huggingface.co/xiaowu0162) / [longmemeval-cleaned](https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned)  Languages:  [English](https://huggingface.co/datasets?la"
+    },
+    {
+      "url": "https://memories.sh/docs",
+      "status": "ok",
+      "title": "memories.sh Documentation",
+      "excerpt": "# memories.sh Documentation  One memory store for all your AI coding tools. Store rules, decisions, and knowledge once \u2014 generate native config files for every AI editor.  ## What is memories.sh?  **memories.sh** is a local-first CLI that g"
+    },
+    {
+      "url": "https://memories.sh/docs/cli",
+      "status": "ok",
+      "title": "CLI Reference",
+      "excerpt": "CLI Reference  # CLI Reference  Complete reference for all memories.sh CLI commands.  The `memories` CLI is the primary interface for managing your AI agent memory store. All commands operate on a local SQLite database at `~/.config/memorie"
+    },
+    {
+      "url": "https://memories.sh/docs/concepts/memory-segmentation",
+      "status": "ok",
+      "title": "Memory Segmentation",
+      "excerpt": "Concepts  # Memory Segmentation  An agent-agnostic memory architecture that separates session, semantic, episodic, and procedural memory for reliable long-running workflows.  Memory segmentation is a second axis on top of [Memory Types](htt"
+    },
+    {
+      "url": "https://memories.sh/docs/getting-started",
+      "status": "ok",
+      "title": "Getting Started",
+      "excerpt": "# Getting Started  Install memories.sh, add your first memories, and generate config files for your AI coding tools.  ## Installation  Install the CLI globally:  ``` pnpm add -g @memories.sh/cli ``` Verify the installation:  ``` memories --"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2024-11-05/server/tools",
+      "status": "ok",
+      "title": "Tools",
+      "excerpt": "Server Features  # Tools  The Model Context Protocol (MCP) allows servers to expose tools that can be invoked by language models. Tools enable models to interact with external systems, such as querying databases, calling APIs, or performing"
+    },
+    {
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/25f7be9694d7b32d5cc670927b8091e1-Abstract-Conference.html",
+      "status": "ok",
+      "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+      "excerpt": "# Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection  ## Abstract  Despite their remarkable capabilities, large language models (LLMs) often produce responses containing factual inaccuracies due to their sole rel"
+    },
+    {
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/d813d324dbf0598bbdc9c8e79740ed01-Abstract-Conference.html",
+      "status": "ok",
+      "title": "LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory",
+      "excerpt": "# LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory  ## Abstract  Recent large language model (LLM)-driven chat assistant systems have integrated memory components to track user-assistant chat histories, enabling mor"
+    },
+    {
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/fd1eff9dd295df50a41f2521942fa31d-Abstract.html",
+      "status": "ok",
+      "title": "Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions",
+      "excerpt": "# Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions  ## Abstract  Recent benchmarks for Large Language Model (LLM) agents primarily focus on evaluating reasoning, planning, and execution capabilities, while another cri"
+    }
+  ]
+}

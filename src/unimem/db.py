@@ -92,6 +92,40 @@ CREATE TRIGGER IF NOT EXISTS memories_fts_au AFTER UPDATE ON memories BEGIN
 END;
 """
 
+SEARCH_STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "by",
+    "did",
+    "do",
+    "for",
+    "from",
+    "how",
+    "in",
+    "is",
+    "it",
+    "of",
+    "on",
+    "or",
+    "the",
+    "to",
+    "was",
+    "were",
+    "what",
+    "when",
+    "where",
+    "which",
+    "who",
+    "why",
+    "with",
+    "would",
+}
+
 
 class MemoryError(Exception):
     """A user-correctable memory operation error."""
@@ -393,8 +427,12 @@ class Database:
         if not scope_clauses:
             return []
 
-        terms = re.findall(r"[A-Za-z0-9_]+", query)
-        fts_query = " OR ".join(f'"{term}"' for term in terms)
+        terms = [
+            term.lower()
+            for term in re.findall(r"[A-Za-z0-9_]+", query)
+            if term.lower() not in SEARCH_STOPWORDS
+        ] or [term.lower() for term in re.findall(r"[A-Za-z0-9_]+", query)]
+        fts_query = " OR ".join(f"{term}*" for term in terms)
         active_sql = self._active_memory_sql("m")
         scope_sql = " OR ".join(scope_clauses)
         if self.fts_enabled and fts_query:

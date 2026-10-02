@@ -41,10 +41,10 @@ USER_CUES = re.compile(
     r"(?i)\b((?:always|never)\s+(?:use|run|choose|prefer|keep|write|store|commit)|prefer(?:red)?|from now on|for all projects|my default|remember that|please use)\b"
 )
 PROJECT_CUES = re.compile(
-    r"(?i)\b(for this (?:repo|project)|we decided|decision|architecture|our convention|must use|project store|because it needs|repository)\b"
+    r"(?i)\b(we decided|architecture decision|our convention|must use|project store|repository uses|because it needs|for this (?:repo|project),?\s+(?:we decided|use|always|never|must|prefer))\b"
 )
 SESSION_CUES = re.compile(
-    r"(?i)\b(maybe|might be|hypothesis|for now|temporary|today|tomorrow|next step|test later|debugging hypothesis)\b"
+    r"(?i)\b(maybe|might be|hypothesis|for now|temporary (?:workaround|fix|state|note|hypothesis)|today|tomorrow|next step|test later|debugging hypothesis)\b"
 )
 PROCEDURE_CUES = re.compile(
     r"(?i)\b(runbook|checklist|workflow|procedure|repeatable)\b"
@@ -72,7 +72,7 @@ ROUTE_RULES: tuple[tuple[str, re.Pattern[str], str], ...] = (
     ),
     (
         "conflict",
-        re.compile(r"(?i)\b(conflict|contradict|contradictory|still failing|failed again|regression)\b"),
+        re.compile(r"(?i)\b(conflict|contradict(?:s|ed|ory)?|still failing|failed again|regression)\b"),
         "Current evidence is conflicting or a prior failure may explain the task.",
     ),
     (
@@ -190,7 +190,7 @@ def classify_candidate(text: str) -> Candidate | tuple[None, str]:
     elif user:
         scope = "user"
         lifecycle = "procedural" if procedure else "semantic"
-        kind = "preference" if re.search(r"(?i)prefer|always|never|default", cleaned) else "fact"
+        kind = "preference" if re.search(r"(?i)prefer|always|never|default|please use|remember that", cleaned) else "fact"
         confidence = 0.9
     else:
         scope = "project"
