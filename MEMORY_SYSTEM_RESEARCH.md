@@ -370,7 +370,11 @@ The full methodology and reproduction commands are in [`benchmarks/README.md`](b
 | MemBench / Harness the Memory: efficiency and capacity | 1,000 records and 50 bounded recalls | Recall p50 2.02 ms, p95 2.25 ms, max 163 output tokens |
 | MCP portability | Database, CLI, and MCP-tool parity | Identical result IDs |
 
-The system is strong on safety, scope, lifecycle, token bounds, and direct retrieval. It is below the predeclared LoCoMo targets, especially for multi-hop and commonsense questions. That is evidence for adding a local semantic embedding or learned reranker, not for increasing top-k indefinitely. Current details are in [`artifacts/memory-quality.json`](artifacts/memory-quality.json).
+The system is strong on safety, scope, lifecycle, token bounds, and direct retrieval. It is below the predeclared LoCoMo targets, especially for multi-hop and commonsense questions. Current details are in [`artifacts/memory-quality.json`](artifacts/memory-quality.json).
+
+A later full run across LoCoMo, MemBench, MemoryAgentBench, and BEAM reached 0.80 balanced evidence recall @10 with every safety gate passing, 290 MB peak memory, and no external calls. A local embedding hybrid added only 0.02 on a matched sample while raising peak memory about sixfold, so it stays optional. Optional write-time enrichment with a local 1.2B model (`unimem enrich`) raised full-LoCoMo evidence recall from 0.50 to 0.61 @3 and from 0.65 to 0.76 @10 with no model on the recall path; it is still below the 0.70 / 0.90 targets, and commonsense questions barely moved (0.40 to 0.42 @10). Results and commands are in [`benchmarks/README.md`](benchmarks/README.md).
+
+Against the systems surveyed here, `unimem` is the only option that meets every stated requirement at once: no injected context on routine turns, one shared store for all clients, strict user/project/session tiers, and zero external API or service cost. Mem0, Zep, and Letta report higher answer-level scores, but they rely on hosted LLMs, databases, or resident memory blocks, which the requirements rule out, and their numbers are measured with LLM judges that this local benchmark does not use.
 
 ## Sources
 
