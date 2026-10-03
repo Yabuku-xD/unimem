@@ -113,7 +113,7 @@ uv run unimem enrich            # LFM2.5 1.2B Instruct, 4-bit MLX
 uv run unimem enrich --limit 200
 ```
 
-The model loads only for the duration of the command and exits with it, so there is no daemon and no cost on routine turns. Relative dates ("yesterday", "last year") are resolved in code from each memory's date before the model sees them. Run it after `distill --apply`, from a scheduled job, or whenever convenient; unenriched memories remain searchable by their original text. Pass `--model` to try another MLX model; memories enriched by a different model are re-enriched. On LoCoMo this raised evidence recall @10 from 0.65 to 0.76; see [`benchmarks/README.md`](benchmarks/README.md).
+The model loads only for the duration of the command and exits with it, so there is no daemon and no cost on routine turns. Relative dates ("yesterday", "last year") are resolved in code from each memory's date before the model sees them. Run it after `distill --apply`, from a scheduled job, or whenever convenient; unenriched memories remain searchable by their original text. Pass `--model` to try another MLX model; memories enriched by a different model are re-enriched. On LoCoMo this raised evidence recall @10 from 0.69 to 0.79; see [`benchmarks/README.md`](benchmarks/README.md).
 
 ## MCP clients
 
@@ -163,6 +163,6 @@ The tradeoffs are small but real: contributors need uv installed, `uv.lock` must
 
 ## Limitations
 
-The extractor is intentionally high-precision and rule-based: it captures explicit durable claims but will miss implicit preferences that need a model-based editor. The default retrieval index is lexical FTS5/BM25; semantic embeddings can be added later without changing the scope or lifecycle contract.
+The extractor is intentionally high-precision and rule-based: it captures explicit durable claims but will miss implicit preferences that need a model-based editor. The default retrieval index is lexical FTS5/BM25 with Porter stemming; local embeddings (`--extra semantic`) and write-time enrichment are opt-in and do not change the scope or lifecycle contract.
 
 The no-routine-call requirement is enforced by the router, the tool contract, and generated client guidance. A specific coding host can still decide to call a tool incorrectly, so acceptance for a new host should include a trace showing zero `unimem` calls on routine turns and one bounded call on a missing-context turn.

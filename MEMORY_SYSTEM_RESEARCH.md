@@ -345,7 +345,7 @@ The practical route is to use a local SQLite-based system as a substrate, keep o
 
 ## 10. Source re-check and feasibility
 
-All cited source URLs were checked again on 2026-10-02. The final repeatable audit is implemented in [`benchmarks/check_sources.py`](benchmarks/check_sources.py) and checks 71/71 URLs successfully. The ACM HTML viewer and GitHub's OpenMemory directory page were not readable by the scraper, so this report now uses the arXiv paper and a stable OpenMemory README URL.
+All cited source URLs were checked again on 2026-10-02. The final repeatable audit is implemented in [`benchmarks/check_sources.py`](benchmarks/check_sources.py) and checked 71/71 URLs successfully on that date. A later run with two added sources read 72 of 73: the ICLR 2026 proceedings page for MemoryAgentBench could not be scraped, while the arXiv link for the same paper passed. The ACM HTML viewer and GitHub's OpenMemory directory page were not readable by the scraper, so this report now uses the arXiv paper and a stable OpenMemory README URL.
 
 The sources converge on a feasible cross-client pattern:
 
@@ -365,14 +365,25 @@ The full methodology and reproduction commands are in [`benchmarks/README.md`](b
 |---|---|---|
 | Self-RAG / Adaptive-RAG: retrieve only when useful | 20 routine and missing-context routing cases | Routing F1 1.00 |
 | Codex / Claude Code: selective extraction | 20 durable, noisy, secret, and transient cases | Precision 1.00, recall 1.00 |
-| LongMemEval: extraction and multi-session evidence | LoCoMo evidence-ID retrieval plus controlled update cases | LoCoMo evidence recall @3 0.50, @10 0.65 |
+| LongMemEval: extraction and multi-session evidence | LongMemEval-S session retrieval, LoCoMo evidence-ID retrieval, controlled update cases | LongMemEval-S session recall @5 0.96; LoCoMo evidence recall @3 0.54, @10 0.69 |
 | MemoryAgentBench: learning and forgetting | Test-time write/recall and closed-session expiry | Both pass; forgetting rate 1.00 |
 | MemBench / Harness the Memory: efficiency and capacity | 1,000 records and 50 bounded recalls | Recall p50 2.02 ms, p95 2.25 ms, max 163 output tokens |
 | MCP portability | Database, CLI, and MCP-tool parity | Identical result IDs |
 
 The system is strong on safety, scope, lifecycle, token bounds, and direct retrieval. It is below the predeclared LoCoMo targets, especially for multi-hop and commonsense questions. Current details are in [`artifacts/memory-quality.json`](artifacts/memory-quality.json).
 
-A later full run across LoCoMo, MemBench, MemoryAgentBench, and BEAM reached 0.80 balanced evidence recall @10 with every safety gate passing, 290 MB peak memory, and no external calls. A local embedding hybrid added only 0.02 on a matched sample while raising peak memory about sixfold, so it stays optional. Optional write-time enrichment with a local 1.2B model (`unimem enrich`) raised full-LoCoMo evidence recall from 0.50 to 0.61 @3 and from 0.65 to 0.76 @10 with no model on the recall path; it is still below the 0.70 / 0.90 targets, and commonsense questions barely moved (0.40 to 0.42 @10). Results and commands are in [`benchmarks/README.md`](benchmarks/README.md).
+A later full run across LoCoMo, MemBench, MemoryAgentBench, and BEAM, after tuning the keyword index (stemming, stopwords, per-scope index pruning), reached 0.82 balanced evidence recall @10 and 0.71 @3 with every safety gate passing, 10 ms recall p95, 333 MB peak memory for the benchmark process, and no external calls. A local embedding hybrid scored below the tuned keyword index on LoCoMo, so it stays optional. Optional write-time enrichment with a local 1.2B model (`unimem enrich`) raised full-LoCoMo evidence recall from 0.54 to 0.62 @3 and from 0.69 to 0.79 @10 with no model on the recall path; it is still below the 0.70 / 0.90 targets, and commonsense questions remain weak (0.49 @10). Results and commands are in [`benchmarks/README.md`](benchmarks/README.md).
+
+On retrieval benchmarks that other systems publish without an LLM in the loop, `unimem` is competitive but not first:
+
+| Benchmark and metric | unimem | Published |
+|---|---:|---|
+| LongMemEval-S session recall @5 | 0.960 (0.970 over distinct sessions) | MemPalace raw 0.966, tuned hybrid 0.984 held-out; SelRoute 0.920; BM25 0.862 |
+| LoCoMo session recall @10, fractional | 0.899 keyword only, 0.912 enriched | MemPalace bge-large hybrid 0.924, hybrid v5 0.889; Memori 0.820 |
+
+The published figures are those projects' own numbers ([MemPalace](https://github.com/MemPalace/mempalace/blob/develop/benchmarks/BENCHMARKS.md), [SelRoute](https://arxiv.org/abs/2604.02431)) and were not reproduced here. Those systems return whole sessions, while `unimem` returns single turns inside a 400-token budget, so the comparison is conservative for `unimem` on output size and not like-for-like on granularity.
+
+With an LLM answering from recalled memories, scored in the open Agent Memory Benchmark harness with Gemini 3.8 Flash answering and judging, partial runs estimate 91.5% on LongMemEval-S and 88.7% on LoCoMo. On AMB's own leaderboard that is ahead of cognee (80.3% LoCoMo) and hybrid search (74.0% / 79.1%), and about 3 points behind Hindsight (94.6% / 92.0%), which uses two to three times the context. Details and caveats are in [`benchmarks/README.md`](benchmarks/README.md).
 
 Against the systems surveyed here, `unimem` is the only option that meets every stated requirement at once: no injected context on routine turns, one shared store for all clients, strict user/project/session tiers, and zero external API or service cost. Mem0, Zep, and Letta report higher answer-level scores, but they rely on hosted LLMs, databases, or resident memory blocks, which the requirements rule out, and their numbers are measured with LLM judges that this local benchmark does not use.
 
@@ -426,5 +437,8 @@ Evaluation repositories and datasets:
 - [MemoryAgentBench dataset](https://huggingface.co/datasets/ai-hyz/MemoryAgentBench)
 - [MemBench repository](https://github.com/import-myself/Membench)
 - [Mem0 memory benchmark suite](https://github.com/mem0ai/memory-benchmarks)
+- [MemPalace benchmark results](https://github.com/MemPalace/mempalace/blob/develop/benchmarks/BENCHMARKS.md)
+- [SelRoute](https://arxiv.org/abs/2604.02431)
+- [Agent Memory Benchmark](https://github.com/vectorize-io/agent-memory-benchmark)
 
 Research confidence: high for documented product behavior and architecture; medium for comparative performance numbers; low-to-medium for 2026 preprints and vendor benchmark claims until independently reproduced.
