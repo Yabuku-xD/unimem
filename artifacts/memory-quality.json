@@ -1,8 +1,8 @@
 {
   "passed": true,
   "command": "uv run python benchmarks/run_memory_quality.py ",
-  "started_at": "2026-10-03T03:01:39.389443+00:00",
-  "finished_at": "2026-10-03T03:01:40.844540+00:00",
+  "started_at": "2026-10-03T03:14:41.104327+00:00",
+  "finished_at": "2026-10-03T03:14:43.624013+00:00",
   "python": "3.14.7 (main, Sep 29 2026, 14:50:11) [Clang 22.1.3 ]",
   "hard_gates": {
     "secret_leakage": true,
@@ -52,8 +52,8 @@
       "recall_at_3": 1.0,
       "foreign_project_hits": 0,
       "latency_ms": {
-        "p50": 1.099625020287931,
-        "p95": 1.1964272271143273
+        "p50": 1.7076249932870269,
+        "p95": 1.827479514759034
       },
       "target": 0.8,
       "meets_target": true,
@@ -77,15 +77,15 @@
     "capacity_and_efficiency": {
       "memory_count": 1000,
       "query_count": 50,
-      "insert_seconds": 1.2316947920480743,
-      "inserts_per_second": 811.8894440863796,
+      "insert_seconds": 2.154245375015307,
+      "inserts_per_second": 464.19967362951604,
       "insert_latency_ms": {
-        "p50": 1.181249477667734,
-        "p95": 1.5262874803738669
+        "p50": 2.125291503034532,
+        "p95": 2.495352065307088
       },
       "recall_latency_ms": {
-        "p50": 2.5490415282547474,
-        "p95": 3.061654474004172
+        "p50": 4.323312488850206,
+        "p95": 5.160112807061523
       },
       "estimated_output_tokens": {
         "p50": 163.0,
@@ -95,13 +95,13 @@
     },
     "cli_mcp_parity": {
       "database_ids": [
-        "mem_8dc75ef165ed4082"
+        "mem_1ee3981ec4f446a5"
       ],
       "mcp_ids": [
-        "mem_8dc75ef165ed4082"
+        "mem_1ee3981ec4f446a5"
       ],
       "cli_ids": [
-        "mem_8dc75ef165ed4082"
+        "mem_1ee3981ec4f446a5"
       ],
       "equal": true,
       "cli_returncode": 0

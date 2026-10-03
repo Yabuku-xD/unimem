@@ -91,6 +91,10 @@ class LocalEnricher:
         self._model = None
         self._tokenizer = None
 
+    def prepare(self) -> None:
+        """Download the model if needed and load it; the first run fetches the weights."""
+        self._load()
+
     def _load(self) -> None:
         if self._model is None:
             from mlx_lm import load

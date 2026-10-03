@@ -32,6 +32,7 @@ TOOL_SCHEMA: dict[str, Any] = {
         "lifecycle": {"type": "string", "enum": ["semantic", "episodic", "procedural"]},
         "kind": {"type": "string", "description": "preference, decision, fact, hypothesis, or procedure"},
         "session_id": {"type": "string"},
+        "project_dir": {"type": "string", "description": "Workspace path when run outside it."},
         "expires_at": {"type": "string"},
         "semantic": {"type": "boolean"},
         "semantic_model": {"type": "string"},
@@ -56,6 +57,12 @@ def _bounded_recall(items: list[Any]) -> tuple[list[dict[str, Any]], int, int]:
 
 
 def run_tool(arguments: dict[str, Any], settings: Settings) -> dict[str, Any]:
+    project_dir = str(arguments.get("project_dir") or "").strip()
+    if project_dir:
+        # Desktop apps start one server for every workspace; scope to the caller's.
+        settings = Settings.load(
+            project_dir=project_dir, home=settings.home, session_id=settings.session_id
+        )
     database = Database(settings)
     database.initialize()
     semantic_model = str(arguments.get("semantic_model") or "").strip()

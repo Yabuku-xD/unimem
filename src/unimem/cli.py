@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import sys
 from pathlib import Path
@@ -10,7 +11,14 @@ from . import __version__
 from .config import Settings, parse_iso
 from .db import Database, MemoryError
 from .extract import distill_messages, load_messages
-from .integrations import agents_section, install_integrations, skill_text
+from .integrations import (
+    CLIENT_ALIASES,
+    CLIENTS,
+    IntegrationError,
+    agents_section,
+    install_integrations,
+    skill_text,
+)
 from .mcp import serve as serve_mcp
 from .mcp import tool_schema_bytes
 from .policy import classify_route, compact_recall_items, validate_recall
@@ -28,9 +36,13 @@ def _parser() -> argparse.ArgumentParser:
     init = sub.add_parser("init", help="Initialize storage and client integrations")
     init.add_argument(
         "--client",
-        choices=["all", "agents", "terminal", "claude", "claude-code", "cursor", "codex"],
+        choices=["all", *CLIENTS, *CLIENT_ALIASES],
         default="all",
-        help="Install one client surface, or all surfaces at once",
+        help=(
+            "Client to connect: claude (Claude Code), claude-desktop, codex (Codex CLI in this "
+            "project), codex-app (ChatGPT/Codex desktop app and Codex everywhere), cursor, pi, "
+            "hermes, terminal (AGENTS.md agents), or all"
+        ),
     )
     init.add_argument("--project-dir", help="Project directory to configure")
 
@@ -99,6 +111,11 @@ def _parser() -> argparse.ArgumentParser:
     )
     enrich.add_argument("--model", help="MLX model id (default: LFM2.5 1.2B Instruct 4-bit)")
     enrich.add_argument("--limit", type=int, help="Maximum memories to enrich in this pass")
+    enrich.add_argument(
+        "--download",
+        action="store_true",
+        help="Download the model now and exit, so later runs work offline",
+    )
 
     sub.add_parser("doctor", help="Report local runtime and prompt overhead")
     sub.add_parser("mcp", help="Run the stdio MCP server")
@@ -215,7 +232,11 @@ def main(argv: list[str] | None = None) -> int:
                 clients=(args.client,),
                 mcp_tool_schema_bytes=tool_schema_bytes(),
             )
-            _emit(result, json_mode=json_mode, text=f"Initialized {settings.project_id}")
+            lines = [f"Connected {', '.join(result['clients'])}. Updated:"]
+            lines += [f"  {path}" for path in result["files"]]
+            if result["restart_required"]:
+                lines.append(f"Restart {', '.join(result['restart_required'])} to load unimem.")
+            _emit(result, json_mode=json_mode, text="\n".join(lines))
             return 0
 
         if args.command == "remember":
@@ -332,6 +353,11 @@ def main(argv: list[str] | None = None) -> int:
                 enricher = LocalEnricher(args.model or DEFAULT_ENRICH_MODEL)
             except EnrichUnavailableError as error:
                 return _fail("enrich_unavailable", str(error), json_mode=json_mode)
+            if args.download:
+                enricher.prepare()
+                result = {"ok": True, "downloaded": True, "model": enricher.model_name}
+                _emit(result, json_mode=json_mode, text=f"{enricher.model_name} is ready")
+                return 0
             count = database.enrich_pending(enricher, limit=args.limit)
             result = {"ok": True, "enriched": count, "model": enricher.model_name}
             _emit(result, json_mode=json_mode, text=f"enriched {count} with {enricher.model_name}")
@@ -343,11 +369,14 @@ def main(argv: list[str] | None = None) -> int:
                 "resident_instruction_bytes": len(agents_section().encode("utf-8"))
                 + len(skill_text().split("---", 2)[-1].encode("utf-8")),
                 "mcp_tool_schema_bytes": tool_schema_bytes(),
+                "enrich_runtime_installed": importlib.util.find_spec("mlx_lm") is not None,
             }
             _emit(result, json_mode=json_mode, text=json.dumps(result, indent=2))
             return 0
 
         return _fail("unknown_command", "Unknown command", json_mode=json_mode)
+    except IntegrationError as error:
+        return _fail("integration_failed", str(error), json_mode=json_mode)
     except (MemoryError, ValueError, OSError, json.JSONDecodeError) as error:
         return _fail("invalid_operation", str(error), json_mode=json_mode)
 

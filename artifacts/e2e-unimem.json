@@ -1,8 +1,8 @@
 {
   "passed": true,
   "command": "uv run python tests/e2e_unimem.py",
-  "started_at": "2026-10-03T03:02:45.565532+00:00",
-  "finished_at": "2026-10-03T03:02:50.619101+00:00",
+  "started_at": "2026-10-03T03:14:35.116830+00:00",
+  "finished_at": "2026-10-03T03:14:40.999994+00:00",
   "python": "3.14.7 (main, Sep 29 2026, 14:50:11) [Clang 22.1.3 ]",
   "failure_modes_covered": [
     "prompt_bloat",
@@ -30,7 +30,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"clients\": [\n    \"agents\",\n    \"claude\",\n    \"codex\",\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.cursor/mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": ",\n    \"pi\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.cursor/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.cursor/mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.codex/config.toml\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/Library/Application Support/Claude/claude_desktop_config.json\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.codex/config.toml\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.pi/agent/mcp.json\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/config.yaml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"claude-desktop\",\n    \"codex-app\",\n    \"hermes\",\n    \"pi\"\n  ]\n}\n",
         "stderr": ""
       }
     },
@@ -38,7 +38,7 @@
       "name": "init_payload_project_a",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"clients\": [\n    \"agents\",\n    \"claude\",\n    \"codex\",\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.cursor/mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": ",\n    \"pi\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.cursor/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.cursor/mcp.json\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.codex/config.toml\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/Library/Application Support/Claude/claude_desktop_config.json\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.codex/config.toml\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.pi/agent/mcp.json\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/config.yaml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"claude-desktop\",\n    \"codex-app\",\n    \"hermes\",\n    \"pi\"\n  ]\n}\n",
         "stderr": ""
       }
     },
@@ -46,20 +46,20 @@
       "name": "integration_files_exist",
       "ok": true,
       "details": [
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/AGENTS.md",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.agents/skills/unimem/SKILL.md",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.claude/skills/unimem/SKILL.md",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.cursor/skills/unimem/SKILL.md",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.mcp.json",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.cursor/mcp.json",
-        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.codex/config.toml"
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/AGENTS.md",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.agents/skills/unimem/SKILL.md",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.claude/skills/unimem/SKILL.md",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.cursor/skills/unimem/SKILL.md",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.mcp.json",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.cursor/mcp.json",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.codex/config.toml"
       ]
     },
     {
       "name": "generated_files_have_no_memory_dump",
       "ok": true,
       "details": {
-        "bytes": 3629
+        "bytes": 3929
       }
     },
     {
@@ -69,17 +69,27 @@
         "clients": [
           "agents",
           "claude",
+          "claude-desktop",
           "codex",
-          "cursor"
+          "codex-app",
+          "cursor",
+          "hermes",
+          "pi"
         ],
         "files": [
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/AGENTS.md",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.agents/skills/unimem/SKILL.md",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.claude/skills/unimem/SKILL.md",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.cursor/skills/unimem/SKILL.md",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.mcp.json",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.cursor/mcp.json",
-          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-a/.codex/config.toml"
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/AGENTS.md",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.agents/skills/unimem/SKILL.md",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.claude/skills/unimem/SKILL.md",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.cursor/skills/unimem/SKILL.md",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/skills/unimem/SKILL.md",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.mcp.json",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.cursor/mcp.json",
+          "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-a/.codex/config.toml",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/Library/Application Support/Claude/claude_desktop_config.json",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.codex/config.toml",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.pi/agent/mcp.json",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/config.yaml"
         ],
         "launcher": {
           "args": [
@@ -87,13 +97,19 @@
           ],
           "command": "/Users/yabuku/Downloads/unimem/.venv/bin/unimem",
           "env": {
-            "UNIMEM_HOME": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home"
+            "UNIMEM_HOME": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home"
           }
         },
-        "mcp_tool_schema_bytes": 969,
+        "mcp_tool_schema_bytes": 1053,
         "ok": true,
-        "project_id": "path:56cf0cac3844e90f",
-        "resident_instruction_bytes": 906
+        "project_id": "path:9ffaf7a2f534838f",
+        "resident_instruction_bytes": 1006,
+        "restart_required": [
+          "claude-desktop",
+          "codex-app",
+          "hermes",
+          "pi"
+        ]
       }
     },
     {
@@ -110,7 +126,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"clients\": [\n    \"claude\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-claude/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-claude/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-claude/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-claude/.mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:a910cbc6577279b0\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"claude\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-claude/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-claude/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-claude/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-claude/.mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:ef5fd97e7526400c\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": []\n}\n",
         "stderr": ""
       }
     },
@@ -118,7 +134,7 @@
       "name": "init_client_claude_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"clients\": [\n    \"claude\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-claude/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-claude/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-claude/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-claude/.mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:a910cbc6577279b0\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"claude\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-claude/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-claude/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-claude/.claude/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-claude/.mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:ef5fd97e7526400c\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": []\n}\n",
         "stderr": ""
       }
     },
@@ -150,7 +166,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"clients\": [\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-cursor/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-cursor/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-cursor/.cursor/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:befd7684623a2c68\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-cursor/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-cursor/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-cursor/.cursor/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:61546be84d1fb626\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": []\n}\n",
         "stderr": ""
       }
     },
@@ -158,7 +174,7 @@
       "name": "init_client_cursor_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"clients\": [\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-cursor/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-cursor/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-cursor/.cursor/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:befd7684623a2c68\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"cursor\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-cursor/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-cursor/.cursor/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-cursor/.cursor/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:61546be84d1fb626\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": []\n}\n",
         "stderr": ""
       }
     },
@@ -190,7 +206,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"clients\": [\n    \"codex\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-codex/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-codex/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-codex/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:4913910a69a6f8ef\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"codex\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-codex/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-codex/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-codex/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:eea2f86776a7303b\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": []\n}\n",
         "stderr": ""
       }
     },
@@ -198,7 +214,7 @@
       "name": "init_client_codex_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"clients\": [\n    \"codex\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-codex/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-codex/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-codex/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:4913910a69a6f8ef\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"codex\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-codex/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-codex/.agents/skills/unimem/SKILL.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-codex/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:eea2f86776a7303b\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": []\n}\n",
         "stderr": ""
       }
     },
@@ -230,7 +246,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-terminal/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-terminal/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:c9cd84b8ce99ec32\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-terminal/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-terminal/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:2c23e19107ddc6fe\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": []\n}\n",
         "stderr": ""
       }
     },
@@ -238,7 +254,7 @@
       "name": "init_client_terminal_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-terminal/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/client-terminal/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:c9cd84b8ce99ec32\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-terminal/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/client-terminal/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:2c23e19107ddc6fe\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": []\n}\n",
         "stderr": ""
       }
     },
@@ -255,6 +271,341 @@
           ".cursor/mcp.json",
           ".mcp.json"
         ]
+      }
+    },
+    {
+      "name": "init_global_claude-desktop",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "claude-desktop",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"claude-desktop\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/Library/Application Support/Claude/claude_desktop_config.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"claude-desktop\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_claude-desktop_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"claude-desktop\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/Library/Application Support/Claude/claude_desktop_config.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"claude-desktop\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_codex-app",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "codex-app",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"codex-app\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"codex-app\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_codex-app_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"codex-app\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"codex-app\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_pi",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "pi",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"pi\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.pi/agent/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"pi\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_pi_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"pi\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.pi/agent/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"pi\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_hermes",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "hermes",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"hermes\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/config.yaml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"hermes\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_hermes_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"hermes\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/config.yaml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"hermes\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_claude-desktop",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "claude-desktop",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"claude-desktop\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/Library/Application Support/Claude/claude_desktop_config.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"claude-desktop\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_claude-desktop_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"claude-desktop\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/Library/Application Support/Claude/claude_desktop_config.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"claude-desktop\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_codex-app",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "codex-app",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"codex-app\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"codex-app\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_codex-app_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"codex-app\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.codex/config.toml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"codex-app\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_pi",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "pi",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"pi\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.pi/agent/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"pi\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_pi_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"pi\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.pi/agent/mcp.json\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"pi\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_hermes",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "hermes",
+          "--json"
+        ],
+        "returncode": 0,
+        "stdout": "{\n  \"clients\": [\n    \"hermes\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/config.yaml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"hermes\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "init_global_hermes_payload",
+      "ok": true,
+      "details": {
+        "stdout": "{\n  \"clients\": [\n    \"hermes\"\n  ],\n  \"files\": [\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/skills/unimem/SKILL.md\",\n    \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/config.yaml\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:987fb8a56a2797fd\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": [\n    \"hermes\"\n  ]\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "global_clients_write_only_user_config",
+      "ok": true,
+      "details": {
+        "claude-desktop": [
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/Library/Application Support/Claude/claude_desktop_config.json"
+        ],
+        "codex-app": [
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.codex/config.toml"
+        ],
+        "pi": [
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills/unimem/SKILL.md",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.pi/agent/mcp.json"
+        ],
+        "hermes": [
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/skills/unimem/SKILL.md",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/config.yaml"
+        ]
+      }
+    },
+    {
+      "name": "claude_desktop_config_has_unimem",
+      "ok": true,
+      "details": {
+        "mcpServers": {
+          "unimem": {
+            "command": "/Users/yabuku/Downloads/unimem/.venv/bin/unimem",
+            "args": [
+              "mcp"
+            ],
+            "env": {
+              "UNIMEM_HOME": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "codex_app_config_merges_and_stays_idempotent",
+      "ok": true,
+      "details": {
+        "model": "gpt-5",
+        "mcp_servers": {
+          "other": {
+            "command": "other"
+          },
+          "unimem": {
+            "command": "/Users/yabuku/Downloads/unimem/.venv/bin/unimem",
+            "args": [
+              "mcp"
+            ],
+            "env": {
+              "UNIMEM_HOME": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "pi_config_has_unimem",
+      "ok": true,
+      "details": {
+        "mcpServers": {
+          "unimem": {
+            "command": "/Users/yabuku/Downloads/unimem/.venv/bin/unimem",
+            "args": [
+              "mcp"
+            ],
+            "env": {
+              "UNIMEM_HOME": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "hermes_config_nests_unimem_under_mcp_servers",
+      "ok": true,
+      "details": [
+        "model: test",
+        "mcp_servers:",
+        "  # BEGIN UNIMEM",
+        "  unimem:",
+        "    command: \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\"",
+        "    args: [\"mcp\"]",
+        "    env:",
+        "      UNIMEM_HOME: \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"",
+        "  # END UNIMEM",
+        "  other:",
+        "    command: other",
+        "toolsets: [web]"
+      ]
+    },
+    {
+      "name": "global_skills_installed",
+      "ok": true,
+      "details": [
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.agents/skills",
+        "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.hermes/skills"
+      ]
+    },
+    {
+      "name": "init_pi_broken",
+      "ok": true,
+      "details": {
+        "command": [
+          "/Users/yabuku/Downloads/unimem/.venv/bin/python",
+          "-m",
+          "unimem",
+          "init",
+          "--client",
+          "pi",
+          "--json"
+        ],
+        "returncode": 2,
+        "stdout": "{\n  \"error\": {\n    \"code\": \"integration_failed\",\n    \"message\": \"/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/user-home/.pi/agent/mcp.json is not valid JSON (Expecting property name enclosed in double quotes: line 1 column 2 (char 1)); fix it and rerun init\"\n  },\n  \"ok\": false\n}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "invalid_client_config_is_not_overwritten",
+      "ok": true,
+      "details": {
+        "returncode": 2
       }
     },
     {
@@ -388,7 +739,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Always use pnpm for package management.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:46.540551+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_59634a6da27e46c0\",\n  \"kind\": \"preference\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:46.540551+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"user\",\n  \"session_id\": null,\n  \"source\": \"user-statement\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:46.540551+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Always use pnpm for package management.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:37.030702+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_195580402adf47a8\",\n  \"kind\": \"preference\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:37.030702+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"user\",\n  \"session_id\": null,\n  \"source\": \"user-statement\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:37.030702+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -396,7 +747,7 @@
       "name": "remember_user_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Always use pnpm for package management.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:46.540551+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_59634a6da27e46c0\",\n  \"kind\": \"preference\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:46.540551+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"user\",\n  \"session_id\": null,\n  \"source\": \"user-statement\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:46.540551+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Always use pnpm for package management.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:37.030702+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_195580402adf47a8\",\n  \"kind\": \"preference\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:37.030702+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"user\",\n  \"session_id\": null,\n  \"source\": \"user-statement\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:37.030702+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -423,7 +774,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"SQLite is the project store because it needs no service.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:46.659396+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_679b1c7c60df4a4d\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:46.659396+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:46.659396+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"SQLite is the project store because it needs no service.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:37.142358+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_d2a165fba68a42a0\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:37.142358+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:37.142358+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -431,7 +782,7 @@
       "name": "remember_project_a_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"SQLite is the project store because it needs no service.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:46.659396+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_679b1c7c60df4a4d\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:46.659396+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:46.659396+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"SQLite is the project store because it needs no service.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:37.142358+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_d2a165fba68a42a0\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:37.142358+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:37.142358+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -449,7 +800,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-b/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/project-b/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 969,\n  \"ok\": true,\n  \"project_id\": \"path:c643eb517574c237\",\n  \"resident_instruction_bytes\": 906\n}\n",
+        "stdout": "{\n  \"clients\": [\n    \"agents\"\n  ],\n  \"files\": [\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-b/AGENTS.md\",\n    \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/project-b/.agents/skills/unimem/SKILL.md\"\n  ],\n  \"launcher\": {\n    \"args\": [\n      \"mcp\"\n    ],\n    \"command\": \"/Users/yabuku/Downloads/unimem/.venv/bin/unimem\",\n    \"env\": {\n      \"UNIMEM_HOME\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home\"\n    }\n  },\n  \"mcp_tool_schema_bytes\": 1053,\n  \"ok\": true,\n  \"project_id\": \"path:ecf3cb3485838f19\",\n  \"resident_instruction_bytes\": 1006,\n  \"restart_required\": []\n}\n",
         "stderr": ""
       }
     },
@@ -476,7 +827,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Postgres is the project store for the second repository.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:46.868064+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_53f99ab2ed544a09\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:46.868064+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:c643eb517574c237\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:46.868064+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Postgres is the project store for the second repository.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:37.369907+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_8874098c842247ac\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:37.369907+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:ecf3cb3485838f19\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:37.369907+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -484,7 +835,7 @@
       "name": "remember_project_b_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Postgres is the project store for the second repository.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:46.868064+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_53f99ab2ed544a09\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:46.868064+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:c643eb517574c237\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:46.868064+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Postgres is the project store for the second repository.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:37.369907+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_8874098c842247ac\",\n  \"kind\": \"decision\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:37.369907+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:ecf3cb3485838f19\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"architecture-decision\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:37.369907+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -500,7 +851,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home/unimem.db\",\n  \"enriched_memories\": {},\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 969,\n  \"memory_counts\": {\n    \"project/semantic\": 2,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"git:github.com/acme/unimem-fixture\",\n  \"resident_instruction_bytes\": 906,\n  \"semantic_embeddings\": 0,\n  \"semantic_enabled\": false,\n  \"semantic_model\": null,\n  \"session_counts\": {}\n}\n",
+        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home/unimem.db\",\n  \"enrich_runtime_installed\": true,\n  \"enriched_memories\": {},\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 1053,\n  \"memory_counts\": {\n    \"project/semantic\": 2,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"git:github.com/acme/unimem-fixture\",\n  \"resident_instruction_bytes\": 1006,\n  \"semantic_embeddings\": 0,\n  \"semantic_enabled\": false,\n  \"semantic_model\": null,\n  \"session_counts\": {}\n}\n",
         "stderr": ""
       }
     },
@@ -508,7 +859,7 @@
       "name": "git_project_identity_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home/unimem.db\",\n  \"enriched_memories\": {},\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 969,\n  \"memory_counts\": {\n    \"project/semantic\": 2,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"git:github.com/acme/unimem-fixture\",\n  \"resident_instruction_bytes\": 906,\n  \"semantic_embeddings\": 0,\n  \"semantic_enabled\": false,\n  \"semantic_model\": null,\n  \"session_counts\": {}\n}\n",
+        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home/unimem.db\",\n  \"enrich_runtime_installed\": true,\n  \"enriched_memories\": {},\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 1053,\n  \"memory_counts\": {\n    \"project/semantic\": 2,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"git:github.com/acme/unimem-fixture\",\n  \"resident_instruction_bytes\": 1006,\n  \"semantic_embeddings\": 0,\n  \"semantic_enabled\": false,\n  \"semantic_model\": null,\n  \"session_counts\": {}\n}\n",
         "stderr": ""
       }
     },
@@ -517,17 +868,18 @@
       "ok": true,
       "details": {
         "daemon_required": false,
-        "database": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home/unimem.db",
+        "database": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home/unimem.db",
+        "enrich_runtime_installed": true,
         "enriched_memories": {},
         "external_api_calls": 0,
         "fts5": true,
-        "mcp_tool_schema_bytes": 969,
+        "mcp_tool_schema_bytes": 1053,
         "memory_counts": {
           "project/semantic": 2,
           "user/semantic": 1
         },
         "project_id": "git:github.com/acme/unimem-fixture",
-        "resident_instruction_bytes": 906,
+        "resident_instruction_bytes": 1006,
         "semantic_embeddings": 0,
         "semantic_enabled": false,
         "semantic_model": null,
@@ -551,7 +903,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:02:47.128854+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-03T04:02:47.128859+00:00\",\n    \"id\": \"ses_34e15edbcd28414d\",\n    \"last_activity_at\": \"2026-10-03T03:02:47.128854+00:00\",\n    \"project_id\": \"path:56cf0cac3844e90f\",\n    \"status\": \"active\",\n    \"title\": \"acceptance\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:14:37.624413+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-03T04:14:37.624423+00:00\",\n    \"id\": \"ses_1c7242f57f0e4a62\",\n    \"last_activity_at\": \"2026-10-03T03:14:37.624413+00:00\",\n    \"project_id\": \"path:9ffaf7a2f534838f\",\n    \"status\": \"active\",\n    \"title\": \"acceptance\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -559,7 +911,7 @@
       "name": "session_start_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:02:47.128854+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-03T04:02:47.128859+00:00\",\n    \"id\": \"ses_34e15edbcd28414d\",\n    \"last_activity_at\": \"2026-10-03T03:02:47.128854+00:00\",\n    \"project_id\": \"path:56cf0cac3844e90f\",\n    \"status\": \"active\",\n    \"title\": \"acceptance\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:14:37.624413+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-03T04:14:37.624423+00:00\",\n    \"id\": \"ses_1c7242f57f0e4a62\",\n    \"last_activity_at\": \"2026-10-03T03:14:37.624413+00:00\",\n    \"project_id\": \"path:9ffaf7a2f534838f\",\n    \"status\": \"active\",\n    \"title\": \"acceptance\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -570,12 +922,12 @@
         "ok": true,
         "session": {
           "client": null,
-          "created_at": "2026-10-03T03:02:47.128854+00:00",
+          "created_at": "2026-10-03T03:14:37.624413+00:00",
           "ended_at": null,
-          "expires_at": "2026-10-03T04:02:47.128859+00:00",
-          "id": "ses_34e15edbcd28414d",
-          "last_activity_at": "2026-10-03T03:02:47.128854+00:00",
-          "project_id": "path:56cf0cac3844e90f",
+          "expires_at": "2026-10-03T04:14:37.624423+00:00",
+          "id": "ses_1c7242f57f0e4a62",
+          "last_activity_at": "2026-10-03T03:14:37.624413+00:00",
+          "project_id": "path:9ffaf7a2f534838f",
           "status": "active",
           "title": "acceptance"
         }
@@ -594,7 +946,7 @@
           "--scope",
           "session",
           "--session-id",
-          "ses_34e15edbcd28414d",
+          "ses_1c7242f57f0e4a62",
           "--lifecycle",
           "episodic",
           "--kind",
@@ -608,7 +960,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis: the retry bug may be caused by cache.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:47.237635+00:00\",\n  \"expires_at\": \"2000-01-01T00:00:00+00:00\",\n  \"id\": \"mem_cb5aab2555014d90\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:47.237635+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_34e15edbcd28414d\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:47.237635+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis: the retry bug may be caused by cache.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:37.730645+00:00\",\n  \"expires_at\": \"2000-01-01T00:00:00+00:00\",\n  \"id\": \"mem_e1cc14c91ef341d9\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:37.730645+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_1c7242f57f0e4a62\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:37.730645+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -616,7 +968,7 @@
       "name": "remember_expired_session_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis: the retry bug may be caused by cache.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:47.237635+00:00\",\n  \"expires_at\": \"2000-01-01T00:00:00+00:00\",\n  \"id\": \"mem_cb5aab2555014d90\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:47.237635+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_34e15edbcd28414d\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:47.237635+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis: the retry bug may be caused by cache.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:37.730645+00:00\",\n  \"expires_at\": \"2000-01-01T00:00:00+00:00\",\n  \"id\": \"mem_e1cc14c91ef341d9\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:37.730645+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_1c7242f57f0e4a62\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:37.730645+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -637,7 +989,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 51,\n  \"items\": [\n    {\n      \"content\": \"Always use pnpm for package management.\",\n      \"id\": \"mem_59634a6da27e46c0\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"user\",\n      \"source\": \"user-statement\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"explicit_reference\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 51,\n  \"items\": [\n    {\n      \"content\": \"Always use pnpm for package management.\",\n      \"id\": \"mem_195580402adf47a8\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"user\",\n      \"source\": \"user-statement\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"explicit_reference\"\n}\n",
         "stderr": ""
       }
     },
@@ -645,7 +997,7 @@
       "name": "recall_scoped_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 51,\n  \"items\": [\n    {\n      \"content\": \"Always use pnpm for package management.\",\n      \"id\": \"mem_59634a6da27e46c0\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"user\",\n      \"source\": \"user-statement\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"explicit_reference\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 51,\n  \"items\": [\n    {\n      \"content\": \"Always use pnpm for package management.\",\n      \"id\": \"mem_195580402adf47a8\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"user\",\n      \"source\": \"user-statement\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"explicit_reference\"\n}\n",
         "stderr": ""
       }
     },
@@ -658,7 +1010,7 @@
         "items": [
           {
             "content": "Always use pnpm for package management.",
-            "id": "mem_59634a6da27e46c0",
+            "id": "mem_195580402adf47a8",
             "kind": "preference",
             "lifecycle": "semantic",
             "scope": "user",
@@ -689,7 +1041,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"SQLite is the project store because it needs no service.\",\n      \"id\": \"mem_679b1c7c60df4a4d\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"SQLite is the project store because it needs no service.\",\n      \"id\": \"mem_d2a165fba68a42a0\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -697,7 +1049,7 @@
       "name": "recall_project_scope_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"SQLite is the project store because it needs no service.\",\n      \"id\": \"mem_679b1c7c60df4a4d\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"SQLite is the project store because it needs no service.\",\n      \"id\": \"mem_d2a165fba68a42a0\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -710,7 +1062,7 @@
         "items": [
           {
             "content": "SQLite is the project store because it needs no service.",
-            "id": "mem_679b1c7c60df4a4d",
+            "id": "mem_d2a165fba68a42a0",
             "kind": "decision",
             "lifecycle": "semantic",
             "scope": "project",
@@ -741,7 +1093,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"Postgres is the project store for the second repository.\",\n      \"id\": \"mem_53f99ab2ed544a09\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"Postgres is the project store for the second repository.\",\n      \"id\": \"mem_8874098c842247ac\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -749,7 +1101,7 @@
       "name": "recall_project_b_scope_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"Postgres is the project store for the second repository.\",\n      \"id\": \"mem_53f99ab2ed544a09\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 1,\n  \"estimated_tokens\": 57,\n  \"items\": [\n    {\n      \"content\": \"Postgres is the project store for the second repository.\",\n      \"id\": \"mem_8874098c842247ac\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"architecture-decision\",\n      \"status\": \"active\",\n      \"truncated\": false\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -762,7 +1114,7 @@
         "items": [
           {
             "content": "Postgres is the project store for the second repository.",
-            "id": "mem_53f99ab2ed544a09",
+            "id": "mem_8874098c842247ac",
             "kind": "decision",
             "lifecycle": "semantic",
             "scope": "project",
@@ -791,7 +1143,7 @@
           "--evidence",
           "The current debugging context lacks the prior hypothesis.",
           "--session-id",
-          "ses_34e15edbcd28414d",
+          "ses_1c7242f57f0e4a62",
           "--json"
         ],
         "returncode": 0,
@@ -836,7 +1188,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:02:47.839321+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-03T04:02:47.839373+00:00\",\n    \"id\": \"ses_a39a04a81bc54527\",\n    \"last_activity_at\": \"2026-10-03T03:02:47.839321+00:00\",\n    \"project_id\": \"path:56cf0cac3844e90f\",\n    \"status\": \"active\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:14:38.284443+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-03T04:14:38.284451+00:00\",\n    \"id\": \"ses_fe852cef994e42d5\",\n    \"last_activity_at\": \"2026-10-03T03:14:38.284443+00:00\",\n    \"project_id\": \"path:9ffaf7a2f534838f\",\n    \"status\": \"active\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -844,7 +1196,7 @@
       "name": "closed_session_start_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:02:47.839321+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-03T04:02:47.839373+00:00\",\n    \"id\": \"ses_a39a04a81bc54527\",\n    \"last_activity_at\": \"2026-10-03T03:02:47.839321+00:00\",\n    \"project_id\": \"path:56cf0cac3844e90f\",\n    \"status\": \"active\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:14:38.284443+00:00\",\n    \"ended_at\": null,\n    \"expires_at\": \"2026-10-03T04:14:38.284451+00:00\",\n    \"id\": \"ses_fe852cef994e42d5\",\n    \"last_activity_at\": \"2026-10-03T03:14:38.284443+00:00\",\n    \"project_id\": \"path:9ffaf7a2f534838f\",\n    \"status\": \"active\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -861,7 +1213,7 @@
           "--scope",
           "session",
           "--session-id",
-          "ses_a39a04a81bc54527",
+          "ses_fe852cef994e42d5",
           "--lifecycle",
           "episodic",
           "--kind",
@@ -873,7 +1225,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis that should disappear after session end.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:47.949735+00:00\",\n  \"expires_at\": \"2026-10-03T04:02:47.839373+00:00\",\n  \"id\": \"mem_be3011d6d5754d6b\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:47.949735+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_a39a04a81bc54527\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:47.949735+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Temporary hypothesis that should disappear after session end.\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:38.394678+00:00\",\n  \"expires_at\": \"2026-10-03T04:14:38.284451+00:00\",\n  \"id\": \"mem_9068df1d5f95472c\",\n  \"kind\": \"hypothesis\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:38.394678+00:00\",\n  \"lifecycle\": \"episodic\",\n  \"ok\": true,\n  \"project_id\": null,\n  \"scope\": \"session\",\n  \"session_id\": \"ses_fe852cef994e42d5\",\n  \"source\": \"session-note\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:38.394678+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -887,11 +1239,11 @@
           "unimem",
           "session",
           "end",
-          "ses_a39a04a81bc54527",
+          "ses_fe852cef994e42d5",
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:02:47.839321+00:00\",\n    \"ended_at\": \"2026-10-03T03:02:48.070285+00:00\",\n    \"expires_at\": \"2026-10-03T03:02:48.070285+00:00\",\n    \"id\": \"ses_a39a04a81bc54527\",\n    \"last_activity_at\": \"2026-10-03T03:02:48.070285+00:00\",\n    \"project_id\": \"path:56cf0cac3844e90f\",\n    \"status\": \"closed\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
+        "stdout": "{\n  \"ok\": true,\n  \"session\": {\n    \"client\": null,\n    \"created_at\": \"2026-10-03T03:14:38.284443+00:00\",\n    \"ended_at\": \"2026-10-03T03:14:38.503792+00:00\",\n    \"expires_at\": \"2026-10-03T03:14:38.503792+00:00\",\n    \"id\": \"ses_fe852cef994e42d5\",\n    \"last_activity_at\": \"2026-10-03T03:14:38.503792+00:00\",\n    \"project_id\": \"path:9ffaf7a2f534838f\",\n    \"status\": \"closed\",\n    \"title\": \"closed-by-end\"\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -910,7 +1262,7 @@
           "--evidence",
           "The current task needs the prior session hypothesis.",
           "--session-id",
-          "ses_a39a04a81bc54527",
+          "ses_fe852cef994e42d5",
           "--json"
         ],
         "returncode": 0,
@@ -1011,16 +1363,16 @@
           "-m",
           "unimem",
           "distill",
-          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/transcript.jsonl",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/transcript.jsonl",
           "--apply",
           "--session-id",
-          "ses_34e15edbcd28414d",
+          "ses_1c7242f57f0e4a62",
           "--ttl-hours",
           "1",
           "--json"
         ],
         "returncode": 0,
-        "stdout": "reated\": false,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_59634a6da27e46c0\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"user\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.88,\n      \"content\": \"For this repo, we decided to use SQLite for local memory because it needs no service.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_ee9ff5ea3ee94ef4\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"project\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.72,\n      \"content\": \"Maybe the retry bug is caused by cache; test tomorrow.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": \"2026-10-03T04:02:48.535605+00:00\",\n      \"id\": \"mem_77b0d1fe3491448e\",\n      \"kind\": \"hypothesis\",\n      \"lifecycle\": \"episodic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"session\",\n      \"session_id\": \"ses_34e15edbcd28414d\",\n      \"source\": \"distill:transcript.jsonl\"\n    }\n  ],\n  \"accepted_count\": 3,\n  \"applied\": true,\n  \"ok\": true,\n  \"rejected\": [\n    {\n      \"content\": \"Hi there!\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"Hello!\",\n      \"reason\": \"non_user_turn\"\n    },\n    {\n      \"content\": \"npm ERR! code ELIFECYCLE\",\n      \"reason\": \"tool_output\"\n    },\n    {\n      \"content\": \"Always failing during checkout.\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"API_KEY=sk-this-must-not-be-stored\",\n      \"reason\": \"secret\"\n    },\n    {\n      \"content\": \"```python\\nprint('transient output')\\n```\",\n      \"reason\": \"non_user_turn\"\n    }\n  ],\n  \"rejected_count\": 6,\n  \"source\": \"distill:transcript.jsonl\"\n}\n",
+        "stdout": "reated\": false,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_195580402adf47a8\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"user\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.88,\n      \"content\": \"For this repo, we decided to use SQLite for local memory because it needs no service.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_10c24f5b8f094f7e\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"project\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.72,\n      \"content\": \"Maybe the retry bug is caused by cache; test tomorrow.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": \"2026-10-03T04:14:38.945605+00:00\",\n      \"id\": \"mem_05a9e25c46124edd\",\n      \"kind\": \"hypothesis\",\n      \"lifecycle\": \"episodic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"session\",\n      \"session_id\": \"ses_1c7242f57f0e4a62\",\n      \"source\": \"distill:transcript.jsonl\"\n    }\n  ],\n  \"accepted_count\": 3,\n  \"applied\": true,\n  \"ok\": true,\n  \"rejected\": [\n    {\n      \"content\": \"Hi there!\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"Hello!\",\n      \"reason\": \"non_user_turn\"\n    },\n    {\n      \"content\": \"npm ERR! code ELIFECYCLE\",\n      \"reason\": \"tool_output\"\n    },\n    {\n      \"content\": \"Always failing during checkout.\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"API_KEY=sk-this-must-not-be-stored\",\n      \"reason\": \"secret\"\n    },\n    {\n      \"content\": \"```python\\nprint('transient output')\\n```\",\n      \"reason\": \"non_user_turn\"\n    }\n  ],\n  \"rejected_count\": 6,\n  \"source\": \"distill:transcript.jsonl\"\n}\n",
         "stderr": ""
       }
     },
@@ -1028,7 +1380,7 @@
       "name": "distill_payload",
       "ok": true,
       "details": {
-        "stdout": "reated\": false,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_59634a6da27e46c0\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"user\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.88,\n      \"content\": \"For this repo, we decided to use SQLite for local memory because it needs no service.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_ee9ff5ea3ee94ef4\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"project\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.72,\n      \"content\": \"Maybe the retry bug is caused by cache; test tomorrow.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": \"2026-10-03T04:02:48.535605+00:00\",\n      \"id\": \"mem_77b0d1fe3491448e\",\n      \"kind\": \"hypothesis\",\n      \"lifecycle\": \"episodic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"session\",\n      \"session_id\": \"ses_34e15edbcd28414d\",\n      \"source\": \"distill:transcript.jsonl\"\n    }\n  ],\n  \"accepted_count\": 3,\n  \"applied\": true,\n  \"ok\": true,\n  \"rejected\": [\n    {\n      \"content\": \"Hi there!\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"Hello!\",\n      \"reason\": \"non_user_turn\"\n    },\n    {\n      \"content\": \"npm ERR! code ELIFECYCLE\",\n      \"reason\": \"tool_output\"\n    },\n    {\n      \"content\": \"Always failing during checkout.\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"API_KEY=sk-this-must-not-be-stored\",\n      \"reason\": \"secret\"\n    },\n    {\n      \"content\": \"```python\\nprint('transient output')\\n```\",\n      \"reason\": \"non_user_turn\"\n    }\n  ],\n  \"rejected_count\": 6,\n  \"source\": \"distill:transcript.jsonl\"\n}\n",
+        "stdout": "reated\": false,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_195580402adf47a8\",\n      \"kind\": \"preference\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"user\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.88,\n      \"content\": \"For this repo, we decided to use SQLite for local memory because it needs no service.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": null,\n      \"id\": \"mem_10c24f5b8f094f7e\",\n      \"kind\": \"decision\",\n      \"lifecycle\": \"semantic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"project\",\n      \"session_id\": null,\n      \"source\": \"distill:transcript.jsonl\"\n    },\n    {\n      \"confidence\": 0.72,\n      \"content\": \"Maybe the retry bug is caused by cache; test tomorrow.\",\n      \"created\": true,\n      \"evidence\": \"Extracted from distill:transcript.jsonl\",\n      \"expires_at\": \"2026-10-03T04:14:38.945605+00:00\",\n      \"id\": \"mem_05a9e25c46124edd\",\n      \"kind\": \"hypothesis\",\n      \"lifecycle\": \"episodic\",\n      \"reason\": \"explicit durable cue\",\n      \"scope\": \"session\",\n      \"session_id\": \"ses_1c7242f57f0e4a62\",\n      \"source\": \"distill:transcript.jsonl\"\n    }\n  ],\n  \"accepted_count\": 3,\n  \"applied\": true,\n  \"ok\": true,\n  \"rejected\": [\n    {\n      \"content\": \"Hi there!\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"Hello!\",\n      \"reason\": \"non_user_turn\"\n    },\n    {\n      \"content\": \"npm ERR! code ELIFECYCLE\",\n      \"reason\": \"tool_output\"\n    },\n    {\n      \"content\": \"Always failing during checkout.\",\n      \"reason\": \"no_durable_cue\"\n    },\n    {\n      \"content\": \"API_KEY=sk-this-must-not-be-stored\",\n      \"reason\": \"secret\"\n    },\n    {\n      \"content\": \"```python\\nprint('transient output')\\n```\",\n      \"reason\": \"non_user_turn\"\n    }\n  ],\n  \"rejected_count\": 6,\n  \"source\": \"distill:transcript.jsonl\"\n}\n",
         "stderr": ""
       }
     },
@@ -1043,7 +1395,7 @@
             "created": false,
             "evidence": "Extracted from distill:transcript.jsonl",
             "expires_at": null,
-            "id": "mem_59634a6da27e46c0",
+            "id": "mem_195580402adf47a8",
             "kind": "preference",
             "lifecycle": "semantic",
             "reason": "explicit durable cue",
@@ -1057,7 +1409,7 @@
             "created": true,
             "evidence": "Extracted from distill:transcript.jsonl",
             "expires_at": null,
-            "id": "mem_ee9ff5ea3ee94ef4",
+            "id": "mem_10c24f5b8f094f7e",
             "kind": "decision",
             "lifecycle": "semantic",
             "reason": "explicit durable cue",
@@ -1070,13 +1422,13 @@
             "content": "Maybe the retry bug is caused by cache; test tomorrow.",
             "created": true,
             "evidence": "Extracted from distill:transcript.jsonl",
-            "expires_at": "2026-10-03T04:02:48.535605+00:00",
-            "id": "mem_77b0d1fe3491448e",
+            "expires_at": "2026-10-03T04:14:38.945605+00:00",
+            "id": "mem_05a9e25c46124edd",
             "kind": "hypothesis",
             "lifecycle": "episodic",
             "reason": "explicit durable cue",
             "scope": "session",
-            "session_id": "ses_34e15edbcd28414d",
+            "session_id": "ses_1c7242f57f0e4a62",
             "source": "distill:transcript.jsonl"
           }
         ],
@@ -1124,7 +1476,7 @@
             "created": false,
             "evidence": "Extracted from distill:transcript.jsonl",
             "expires_at": null,
-            "id": "mem_59634a6da27e46c0",
+            "id": "mem_195580402adf47a8",
             "kind": "preference",
             "lifecycle": "semantic",
             "reason": "explicit durable cue",
@@ -1138,7 +1490,7 @@
             "created": true,
             "evidence": "Extracted from distill:transcript.jsonl",
             "expires_at": null,
-            "id": "mem_ee9ff5ea3ee94ef4",
+            "id": "mem_10c24f5b8f094f7e",
             "kind": "decision",
             "lifecycle": "semantic",
             "reason": "explicit durable cue",
@@ -1151,13 +1503,13 @@
             "content": "Maybe the retry bug is caused by cache; test tomorrow.",
             "created": true,
             "evidence": "Extracted from distill:transcript.jsonl",
-            "expires_at": "2026-10-03T04:02:48.535605+00:00",
-            "id": "mem_77b0d1fe3491448e",
+            "expires_at": "2026-10-03T04:14:38.945605+00:00",
+            "id": "mem_05a9e25c46124edd",
             "kind": "hypothesis",
             "lifecycle": "episodic",
             "reason": "explicit durable cue",
             "scope": "session",
-            "session_id": "ses_34e15edbcd28414d",
+            "session_id": "ses_1c7242f57f0e4a62",
             "source": "distill:transcript.jsonl"
           }
         ],
@@ -1203,7 +1555,7 @@
           "-m",
           "unimem",
           "distill",
-          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/transcript.jsonl",
+          "/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/transcript.jsonl",
           "--ttl-hours",
           "inf",
           "--json"
@@ -1244,7 +1596,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 0: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:48.769563+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_8dd155bedf154d87\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:48.769563+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:48.769563+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 0: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:39.171387+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_858fa12c019d46cf\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:39.171387+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:39.171387+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1271,7 +1623,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 1: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:48.885515+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_0da228495b674114\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:48.885515+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:48.885515+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 1: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:39.283019+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_e2b405536528431c\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:39.283019+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:39.283019+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1298,7 +1650,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 2: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:48.996387+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_362bfa6f613c4bd1\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:48.996387+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:48.996387+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 2: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:39.383784+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_dcb6f06e21c94de2\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:39.383784+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:39.383784+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1325,7 +1677,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 3: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:49.113705+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_c21ae880b99b46c4\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:49.113705+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:49.113705+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 3: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:39.496955+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_1ca831607aee4915\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:39.496955+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:39.496955+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1352,7 +1704,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 4: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:49.235739+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_a6a9f62f8d0a4709\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:49.235739+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:49.235739+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 4: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:39.607282+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_dfb7a491c1b84d9d\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:39.607282+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:39.607282+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1379,7 +1731,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 5: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:49.370378+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_56898753e4334c3d\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:49.370378+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:49.370378+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 5: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:39.719036+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_b7ca29e9d5cf4ccf\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:39.719036+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:39.719036+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1406,7 +1758,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 6: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:49.474392+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_bee83113d7f64336\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:49.474392+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:49.474392+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 6: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:39.835035+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_e11dcb251ff84587\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:39.835035+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:39.835035+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1433,7 +1785,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:49.605530+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_851ac53ee79d4fff\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:49.605530+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:49.605530+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:39.941526+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_c55421c4969749c3\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:39.941526+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:39.941526+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1460,7 +1812,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:49.740561+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_3af797a226e84c49\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:49.740561+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:49.740561+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:40.053176+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_de91606b6ed64b8e\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:40.053176+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:40.053176+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1487,7 +1839,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:02:49.866314+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_391f3dcb4520430e\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:02:49.866314+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:02:49.866314+00:00\"\n}\n",
+        "stdout": "{\n  \"confidence\": 0.8,\n  \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim\",\n  \"created\": true,\n  \"created_at\": \"2026-10-03T03:14:40.163125+00:00\",\n  \"expires_at\": null,\n  \"id\": \"mem_41836bb82b074dad\",\n  \"kind\": \"fact\",\n  \"last_confirmed_at\": \"2026-10-03T03:14:40.163125+00:00\",\n  \"lifecycle\": \"semantic\",\n  \"ok\": true,\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"scope\": \"project\",\n  \"session_id\": null,\n  \"source\": \"load-test\",\n  \"status\": \"active\",\n  \"supersedes\": null,\n  \"updated_at\": \"2026-10-03T03:14:40.163125+00:00\"\n}\n",
         "stderr": ""
       }
     },
@@ -1510,7 +1862,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"count\": 3,\n  \"estimated_tokens\": 356,\n  \"items\": [\n    {\n      \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_391f3dcb4520430e\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_3af797a226e84c49\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_851ac53ee79d4fff\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 3,\n  \"estimated_tokens\": 356,\n  \"items\": [\n    {\n      \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_41836bb82b074dad\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_de91606b6ed64b8e\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_c55421c4969749c3\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -1518,7 +1870,7 @@
       "name": "bounded_recall_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"count\": 3,\n  \"estimated_tokens\": 356,\n  \"items\": [\n    {\n      \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_391f3dcb4520430e\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_3af797a226e84c49\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_851ac53ee79d4fff\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
+        "stdout": "{\n  \"count\": 3,\n  \"estimated_tokens\": 356,\n  \"items\": [\n    {\n      \"content\": \"Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_41836bb82b074dad\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_de91606b6ed64b8e\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    },\n    {\n      \"content\": \"Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...\",\n      \"id\": \"mem_c55421c4969749c3\",\n      \"kind\": \"fact\",\n      \"lifecycle\": \"semantic\",\n      \"scope\": \"project\",\n      \"source\": \"load-test\",\n      \"status\": \"active\",\n      \"truncated\": true\n    }\n  ],\n  \"ok\": true,\n  \"retrieval_performed\": true,\n  \"trigger\": \"missing_context\"\n}\n",
         "stderr": ""
       }
     },
@@ -1531,7 +1883,7 @@
         "items": [
           {
             "content": "Token cap test memory 9: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...",
-            "id": "mem_391f3dcb4520430e",
+            "id": "mem_41836bb82b074dad",
             "kind": "fact",
             "lifecycle": "semantic",
             "scope": "project",
@@ -1541,7 +1893,7 @@
           },
           {
             "content": "Token cap test memory 8: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...",
-            "id": "mem_3af797a226e84c49",
+            "id": "mem_de91606b6ed64b8e",
             "kind": "fact",
             "lifecycle": "semantic",
             "scope": "project",
@@ -1551,7 +1903,7 @@
           },
           {
             "content": "Token cap test memory 7: long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long durable claim long du...",
-            "id": "mem_851ac53ee79d4fff",
+            "id": "mem_c55421c4969749c3",
             "kind": "fact",
             "lifecycle": "semantic",
             "scope": "project",
@@ -1577,7 +1929,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"events\": [\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:49.998927+00:00\",\n      \"estimated_tokens\": 356,\n      \"id\": 6,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"The current task needs a stored load-test fact.\",\n      \"result_count\": 3,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:48.184735+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 5,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"The current task needs the prior session hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_a39a04a81bc54527\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:47.723502+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 4,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"The current debugging context lacks the prior hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_34e15edbcd28414d\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:47.493807+00:00\",\n      \"estimated_tokens\": 57,\n      \"id\": 2,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"Repository inspection did not identify the storage decision.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:47.361547+00:00\",\n      \"estimated_tokens\": 51,\n      \"id\": 1,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"User referenced a prior preference.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"explicit_reference\"\n    }\n  ],\n  \"ok\": true\n}\n",
+        "stdout": "{\n  \"events\": [\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:40.276863+00:00\",\n      \"estimated_tokens\": 356,\n      \"id\": 6,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"The current task needs a stored load-test fact.\",\n      \"result_count\": 3,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:38.621464+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 5,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"The current task needs the prior session hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_fe852cef994e42d5\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:38.181117+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 4,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"The current debugging context lacks the prior hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_1c7242f57f0e4a62\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:37.952155+00:00\",\n      \"estimated_tokens\": 57,\n      \"id\": 2,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"Repository inspection did not identify the storage decision.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:37.835931+00:00\",\n      \"estimated_tokens\": 51,\n      \"id\": 1,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"User referenced a prior preference.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"explicit_reference\"\n    }\n  ],\n  \"ok\": true\n}\n",
         "stderr": ""
       }
     },
@@ -1585,7 +1937,7 @@
       "name": "audit_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"events\": [\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:49.998927+00:00\",\n      \"estimated_tokens\": 356,\n      \"id\": 6,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"The current task needs a stored load-test fact.\",\n      \"result_count\": 3,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:48.184735+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 5,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"The current task needs the prior session hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_a39a04a81bc54527\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:47.723502+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 4,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"The current debugging context lacks the prior hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_34e15edbcd28414d\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:47.493807+00:00\",\n      \"estimated_tokens\": 57,\n      \"id\": 2,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"Repository inspection did not identify the storage decision.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:02:47.361547+00:00\",\n      \"estimated_tokens\": 51,\n      \"id\": 1,\n      \"project_id\": \"path:56cf0cac3844e90f\",\n      \"reason\": \"User referenced a prior preference.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"explicit_reference\"\n    }\n  ],\n  \"ok\": true\n}\n",
+        "stdout": "{\n  \"events\": [\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:40.276863+00:00\",\n      \"estimated_tokens\": 356,\n      \"id\": 6,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"The current task needs a stored load-test fact.\",\n      \"result_count\": 3,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:38.621464+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 5,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"The current task needs the prior session hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_fe852cef994e42d5\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:38.181117+00:00\",\n      \"estimated_tokens\": 1,\n      \"id\": 4,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"The current debugging context lacks the prior hypothesis.\",\n      \"result_count\": 0,\n      \"retrieval_performed\": true,\n      \"session_id\": \"ses_1c7242f57f0e4a62\",\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:37.952155+00:00\",\n      \"estimated_tokens\": 57,\n      \"id\": 2,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"Repository inspection did not identify the storage decision.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"missing_context\"\n    },\n    {\n      \"action\": \"recall\",\n      \"created_at\": \"2026-10-03T03:14:37.835931+00:00\",\n      \"estimated_tokens\": 51,\n      \"id\": 1,\n      \"project_id\": \"path:9ffaf7a2f534838f\",\n      \"reason\": \"User referenced a prior preference.\",\n      \"result_count\": 1,\n      \"retrieval_performed\": true,\n      \"session_id\": null,\n      \"trigger\": \"explicit_reference\"\n    }\n  ],\n  \"ok\": true\n}\n",
         "stderr": ""
       }
     },
@@ -1596,10 +1948,10 @@
         "events": [
           {
             "action": "recall",
-            "created_at": "2026-10-03T03:02:49.998927+00:00",
+            "created_at": "2026-10-03T03:14:40.276863+00:00",
             "estimated_tokens": 356,
             "id": 6,
-            "project_id": "path:56cf0cac3844e90f",
+            "project_id": "path:9ffaf7a2f534838f",
             "reason": "The current task needs a stored load-test fact.",
             "result_count": 3,
             "retrieval_performed": true,
@@ -1608,34 +1960,34 @@
           },
           {
             "action": "recall",
-            "created_at": "2026-10-03T03:02:48.184735+00:00",
+            "created_at": "2026-10-03T03:14:38.621464+00:00",
             "estimated_tokens": 1,
             "id": 5,
-            "project_id": "path:56cf0cac3844e90f",
+            "project_id": "path:9ffaf7a2f534838f",
             "reason": "The current task needs the prior session hypothesis.",
             "result_count": 0,
             "retrieval_performed": true,
-            "session_id": "ses_a39a04a81bc54527",
+            "session_id": "ses_fe852cef994e42d5",
             "trigger": "missing_context"
           },
           {
             "action": "recall",
-            "created_at": "2026-10-03T03:02:47.723502+00:00",
+            "created_at": "2026-10-03T03:14:38.181117+00:00",
             "estimated_tokens": 1,
             "id": 4,
-            "project_id": "path:56cf0cac3844e90f",
+            "project_id": "path:9ffaf7a2f534838f",
             "reason": "The current debugging context lacks the prior hypothesis.",
             "result_count": 0,
             "retrieval_performed": true,
-            "session_id": "ses_34e15edbcd28414d",
+            "session_id": "ses_1c7242f57f0e4a62",
             "trigger": "missing_context"
           },
           {
             "action": "recall",
-            "created_at": "2026-10-03T03:02:47.493807+00:00",
+            "created_at": "2026-10-03T03:14:37.952155+00:00",
             "estimated_tokens": 57,
             "id": 2,
-            "project_id": "path:56cf0cac3844e90f",
+            "project_id": "path:9ffaf7a2f534838f",
             "reason": "Repository inspection did not identify the storage decision.",
             "result_count": 1,
             "retrieval_performed": true,
@@ -1644,10 +1996,10 @@
           },
           {
             "action": "recall",
-            "created_at": "2026-10-03T03:02:47.361547+00:00",
+            "created_at": "2026-10-03T03:14:37.835931+00:00",
             "estimated_tokens": 51,
             "id": 1,
-            "project_id": "path:56cf0cac3844e90f",
+            "project_id": "path:9ffaf7a2f534838f",
             "reason": "User referenced a prior preference.",
             "result_count": 1,
             "retrieval_performed": true,
@@ -1663,7 +2015,7 @@
       "ok": true,
       "details": {
         "tool_count": 1,
-        "schema_bytes": 1319
+        "schema_bytes": 1408
       }
     },
     {
@@ -1750,6 +2102,10 @@
                     "session_id": {
                       "type": "string"
                     },
+                    "project_dir": {
+                      "type": "string",
+                      "description": "Workspace path when run outside it."
+                    },
                     "expires_at": {
                       "type": "string"
                     },
@@ -1776,7 +2132,130 @@
             "content": [
               {
                 "type": "text",
-                "text": "{\"ok\":true,\"retrieval_performed\":true,\"trigger\":\"explicit_reference\",\"items\":[{\"id\":\"mem_59634a6da27e46c0\",\"scope\":\"user\",\"lifecycle\":\"semantic\",\"kind\":\"preference\",\"content\":\"Always use pnpm for package management.\",\"source\":\"user-statement\",\"status\":\"active\",\"truncated\":false}],\"count\":1,\"estimated_tokens\":51}"
+                "text": "{\"ok\":true,\"retrieval_performed\":true,\"trigger\":\"explicit_reference\",\"items\":[{\"id\":\"mem_195580402adf47a8\",\"scope\":\"user\",\"lifecycle\":\"semantic\",\"kind\":\"preference\",\"content\":\"Always use pnpm for package management.\",\"source\":\"user-statement\",\"status\":\"active\",\"truncated\":false}],\"count\":1,\"estimated_tokens\":51}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        "stderr": ""
+      }
+    },
+    {
+      "name": "mcp_project_dir_scopes_global_clients",
+      "ok": true,
+      "details": {
+        "initialize": {
+          "jsonrpc": "2.0",
+          "id": 1,
+          "result": {
+            "protocolVersion": "2024-11-05",
+            "capabilities": {
+              "tools": {}
+            },
+            "serverInfo": {
+              "name": "unimem",
+              "version": "0.1.0"
+            }
+          }
+        },
+        "tools": {
+          "jsonrpc": "2.0",
+          "id": 2,
+          "result": {
+            "tools": [
+              {
+                "name": "unimem",
+                "description": "Local lazy memory. Inspect repository and documentation first. Call recall only for prior-work references, missing constraints, handoffs, or conflicts; provide trigger and evidence. Store only durable claims with remember.",
+                "inputSchema": {
+                  "type": "object",
+                  "properties": {
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "recall",
+                        "remember",
+                        "status"
+                      ],
+                      "description": "Use recall only after a missing-context trigger."
+                    },
+                    "query": {
+                      "type": "string",
+                      "description": "Short task query for recall."
+                    },
+                    "trigger": {
+                      "type": "string",
+                      "enum": [
+                        "explicit_reference",
+                        "missing_context",
+                        "cross_session",
+                        "conflict",
+                        "memory_query"
+                      ],
+                      "description": "Why current context is insufficient."
+                    },
+                    "evidence": {
+                      "type": "string",
+                      "description": "Concrete evidence supporting the trigger."
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "Durable fact to remember."
+                    },
+                    "scope": {
+                      "type": "string",
+                      "enum": [
+                        "user",
+                        "project",
+                        "session"
+                      ]
+                    },
+                    "lifecycle": {
+                      "type": "string",
+                      "enum": [
+                        "semantic",
+                        "episodic",
+                        "procedural"
+                      ]
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "preference, decision, fact, hypothesis, or procedure"
+                    },
+                    "session_id": {
+                      "type": "string"
+                    },
+                    "project_dir": {
+                      "type": "string",
+                      "description": "Workspace path when run outside it."
+                    },
+                    "expires_at": {
+                      "type": "string"
+                    },
+                    "semantic": {
+                      "type": "boolean"
+                    },
+                    "semantic_model": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "action"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            ]
+          }
+        },
+        "call": {
+          "jsonrpc": "2.0",
+          "id": 3,
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"ok\":true,\"retrieval_performed\":true,\"trigger\":\"missing_context\",\"items\":[{\"id\":\"mem_8874098c842247ac\",\"scope\":\"project\",\"lifecycle\":\"semantic\",\"kind\":\"decision\",\"content\":\"Postgres is the project store for the second repository.\",\"source\":\"architecture-decision\",\"status\":\"active\",\"truncated\":false}],\"count\":1,\"estimated_tokens\":57}"
               }
             ],
             "isError": false
@@ -1868,6 +2347,10 @@
                     },
                     "session_id": {
                       "type": "string"
+                    },
+                    "project_dir": {
+                      "type": "string",
+                      "description": "Workspace path when run outside it."
                     },
                     "expires_at": {
                       "type": "string"
@@ -1988,6 +2471,10 @@
                     "session_id": {
                       "type": "string"
                     },
+                    "project_dir": {
+                      "type": "string",
+                      "description": "Workspace path when run outside it."
+                    },
                     "expires_at": {
                       "type": "string"
                     },
@@ -2035,7 +2522,7 @@
           "--json"
         ],
         "returncode": 0,
-        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home/unimem.db\",\n  \"enriched_memories\": {},\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 969,\n  \"memory_counts\": {\n    \"project/semantic\": 13,\n    \"session/episodic\": 1,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"resident_instruction_bytes\": 906,\n  \"semantic_embeddings\": 0,\n  \"semantic_enabled\": false,\n  \"semantic_model\": null,\n  \"session_counts\": {\n    \"active\": 1,\n    \"closed\": 1\n  }\n}\n",
+        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home/unimem.db\",\n  \"enrich_runtime_installed\": true,\n  \"enriched_memories\": {},\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 1053,\n  \"memory_counts\": {\n    \"project/semantic\": 13,\n    \"session/episodic\": 1,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"resident_instruction_bytes\": 1006,\n  \"semantic_embeddings\": 0,\n  \"semantic_enabled\": false,\n  \"semantic_model\": null,\n  \"session_counts\": {\n    \"active\": 1,\n    \"closed\": 1\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -2043,7 +2530,7 @@
       "name": "doctor_payload",
       "ok": true,
       "details": {
-        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home/unimem.db\",\n  \"enriched_memories\": {},\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 969,\n  \"memory_counts\": {\n    \"project/semantic\": 13,\n    \"session/episodic\": 1,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"path:56cf0cac3844e90f\",\n  \"resident_instruction_bytes\": 906,\n  \"semantic_embeddings\": 0,\n  \"semantic_enabled\": false,\n  \"semantic_model\": null,\n  \"session_counts\": {\n    \"active\": 1,\n    \"closed\": 1\n  }\n}\n",
+        "stdout": "{\n  \"daemon_required\": false,\n  \"database\": \"/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home/unimem.db\",\n  \"enrich_runtime_installed\": true,\n  \"enriched_memories\": {},\n  \"external_api_calls\": 0,\n  \"fts5\": true,\n  \"mcp_tool_schema_bytes\": 1053,\n  \"memory_counts\": {\n    \"project/semantic\": 13,\n    \"session/episodic\": 1,\n    \"user/semantic\": 1\n  },\n  \"project_id\": \"path:9ffaf7a2f534838f\",\n  \"resident_instruction_bytes\": 1006,\n  \"semantic_embeddings\": 0,\n  \"semantic_enabled\": false,\n  \"semantic_model\": null,\n  \"session_counts\": {\n    \"active\": 1,\n    \"closed\": 1\n  }\n}\n",
         "stderr": ""
       }
     },
@@ -2052,18 +2539,19 @@
       "ok": true,
       "details": {
         "daemon_required": false,
-        "database": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-d8hxmsua/home/unimem.db",
+        "database": "/private/var/folders/5z/cpjmyn5x30g4c1nrc7_4_yz80000gn/T/unimem-e2e-rurxuzek/home/unimem.db",
+        "enrich_runtime_installed": true,
         "enriched_memories": {},
         "external_api_calls": 0,
         "fts5": true,
-        "mcp_tool_schema_bytes": 969,
+        "mcp_tool_schema_bytes": 1053,
         "memory_counts": {
           "project/semantic": 13,
           "session/episodic": 1,
           "user/semantic": 1
         },
-        "project_id": "path:56cf0cac3844e90f",
-        "resident_instruction_bytes": 906,
+        "project_id": "path:9ffaf7a2f534838f",
+        "resident_instruction_bytes": 1006,
         "semantic_embeddings": 0,
         "semantic_enabled": false,
         "semantic_model": null,

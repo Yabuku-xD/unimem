@@ -27,6 +27,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import tomllib
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -55,6 +56,13 @@ class Harness:
         self.env = os.environ.copy()
         self.env["PYTHONPATH"] = str(SRC)
         self.env["UNIMEM_HOME"] = str(self.home)
+        # Global client configs (Claude Desktop, Codex app, Pi, Hermes) land here,
+        # never in the real home directory.
+        self.user_home = self.base / "user-home"
+        self.user_home.mkdir()
+        self.env["HOME"] = str(self.user_home)
+        self.env["USERPROFILE"] = str(self.user_home)
+        self.env["APPDATA"] = str(self.user_home / "AppData/Roaming")
         self.env.pop("UNIMEM_SESSION_ID", None)
         self.checks: list[dict[str, Any]] = []
         self.started = now_iso()
@@ -276,6 +284,77 @@ def main() -> int:
                 and not any((client_dir / path).exists() for path in expectations["forbidden"]),
                 {"expected": sorted(expectations["expected"]), "forbidden": sorted(expectations["forbidden"])},
             )
+
+        # Global clients merge into existing user configs and stay idempotent.
+        home = harness.user_home
+        (home / ".codex").mkdir(parents=True, exist_ok=True)
+        (home / ".codex/config.toml").write_text(
+            'model = "gpt-5"\n\n[mcp_servers.other]\ncommand = "other"\n', encoding="utf-8"
+        )
+        (home / ".hermes").mkdir(parents=True, exist_ok=True)
+        (home / ".hermes/config.yaml").write_text(
+            "model: test\nmcp_servers:\n  other:\n    command: other\ntoolsets: [web]\n",
+            encoding="utf-8",
+        )
+        global_dir = harness.base / "client-global"
+        global_dir.mkdir()
+        global_files: dict[str, list[str]] = {}
+        for _ in range(2):
+            for client in ("claude-desktop", "codex-app", "pi", "hermes"):
+                result, payload = harness.run(
+                    ["init", "--client", client, "--json"], cwd=global_dir, name=f"init_global_{client}"
+                )
+                payload = harness.json_or_fail(f"init_global_{client}_payload", result, payload)
+                global_files[client] = payload.get("files", [])
+        desktop_path = Path(global_files["claude-desktop"][0])
+        harness.check(
+            "global_clients_write_only_user_config",
+            not any(global_dir.iterdir())
+            and all(str(path).startswith(str(home)) for paths in global_files.values() for path in paths),
+            global_files,
+        )
+        desktop = json.loads(desktop_path.read_text(encoding="utf-8"))
+        harness.check(
+            "claude_desktop_config_has_unimem",
+            desktop.get("mcpServers", {}).get("unimem", {}).get("args") == ["mcp"],
+            desktop,
+        )
+        codex_text = (home / ".codex/config.toml").read_text(encoding="utf-8")
+        codex = tomllib.loads(codex_text)
+        harness.check(
+            "codex_app_config_merges_and_stays_idempotent",
+            codex.get("model") == "gpt-5"
+            and set(codex.get("mcp_servers", {})) == {"other", "unimem"}
+            and codex_text.count("# BEGIN UNIMEM") == 1,
+            codex,
+        )
+        pi = json.loads((home / ".pi/agent/mcp.json").read_text(encoding="utf-8"))
+        harness.check("pi_config_has_unimem", "unimem" in pi.get("mcpServers", {}), pi)
+        hermes_lines = (home / ".hermes/config.yaml").read_text(encoding="utf-8").splitlines()
+        harness.check(
+            "hermes_config_nests_unimem_under_mcp_servers",
+            hermes_lines.count("  unimem:") == 1
+            and hermes_lines.index("mcp_servers:") < hermes_lines.index("  unimem:") < hermes_lines.index("toolsets: [web]")
+            and "  other:" in hermes_lines
+            and hermes_lines[0] == "model: test",
+            hermes_lines,
+        )
+        harness.check(
+            "global_skills_installed",
+            (home / ".agents/skills/unimem/SKILL.md").exists()
+            and (home / ".hermes/skills/unimem/SKILL.md").exists(),
+            [str(home / ".agents/skills"), str(home / ".hermes/skills")],
+        )
+        broken = home / ".pi/agent/mcp.json"
+        broken.write_text("{not json", encoding="utf-8")
+        broken_result, _ = harness.run(
+            ["init", "--client", "pi", "--json"], cwd=global_dir, expect=2, name="init_pi_broken"
+        )
+        harness.check(
+            "invalid_client_config_is_not_overwritten",
+            broken_result.returncode != 0 and broken.read_text(encoding="utf-8") == "{not json",
+            {"returncode": broken_result.returncode},
+        )
 
         # 2. Route is deterministic and does not retrieve for routine work.
         routine_result, routine_payload = harness.run(
@@ -776,6 +855,22 @@ def main() -> int:
             and "Session Snapshot" not in call_text
             and call_result.get("isError") is not True,
             mcp_result,
+        )
+        scoped_mcp = mcp_call(
+            harness,
+            {
+                "action": "recall",
+                "query": "project store",
+                "trigger": "missing_context",
+                "evidence": "Desktop client asked about the second repository.",
+                "project_dir": str(harness.project_b),
+            },
+        )
+        scoped_text = json.dumps(scoped_mcp.get("call", {}).get("result", {}))
+        harness.check(
+            "mcp_project_dir_scopes_global_clients",
+            "Postgres is the project store" in scoped_text and "SQLite is the project store" not in scoped_text,
+            scoped_mcp,
         )
         invalid_mcp = mcp_call(
             harness,
