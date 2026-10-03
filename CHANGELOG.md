@@ -8,6 +8,8 @@
 - Optional local semantic recall (`--extra semantic`, FastEmbed) fused with keyword recall by weighted reciprocal rank.
 - `unimem --version`.
 - `unimem init` sets up every supported tool once for your user account: Claude Code, the Claude Desktop app, Codex (CLI, IDE extension, and the ChatGPT / Codex desktop app), Cursor, Pi, Hermes Agent, and other Agent Skills clients. `--client` picks one tool, and `--project` writes repository config to share with a team. Existing config files are merged, never overwritten, and unreadable ones are left alone.
+- Automatic sessions and capture: `unimem init` installs session-start and session-end hooks for Claude Code, Codex, Cursor, Pi, and Hermes Agent. A tool session opens a unimem session; when it ends, durable facts the user stated are distilled from the transcript and the session is closed. Hooks print nothing into the prompt and can be skipped with `--no-hooks`.
+- The extractor ignores durable cues that appear only inside quotes or backticks.
 - One user-wide server still scopes project memories: it follows Claude Code's `CLAUDE_PROJECT_DIR`, the directory it starts in, or a `project_dir` argument on the MCP tool.
 - `install.sh` installs uv when needed, unimem, and optionally the local model in one step; `unimem enrich --download` fetches the model ahead of time.
 - Benchmarks: LongMemEval-S session recall, LoCoMo session-level recall, a multi-corpus runner (LoCoMo, MemBench, MemoryAgentBench, BEAM), and a provider for the open Agent Memory Benchmark harness. Results and caveats are in `benchmarks/README.md`.

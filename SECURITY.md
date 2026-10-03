@@ -9,6 +9,7 @@ Report vulnerabilities privately through GitHub's [private vulnerability reporti
 - All memory lives in one local SQLite file, `~/.unimem/unimem.db` by default (`UNIMEM_HOME` or `UNIMEM_DB` override it). Protect it like any other file in your home directory.
 - unimem makes no network calls on its own. The optional `semantic` and `enrich` extras download model weights once from Hugging Face and then run locally.
 - Writes are rejected when the content or evidence looks like a secret (API keys, tokens, private keys, passwords). The filter is pattern-based, so do not rely on it as the only control for sensitive data.
+- Session hooks read a tool's transcript on your machine when a session ends, keep only durable statements you made, and do not store the transcript. Each hook run appends one line, with no memory content, to `~/.unimem/hooks.log`.
 - `forget` marks a memory deleted so recall never returns it. The row stays in the database file; delete the database to remove data permanently.
 - Project memories are keyed by Git identity and session memories expire. Recall filters by scope on every read, so one project's memories are not returned in another project.
 

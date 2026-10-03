@@ -80,7 +80,7 @@ Restart the tool afterwards so it loads unimem. In Hermes you can run `/reload-m
 
 Here is what each command writes, all inside your home folder:
 
-- Claude Code adds unimem to `~/.claude.json` and a skill to `~/.claude/skills/`.
+- Claude Code adds unimem to `~/.claude.json`, a skill to `~/.claude/skills/`, and hooks to `~/.claude/settings.json`.
 - Claude Desktop adds unimem to `~/Library/Application Support/Claude/claude_desktop_config.json` on macOS.
 - Codex adds unimem to `~/.codex/config.toml`, which the CLI, the IDE extension, and the desktop app share, and a skill to `~/.agents/skills/`.
 - Cursor adds unimem to `~/.cursor/mcp.json` and a skill to `~/.agents/skills/`.
@@ -91,6 +91,26 @@ None of these files ever receive your memories. unimem adds only its own entry a
 
 Project memories still stay with their project. Claude Code tells unimem which project is open, the other tools start it inside the project, and the skill asks the agent to pass the workspace path when it can.
 
+### Automatic sessions and capture
+
+`unimem init` also adds two small hooks to each tool that supports them. You don't have to do anything during a session.
+
+- When a session starts, unimem opens a matching session of its own. Short-lived notes the agent saves go there.
+- When the session ends, unimem reads that session's transcript on your computer and keeps only the durable things you stated, such as "from now on always use pnpm" or "we decided to use Postgres for this project". Then it closes the session, and its short-lived notes stop coming back.
+
+The hooks never add anything to the prompt, and the transcript itself is not stored. Assistant replies, tool output, code, secrets, and text you only quoted are ignored.
+
+| Tool | Where the hooks go | Good to know |
+|---|---|---|
+| Claude Code | `~/.claude/settings.json` | works straight away |
+| Codex | `~/.codex/hooks.json` | run `/hooks` in Codex once and trust the two new hooks |
+| Cursor | `~/.cursor/hooks.json` | |
+| Pi | `~/.pi/agent/extensions/unimem.ts` | |
+| Hermes Agent | `hooks:` in `~/.hermes/config.yaml` | Hermes asks for consent the first time each hook runs |
+| Claude Desktop app | none | the app has no hooks, so the agent saves memories itself |
+
+To skip the hooks, run `unimem init --no-hooks`. Each hook run is logged to `~/.unimem/hooks.log`.
+
 ### Sharing the setup with a team
 
 To commit the configuration to a repository so everyone who clones it gets unimem, run this inside the project instead:
@@ -99,7 +119,7 @@ To commit the configuration to a repository so everyone who clones it gets unime
 unimem init --client claude --project
 ```
 
-`--project` works for `claude`, `codex`, `cursor`, `agents`, and `all`. It writes `.mcp.json`, `.codex/config.toml`, `.cursor/mcp.json`, project skills, and a short pointer in `AGENTS.md`. Codex reads a project's `.codex/config.toml` only after you trust the project.
+`--project` works for `claude`, `codex`, `cursor`, `agents`, and `all`. It writes `.mcp.json`, `.codex/config.toml`, `.cursor/mcp.json`, project skills, and a short pointer in `AGENTS.md`. Hooks are only set up per user, not per project. Codex reads a project's `.codex/config.toml` only after you trust the project.
 
 ## Use it
 
