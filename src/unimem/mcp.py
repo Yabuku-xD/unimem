@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import sys
+from dataclasses import replace
 from typing import Any
 
 from .config import Settings
@@ -65,6 +66,9 @@ def run_tool(arguments: dict[str, Any], settings: Settings) -> dict[str, Any]:
         )
     database = Database(settings)
     database.initialize()
+    if not settings.session_id:
+        # Use the session a tool's hook opened for this project, if one is active.
+        settings = replace(settings, session_id=database.hook_session_for(settings.project_id))
     semantic_model = str(arguments.get("semantic_model") or "").strip()
     use_semantic = bool(arguments.get("semantic")) or bool(semantic_model)
     action = str(arguments.get("action", ""))

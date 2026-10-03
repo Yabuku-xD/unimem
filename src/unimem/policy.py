@@ -169,13 +169,19 @@ def classify_candidate(text: str) -> Candidate | tuple[None, str]:
     if len(cleaned) > 800:
         return None, "too_long"
 
-    session = bool(SESSION_CUES.search(cleaned))
-    user = bool(USER_CUES.search(cleaned))
-    project = bool(PROJECT_CUES.search(cleaned))
-    procedure = bool(PROCEDURE_CUES.search(cleaned))
+    # A cue inside quotes or backticks is text being passed along (an argument,
+    # a sample, an error message), not something the user is stating.
+    stated = re.sub(r'"[^"]*"|`[^`]*`|\u201c[^\u201d]*\u201d', " ", cleaned)
+    session = bool(SESSION_CUES.search(stated))
+    user = bool(USER_CUES.search(stated))
+    project = bool(PROJECT_CUES.search(stated))
+    procedure = bool(PROCEDURE_CUES.search(stated))
 
     if not (user or project or session or procedure):
-        return None, "no_durable_cue"
+        quoted_only = any(
+            cues.search(cleaned) for cues in (SESSION_CUES, USER_CUES, PROJECT_CUES, PROCEDURE_CUES)
+        )
+        return None, "quoted_cue" if quoted_only else "no_durable_cue"
 
     if session and not user and not project:
         scope = "session"

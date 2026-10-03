@@ -77,12 +77,14 @@ class Harness:
         cwd: Path | None = None,
         expect: int = 0,
         name: str | None = None,
+        stdin: str | None = None,
     ) -> tuple[subprocess.CompletedProcess[str], Any]:
         command = [sys.executable, "-m", "unimem", *args]
         result = subprocess.run(
             command,
             cwd=str(cwd or self.project_a),
             env=self.env,
+            input=stdin,
             text=True,
             capture_output=True,
             check=False,
@@ -297,6 +299,16 @@ def main() -> int:
         (home / ".claude.json").write_text(
             json.dumps({"numStartups": 3, "projects": {"/x": {"mcpServers": {}}}}), encoding="utf-8"
         )
+        (home / ".claude").mkdir(parents=True, exist_ok=True)
+        (home / ".claude/settings.json").write_text(
+            json.dumps(
+                {
+                    "model": "opus",
+                    "hooks": {"SessionStart": [{"hooks": [{"type": "command", "command": "echo mine"}]}]},
+                }
+            ),
+            encoding="utf-8",
+        )
         (home / ".hermes/config.yaml").write_text(
             "model: test\nmcp_servers:\n  other:\n    command: other\ntoolsets: [web]\n",
             encoding="utf-8",
@@ -373,6 +385,138 @@ def main() -> int:
             and (home / ".hermes/skills/unimem/SKILL.md").exists(),
             [str(home / ".agents/skills"), str(home / ".hermes/skills")],
         )
+        # Session hooks are installed for every tool that documents them, once each.
+        claude_settings = json.loads((home / ".claude/settings.json").read_text(encoding="utf-8"))
+        start_commands = [
+            hook["command"]
+            for group in claude_settings["hooks"]["SessionStart"]
+            for hook in group["hooks"]
+        ]
+        harness.check(
+            "claude_hooks_merge_and_stay_idempotent",
+            claude_settings.get("model") == "opus"
+            and "echo mine" in start_commands
+            and sum("hook session-start --client claude" in command for command in start_commands) == 1
+            and len(claude_settings["hooks"]["SessionEnd"]) == 1,
+            claude_settings,
+        )
+        codex_hooks = json.loads((home / ".codex/hooks.json").read_text(encoding="utf-8"))
+        cursor_hooks = json.loads((home / ".cursor/hooks.json").read_text(encoding="utf-8"))
+        hermes_text = (home / ".hermes/config.yaml").read_text(encoding="utf-8")
+        pi_extension = (home / ".pi/agent/extensions/unimem.ts").read_text(encoding="utf-8")
+        harness.check(
+            "session_hooks_installed_for_each_tool",
+            len(codex_hooks["hooks"]["SessionStart"]) == 1
+            and codex_hooks["hooks"]["SessionEnd"][0]["hooks"][0]["timeout"] <= 3
+            and cursor_hooks.get("version") == 1
+            and len(cursor_hooks["hooks"]["sessionEnd"]) == 1
+            and hermes_text.count("on_session_start:") == 1
+            and hermes_text.count("hook session-end --client hermes") == 1
+            and 'pi.on("session_shutdown"' in pi_extension,
+            {"codex": codex_hooks, "cursor": cursor_hooks},
+        )
+        no_hooks_home = harness.base / "no-hooks-home"
+        no_hooks_home.mkdir()
+        harness.env["HOME"] = str(no_hooks_home)
+        harness.run(["init", "--client", "claude", "--no-hooks", "--json"], cwd=global_dir, name="init_no_hooks")
+        harness.env["HOME"] = str(home)
+        harness.check(
+            "no_hooks_flag_skips_hooks",
+            (no_hooks_home / ".claude.json").exists() and not (no_hooks_home / ".claude/settings.json").exists(),
+            sorted(str(path) for path in no_hooks_home.rglob("*") if path.is_file()),
+        )
+
+        # A tool session opens a unimem session, and its end captures durable facts.
+        hook_project = harness.base / "hook-project"
+        hook_project.mkdir()
+        transcript = harness.base / "transcript.jsonl"
+        transcript.write_text(
+            "\n".join(
+                json.dumps(entry)
+                for entry in [
+                    {"type": "user", "message": {"role": "user", "content": "<system-reminder>skip</system-reminder>"}},
+                    {
+                        "type": "user",
+                        "message": {
+                            "role": "user",
+                            "content": [{"type": "text", "text": "Thanks! From now on always use tabs for indentation."}],
+                        },
+                    },
+                    {"type": "assistant", "message": {"role": "assistant", "content": "Always use spaces."}},
+                    {
+                        "type": "response_item",
+                        "payload": {
+                            "type": "message",
+                            "role": "user",
+                            "content": [
+                                {"type": "input_text", "text": "We decided to use Redis streams for the event bus in this project."}
+                            ],
+                        },
+                    },
+                    {"role": "user", "message": {"content": [{"type": "text", "text": "My token is sk-abcdefghijklmnopqrstuvwxyz123456, always use it."}]}},
+                ]
+            ),
+            encoding="utf-8",
+        )
+        hook_input = json.dumps(
+            {"conversation_id": "conv-1", "workspace_roots": [str(hook_project)], "transcript_path": str(transcript)}
+        )
+        start_result, _ = harness.run(
+            ["hook", "session-start", "--client", "cursor"], stdin=hook_input, name="hook_session_start"
+        )
+        harness.check("hook_prints_nothing_into_context", start_result.stdout == "", start_result.stdout)
+        harness.run(
+            ["remember", "The flaky test may be a race in cache warmup.", "--scope", "session",
+             "--kind", "hypothesis", "--evidence", "Debugging hypothesis", "--json"],
+            cwd=hook_project,
+            name="remember_in_hook_session",
+        )
+        _, during = harness.run(
+            ["recall", "flaky test race", "--trigger", "missing_context",
+             "--evidence", "Checking the current hypothesis", "--json"],
+            cwd=hook_project,
+            name="recall_in_hook_session",
+        )
+        end_result, _ = harness.run(
+            ["hook", "session-end", "--client", "cursor", "--foreground"], stdin=hook_input, name="hook_session_end"
+        )
+        _, after = harness.run(
+            ["recall", "flaky test race", "--trigger", "missing_context",
+             "--evidence", "Checking after the session ended", "--json"],
+            cwd=hook_project,
+            name="recall_after_hook_session",
+        )
+        harness.check(
+            "hook_session_holds_notes_until_it_ends",
+            (during or {}).get("count") == 1 and (after or {}).get("count") == 0 and end_result.stdout == "",
+            {"during": during, "after": after},
+        )
+        _, captured_user = harness.run(
+            ["recall", "tabs indentation", "--trigger", "memory_query", "--evidence", "Verify capture", "--json"],
+            cwd=harness.project_b,
+            name="recall_captured_user",
+        )
+        _, captured_project = harness.run(
+            ["recall", "Redis streams event bus", "--trigger", "memory_query", "--evidence", "Verify capture", "--json"],
+            cwd=hook_project,
+            name="recall_captured_project",
+        )
+        _, leaked = harness.run(
+            ["recall", "token spaces indentation", "--trigger", "memory_query", "--evidence", "Verify filter", "--json"],
+            cwd=hook_project,
+            name="recall_hook_filtered",
+        )
+        leaked_text = json.dumps(leaked)
+        harness.check(
+            "session_end_captures_only_durable_user_facts",
+            "always use tabs" in json.dumps(captured_user)
+            and (captured_user or {}).get("items", [{}])[0].get("scope") == "user"
+            and "Redis streams" in json.dumps(captured_project)
+            and "sk-abcdefghijklmnopqrstuvwxyz" not in leaked_text
+            and "Always use spaces" not in leaked_text,
+            {"user": captured_user, "project": captured_project, "leaked": leaked},
+        )
+
         broken = home / ".pi/agent/mcp.json"
         broken.write_text("{not json", encoding="utf-8")
         broken_result, _ = harness.run(

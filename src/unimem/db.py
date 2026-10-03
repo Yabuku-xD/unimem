@@ -917,6 +917,52 @@ class Database:
             ).fetchone()
         return SessionRecord.from_row(row)
 
+    def ensure_session(
+        self,
+        session_id: str,
+        *,
+        project_id: str,
+        client: str,
+        ttl_seconds: float = 24 * 60 * 60,
+    ) -> SessionRecord:
+        """Open the session with this id, creating or reopening it as needed.
+
+        Client hooks call this on every start and resume, so it must be idempotent.
+        """
+        self.initialize()
+        now = now_iso()
+        expires_at = iso_after(max(0.0, ttl_seconds))
+        with self.connection() as connection:
+            connection.execute(
+                """
+                INSERT INTO sessions
+                (id, project_id, client, title, status, created_at, last_activity_at, ended_at, expires_at)
+                VALUES (?, ?, ?, NULL, 'active', ?, ?, NULL, ?)
+                ON CONFLICT(id) DO UPDATE SET
+                    status = 'active', project_id = excluded.project_id,
+                    last_activity_at = excluded.last_activity_at,
+                    ended_at = NULL, expires_at = excluded.expires_at
+                """,
+                (session_id, project_id, client, now, now, expires_at),
+            )
+            row = connection.execute("SELECT * FROM sessions WHERE id = ?", (session_id,)).fetchone()
+        return SessionRecord.from_row(row)
+
+    def hook_session_for(self, project_id: str) -> str | None:
+        """The most recent session a client hook opened for this project, if still active."""
+        self.initialize()
+        with self.connection() as connection:
+            self.expire_sessions(connection)
+            row = connection.execute(
+                """
+                SELECT id FROM sessions
+                WHERE project_id = ? AND status = 'active' AND client LIKE 'hook:%'
+                ORDER BY last_activity_at DESC LIMIT 1
+                """,
+                (project_id,),
+            ).fetchone()
+        return row["id"] if row else None
+
     def end_session(self, session_id: str, *, status: str = "closed") -> SessionRecord | None:
         if status not in {"closed", "expired"}:
             raise MemoryError("session status must be closed or expired")

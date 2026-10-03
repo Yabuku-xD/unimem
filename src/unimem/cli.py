@@ -4,14 +4,17 @@ import argparse
 import importlib.util
 import json
 import os
+import subprocess
 import sys
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
 from . import __version__
-from .config import Settings, parse_iso
+from .config import Settings, now_iso, parse_iso
 from .db import Database, MemoryError
 from .extract import distill_messages, load_messages
+from .hooks import normalize_payload, session_end, session_start
 from .integrations import (
     CLIENT_ALIASES,
     CLIENTS,
@@ -54,6 +57,11 @@ def _parser() -> argparse.ArgumentParser:
         "--project",
         action="store_true",
         help="Write the config into the project folder instead, to share it with a team",
+    )
+    init.add_argument(
+        "--no-hooks",
+        action="store_true",
+        help="Skip the session hooks that open sessions and save durable facts automatically",
     )
 
     remember = sub.add_parser("remember", help="Store a durable memory")
@@ -125,6 +133,16 @@ def _parser() -> argparse.ArgumentParser:
         "--download",
         action="store_true",
         help="Download the model now and exit, so later runs work offline",
+    )
+
+    hook = sub.add_parser("hook", help="Run by coding tools when a session starts or ends")
+    hook.add_argument("event", choices=["session-start", "session-end"])
+    hook.add_argument("--client", required=True, help="Tool that fired the hook")
+    hook.add_argument("--session-id", help="Tool session id (otherwise read from stdin JSON)")
+    hook.add_argument("--cwd", help="Workspace directory (otherwise read from stdin JSON)")
+    hook.add_argument("--transcript", help="Transcript file (otherwise read from stdin JSON)")
+    hook.add_argument(
+        "--foreground", action="store_true", help="Finish the work before returning"
     )
 
     sub.add_parser("doctor", help="Report local runtime and prompt overhead")
@@ -199,6 +217,56 @@ def _recall_payload(
     }
 
 
+def _run_hook(args: argparse.Namespace) -> int:
+    """Handle a session hook. Prints nothing on stdout and never fails the tool."""
+    try:
+        raw: dict[str, Any] = {}
+        if not args.session_id and not sys.stdin.isatty():
+            try:
+                loaded = json.loads(sys.stdin.read() or "{}")
+                raw = loaded if isinstance(loaded, dict) else {}
+            except json.JSONDecodeError:
+                raw = {}
+        payload = normalize_payload(
+            raw, {"cwd": args.cwd, "session_id": args.session_id, "transcript": args.transcript}
+        )
+        if args.event == "session-end" and not args.foreground:
+            # Tools allow session-end hooks only a second or two; finish in the background.
+            command = [sys.executable, "-m", "unimem"]
+            if args.home:
+                command += ["--home", args.home]
+            command += ["hook", "session-end", "--client", args.client, "--foreground"]
+            command += ["--cwd", str(payload["cwd"])]
+            if payload["session_id"]:
+                command += ["--session-id", payload["session_id"]]
+            if payload["transcript"]:
+                command += ["--transcript", payload["transcript"]]
+            subprocess.Popen(
+                command,
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                start_new_session=True,
+            )
+            return 0
+        settings = Settings.load(project_dir=payload["cwd"], home=args.home)
+        handler = session_start if args.event == "session-start" else session_end
+        result = handler(settings, client=args.client, payload=payload)
+        _log_hook(settings, {"event": args.event, "client": args.client, **result})
+    except Exception as error:  # noqa: BLE001 - a hook must never break the tool that ran it
+        print(f"unimem hook: {error}", file=sys.stderr)
+    return 0
+
+
+def _log_hook(settings: Settings, record: dict[str, Any]) -> None:
+    path = settings.home / "hooks.log"
+    settings.ensure_home()
+    if path.exists() and path.stat().st_size > 1_000_000:
+        path.unlink()
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps({"at": now_iso(), **record}) + "\n")
+
+
 def main(argv: list[str] | None = None) -> int:
     raw = list(sys.argv[1:] if argv is None else argv)
     raw, json_mode = _json_mode(raw)
@@ -215,6 +283,9 @@ def main(argv: list[str] | None = None) -> int:
             settings = _settings(args, project_dir=os.environ.get("CLAUDE_PROJECT_DIR") or None)
             return serve_mcp(settings)
 
+        if args.command == "hook":
+            return _run_hook(args)
+
         project_dir = getattr(args, "project_dir", None)
         settings = _settings(args, project_dir=project_dir)
         if args.command == "route":
@@ -228,6 +299,9 @@ def main(argv: list[str] | None = None) -> int:
 
         database = Database(settings)
         database.initialize()
+        if not settings.session_id and args.command in {"remember", "recall", "distill"}:
+            # Use the session a tool's hook opened for this project, if one is active.
+            settings = replace(settings, session_id=database.hook_session_for(settings.project_id))
         semantic_model = getattr(args, "semantic_model", None)
         if semantic_model:
             database.enable_semantic(
@@ -244,11 +318,16 @@ def main(argv: list[str] | None = None) -> int:
                 clients=(args.client,),
                 mcp_tool_schema_bytes=tool_schema_bytes(),
                 project=args.project,
+                hooks=not args.no_hooks,
             )
             lines = [f"Connected {', '.join(result['clients'])}. Updated:"]
             lines += [f"  {path}" for path in result["files"]]
             if result["restart_required"]:
                 lines.append(f"Restart {', '.join(result['restart_required'])} to load unimem.")
+            if "codex" in result["session_hooks"]:
+                lines.append("Codex asks you to review new hooks: run /hooks in Codex once and trust them.")
+            if "hermes" in result["session_hooks"]:
+                lines.append("Hermes asks for consent the first time each hook runs.")
             _emit(result, json_mode=json_mode, text="\n".join(lines))
             return 0
 
