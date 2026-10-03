@@ -26,7 +26,11 @@ from .policy import classify_route, compact_recall_items, validate_recall
 
 
 def _parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="unimem", description="Local-first lazy memory for coding agents")
+    # No prefix matching: on Python 3.11, "--project" would be read as an ambiguous
+    # abbreviation of the global --project-dir and --project-id options.
+    parser = argparse.ArgumentParser(
+        prog="unimem", description="Local-first lazy memory for coding agents", allow_abbrev=False
+    )
     parser.add_argument("--version", action="version", version=f"unimem {__version__}")
     parser.add_argument("--home", help="Override UNIMEM_HOME")
     parser.add_argument("--project-dir", help="Project directory used for project scope")
