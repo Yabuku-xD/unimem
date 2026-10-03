@@ -100,6 +100,10 @@ Project memories still stay with their project. Claude Code tells unimem which p
 
 The hooks never add anything to the prompt, and the transcript itself is not stored. Assistant replies, tool output, code, secrets, and text you only quoted are ignored.
 
+unimem also notices preferences you never spell out as a rule. If you correct the agent, for example "no, use pnpm" or "stop adding so many comments", that is noted as a candidate. A candidate is never recalled. If you say much the same thing in a second session, it becomes a real memory: a project memory when both sessions were in the same project, a user memory when they were in different ones. One-off instructions like "don't run it yet" are ignored. `unimem candidates` lists what is waiting.
+
+If you have two sessions open in the same project, each keeps its own short-lived notes in Claude Code, Codex, Pi, and Hermes. In desktop apps that run every chat from one process, such as Cursor, notes go to the most recently started session.
+
 | Tool | Where the hooks go | Good to know |
 |---|---|---|
 | Claude Code | `~/.claude/settings.json` | works straight away |
