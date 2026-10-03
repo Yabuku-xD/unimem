@@ -494,9 +494,9 @@ def _remove_json_server(path: Path) -> bool:
     if not isinstance(servers, dict) or "unimem" not in servers:
         return False
     del servers["unimem"]
-    if not servers:
-        del data["mcpServers"]
-    _write_or_remove_json(path, data)
+    # An empty `mcpServers` may have been there before init, so it is kept. A
+    # file holding nothing else was created by init and is removed.
+    _write_or_remove_json(path, {} if data == {"mcpServers": {}} else data)
     return True
 
 

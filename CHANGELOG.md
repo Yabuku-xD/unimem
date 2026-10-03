@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 (2026-10-02)
+
+### Fixed
+
+- `unimem uninstall` removed an empty `mcpServers` object that was in a config before `init` ran. It now leaves that object in place. Found by comparing real configs with their pre-install backups.
+
 ## 0.2.1 (2026-10-02)
 
 ### Fixed

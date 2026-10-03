@@ -435,6 +435,7 @@ def main() -> int:
                 indent=2,
             ) + "\n",
             ".codex/config.toml": 'model = "gpt-5"\n\n[mcp_servers.other]\ncommand = "other"\n',
+            ".cursor/mcp.json": json.dumps({"mcpServers": {}, "theme": "dark"}, indent=2) + "\n",
             ".hermes/config.yaml": "model: test\nmcp_servers:\n  other:\n    command: other\ntoolsets: [web]\n",
         }
         for relative, text in seeds.items():

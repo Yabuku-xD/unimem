@@ -5,7 +5,7 @@
 <p>One local memory for all your coding agents. It stays quiet until an agent actually needs to remember something.</p>
 
 [![CI](https://github.com/Yabuku-xD/unimem/actions/workflows/ci.yml/badge.svg)](https://github.com/Yabuku-xD/unimem/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-0.2.1-blue?style=flat-square)
+![Version](https://img.shields.io/badge/version-0.2.2-blue?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue?style=flat-square)
 ![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux-lightgrey?style=flat-square)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
