@@ -38,6 +38,7 @@ from benchmarks.run_memory_quality import (  # noqa: E402
     run_fixture_retrieval,
     run_lifecycle,
     run_locomo,
+    run_longmemeval,
     run_parity,
     run_routing,
     seed_fixture_memories,
@@ -58,6 +59,7 @@ DEFAULT_PATHS = {
         Path("/tmp/unimem-memoryagentbench-conflict.parquet"),
     ],
     "beam": Path("/tmp/unimem-beam-100k.parquet"),
+    "longmemeval_s": Path("/tmp/unimem-longmemeval_s_cleaned.json"),
     "longmemeval_v2_questions": Path("/tmp/unimem-lme-v2-questions.jsonl"),
     "longmemeval_v2_evidence": Path("/tmp/unimem-lme-v2-small.json"),
 }
@@ -290,6 +292,11 @@ def main() -> int:
     )
     parser.add_argument("--beam", type=Path, default=DEFAULT_PATHS["beam"])
     parser.add_argument(
+        "--longmemeval-s",
+        type=Path,
+        help="LongMemEval-S cleaned JSON (about 247,000 turns; off unless given)",
+    )
+    parser.add_argument(
         "--longmemeval-v2-questions",
         type=Path,
         default=DEFAULT_PATHS["longmemeval_v2_questions"],
@@ -380,6 +387,11 @@ def main() -> int:
             run_locomo(locomo_path, database=database, limit=args.limit, enricher=enricher)
             if locomo_path
             else {"status": "not_run", "reason": "LoCoMo dataset path not provided"}
+        )
+        longmemeval_s = (
+            run_longmemeval(args.longmemeval_s, database=database, limit=args.limit)
+            if args.longmemeval_s
+            else {"status": "not_run", "reason": "--longmemeval-s not provided"}
         )
         public_results: dict[str, dict[str, Any]] = {}
         if membench_path:
@@ -502,6 +514,7 @@ def main() -> int:
             "capacity_and_efficiency": capacity,
             "cli_mcp_parity": parity,
             "locomo": locomo,
+            "longmemeval_s": longmemeval_s,
             "public_retrieval": public_results,
             "longmemeval_v2": longmemeval_v2_inventory(
                 longmemeval_questions,

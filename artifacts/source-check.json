@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-02T04:54:45.139145+00:00",
+  "checked_at": "2026-10-02T22:12:23.174948+00:00",
   "report": "MEMORY_SYSTEM_RESEARCH.md",
-  "report_sha256": "3b4e0cf30ef8b10b66b8db07aa580cca8203f109f35b97954d524b2c5d6cf922",
-  "source_count": 71,
-  "ok_count": 71,
-  "failed_count": 0,
+  "report_sha256": "b786eda8c8d4f28affa10cd30ee524bdfc8b9309f2cadd06784e93e01f7bd034",
+  "source_count": 73,
+  "ok_count": 72,
+  "failed_count": 1,
   "sources": [
     {
       "url": "https://aclanthology.org/2024.naacl-long.389/",
@@ -89,6 +89,12 @@
       "status": "ok",
       "title": "[2507.05257] Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions",
       "excerpt": "# Computer Science &gt; Computation and Language  \\[Submitted on 7 Jul 2025 ([v1](https://arxiv.org/abs/2507.05257v1)), last revised 28 Jun 2026 (this version, v4)]  # Title:Evaluating Memory in LLM Agents via Incremental Multi-Turn Interac"
+    },
+    {
+      "url": "https://arxiv.org/abs/2604.02431",
+      "status": "ok",
+      "title": "[2604.02431] SelRoute: Query-Type-Aware Routing for Long-Term Conversational Memory Retrieval",
+      "excerpt": "# Computer Science &gt; Information Retrieval  \\[Submitted on 2 Apr 2026]  # Title:SelRoute: Query-Type-Aware Routing for Long-Term Conversational Memory Retrieval  Authors:[Matthew McKee](https://arxiv.org/search/cs?searchtype=author&query"
     },
     {
       "url": "https://arxiv.org/abs/2604.11462",
@@ -271,6 +277,12 @@
       "excerpt": "main  [Branches](https://github.com/HUST-AI-HYZ/MemoryAgentBench/branches)[Tags](https://github.com/HUST-AI-HYZ/MemoryAgentBench/tags)  Code  \u00a0  |Name||Name|Last commit message|Last commit date| |---|---|---|---|---| |[assets](https://githu"
     },
     {
+      "url": "https://github.com/MemPalace/mempalace/blob/develop/benchmarks/BENCHMARKS.md",
+      "status": "ok",
+      "title": "mempalace/benchmarks/BENCHMARKS.md at develop \u00b7 MemPalace/mempalace \u00b7 GitHub",
+      "excerpt": "develop  # BENCHMARKS.md  \u00a0  develop  # BENCHMARKS.md  758 lines (532 loc) \u00b7 37.3 KB  [Raw](https://github.com/MemPalace/mempalace/raw/refs/heads/develop/benchmarks/BENCHMARKS.md)  # MemPal Benchmark Results \u2014 Full Progression  **March 2026"
+    },
+    {
       "url": "https://github.com/agentsmd/agents.md",
       "status": "ok",
       "title": "GitHub - agentsmd/agents.md: AGENTS.md",
@@ -428,9 +440,8 @@
     },
     {
       "url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/fd1eff9dd295df50a41f2521942fa31d-Abstract.html",
-      "status": "ok",
-      "title": "Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions",
-      "excerpt": "# Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions  ## Abstract  Recent benchmarks for Large Language Model (LLM) agents primarily focus on evaluating reasoning, planning, and execution capabilities, while another cri"
+      "status": "error",
+      "error": "no scrape result"
     }
   ]
 }

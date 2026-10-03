@@ -1,0 +1,6221 @@
+{
+ "harness": "vectorize-io/agent-memory-benchmark @ f618ed7 (local patches: unimem provider; OpenAI adapter asks for JSON in the prompt, parses tolerantly, retries malformed replies)",
+ "answer_model": "google-antigravity/gemini-3.8-flash",
+ "judge_model": "google-antigravity/gemini-3.8-flash",
+ "recall": {
+  "memories": 200,
+  "full_text_memories": {
+   "longmemeval": 40,
+   "locomo": 60
+  },
+  "full_chars": 1500,
+  "tail_chars": 500
+ },
+ "stopped_early": "provider quota exhausted; each category ran its first N questions in dataset order",
+ "benchmarks": {
+  "longmemeval": {
+   "answered": 298,
+   "correct": 279,
+   "accuracy_answered": 0.9362416107382551,
+   "accuracy_weighted_by_category_size": 0.9148134171907757,
+   "mean_context_tokens": 21501.104026845638,
+   "by_category": {
+    "single-session-preference": {
+     "answered": 30,
+     "correct": 27,
+     "total_in_dataset": 30
+    },
+    "single-session-assistant": {
+     "answered": 54,
+     "correct": 51,
+     "total_in_dataset": 56
+    },
+    "multi-session": {
+     "answered": 42,
+     "correct": 34,
+     "total_in_dataset": 133
+    },
+    "single-session-user": {
+     "answered": 63,
+     "correct": 62,
+     "total_in_dataset": 70
+    },
+    "knowledge-update": {
+     "answered": 56,
+     "correct": 56,
+     "total_in_dataset": 78
+    },
+    "temporal-reasoning": {
+     "answered": 53,
+     "correct": 49,
+     "total_in_dataset": 133
+    }
+   },
+   "results": [
+    {
+     "id": "8a2466db",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 26085
+    },
+    {
+     "id": "06878be2",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 12255
+    },
+    {
+     "id": "75832dbd",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 25335
+    },
+    {
+     "id": "0edc2aef",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 13358
+    },
+    {
+     "id": "35a27287",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 24966
+    },
+    {
+     "id": "32260d93",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 13917
+    },
+    {
+     "id": "195a1a1b",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 19814
+    },
+    {
+     "id": "afdc33df",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 21426
+    },
+    {
+     "id": "caf03d32",
+     "category": "single-session-preference",
+     "correct": false,
+     "context_tokens": 26523
+    },
+    {
+     "id": "54026fce",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 21613
+    },
+    {
+     "id": "06f04340",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 13553
+    },
+    {
+     "id": "6b7dfb22",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 24636
+    },
+    {
+     "id": "1a1907b4",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 23864
+    },
+    {
+     "id": "09d032c9",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 24432
+    },
+    {
+     "id": "38146c39",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 26307
+    },
+    {
+     "id": "d24813b1",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 26239
+    },
+    {
+     "id": "57f827a0",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 20745
+    },
+    {
+     "id": "95228167",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 26818
+    },
+    {
+     "id": "505af2f5",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 23658
+    },
+    {
+     "id": "75f70248",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 24073
+    },
+    {
+     "id": "d6233ab6",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 24617
+    },
+    {
+     "id": "1da05512",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 22360
+    },
+    {
+     "id": "fca70973",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 16919
+    },
+    {
+     "id": "b6025781",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 26323
+    },
+    {
+     "id": "a89d7624",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 22645
+    },
+    {
+     "id": "b0479f84",
+     "category": "single-session-preference",
+     "correct": false,
+     "context_tokens": 25044
+    },
+    {
+     "id": "1d4e3b97",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 24486
+    },
+    {
+     "id": "07b6f563",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 21166
+    },
+    {
+     "id": "1c0ddc50",
+     "category": "single-session-preference",
+     "correct": false,
+     "context_tokens": 26949
+    },
+    {
+     "id": "0a34ad58",
+     "category": "single-session-preference",
+     "correct": true,
+     "context_tokens": 26571
+    },
+    {
+     "id": "7161e7e2",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 25550
+    },
+    {
+     "id": "c4f10528",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26414
+    },
+    {
+     "id": "89527b6b",
+     "category": "single-session-assistant",
+     "correct": false,
+     "context_tokens": 27723
+    },
+    {
+     "id": "e9327a54",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 25348
+    },
+    {
+     "id": "4c36ccef",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 18593
+    },
+    {
+     "id": "6ae235be",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 25287
+    },
+    {
+     "id": "7e00a6cb",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26261
+    },
+    {
+     "id": "1903aded",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 24628
+    },
+    {
+     "id": "ceb54acb",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28069
+    },
+    {
+     "id": "f523d9fe",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27563
+    },
+    {
+     "id": "0e5e2d1a",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28567
+    },
+    {
+     "id": "fea54f57",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 23596
+    },
+    {
+     "id": "cc539528",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28705
+    },
+    {
+     "id": "dc439ea3",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28297
+    },
+    {
+     "id": "18dcd5a5",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26389
+    },
+    {
+     "id": "488d3006",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27191
+    },
+    {
+     "id": "58470ed2",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27878
+    },
+    {
+     "id": "8cf51dda",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 25529
+    },
+    {
+     "id": "1d4da289",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26562
+    },
+    {
+     "id": "8464fc84",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28112
+    },
+    {
+     "id": "8aef76bc",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26616
+    },
+    {
+     "id": "71a3fd6b",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26535
+    },
+    {
+     "id": "2bf43736",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28256
+    },
+    {
+     "id": "70b3e69b",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26161
+    },
+    {
+     "id": "8752c811",
+     "category": "single-session-assistant",
+     "correct": false,
+     "context_tokens": 28857
+    },
+    {
+     "id": "3249768e",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28776
+    },
+    {
+     "id": "1b9b7252",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 29861
+    },
+    {
+     "id": "1568498a",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26421
+    },
+    {
+     "id": "6222b6eb",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28275
+    },
+    {
+     "id": "e8a79c70",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 29252
+    },
+    {
+     "id": "d596882b",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26258
+    },
+    {
+     "id": "e3fc4d6e",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27921
+    },
+    {
+     "id": "51b23612",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 25367
+    },
+    {
+     "id": "3e321797",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28202
+    },
+    {
+     "id": "e982271f",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 25804
+    },
+    {
+     "id": "352ab8bd",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28261
+    },
+    {
+     "id": "fca762bc",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 29655
+    },
+    {
+     "id": "7a8d0b71",
+     "category": "single-session-assistant",
+     "correct": false,
+     "context_tokens": 26961
+    },
+    {
+     "id": "a40e080f",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27427
+    },
+    {
+     "id": "8b9d4367",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27786
+    },
+    {
+     "id": "5809eb10",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 23841
+    },
+    {
+     "id": "41275add",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27536
+    },
+    {
+     "id": "4388e9dd",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26821
+    },
+    {
+     "id": "4baee567",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 28047
+    },
+    {
+     "id": "561fabcd",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 24439
+    },
+    {
+     "id": "b759caee",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 30942
+    },
+    {
+     "id": "ac031881",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 23814
+    },
+    {
+     "id": "28bcfaac",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26244
+    },
+    {
+     "id": "16c90bf4",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26392
+    },
+    {
+     "id": "c8f1aeed",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 29783
+    },
+    {
+     "id": "eaca4986",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27271
+    },
+    {
+     "id": "c7cf7dfd",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27160
+    },
+    {
+     "id": "e48988bc",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 26760
+    },
+    {
+     "id": "1de5cff2",
+     "category": "single-session-assistant",
+     "correct": true,
+     "context_tokens": 27884
+    },
+    {
+     "id": "0a995998",
+     "category": "multi-session",
+     "correct": false,
+     "context_tokens": 28039
+    },
+    {
+     "id": "6d550036",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 18806
+    },
+    {
+     "id": "gpt4_59c863d7",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 26362
+    },
+    {
+     "id": "b5ef892d",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 21960
+    },
+    {
+     "id": "e831120c",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 29777
+    },
+    {
+     "id": "3a704032",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 18843
+    },
+    {
+     "id": "gpt4_d84a3211",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 25449
+    },
+    {
+     "id": "aae3761f",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 21067
+    },
+    {
+     "id": "gpt4_f2262a51",
+     "category": "multi-session",
+     "correct": false,
+     "context_tokens": 19063
+    },
+    {
+     "id": "dd2973ad",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 29857
+    },
+    {
+     "id": "c4a1ceb8",
+     "category": "multi-session",
+     "correct": false,
+     "context_tokens": 27691
+    },
+    {
+     "id": "gpt4_a56e767c",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 13552
+    },
+    {
+     "id": "6cb6f249",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 26747
+    },
+    {
+     "id": "46a3abf7",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 28504
+    },
+    {
+     "id": "36b9f61e",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 18492
+    },
+    {
+     "id": "28dc39ac",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 19063
+    },
+    {
+     "id": "gpt4_2f8be40d",
+     "category": "multi-session",
+     "correct": false,
+     "context_tokens": 16168
+    },
+    {
+     "id": "2e6d26dc",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 22327
+    },
+    {
+     "id": "gpt4_15e38248",
+     "category": "multi-session",
+     "correct": false,
+     "context_tokens": 19969
+    },
+    {
+     "id": "88432d0a",
+     "category": "multi-session",
+     "correct": false,
+     "context_tokens": 27478
+    },
+    {
+     "id": "80ec1f4f",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 21498
+    },
+    {
+     "id": "d23cf73b",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 28655
+    },
+    {
+     "id": "gpt4_7fce9456",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 29558
+    },
+    {
+     "id": "d682f1a2",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 26010
+    },
+    {
+     "id": "7024f17c",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 20851
+    },
+    {
+     "id": "gpt4_5501fe77",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 29715
+    },
+    {
+     "id": "gpt4_2ba83207",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 20618
+    },
+    {
+     "id": "2318644b",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 25866
+    },
+    {
+     "id": "2ce6a0f2",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 29700
+    },
+    {
+     "id": "gpt4_d12ceb0e",
+     "category": "multi-session",
+     "correct": false,
+     "context_tokens": 5349
+    },
+    {
+     "id": "00ca467f",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 15941
+    },
+    {
+     "id": "b3c15d39",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 28750
+    },
+    {
+     "id": "gpt4_31ff4165",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 30678
+    },
+    {
+     "id": "eeda8a6d",
+     "category": "multi-session",
+     "correct": false,
+     "context_tokens": 16270
+    },
+    {
+     "id": "2788b940",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 23645
+    },
+    {
+     "id": "60bf93ed",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 27198
+    },
+    {
+     "id": "9d25d4e0",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 19841
+    },
+    {
+     "id": "129d1232",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 20879
+    },
+    {
+     "id": "60472f9c",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 20823
+    },
+    {
+     "id": "gpt4_194be4b3",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 19935
+    },
+    {
+     "id": "a9f6b44c",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 23755
+    },
+    {
+     "id": "d851d5ba",
+     "category": "multi-session",
+     "correct": true,
+     "context_tokens": 11984
+    },
+    {
+     "id": "e47becba",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 746
+    },
+    {
+     "id": "118b2229",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 20287
+    },
+    {
+     "id": "51a45a95",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 22792
+    },
+    {
+     "id": "58bf7951",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 14701
+    },
+    {
+     "id": "1e043500",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 20269
+    },
+    {
+     "id": "c5e8278d",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 15698
+    },
+    {
+     "id": "6ade9755",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 18312
+    },
+    {
+     "id": "6f9b354f",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 7740
+    },
+    {
+     "id": "58ef2f1c",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 13408
+    },
+    {
+     "id": "f8c5f88b",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 18597
+    },
+    {
+     "id": "5d3d2817",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 3182
+    },
+    {
+     "id": "7527f7e2",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 14173
+    },
+    {
+     "id": "c960da58",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 13386
+    },
+    {
+     "id": "3b6f954b",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 11198
+    },
+    {
+     "id": "726462e0",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 27301
+    },
+    {
+     "id": "94f70d80",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 18394
+    },
+    {
+     "id": "66f24dbb",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 5605
+    },
+    {
+     "id": "ad7109d1",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 26659
+    },
+    {
+     "id": "af8d2e46",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 29765
+    },
+    {
+     "id": "dccbc061",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 5180
+    },
+    {
+     "id": "c8c3f81d",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 13702
+    },
+    {
+     "id": "8ebdbe50",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 11230
+    },
+    {
+     "id": "6b168ec8",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 14311
+    },
+    {
+     "id": "75499fd8",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 2239
+    },
+    {
+     "id": "21436231",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 14123
+    },
+    {
+     "id": "95bcc1c8",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 20374
+    },
+    {
+     "id": "0862e8bf",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 8865
+    },
+    {
+     "id": "853b0a1d",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 7256
+    },
+    {
+     "id": "a06e4cfe",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 12988
+    },
+    {
+     "id": "37d43f65",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 8757
+    },
+    {
+     "id": "b86304ba",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 11198
+    },
+    {
+     "id": "d52b4f67",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 6550
+    },
+    {
+     "id": "25e5aa4f",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 11114
+    },
+    {
+     "id": "caf9ead2",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 26052
+    },
+    {
+     "id": "8550ddae",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 20226
+    },
+    {
+     "id": "60d45044",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 12699
+    },
+    {
+     "id": "3f1e9474",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 12492
+    },
+    {
+     "id": "86b68151",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 15608
+    },
+    {
+     "id": "577d4d32",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 27337
+    },
+    {
+     "id": "ec81a493",
+     "category": "single-session-user",
+     "correct": false,
+     "context_tokens": 13741
+    },
+    {
+     "id": "15745da0",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 12225
+    },
+    {
+     "id": "e01b8e2f",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 21501
+    },
+    {
+     "id": "bc8a6e93",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 12173
+    },
+    {
+     "id": "ccb36322",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 21721
+    },
+    {
+     "id": "001be529",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 11788
+    },
+    {
+     "id": "b320f3f8",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 15853
+    },
+    {
+     "id": "19b5f2b3",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 9867
+    },
+    {
+     "id": "4fd1909e",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 5034
+    },
+    {
+     "id": "545bd2b5",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 22968
+    },
+    {
+     "id": "8a137a7f",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 11783
+    },
+    {
+     "id": "76d63226",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 18063
+    },
+    {
+     "id": "86f00804",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 11879
+    },
+    {
+     "id": "8e9d538c",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 19114
+    },
+    {
+     "id": "311778f1",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 15775
+    },
+    {
+     "id": "c19f7a0b",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 28308
+    },
+    {
+     "id": "4100d0a0",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 1030
+    },
+    {
+     "id": "29f2956b",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 26414
+    },
+    {
+     "id": "1faac195",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 6021
+    },
+    {
+     "id": "faba32e5",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 13549
+    },
+    {
+     "id": "f4f1d8a4",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 17505
+    },
+    {
+     "id": "c14c00dd",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 26148
+    },
+    {
+     "id": "36580ce8",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 20111
+    },
+    {
+     "id": "3d86fd0a",
+     "category": "single-session-user",
+     "correct": true,
+     "context_tokens": 7462
+    },
+    {
+     "id": "6a1eabeb",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 27423
+    },
+    {
+     "id": "6aeb4375",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 19343
+    },
+    {
+     "id": "830ce83f",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 11262
+    },
+    {
+     "id": "852ce960",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 15349
+    },
+    {
+     "id": "945e3d21",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 28418
+    },
+    {
+     "id": "d7c942c3",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 19653
+    },
+    {
+     "id": "71315a70",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 15328
+    },
+    {
+     "id": "89941a93",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 19737
+    },
+    {
+     "id": "ce6d2d27",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 27122
+    },
+    {
+     "id": "9ea5eabc",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 21011
+    },
+    {
+     "id": "07741c44",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 17650
+    },
+    {
+     "id": "a1eacc2a",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 28225
+    },
+    {
+     "id": "184da446",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 19616
+    },
+    {
+     "id": "031748ae",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 28680
+    },
+    {
+     "id": "4d6b87c8",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 15595
+    },
+    {
+     "id": "0f05491a",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 26970
+    },
+    {
+     "id": "08e075c7",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 31469
+    },
+    {
+     "id": "f9e8c073",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 21084
+    },
+    {
+     "id": "41698283",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 17818
+    },
+    {
+     "id": "2698e78f",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 14685
+    },
+    {
+     "id": "b6019101",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 27165
+    },
+    {
+     "id": "45dc21b6",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 23345
+    },
+    {
+     "id": "5a4f22c0",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 22169
+    },
+    {
+     "id": "6071bd76",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 27554
+    },
+    {
+     "id": "e493bb7c",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 10820
+    },
+    {
+     "id": "618f13b2",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 29804
+    },
+    {
+     "id": "72e3ee87",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 17880
+    },
+    {
+     "id": "c4ea545c",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 21524
+    },
+    {
+     "id": "01493427",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 27439
+    },
+    {
+     "id": "6a27ffc2",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 18212
+    },
+    {
+     "id": "2133c1b5",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 13627
+    },
+    {
+     "id": "18bc8abd",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 13207
+    },
+    {
+     "id": "db467c8c",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 26290
+    },
+    {
+     "id": "7a87bd0c",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 11635
+    },
+    {
+     "id": "e61a7584",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 10408
+    },
+    {
+     "id": "1cea1afa",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 20490
+    },
+    {
+     "id": "ed4ddc30",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 24761
+    },
+    {
+     "id": "8fb83627",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 16422
+    },
+    {
+     "id": "b01defab",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 11297
+    },
+    {
+     "id": "22d2cb42",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 17742
+    },
+    {
+     "id": "0e4e4c46",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 11256
+    },
+    {
+     "id": "4b24c848",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 24597
+    },
+    {
+     "id": "7e974930",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 14475
+    },
+    {
+     "id": "603deb26",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 28613
+    },
+    {
+     "id": "59524333",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 18490
+    },
+    {
+     "id": "5831f84d",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 24447
+    },
+    {
+     "id": "eace081b",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 19649
+    },
+    {
+     "id": "affe2881",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 27575
+    },
+    {
+     "id": "50635ada",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 19593
+    },
+    {
+     "id": "e66b632c",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 27127
+    },
+    {
+     "id": "0ddfec37",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 29919
+    },
+    {
+     "id": "f685340e",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 21744
+    },
+    {
+     "id": "cc5ded98",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 27256
+    },
+    {
+     "id": "dfde3500",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 19023
+    },
+    {
+     "id": "69fee5aa",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 16172
+    },
+    {
+     "id": "7401057b",
+     "category": "knowledge-update",
+     "correct": true,
+     "context_tokens": 24433
+    },
+    {
+     "id": "gpt4_59149c77",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 24914
+    },
+    {
+     "id": "gpt4_f49edff3",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 29000
+    },
+    {
+     "id": "71017276",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 21441
+    },
+    {
+     "id": "b46e15ed",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 25761
+    },
+    {
+     "id": "gpt4_fa19884c",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 30566
+    },
+    {
+     "id": "0bc8ad92",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 20047
+    },
+    {
+     "id": "af082822",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 19991
+    },
+    {
+     "id": "gpt4_4929293a",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 21542
+    },
+    {
+     "id": "gpt4_b5700ca9",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 20108
+    },
+    {
+     "id": "9a707b81",
+     "category": "temporal-reasoning",
+     "correct": false,
+     "context_tokens": 28980
+    },
+    {
+     "id": "gpt4_1d4ab0c9",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 28002
+    },
+    {
+     "id": "gpt4_e072b769",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 25465
+    },
+    {
+     "id": "0db4c65d",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 29063
+    },
+    {
+     "id": "gpt4_1d80365e",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 21594
+    },
+    {
+     "id": "gpt4_7f6b06db",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 12613
+    },
+    {
+     "id": "gpt4_6dc9b45b",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 13892
+    },
+    {
+     "id": "gpt4_8279ba02",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 15429
+    },
+    {
+     "id": "gpt4_18c2b244",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 28663
+    },
+    {
+     "id": "gpt4_a1b77f9c",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 24361
+    },
+    {
+     "id": "gpt4_1916e0ea",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 27779
+    },
+    {
+     "id": "gpt4_7a0daae1",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 28887
+    },
+    {
+     "id": "gpt4_468eb063",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 18222
+    },
+    {
+     "id": "gpt4_7abb270c",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 14309
+    },
+    {
+     "id": "gpt4_1e4a8aeb",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 22843
+    },
+    {
+     "id": "gpt4_4fc4f797",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 28624
+    },
+    {
+     "id": "4dfccbf7",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 28700
+    },
+    {
+     "id": "gpt4_61e13b3c",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 28184
+    },
+    {
+     "id": "gpt4_45189cb4",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 15213
+    },
+    {
+     "id": "2ebe6c90",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 25996
+    },
+    {
+     "id": "gpt4_e061b84f",
+     "category": "temporal-reasoning",
+     "correct": false,
+     "context_tokens": 22060
+    },
+    {
+     "id": "370a8ff4",
+     "category": "temporal-reasoning",
+     "correct": false,
+     "context_tokens": 17455
+    },
+    {
+     "id": "gpt4_d6585ce8",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 24776
+    },
+    {
+     "id": "gpt4_4ef30696",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 27754
+    },
+    {
+     "id": "gpt4_ec93e27f",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 26794
+    },
+    {
+     "id": "6e984301",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 28214
+    },
+    {
+     "id": "8077ef71",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 23028
+    },
+    {
+     "id": "gpt4_f420262c",
+     "category": "temporal-reasoning",
+     "correct": false,
+     "context_tokens": 16220
+    },
+    {
+     "id": "gpt4_8e165409",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 28580
+    },
+    {
+     "id": "gpt4_74aed68e",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 25791
+    },
+    {
+     "id": "bcbe585f",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 18981
+    },
+    {
+     "id": "gpt4_21adecb5",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 22635
+    },
+    {
+     "id": "5e1b23de",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 15310
+    },
+    {
+     "id": "gpt4_98f46fc6",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 15137
+    },
+    {
+     "id": "gpt4_af6db32f",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 17210
+    },
+    {
+     "id": "eac54adc",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 24961
+    },
+    {
+     "id": "gpt4_7ddcf75f",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 23760
+    },
+    {
+     "id": "gpt4_a2d1d1f6",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 22468
+    },
+    {
+     "id": "gpt4_85da3956",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 18519
+    },
+    {
+     "id": "gpt4_b0863698",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 23618
+    },
+    {
+     "id": "gpt4_68e94287",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 20627
+    },
+    {
+     "id": "gpt4_e414231e",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 24928
+    },
+    {
+     "id": "gpt4_7ca326fa",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 14471
+    },
+    {
+     "id": "gpt4_7bc6cf22",
+     "category": "temporal-reasoning",
+     "correct": true,
+     "context_tokens": 27420
+    }
+   ]
+  },
+  "locomo": {
+   "answered": 724,
+   "correct": 616,
+   "accuracy_answered": 0.850828729281768,
+   "accuracy_weighted_by_category_size": 0.8865815015289943,
+   "mean_context_tokens": 10039.328729281768,
+   "by_category": {
+    "multi-hop": {
+     "answered": 96,
+     "correct": 64,
+     "total_in_dataset": 96
+    },
+    "single-hop": {
+     "answered": 172,
+     "correct": 141,
+     "total_in_dataset": 282
+    },
+    "open-domain": {
+     "answered": 200,
+     "correct": 188,
+     "total_in_dataset": 841
+    },
+    "temporal": {
+     "answered": 256,
+     "correct": 223,
+     "total_in_dataset": 321
+    }
+   },
+   "results": [
+    {
+     "id": "conv-26_q2",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10283
+    },
+    {
+     "id": "conv-26_q14",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 11533
+    },
+    {
+     "id": "conv-26_q22",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10301
+    },
+    {
+     "id": "conv-26_q27",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9808
+    },
+    {
+     "id": "conv-26_q30",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10735
+    },
+    {
+     "id": "conv-26_q42",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 11100
+    },
+    {
+     "id": "conv-26_q46",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10692
+    },
+    {
+     "id": "conv-26_q50",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10244
+    },
+    {
+     "id": "conv-26_q59",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 9789
+    },
+    {
+     "id": "conv-26_q64",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10666
+    },
+    {
+     "id": "conv-26_q69",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10286
+    },
+    {
+     "id": "conv-26_q77",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10548
+    },
+    {
+     "id": "conv-26_q81",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10265
+    },
+    {
+     "id": "conv-41_q8",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8824
+    },
+    {
+     "id": "conv-41_q14",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9102
+    },
+    {
+     "id": "conv-41_q17",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8857
+    },
+    {
+     "id": "conv-41_q39",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 11155
+    },
+    {
+     "id": "conv-41_q41",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 9388
+    },
+    {
+     "id": "conv-41_q45",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9027
+    },
+    {
+     "id": "conv-41_q50",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8810
+    },
+    {
+     "id": "conv-41_q64",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9094
+    },
+    {
+     "id": "conv-42_q0",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10505
+    },
+    {
+     "id": "conv-42_q4",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8781
+    },
+    {
+     "id": "conv-42_q12",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8524
+    },
+    {
+     "id": "conv-42_q14",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 9393
+    },
+    {
+     "id": "conv-42_q60",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8543
+    },
+    {
+     "id": "conv-42_q66",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 9741
+    },
+    {
+     "id": "conv-42_q68",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8623
+    },
+    {
+     "id": "conv-42_q73",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8507
+    },
+    {
+     "id": "conv-42_q84",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9840
+    },
+    {
+     "id": "conv-42_q85",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9526
+    },
+    {
+     "id": "conv-42_q87",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8366
+    },
+    {
+     "id": "conv-43_q3",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10824
+    },
+    {
+     "id": "conv-43_q5",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 10454
+    },
+    {
+     "id": "conv-43_q8",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 12337
+    },
+    {
+     "id": "conv-43_q15",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 104
+    },
+    {
+     "id": "conv-43_q19",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 10392
+    },
+    {
+     "id": "conv-43_q27",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10953
+    },
+    {
+     "id": "conv-43_q28",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 9659
+    },
+    {
+     "id": "conv-43_q32",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10600
+    },
+    {
+     "id": "conv-43_q34",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10800
+    },
+    {
+     "id": "conv-43_q51",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 9479
+    },
+    {
+     "id": "conv-43_q53",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 12065
+    },
+    {
+     "id": "conv-43_q66",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 10748
+    },
+    {
+     "id": "conv-43_q67",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 11572
+    },
+    {
+     "id": "conv-43_q70",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9848
+    },
+    {
+     "id": "conv-44_q19",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 12452
+    },
+    {
+     "id": "conv-44_q20",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 10440
+    },
+    {
+     "id": "conv-44_q33",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 13316
+    },
+    {
+     "id": "conv-44_q43",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 9651
+    },
+    {
+     "id": "conv-44_q44",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 9736
+    },
+    {
+     "id": "conv-44_q52",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 10685
+    },
+    {
+     "id": "conv-44_q53",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 12222
+    },
+    {
+     "id": "conv-47_q0",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8362
+    },
+    {
+     "id": "conv-47_q6",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8470
+    },
+    {
+     "id": "conv-47_q7",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8455
+    },
+    {
+     "id": "conv-47_q12",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8471
+    },
+    {
+     "id": "conv-47_q16",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 12360
+    },
+    {
+     "id": "conv-47_q17",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 12029
+    },
+    {
+     "id": "conv-47_q19",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8961
+    },
+    {
+     "id": "conv-47_q25",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8689
+    },
+    {
+     "id": "conv-47_q30",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8679
+    },
+    {
+     "id": "conv-47_q33",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8727
+    },
+    {
+     "id": "conv-47_q35",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8572
+    },
+    {
+     "id": "conv-47_q36",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 81
+    },
+    {
+     "id": "conv-47_q44",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9454
+    },
+    {
+     "id": "conv-48_q5",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8351
+    },
+    {
+     "id": "conv-48_q11",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8063
+    },
+    {
+     "id": "conv-48_q18",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8551
+    },
+    {
+     "id": "conv-48_q23",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 10945
+    },
+    {
+     "id": "conv-48_q28",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8646
+    },
+    {
+     "id": "conv-48_q36",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 8470
+    },
+    {
+     "id": "conv-48_q40",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9003
+    },
+    {
+     "id": "conv-48_q48",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 9925
+    },
+    {
+     "id": "conv-48_q70",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8641
+    },
+    {
+     "id": "conv-48_q75",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 8932
+    },
+    {
+     "id": "conv-49_q5",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9100
+    },
+    {
+     "id": "conv-49_q10",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10000
+    },
+    {
+     "id": "conv-49_q19",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 11174
+    },
+    {
+     "id": "conv-49_q20",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10968
+    },
+    {
+     "id": "conv-49_q27",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10729
+    },
+    {
+     "id": "conv-49_q31",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 11250
+    },
+    {
+     "id": "conv-49_q38",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10253
+    },
+    {
+     "id": "conv-49_q43",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 11060
+    },
+    {
+     "id": "conv-49_q46",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10725
+    },
+    {
+     "id": "conv-49_q51",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9492
+    },
+    {
+     "id": "conv-49_q57",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9233
+    },
+    {
+     "id": "conv-49_q65",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9473
+    },
+    {
+     "id": "conv-49_q71",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9109
+    },
+    {
+     "id": "conv-50_q4",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10294
+    },
+    {
+     "id": "conv-50_q7",
+     "category": "multi-hop",
+     "correct": false,
+     "context_tokens": 11581
+    },
+    {
+     "id": "conv-50_q13",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10054
+    },
+    {
+     "id": "conv-50_q21",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 9531
+    },
+    {
+     "id": "conv-50_q37",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 12316
+    },
+    {
+     "id": "conv-50_q39",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 11256
+    },
+    {
+     "id": "conv-50_q42",
+     "category": "multi-hop",
+     "correct": true,
+     "context_tokens": 10689
+    },
+    {
+     "id": "conv-26_q3",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9786
+    },
+    {
+     "id": "conv-26_q4",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9871
+    },
+    {
+     "id": "conv-26_q7",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9771
+    },
+    {
+     "id": "conv-26_q11",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10180
+    },
+    {
+     "id": "conv-26_q13",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9920
+    },
+    {
+     "id": "conv-26_q15",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10483
+    },
+    {
+     "id": "conv-26_q18",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10493
+    },
+    {
+     "id": "conv-26_q19",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10968
+    },
+    {
+     "id": "conv-26_q23",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 10518
+    },
+    {
+     "id": "conv-26_q24",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10433
+    },
+    {
+     "id": "conv-26_q32",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10137
+    },
+    {
+     "id": "conv-26_q34",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10698
+    },
+    {
+     "id": "conv-26_q37",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10542
+    },
+    {
+     "id": "conv-26_q38",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10614
+    },
+    {
+     "id": "conv-26_q39",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10711
+    },
+    {
+     "id": "conv-26_q40",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10617
+    },
+    {
+     "id": "conv-26_q43",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10968
+    },
+    {
+     "id": "conv-26_q47",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10550
+    },
+    {
+     "id": "conv-26_q48",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11289
+    },
+    {
+     "id": "conv-26_q51",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10496
+    },
+    {
+     "id": "conv-26_q52",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10369
+    },
+    {
+     "id": "conv-26_q55",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10690
+    },
+    {
+     "id": "conv-26_q56",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10153
+    },
+    {
+     "id": "conv-26_q60",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10412
+    },
+    {
+     "id": "conv-26_q61",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10404
+    },
+    {
+     "id": "conv-26_q65",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10546
+    },
+    {
+     "id": "conv-26_q66",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 10614
+    },
+    {
+     "id": "conv-26_q70",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9922
+    },
+    {
+     "id": "conv-26_q71",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 10359
+    },
+    {
+     "id": "conv-26_q75",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10542
+    },
+    {
+     "id": "conv-26_q76",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10649
+    },
+    {
+     "id": "conv-26_q78",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10440
+    },
+    {
+     "id": "conv-30_q3",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9796
+    },
+    {
+     "id": "conv-30_q5",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11500
+    },
+    {
+     "id": "conv-30_q9",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 627
+    },
+    {
+     "id": "conv-30_q17",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10377
+    },
+    {
+     "id": "conv-30_q18",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10833
+    },
+    {
+     "id": "conv-30_q23",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10155
+    },
+    {
+     "id": "conv-30_q24",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10081
+    },
+    {
+     "id": "conv-30_q25",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11240
+    },
+    {
+     "id": "conv-30_q27",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11464
+    },
+    {
+     "id": "conv-30_q29",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9676
+    },
+    {
+     "id": "conv-30_q31",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 10645
+    },
+    {
+     "id": "conv-41_q2",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8893
+    },
+    {
+     "id": "conv-41_q3",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9966
+    },
+    {
+     "id": "conv-41_q6",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10229
+    },
+    {
+     "id": "conv-41_q7",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11426
+    },
+    {
+     "id": "conv-41_q9",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12615
+    },
+    {
+     "id": "conv-41_q11",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 12589
+    },
+    {
+     "id": "conv-41_q12",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9990
+    },
+    {
+     "id": "conv-41_q15",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9070
+    },
+    {
+     "id": "conv-41_q18",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9873
+    },
+    {
+     "id": "conv-41_q19",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9217
+    },
+    {
+     "id": "conv-41_q21",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9899
+    },
+    {
+     "id": "conv-41_q23",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9880
+    },
+    {
+     "id": "conv-41_q25",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 8873
+    },
+    {
+     "id": "conv-41_q26",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9886
+    },
+    {
+     "id": "conv-41_q28",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11743
+    },
+    {
+     "id": "conv-41_q29",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10087
+    },
+    {
+     "id": "conv-41_q30",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9809
+    },
+    {
+     "id": "conv-41_q32",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9072
+    },
+    {
+     "id": "conv-41_q33",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8998
+    },
+    {
+     "id": "conv-41_q35",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9023
+    },
+    {
+     "id": "conv-41_q36",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9380
+    },
+    {
+     "id": "conv-41_q37",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9703
+    },
+    {
+     "id": "conv-41_q40",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9008
+    },
+    {
+     "id": "conv-41_q42",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 781
+    },
+    {
+     "id": "conv-41_q44",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9309
+    },
+    {
+     "id": "conv-41_q47",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8872
+    },
+    {
+     "id": "conv-41_q49",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10135
+    },
+    {
+     "id": "conv-41_q52",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9092
+    },
+    {
+     "id": "conv-41_q57",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9663
+    },
+    {
+     "id": "conv-41_q60",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9087
+    },
+    {
+     "id": "conv-41_q62",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 10150
+    },
+    {
+     "id": "conv-42_q1",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11882
+    },
+    {
+     "id": "conv-42_q5",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8538
+    },
+    {
+     "id": "conv-42_q10",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9441
+    },
+    {
+     "id": "conv-42_q11",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8549
+    },
+    {
+     "id": "conv-42_q19",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10167
+    },
+    {
+     "id": "conv-42_q23",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 8700
+    },
+    {
+     "id": "conv-42_q27",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9596
+    },
+    {
+     "id": "conv-42_q30",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9812
+    },
+    {
+     "id": "conv-42_q34",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9618
+    },
+    {
+     "id": "conv-42_q42",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9555
+    },
+    {
+     "id": "conv-42_q46",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9524
+    },
+    {
+     "id": "conv-42_q47",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9595
+    },
+    {
+     "id": "conv-42_q49",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9580
+    },
+    {
+     "id": "conv-42_q50",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10366
+    },
+    {
+     "id": "conv-42_q51",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9771
+    },
+    {
+     "id": "conv-42_q52",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 11065
+    },
+    {
+     "id": "conv-42_q53",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10011
+    },
+    {
+     "id": "conv-42_q55",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8996
+    },
+    {
+     "id": "conv-42_q56",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10400
+    },
+    {
+     "id": "conv-42_q58",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9807
+    },
+    {
+     "id": "conv-42_q59",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8900
+    },
+    {
+     "id": "conv-42_q61",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9806
+    },
+    {
+     "id": "conv-42_q62",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8675
+    },
+    {
+     "id": "conv-42_q63",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9479
+    },
+    {
+     "id": "conv-42_q67",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8650
+    },
+    {
+     "id": "conv-42_q69",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9064
+    },
+    {
+     "id": "conv-42_q70",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9084
+    },
+    {
+     "id": "conv-42_q71",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9583
+    },
+    {
+     "id": "conv-42_q74",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9197
+    },
+    {
+     "id": "conv-42_q75",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8813
+    },
+    {
+     "id": "conv-42_q76",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9209
+    },
+    {
+     "id": "conv-42_q78",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9538
+    },
+    {
+     "id": "conv-42_q79",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 8729
+    },
+    {
+     "id": "conv-42_q80",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8834
+    },
+    {
+     "id": "conv-42_q81",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9270
+    },
+    {
+     "id": "conv-42_q82",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9152
+    },
+    {
+     "id": "conv-42_q83",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9155
+    },
+    {
+     "id": "conv-43_q0",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10773
+    },
+    {
+     "id": "conv-43_q1",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10976
+    },
+    {
+     "id": "conv-43_q2",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9333
+    },
+    {
+     "id": "conv-43_q4",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10583
+    },
+    {
+     "id": "conv-43_q7",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 8797
+    },
+    {
+     "id": "conv-43_q9",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9284
+    },
+    {
+     "id": "conv-43_q11",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12272
+    },
+    {
+     "id": "conv-43_q13",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 8911
+    },
+    {
+     "id": "conv-43_q14",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9204
+    },
+    {
+     "id": "conv-43_q17",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10331
+    },
+    {
+     "id": "conv-43_q18",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10623
+    },
+    {
+     "id": "conv-43_q21",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 10215
+    },
+    {
+     "id": "conv-43_q25",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9486
+    },
+    {
+     "id": "conv-43_q26",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9257
+    },
+    {
+     "id": "conv-43_q29",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12155
+    },
+    {
+     "id": "conv-43_q30",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9223
+    },
+    {
+     "id": "conv-43_q35",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9227
+    },
+    {
+     "id": "conv-43_q36",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11125
+    },
+    {
+     "id": "conv-43_q38",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 9319
+    },
+    {
+     "id": "conv-43_q41",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9515
+    },
+    {
+     "id": "conv-43_q42",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9217
+    },
+    {
+     "id": "conv-43_q43",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10176
+    },
+    {
+     "id": "conv-43_q48",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10063
+    },
+    {
+     "id": "conv-43_q49",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 10076
+    },
+    {
+     "id": "conv-43_q50",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11283
+    },
+    {
+     "id": "conv-43_q52",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10612
+    },
+    {
+     "id": "conv-43_q57",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9474
+    },
+    {
+     "id": "conv-43_q59",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9517
+    },
+    {
+     "id": "conv-43_q61",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10653
+    },
+    {
+     "id": "conv-43_q62",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 14317
+    },
+    {
+     "id": "conv-43_q65",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 11033
+    },
+    {
+     "id": "conv-44_q2",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9267
+    },
+    {
+     "id": "conv-44_q3",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11874
+    },
+    {
+     "id": "conv-44_q9",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12466
+    },
+    {
+     "id": "conv-44_q12",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11995
+    },
+    {
+     "id": "conv-44_q14",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 11925
+    },
+    {
+     "id": "conv-44_q15",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 13309
+    },
+    {
+     "id": "conv-44_q17",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 11383
+    },
+    {
+     "id": "conv-44_q18",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 10208
+    },
+    {
+     "id": "conv-44_q21",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 13362
+    },
+    {
+     "id": "conv-44_q23",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9542
+    },
+    {
+     "id": "conv-44_q24",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12585
+    },
+    {
+     "id": "conv-44_q26",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10488
+    },
+    {
+     "id": "conv-44_q27",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9767
+    },
+    {
+     "id": "conv-44_q28",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12579
+    },
+    {
+     "id": "conv-44_q29",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12979
+    },
+    {
+     "id": "conv-44_q31",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12917
+    },
+    {
+     "id": "conv-44_q32",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9373
+    },
+    {
+     "id": "conv-44_q35",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12869
+    },
+    {
+     "id": "conv-44_q36",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 10413
+    },
+    {
+     "id": "conv-44_q39",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 12797
+    },
+    {
+     "id": "conv-44_q40",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12310
+    },
+    {
+     "id": "conv-44_q41",
+     "category": "single-hop",
+     "correct": false,
+     "context_tokens": 12980
+    },
+    {
+     "id": "conv-44_q42",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12940
+    },
+    {
+     "id": "conv-44_q48",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9682
+    },
+    {
+     "id": "conv-44_q49",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 9927
+    },
+    {
+     "id": "conv-44_q50",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12349
+    },
+    {
+     "id": "conv-44_q51",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 13171
+    },
+    {
+     "id": "conv-44_q54",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 13402
+    },
+    {
+     "id": "conv-44_q56",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12921
+    },
+    {
+     "id": "conv-44_q60",
+     "category": "single-hop",
+     "correct": true,
+     "context_tokens": 12982
+    },
+    {
+     "id": "conv-26_q82",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 321
+    },
+    {
+     "id": "conv-26_q83",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10443
+    },
+    {
+     "id": "conv-26_q84",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10502
+    },
+    {
+     "id": "conv-26_q85",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9897
+    },
+    {
+     "id": "conv-26_q86",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10638
+    },
+    {
+     "id": "conv-26_q87",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9944
+    },
+    {
+     "id": "conv-26_q88",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10058
+    },
+    {
+     "id": "conv-26_q89",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10612
+    },
+    {
+     "id": "conv-26_q90",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 4537
+    },
+    {
+     "id": "conv-26_q91",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9823
+    },
+    {
+     "id": "conv-26_q92",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9796
+    },
+    {
+     "id": "conv-26_q93",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9791
+    },
+    {
+     "id": "conv-26_q94",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10792
+    },
+    {
+     "id": "conv-26_q95",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10650
+    },
+    {
+     "id": "conv-26_q96",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10026
+    },
+    {
+     "id": "conv-26_q97",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9985
+    },
+    {
+     "id": "conv-26_q98",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 2536
+    },
+    {
+     "id": "conv-26_q99",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9942
+    },
+    {
+     "id": "conv-26_q100",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11143
+    },
+    {
+     "id": "conv-26_q101",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 13203
+    },
+    {
+     "id": "conv-26_q102",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9921
+    },
+    {
+     "id": "conv-26_q103",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10412
+    },
+    {
+     "id": "conv-26_q104",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10243
+    },
+    {
+     "id": "conv-26_q105",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10107
+    },
+    {
+     "id": "conv-26_q106",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11049
+    },
+    {
+     "id": "conv-26_q107",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10523
+    },
+    {
+     "id": "conv-26_q108",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10645
+    },
+    {
+     "id": "conv-26_q109",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9940
+    },
+    {
+     "id": "conv-26_q110",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9589
+    },
+    {
+     "id": "conv-26_q111",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 8920
+    },
+    {
+     "id": "conv-26_q112",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9602
+    },
+    {
+     "id": "conv-26_q113",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10578
+    },
+    {
+     "id": "conv-26_q114",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9825
+    },
+    {
+     "id": "conv-26_q115",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10695
+    },
+    {
+     "id": "conv-26_q116",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11255
+    },
+    {
+     "id": "conv-26_q117",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10818
+    },
+    {
+     "id": "conv-26_q118",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11938
+    },
+    {
+     "id": "conv-26_q119",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10657
+    },
+    {
+     "id": "conv-26_q120",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10506
+    },
+    {
+     "id": "conv-26_q121",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10456
+    },
+    {
+     "id": "conv-26_q122",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 10729
+    },
+    {
+     "id": "conv-26_q123",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9759
+    },
+    {
+     "id": "conv-26_q124",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 10351
+    },
+    {
+     "id": "conv-26_q125",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 454
+    },
+    {
+     "id": "conv-26_q126",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10165
+    },
+    {
+     "id": "conv-26_q127",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10344
+    },
+    {
+     "id": "conv-26_q128",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9954
+    },
+    {
+     "id": "conv-26_q129",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9940
+    },
+    {
+     "id": "conv-26_q130",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10419
+    },
+    {
+     "id": "conv-26_q131",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10439
+    },
+    {
+     "id": "conv-26_q132",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10628
+    },
+    {
+     "id": "conv-26_q133",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10802
+    },
+    {
+     "id": "conv-26_q134",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10593
+    },
+    {
+     "id": "conv-26_q135",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10483
+    },
+    {
+     "id": "conv-26_q136",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10516
+    },
+    {
+     "id": "conv-26_q137",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11339
+    },
+    {
+     "id": "conv-26_q138",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 13458
+    },
+    {
+     "id": "conv-26_q139",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9944
+    },
+    {
+     "id": "conv-26_q140",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 1305
+    },
+    {
+     "id": "conv-26_q141",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9877
+    },
+    {
+     "id": "conv-26_q142",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11268
+    },
+    {
+     "id": "conv-26_q143",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10574
+    },
+    {
+     "id": "conv-26_q144",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 10444
+    },
+    {
+     "id": "conv-26_q145",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10822
+    },
+    {
+     "id": "conv-26_q146",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10479
+    },
+    {
+     "id": "conv-26_q147",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10585
+    },
+    {
+     "id": "conv-26_q148",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10503
+    },
+    {
+     "id": "conv-26_q149",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10712
+    },
+    {
+     "id": "conv-26_q150",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11356
+    },
+    {
+     "id": "conv-26_q151",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10495
+    },
+    {
+     "id": "conv-30_q2",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10021
+    },
+    {
+     "id": "conv-30_q4",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11498
+    },
+    {
+     "id": "conv-30_q39",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11147
+    },
+    {
+     "id": "conv-30_q40",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11126
+    },
+    {
+     "id": "conv-30_q41",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11080
+    },
+    {
+     "id": "conv-30_q42",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11443
+    },
+    {
+     "id": "conv-30_q43",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 5907
+    },
+    {
+     "id": "conv-30_q44",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11037
+    },
+    {
+     "id": "conv-30_q45",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11099
+    },
+    {
+     "id": "conv-30_q46",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11336
+    },
+    {
+     "id": "conv-30_q47",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10194
+    },
+    {
+     "id": "conv-30_q48",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10158
+    },
+    {
+     "id": "conv-30_q49",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10410
+    },
+    {
+     "id": "conv-30_q50",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10362
+    },
+    {
+     "id": "conv-30_q51",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10180
+    },
+    {
+     "id": "conv-30_q52",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10098
+    },
+    {
+     "id": "conv-30_q53",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10111
+    },
+    {
+     "id": "conv-30_q54",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10690
+    },
+    {
+     "id": "conv-30_q55",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9856
+    },
+    {
+     "id": "conv-30_q56",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 9627
+    },
+    {
+     "id": "conv-30_q57",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10592
+    },
+    {
+     "id": "conv-30_q58",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9719
+    },
+    {
+     "id": "conv-30_q59",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11570
+    },
+    {
+     "id": "conv-30_q60",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11623
+    },
+    {
+     "id": "conv-30_q61",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11081
+    },
+    {
+     "id": "conv-30_q62",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10065
+    },
+    {
+     "id": "conv-30_q63",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10124
+    },
+    {
+     "id": "conv-30_q64",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10064
+    },
+    {
+     "id": "conv-30_q65",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9682
+    },
+    {
+     "id": "conv-30_q66",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11240
+    },
+    {
+     "id": "conv-30_q67",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9764
+    },
+    {
+     "id": "conv-30_q68",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9639
+    },
+    {
+     "id": "conv-30_q69",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9838
+    },
+    {
+     "id": "conv-30_q70",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10219
+    },
+    {
+     "id": "conv-30_q71",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10792
+    },
+    {
+     "id": "conv-30_q72",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11467
+    },
+    {
+     "id": "conv-30_q73",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11240
+    },
+    {
+     "id": "conv-30_q74",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11353
+    },
+    {
+     "id": "conv-30_q75",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9759
+    },
+    {
+     "id": "conv-30_q76",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 977
+    },
+    {
+     "id": "conv-30_q77",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10270
+    },
+    {
+     "id": "conv-30_q78",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 10570
+    },
+    {
+     "id": "conv-30_q80",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9883
+    },
+    {
+     "id": "conv-30_q81",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10658
+    },
+    {
+     "id": "conv-41_q65",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9211
+    },
+    {
+     "id": "conv-41_q66",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10217
+    },
+    {
+     "id": "conv-41_q67",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 13837
+    },
+    {
+     "id": "conv-41_q68",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11940
+    },
+    {
+     "id": "conv-41_q69",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9527
+    },
+    {
+     "id": "conv-41_q70",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 13041
+    },
+    {
+     "id": "conv-41_q71",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10344
+    },
+    {
+     "id": "conv-41_q72",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 10864
+    },
+    {
+     "id": "conv-41_q73",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10201
+    },
+    {
+     "id": "conv-41_q74",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10973
+    },
+    {
+     "id": "conv-41_q75",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10011
+    },
+    {
+     "id": "conv-41_q76",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9266
+    },
+    {
+     "id": "conv-41_q77",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9170
+    },
+    {
+     "id": "conv-41_q78",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 12569
+    },
+    {
+     "id": "conv-41_q79",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10529
+    },
+    {
+     "id": "conv-41_q80",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 12244
+    },
+    {
+     "id": "conv-41_q81",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10626
+    },
+    {
+     "id": "conv-41_q82",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 8875
+    },
+    {
+     "id": "conv-41_q83",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9004
+    },
+    {
+     "id": "conv-41_q84",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11251
+    },
+    {
+     "id": "conv-41_q85",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11774
+    },
+    {
+     "id": "conv-41_q86",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 8996
+    },
+    {
+     "id": "conv-41_q87",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11302
+    },
+    {
+     "id": "conv-41_q88",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9031
+    },
+    {
+     "id": "conv-41_q89",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9257
+    },
+    {
+     "id": "conv-41_q90",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9249
+    },
+    {
+     "id": "conv-41_q92",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 12068
+    },
+    {
+     "id": "conv-41_q93",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 10975
+    },
+    {
+     "id": "conv-41_q94",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 9793
+    },
+    {
+     "id": "conv-41_q95",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9773
+    },
+    {
+     "id": "conv-41_q96",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10679
+    },
+    {
+     "id": "conv-41_q97",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9331
+    },
+    {
+     "id": "conv-41_q98",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9530
+    },
+    {
+     "id": "conv-41_q99",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9657
+    },
+    {
+     "id": "conv-41_q100",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10786
+    },
+    {
+     "id": "conv-41_q101",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10881
+    },
+    {
+     "id": "conv-41_q102",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10896
+    },
+    {
+     "id": "conv-41_q103",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9356
+    },
+    {
+     "id": "conv-41_q104",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10449
+    },
+    {
+     "id": "conv-41_q105",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9517
+    },
+    {
+     "id": "conv-41_q106",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11471
+    },
+    {
+     "id": "conv-41_q107",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9993
+    },
+    {
+     "id": "conv-41_q108",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10382
+    },
+    {
+     "id": "conv-41_q109",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 12263
+    },
+    {
+     "id": "conv-41_q110",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 13974
+    },
+    {
+     "id": "conv-41_q111",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9502
+    },
+    {
+     "id": "conv-41_q112",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 9751
+    },
+    {
+     "id": "conv-41_q113",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 12445
+    },
+    {
+     "id": "conv-41_q114",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10406
+    },
+    {
+     "id": "conv-41_q115",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10900
+    },
+    {
+     "id": "conv-41_q116",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 12655
+    },
+    {
+     "id": "conv-41_q117",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11195
+    },
+    {
+     "id": "conv-41_q118",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10599
+    },
+    {
+     "id": "conv-41_q119",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 12723
+    },
+    {
+     "id": "conv-41_q120",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9439
+    },
+    {
+     "id": "conv-41_q121",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10400
+    },
+    {
+     "id": "conv-41_q122",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10695
+    },
+    {
+     "id": "conv-41_q123",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10029
+    },
+    {
+     "id": "conv-41_q124",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9860
+    },
+    {
+     "id": "conv-41_q125",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9656
+    },
+    {
+     "id": "conv-41_q126",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9786
+    },
+    {
+     "id": "conv-41_q127",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10775
+    },
+    {
+     "id": "conv-41_q128",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9376
+    },
+    {
+     "id": "conv-41_q129",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10159
+    },
+    {
+     "id": "conv-41_q130",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9094
+    },
+    {
+     "id": "conv-41_q131",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10156
+    },
+    {
+     "id": "conv-41_q132",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10082
+    },
+    {
+     "id": "conv-41_q133",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10942
+    },
+    {
+     "id": "conv-41_q134",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10151
+    },
+    {
+     "id": "conv-41_q135",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10809
+    },
+    {
+     "id": "conv-41_q136",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10371
+    },
+    {
+     "id": "conv-41_q137",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9174
+    },
+    {
+     "id": "conv-41_q138",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10824
+    },
+    {
+     "id": "conv-41_q139",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 13047
+    },
+    {
+     "id": "conv-41_q140",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10698
+    },
+    {
+     "id": "conv-41_q141",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10419
+    },
+    {
+     "id": "conv-41_q142",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9540
+    },
+    {
+     "id": "conv-41_q143",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11121
+    },
+    {
+     "id": "conv-41_q144",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11989
+    },
+    {
+     "id": "conv-41_q145",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 9338
+    },
+    {
+     "id": "conv-41_q146",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 10210
+    },
+    {
+     "id": "conv-41_q147",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 8961
+    },
+    {
+     "id": "conv-41_q148",
+     "category": "open-domain",
+     "correct": false,
+     "context_tokens": 10069
+    },
+    {
+     "id": "conv-41_q149",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 12155
+    },
+    {
+     "id": "conv-41_q150",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 12090
+    },
+    {
+     "id": "conv-41_q151",
+     "category": "open-domain",
+     "correct": true,
+     "context_tokens": 11987
+    },
+    {
+     "id": "conv-26_q0",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11187
+    },
+    {
+     "id": "conv-26_q1",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10496
+    },
+    {
+     "id": "conv-26_q5",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 10333
+    },
+    {
+     "id": "conv-26_q6",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11136
+    },
+    {
+     "id": "conv-26_q8",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10074
+    },
+    {
+     "id": "conv-26_q9",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11028
+    },
+    {
+     "id": "conv-26_q10",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10403
+    },
+    {
+     "id": "conv-26_q12",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9941
+    },
+    {
+     "id": "conv-26_q16",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10936
+    },
+    {
+     "id": "conv-26_q17",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10775
+    },
+    {
+     "id": "conv-26_q20",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10486
+    },
+    {
+     "id": "conv-26_q21",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9779
+    },
+    {
+     "id": "conv-26_q25",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10358
+    },
+    {
+     "id": "conv-26_q26",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10518
+    },
+    {
+     "id": "conv-26_q28",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10316
+    },
+    {
+     "id": "conv-26_q29",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10596
+    },
+    {
+     "id": "conv-26_q31",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10607
+    },
+    {
+     "id": "conv-26_q33",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10155
+    },
+    {
+     "id": "conv-26_q35",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10607
+    },
+    {
+     "id": "conv-26_q36",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9771
+    },
+    {
+     "id": "conv-26_q41",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10280
+    },
+    {
+     "id": "conv-26_q44",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10432
+    },
+    {
+     "id": "conv-26_q45",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9909
+    },
+    {
+     "id": "conv-26_q49",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10722
+    },
+    {
+     "id": "conv-26_q53",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9944
+    },
+    {
+     "id": "conv-26_q54",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10020
+    },
+    {
+     "id": "conv-26_q57",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10913
+    },
+    {
+     "id": "conv-26_q58",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10758
+    },
+    {
+     "id": "conv-26_q62",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10535
+    },
+    {
+     "id": "conv-26_q63",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10216
+    },
+    {
+     "id": "conv-26_q67",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10330
+    },
+    {
+     "id": "conv-26_q68",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 10493
+    },
+    {
+     "id": "conv-26_q72",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10702
+    },
+    {
+     "id": "conv-26_q73",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10603
+    },
+    {
+     "id": "conv-26_q74",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10720
+    },
+    {
+     "id": "conv-26_q79",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10160
+    },
+    {
+     "id": "conv-26_q80",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10442
+    },
+    {
+     "id": "conv-30_q0",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9805
+    },
+    {
+     "id": "conv-30_q1",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9937
+    },
+    {
+     "id": "conv-30_q6",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10054
+    },
+    {
+     "id": "conv-30_q7",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10160
+    },
+    {
+     "id": "conv-30_q8",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9723
+    },
+    {
+     "id": "conv-30_q10",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10246
+    },
+    {
+     "id": "conv-30_q11",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10028
+    },
+    {
+     "id": "conv-30_q12",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9958
+    },
+    {
+     "id": "conv-30_q13",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10184
+    },
+    {
+     "id": "conv-30_q14",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10542
+    },
+    {
+     "id": "conv-30_q15",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11062
+    },
+    {
+     "id": "conv-30_q16",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11947
+    },
+    {
+     "id": "conv-30_q19",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9917
+    },
+    {
+     "id": "conv-30_q20",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10075
+    },
+    {
+     "id": "conv-30_q21",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9849
+    },
+    {
+     "id": "conv-30_q22",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10129
+    },
+    {
+     "id": "conv-30_q26",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9708
+    },
+    {
+     "id": "conv-30_q28",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9701
+    },
+    {
+     "id": "conv-30_q30",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11353
+    },
+    {
+     "id": "conv-30_q32",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9931
+    },
+    {
+     "id": "conv-30_q33",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10176
+    },
+    {
+     "id": "conv-30_q34",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10144
+    },
+    {
+     "id": "conv-30_q35",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10026
+    },
+    {
+     "id": "conv-30_q36",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11521
+    },
+    {
+     "id": "conv-30_q37",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9888
+    },
+    {
+     "id": "conv-30_q38",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11677
+    },
+    {
+     "id": "conv-41_q0",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9093
+    },
+    {
+     "id": "conv-41_q1",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9028
+    },
+    {
+     "id": "conv-41_q4",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11069
+    },
+    {
+     "id": "conv-41_q5",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9810
+    },
+    {
+     "id": "conv-41_q10",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8975
+    },
+    {
+     "id": "conv-41_q13",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9193
+    },
+    {
+     "id": "conv-41_q16",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9581
+    },
+    {
+     "id": "conv-41_q20",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9806
+    },
+    {
+     "id": "conv-41_q22",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9818
+    },
+    {
+     "id": "conv-41_q24",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10258
+    },
+    {
+     "id": "conv-41_q27",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9253
+    },
+    {
+     "id": "conv-41_q31",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9810
+    },
+    {
+     "id": "conv-41_q34",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9043
+    },
+    {
+     "id": "conv-41_q38",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9692
+    },
+    {
+     "id": "conv-41_q43",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9015
+    },
+    {
+     "id": "conv-41_q46",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10077
+    },
+    {
+     "id": "conv-41_q48",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9803
+    },
+    {
+     "id": "conv-41_q51",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10082
+    },
+    {
+     "id": "conv-41_q53",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11766
+    },
+    {
+     "id": "conv-41_q54",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 12040
+    },
+    {
+     "id": "conv-41_q55",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9489
+    },
+    {
+     "id": "conv-41_q56",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9276
+    },
+    {
+     "id": "conv-41_q58",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9557
+    },
+    {
+     "id": "conv-41_q59",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10213
+    },
+    {
+     "id": "conv-41_q61",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8916
+    },
+    {
+     "id": "conv-41_q63",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 10490
+    },
+    {
+     "id": "conv-41_q91",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8937
+    },
+    {
+     "id": "conv-42_q2",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9019
+    },
+    {
+     "id": "conv-42_q3",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9886
+    },
+    {
+     "id": "conv-42_q6",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9692
+    },
+    {
+     "id": "conv-42_q7",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9003
+    },
+    {
+     "id": "conv-42_q8",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 10057
+    },
+    {
+     "id": "conv-42_q9",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8546
+    },
+    {
+     "id": "conv-42_q13",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9607
+    },
+    {
+     "id": "conv-42_q15",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9097
+    },
+    {
+     "id": "conv-42_q16",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8374
+    },
+    {
+     "id": "conv-42_q17",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9112
+    },
+    {
+     "id": "conv-42_q18",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8532
+    },
+    {
+     "id": "conv-42_q20",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8413
+    },
+    {
+     "id": "conv-42_q21",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9003
+    },
+    {
+     "id": "conv-42_q22",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9860
+    },
+    {
+     "id": "conv-42_q24",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9363
+    },
+    {
+     "id": "conv-42_q25",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8642
+    },
+    {
+     "id": "conv-42_q26",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8737
+    },
+    {
+     "id": "conv-42_q28",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 13066
+    },
+    {
+     "id": "conv-42_q29",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10996
+    },
+    {
+     "id": "conv-42_q31",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9650
+    },
+    {
+     "id": "conv-42_q32",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 8485
+    },
+    {
+     "id": "conv-42_q33",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9705
+    },
+    {
+     "id": "conv-42_q35",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10252
+    },
+    {
+     "id": "conv-42_q36",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 12590
+    },
+    {
+     "id": "conv-42_q37",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8917
+    },
+    {
+     "id": "conv-42_q38",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9826
+    },
+    {
+     "id": "conv-42_q39",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8755
+    },
+    {
+     "id": "conv-42_q40",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8516
+    },
+    {
+     "id": "conv-42_q41",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9825
+    },
+    {
+     "id": "conv-42_q43",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 10741
+    },
+    {
+     "id": "conv-42_q44",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10130
+    },
+    {
+     "id": "conv-42_q45",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10636
+    },
+    {
+     "id": "conv-42_q48",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10107
+    },
+    {
+     "id": "conv-42_q54",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9788
+    },
+    {
+     "id": "conv-42_q57",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11902
+    },
+    {
+     "id": "conv-42_q64",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9155
+    },
+    {
+     "id": "conv-42_q65",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 8586
+    },
+    {
+     "id": "conv-42_q72",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 11356
+    },
+    {
+     "id": "conv-42_q77",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8982
+    },
+    {
+     "id": "conv-42_q86",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9419
+    },
+    {
+     "id": "conv-43_q6",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 10524
+    },
+    {
+     "id": "conv-43_q10",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9947
+    },
+    {
+     "id": "conv-43_q12",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9344
+    },
+    {
+     "id": "conv-43_q16",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10520
+    },
+    {
+     "id": "conv-43_q20",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9549
+    },
+    {
+     "id": "conv-43_q22",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9714
+    },
+    {
+     "id": "conv-43_q23",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10477
+    },
+    {
+     "id": "conv-43_q24",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9667
+    },
+    {
+     "id": "conv-43_q31",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11389
+    },
+    {
+     "id": "conv-43_q33",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10534
+    },
+    {
+     "id": "conv-43_q37",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10108
+    },
+    {
+     "id": "conv-43_q39",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9813
+    },
+    {
+     "id": "conv-43_q40",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9618
+    },
+    {
+     "id": "conv-43_q44",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9765
+    },
+    {
+     "id": "conv-43_q45",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9719
+    },
+    {
+     "id": "conv-43_q46",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9761
+    },
+    {
+     "id": "conv-43_q47",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9998
+    },
+    {
+     "id": "conv-43_q54",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9698
+    },
+    {
+     "id": "conv-43_q55",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9683
+    },
+    {
+     "id": "conv-43_q56",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9532
+    },
+    {
+     "id": "conv-43_q58",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9446
+    },
+    {
+     "id": "conv-43_q60",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9512
+    },
+    {
+     "id": "conv-43_q63",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10568
+    },
+    {
+     "id": "conv-43_q64",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9228
+    },
+    {
+     "id": "conv-43_q68",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10420
+    },
+    {
+     "id": "conv-43_q69",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8820
+    },
+    {
+     "id": "conv-44_q0",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 13233
+    },
+    {
+     "id": "conv-44_q1",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10140
+    },
+    {
+     "id": "conv-44_q4",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 10084
+    },
+    {
+     "id": "conv-44_q5",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9739
+    },
+    {
+     "id": "conv-44_q6",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9250
+    },
+    {
+     "id": "conv-44_q7",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 13198
+    },
+    {
+     "id": "conv-44_q8",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 13436
+    },
+    {
+     "id": "conv-44_q10",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 12073
+    },
+    {
+     "id": "conv-44_q11",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9835
+    },
+    {
+     "id": "conv-44_q13",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10344
+    },
+    {
+     "id": "conv-44_q16",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11385
+    },
+    {
+     "id": "conv-44_q22",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10193
+    },
+    {
+     "id": "conv-44_q25",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9765
+    },
+    {
+     "id": "conv-44_q30",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10080
+    },
+    {
+     "id": "conv-44_q34",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9624
+    },
+    {
+     "id": "conv-44_q37",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11098
+    },
+    {
+     "id": "conv-44_q38",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10202
+    },
+    {
+     "id": "conv-44_q45",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9442
+    },
+    {
+     "id": "conv-44_q46",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9442
+    },
+    {
+     "id": "conv-44_q47",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9314
+    },
+    {
+     "id": "conv-44_q55",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 12418
+    },
+    {
+     "id": "conv-44_q57",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 8759
+    },
+    {
+     "id": "conv-44_q58",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9256
+    },
+    {
+     "id": "conv-44_q59",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9867
+    },
+    {
+     "id": "conv-47_q1",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 8423
+    },
+    {
+     "id": "conv-47_q4",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9339
+    },
+    {
+     "id": "conv-47_q10",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8399
+    },
+    {
+     "id": "conv-47_q11",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 8909
+    },
+    {
+     "id": "conv-47_q13",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8379
+    },
+    {
+     "id": "conv-47_q14",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9852
+    },
+    {
+     "id": "conv-47_q15",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9884
+    },
+    {
+     "id": "conv-47_q21",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9751
+    },
+    {
+     "id": "conv-47_q23",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9766
+    },
+    {
+     "id": "conv-47_q28",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8704
+    },
+    {
+     "id": "conv-47_q29",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 8440
+    },
+    {
+     "id": "conv-47_q31",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9381
+    },
+    {
+     "id": "conv-47_q32",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 8492
+    },
+    {
+     "id": "conv-47_q37",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10019
+    },
+    {
+     "id": "conv-47_q39",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8837
+    },
+    {
+     "id": "conv-47_q41",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8477
+    },
+    {
+     "id": "conv-47_q42",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9860
+    },
+    {
+     "id": "conv-47_q43",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8765
+    },
+    {
+     "id": "conv-47_q46",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8383
+    },
+    {
+     "id": "conv-47_q47",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8580
+    },
+    {
+     "id": "conv-47_q48",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11516
+    },
+    {
+     "id": "conv-47_q50",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9131
+    },
+    {
+     "id": "conv-47_q52",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11842
+    },
+    {
+     "id": "conv-47_q53",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11307
+    },
+    {
+     "id": "conv-47_q55",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9858
+    },
+    {
+     "id": "conv-47_q57",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9066
+    },
+    {
+     "id": "conv-47_q58",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 12257
+    },
+    {
+     "id": "conv-47_q59",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11988
+    },
+    {
+     "id": "conv-47_q61",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8633
+    },
+    {
+     "id": "conv-47_q62",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9232
+    },
+    {
+     "id": "conv-47_q63",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10181
+    },
+    {
+     "id": "conv-47_q64",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9100
+    },
+    {
+     "id": "conv-47_q65",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8521
+    },
+    {
+     "id": "conv-47_q66",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11693
+    },
+    {
+     "id": "conv-48_q0",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9294
+    },
+    {
+     "id": "conv-48_q2",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8415
+    },
+    {
+     "id": "conv-48_q3",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8629
+    },
+    {
+     "id": "conv-48_q4",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9010
+    },
+    {
+     "id": "conv-48_q7",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8465
+    },
+    {
+     "id": "conv-48_q9",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8400
+    },
+    {
+     "id": "conv-48_q10",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8152
+    },
+    {
+     "id": "conv-48_q12",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8769
+    },
+    {
+     "id": "conv-48_q17",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8478
+    },
+    {
+     "id": "conv-48_q21",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9985
+    },
+    {
+     "id": "conv-48_q22",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8261
+    },
+    {
+     "id": "conv-48_q26",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8564
+    },
+    {
+     "id": "conv-48_q27",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8300
+    },
+    {
+     "id": "conv-48_q29",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8720
+    },
+    {
+     "id": "conv-48_q30",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8515
+    },
+    {
+     "id": "conv-48_q31",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11401
+    },
+    {
+     "id": "conv-48_q32",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8076
+    },
+    {
+     "id": "conv-48_q34",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9236
+    },
+    {
+     "id": "conv-48_q35",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9353
+    },
+    {
+     "id": "conv-48_q37",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9269
+    },
+    {
+     "id": "conv-48_q38",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9612
+    },
+    {
+     "id": "conv-48_q43",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9273
+    },
+    {
+     "id": "conv-48_q44",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9573
+    },
+    {
+     "id": "conv-48_q45",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8718
+    },
+    {
+     "id": "conv-48_q46",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9350
+    },
+    {
+     "id": "conv-48_q47",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9600
+    },
+    {
+     "id": "conv-48_q50",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 10111
+    },
+    {
+     "id": "conv-48_q51",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8761
+    },
+    {
+     "id": "conv-48_q52",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9710
+    },
+    {
+     "id": "conv-48_q53",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8513
+    },
+    {
+     "id": "conv-48_q54",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 8624
+    },
+    {
+     "id": "conv-48_q55",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9204
+    },
+    {
+     "id": "conv-48_q56",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9065
+    },
+    {
+     "id": "conv-48_q57",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9324
+    },
+    {
+     "id": "conv-48_q60",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 11706
+    },
+    {
+     "id": "conv-48_q65",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9675
+    },
+    {
+     "id": "conv-48_q66",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9072
+    },
+    {
+     "id": "conv-48_q68",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 8164
+    },
+    {
+     "id": "conv-48_q71",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9310
+    },
+    {
+     "id": "conv-48_q76",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9423
+    },
+    {
+     "id": "conv-48_q78",
+     "category": "temporal",
+     "correct": true,
+     "context_tokens": 9112
+    },
+    {
+     "id": "conv-48_q81",
+     "category": "temporal",
+     "correct": false,
+     "context_tokens": 9584
+    }
+   ]
+  }
+ }
+}

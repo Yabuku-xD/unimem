@@ -1,0 +1,224 @@
+{
+  "passed": false,
+  "command": "uv run --extra semantic --extra benchmark python benchmarks/measure_memory.py --lexical-only --locomo /nonexistent --membench /nonexistent --memoryagentbench --beam /nonexistent --longmemeval-s /tmp/unimem-longmemeval_s_cleaned.json --output artifacts/measure-memory-longmemeval-s.json",
+  "started_at": "2026-10-02T22:03:31.569348+00:00",
+  "finished_at": "2026-10-02T22:10:47.549520+00:00",
+  "python": "3.14.7 (main, Sep 29 2026, 14:50:11) [Clang 22.1.3 ]",
+  "enrichment": {
+    "enabled": false,
+    "model": null,
+    "generated": 0,
+    "generation_seconds": 0.0
+  },
+  "fts_column_weights": [
+    1.0,
+    0.5,
+    0.25
+  ],
+  "semantic": {
+    "enabled": false,
+    "model": null,
+    "fusion": {
+      "fts_weight": 2.0,
+      "semantic_weight": 1.0,
+      "rrf_k": 60
+    }
+  },
+  "primary": {
+    "name": "balanced_public_retrieval",
+    "value": 0.0,
+    "target": 0.95,
+    "direction": "maximize"
+  },
+  "hard_gates": {
+    "secret_leakage": true,
+    "project_leakage": true,
+    "session_forgetting_rate": true,
+    "max_recall_tokens": true,
+    "cli_mcp_parity": true
+  },
+  "diagnostics": {
+    "balanced_public_retrieval_at_3": 0.0,
+    "routing_f1": 1.0,
+    "extraction_f1": 1.0,
+    "recall_latency_p95_ms": 2.5985813816078007,
+    "estimated_output_tokens_p95": 163.0,
+    "max_recall_tokens": 163,
+    "max_rss_mb": 41.578125,
+    "cpu_seconds": 329.555845,
+    "wall_seconds": 435.97818570799427
+  },
+  "metrics": {
+    "routing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "trigger_accuracy": 1.0,
+      "true_positive": 10,
+      "false_positive": 0,
+      "true_negative": 10,
+      "false_negative": 0,
+      "misses": [],
+      "target": 0.9,
+      "meets_target": true
+    },
+    "extraction": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "scope_accuracy": 1.0,
+      "kind_accuracy": 1.0,
+      "lifecycle_accuracy": 1.0,
+      "secret_leakage": 0,
+      "misses": [],
+      "precision_target": 0.9,
+      "recall_target": 0.8,
+      "meets_target": true
+    },
+    "fixture_retrieval": {
+      "top1_accuracy": 1.0,
+      "recall_at_3": 1.0,
+      "foreign_project_hits": 0,
+      "latency_ms": {
+        "p50": 1.065083488356322,
+        "p95": 1.1041764810215682
+      },
+      "target": 0.8,
+      "meets_target": true,
+      "misses": [],
+      "knowledge_update_current_first": true,
+      "test_time_learning_recalled": true
+    },
+    "lifecycle": {
+      "active_target_visible": true,
+      "closed_target_visible": false,
+      "forgetting_rate": 1.0
+    },
+    "capacity_and_efficiency": {
+      "memory_count": 1000,
+      "query_count": 50,
+      "insert_seconds": 1.2058197089936584,
+      "inserts_per_second": 829.311374280464,
+      "insert_latency_ms": {
+        "p50": 1.1693960113916546,
+        "p95": 1.4831791486358268
+      },
+      "recall_latency_ms": {
+        "p50": 2.422832971205935,
+        "p95": 2.5985813816078007
+      },
+      "estimated_output_tokens": {
+        "p50": 163.0,
+        "p95": 163.0,
+        "max": 163
+      }
+    },
+    "cli_mcp_parity": {
+      "database_ids": [
+        "mem_b5bdba66cbb843ee"
+      ],
+      "mcp_ids": [
+        "mem_b5bdba66cbb843ee"
+      ],
+      "cli_ids": [
+        "mem_b5bdba66cbb843ee"
+      ],
+      "equal": true,
+      "cli_returncode": 0
+    },
+    "locomo": {
+      "status": "not_run",
+      "reason": "LoCoMo dataset path not provided"
+    },
+    "longmemeval_s": {
+      "dataset": "LongMemEval-S (cleaned)",
+      "dataset_url": "https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned",
+      "dataset_license": "MIT",
+      "evaluated": 470,
+      "abstention_skipped": 30,
+      "turns_stored": 231500,
+      "turns_rejected_by_store": 106,
+      "session_recall_at_5": 0.9595744680851064,
+      "session_recall_at_10": 0.9744680851063829,
+      "session_recall_at_5_distinct_sessions": 0.9702127659574468,
+      "session_mrr_at_10": 0.9443075483468496,
+      "latency_ms": {
+        "p50": 5.183353991014883,
+        "p95": 25.929460042971154
+      },
+      "by_type": {
+        "single-session-user": {
+          "questions": 64,
+          "hit5": 63,
+          "hit10": 64,
+          "distinct5": 63,
+          "session_recall_at_5": 0.984375,
+          "session_recall_at_10": 1.0
+        },
+        "multi-session": {
+          "questions": 121,
+          "hit5": 118,
+          "hit10": 119,
+          "distinct5": 118,
+          "session_recall_at_5": 0.9752066115702479,
+          "session_recall_at_10": 0.9834710743801653
+        },
+        "single-session-preference": {
+          "questions": 30,
+          "hit5": 24,
+          "hit10": 26,
+          "distinct5": 26,
+          "session_recall_at_5": 0.8,
+          "session_recall_at_10": 0.8666666666666667
+        },
+        "temporal-reasoning": {
+          "questions": 127,
+          "hit5": 118,
+          "hit10": 121,
+          "distinct5": 121,
+          "session_recall_at_5": 0.9291338582677166,
+          "session_recall_at_10": 0.952755905511811
+        },
+        "knowledge-update": {
+          "questions": 72,
+          "hit5": 72,
+          "hit10": 72,
+          "distinct5": 72,
+          "session_recall_at_5": 1.0,
+          "session_recall_at_10": 1.0
+        },
+        "single-session-assistant": {
+          "questions": 56,
+          "hit5": 56,
+          "hit10": 56,
+          "distinct5": 56,
+          "session_recall_at_5": 1.0,
+          "session_recall_at_10": 1.0
+        }
+      },
+      "scope": "retrieval-only, one memory per turn; session_recall_at_5 uses the five returned memories, the distinct-sessions variant the first five distinct sessions among twenty returned memories"
+    },
+    "public_retrieval": {},
+    "longmemeval_v2": {
+      "status": "inventory_only",
+      "dataset": "LongMemEval-V2",
+      "dataset_url": "https://github.com/xiaowu0162/LongMemEval-V2",
+      "dataset_license": "MIT",
+      "questions": 451,
+      "evidence_cases": 451,
+      "question_evidence_id_overlap": 451,
+      "dataset_sha256": {
+        "/tmp/unimem-lme-v2-questions.jsonl": "0a3ae5ebea938c24d7800e1e0b0828e08ae1646f939a53853b2b8cdc08e292b7",
+        "/tmp/unimem-lme-v2-small.json": "9b5301defb23a088a5f06e45ff8d5f35e569d78305a66d492046a9fff9b46593"
+      },
+      "reason": "Official evaluation needs multimodal web-agent trajectories/screenshots; the local checkout contains question and evidence-step metadata only."
+    }
+  },
+  "limitations": [
+    "LoCoMo, MemBench, and BEAM tracks measure evidence retrieval rather than answer generation.",
+    "MemoryAgentBench evidence is derived from accepted answers appearing in context chunks.",
+    "LongMemEval-V2 is inventory-only until multimodal trajectory data is available.",
+    "Published system scores are not directly comparable unless model, judge, corpus, and budget match."
+  ]
+}

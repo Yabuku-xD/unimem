@@ -1,8 +1,8 @@
 {
   "passed": false,
   "command": "uv run --extra semantic --extra benchmark python benchmarks/measure_memory.py --lexical-only --enrich-model mlx-community/LFM2.5-1.2B-Instruct-4bit --limit 25 --capacity 50 --capacity-queries 5 --output artifacts/measure-memory-enriched-sample.json",
-  "started_at": "2026-10-02T20:22:42.271017+00:00",
-  "finished_at": "2026-10-02T20:22:49.158997+00:00",
+  "started_at": "2026-10-02T22:10:47.651536+00:00",
+  "finished_at": "2026-10-02T22:10:57.934958+00:00",
   "python": "3.14.7 (main, Sep 29 2026, 14:50:11) [Clang 22.1.3 ]",
   "enrichment": {
     "enabled": true,
@@ -12,7 +12,7 @@
   },
   "fts_column_weights": [
     1.0,
-    1.0,
+    0.5,
     0.25
   ],
   "semantic": {
@@ -38,15 +38,15 @@
     "cli_mcp_parity": true
   },
   "diagnostics": {
-    "balanced_public_retrieval_at_3": 0.58,
+    "balanced_public_retrieval_at_3": 0.63,
     "routing_f1": 1.0,
     "extraction_f1": 1.0,
-    "recall_latency_p95_ms": 11.038166203070428,
-    "estimated_output_tokens_p95": 162.0,
+    "recall_latency_p95_ms": 2.5501246214844286,
+    "estimated_output_tokens_p95": 161.0,
     "max_recall_tokens": 358,
-    "max_rss_mb": 181.109375,
-    "cpu_seconds": 6.158052,
-    "wall_seconds": 6.887862125004176
+    "max_rss_mb": 181.09375,
+    "cpu_seconds": 6.282428,
+    "wall_seconds": 10.28322683298029
   },
   "metrics": {
     "routing": {
@@ -81,8 +81,8 @@
       "recall_at_3": 1.0,
       "foreign_project_hits": 0,
       "latency_ms": {
-        "p50": 0.9102500043809414,
-        "p95": 0.956656745984219
+        "p50": 1.0504164965823293,
+        "p95": 1.2913542741443962
       },
       "target": 0.8,
       "meets_target": true,
@@ -98,31 +98,31 @@
     "capacity_and_efficiency": {
       "memory_count": 50,
       "query_count": 5,
-      "insert_seconds": 0.05503862496698275,
-      "inserts_per_second": 908.4529279209758,
+      "insert_seconds": 0.05708512500859797,
+      "inserts_per_second": 875.8849173487694,
       "insert_latency_ms": {
-        "p50": 1.1101664858870208,
-        "p95": 1.3072668458335102
+        "p50": 1.116750034270808,
+        "p95": 1.3979560957523063
       },
       "recall_latency_ms": {
-        "p50": 1.1831250158138573,
-        "p95": 1.359408174175769
+        "p50": 1.047166995704174,
+        "p95": 1.183966628741473
       },
       "estimated_output_tokens": {
-        "p50": 162.0,
-        "p95": 162.0,
-        "max": 162
+        "p50": 161.0,
+        "p95": 161.0,
+        "max": 161
       }
     },
     "cli_mcp_parity": {
       "database_ids": [
-        "mem_55312eb070f54b0f"
+        "mem_6a9c2782dad64e58"
       ],
       "mcp_ids": [
-        "mem_55312eb070f54b0f"
+        "mem_6a9c2782dad64e58"
       ],
       "cli_ids": [
-        "mem_55312eb070f54b0f"
+        "mem_6a9c2782dad64e58"
       ],
       "equal": true,
       "cli_returncode": 0
@@ -135,13 +135,15 @@
       "samples": 10,
       "questions": 25,
       "evidence_questions": 25,
-      "evidence_recall_at_3": 0.56,
-      "evidence_recall_at_10": 0.68,
-      "full_evidence_recall_at_10": 0.52,
-      "mrr_at_10": 0.7456582633053221,
+      "evidence_recall_at_3": 0.68,
+      "evidence_recall_at_10": 0.72,
+      "full_evidence_recall_at_10": 0.6,
+      "session_recall_at_10": 0.92,
+      "session_fractional_recall_at_10": 0.8133333333333335,
+      "mrr_at_10": 0.7731481481481481,
       "latency_ms": {
-        "p50": 1.569458981975913,
-        "p95": 2.211824804544449
+        "p50": 1.7724999925121665,
+        "p95": 1.9615909783169627
       },
       "by_category": {
         "temporal": {
@@ -157,22 +159,22 @@
         "commonsense": {
           "questions": 3,
           "evidence_questions": 3,
-          "hit3": 1,
+          "hit3": 2,
           "hit10": 2,
           "full10": 1,
-          "recall_at_3": 0.3333333333333333,
+          "recall_at_3": 0.6666666666666666,
           "recall_at_10": 0.6666666666666666,
           "full_recall_at_10": 0.3333333333333333
         },
         "multi_hop": {
           "questions": 10,
           "evidence_questions": 10,
-          "hit3": 2,
-          "hit10": 4,
-          "full10": 1,
-          "recall_at_3": 0.2,
-          "recall_at_10": 0.4,
-          "full_recall_at_10": 0.1
+          "hit3": 4,
+          "hit10": 5,
+          "full10": 3,
+          "recall_at_3": 0.4,
+          "recall_at_10": 0.5,
+          "full_recall_at_10": 0.3
         }
       },
       "miss_examples": [
@@ -185,15 +187,15 @@
           ],
           "returned_sources": [
             "locomo:conv-26:D4:14",
-            "locomo:conv-26:D13:7",
             "locomo:conv-26:D7:8",
+            "locomo:conv-26:D14:30",
+            "locomo:conv-26:D13:7",
+            "locomo:conv-26:D8:8",
             "locomo:conv-26:D5:4",
-            "locomo:conv-26:D1:10",
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D3:15",
-            "locomo:conv-26:D10:20",
-            "locomo:conv-26:D13:18",
-            "locomo:conv-26:D7:10"
+            "locomo:conv-26:D8:3",
+            "locomo:conv-26:D15:28",
+            "locomo:conv-26:D13:10",
+            "locomo:conv-26:D14:21"
           ],
           "expected_ranks": []
         },
@@ -207,13 +209,13 @@
             "locomo:conv-26:D11:12",
             "locomo:conv-26:D13:13",
             "locomo:conv-26:D16:9",
+            "locomo:conv-26:D17:19",
             "locomo:conv-26:D13:15",
             "locomo:conv-26:D3:3",
             "locomo:conv-26:D17:24",
             "locomo:conv-26:D17:23",
             "locomo:conv-26:D16:13",
-            "locomo:conv-26:D7:12",
-            "locomo:conv-26:D11:13"
+            "locomo:conv-26:D7:12"
           ],
           "expected_ranks": []
         },
@@ -225,6 +227,7 @@
             "locomo:conv-26:D2:14"
           ],
           "returned_sources": [
+            "locomo:conv-26:D8:26",
             "locomo:conv-26:D1:1",
             "locomo:conv-26:D16:15",
             "locomo:conv-26:D16:14",
@@ -233,8 +236,7 @@
             "locomo:conv-26:D16:16",
             "locomo:conv-26:D3:15",
             "locomo:conv-26:D9:7",
-            "locomo:conv-26:D3:14",
-            "locomo:conv-26:D4:1"
+            "locomo:conv-26:D3:14"
           ],
           "expected_ranks": []
         },
@@ -247,14 +249,14 @@
           "returned_sources": [
             "locomo:conv-26:D6:11",
             "locomo:conv-26:D12:15",
-            "locomo:conv-26:D3:12",
-            "locomo:conv-26:D1:7",
             "locomo:conv-26:D3:11",
-            "locomo:conv-26:D6:1",
             "locomo:conv-26:D3:15",
-            "locomo:conv-26:D19:14",
-            "locomo:conv-26:D16:7",
-            "locomo:conv-26:D16:14"
+            "locomo:conv-26:D16:17",
+            "locomo:conv-26:D3:12",
+            "locomo:conv-26:D1:3",
+            "locomo:conv-26:D1:7",
+            "locomo:conv-26:D6:12",
+            "locomo:conv-26:D8:39"
           ],
           "expected_ranks": []
         },
@@ -267,40 +269,17 @@
           ],
           "returned_sources": [
             "locomo:conv-26:D4:11",
-            "locomo:conv-26:D15:23",
+            "locomo:conv-26:D14:12",
             "locomo:conv-26:D4:12",
             "locomo:conv-26:D7:7",
             "locomo:conv-26:D1:10",
             "locomo:conv-26:D1:9",
+            "locomo:conv-26:D15:23",
             "locomo:conv-26:D16:13",
-            "locomo:conv-26:D7:24",
             "locomo:conv-26:D8:8",
             "locomo:conv-26:D3:7"
           ],
           "expected_ranks": []
-        },
-        {
-          "question": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
-          "category": "commonsense",
-          "expected_sources": [
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D3:5"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D7:5",
-            "locomo:conv-26:D4:14",
-            "locomo:conv-26:D7:7",
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D5:3",
-            "locomo:conv-26:D1:9",
-            "locomo:conv-26:D17:16",
-            "locomo:conv-26:D4:12",
-            "locomo:conv-26:D1:11"
-          ],
-          "expected_ranks": [
-            5
-          ]
         },
         {
           "question": "What activities does Melanie partake in?",
@@ -312,42 +291,20 @@
             "locomo:conv-26:D1:18"
           ],
           "returned_sources": [
-            "locomo:conv-26:D17:22",
-            "locomo:conv-26:D13:2",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D11:13",
+            "locomo:conv-26:D10:5",
+            "locomo:conv-26:D10:3",
             "locomo:conv-26:D15:10",
             "locomo:conv-26:D5:4",
+            "locomo:conv-26:D12:18",
             "locomo:conv-26:D8:35",
             "locomo:conv-26:D8:5",
             "locomo:conv-26:D8:34",
-            "locomo:conv-26:D2:9"
+            "locomo:conv-26:D2:9",
+            "locomo:conv-26:D8:33"
           ],
           "expected_ranks": [
-            6
+            4
           ]
-        },
-        {
-          "question": "Where has Melanie camped?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D6:16",
-            "locomo:conv-26:D4:6",
-            "locomo:conv-26:D8:32"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D7:24",
-            "locomo:conv-26:D6:15",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D6:1",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D16:10",
-            "locomo:conv-26:D1:7",
-            "locomo:conv-26:D16:14",
-            "locomo:conv-26:D6:13",
-            "locomo:conv-26:D5:2"
-          ],
-          "expected_ranks": []
         },
         {
           "question": "What do Melanie's kids like?",
@@ -358,6 +315,7 @@
           ],
           "returned_sources": [
             "locomo:conv-26:D8:3",
+            "locomo:conv-26:D17:4",
             "locomo:conv-26:D9:17",
             "locomo:conv-26:D16:2",
             "locomo:conv-26:D4:9",
@@ -365,33 +323,9 @@
             "locomo:conv-26:D16:16",
             "locomo:conv-26:D16:3",
             "locomo:conv-26:D8:5",
-            "locomo:conv-26:D3:14",
-            "locomo:conv-26:D19:4"
+            "locomo:conv-26:D3:14"
           ],
           "expected_ranks": []
-        },
-        {
-          "question": "What books has Melanie read?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D7:8",
-            "locomo:conv-26:D6:10"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D6:7",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D6:9",
-            "locomo:conv-26:D4:18",
-            "locomo:conv-26:D7:9",
-            "locomo:conv-26:D6:8",
-            "locomo:conv-26:D6:10",
-            "locomo:conv-26:D17:19",
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D7:24"
-          ],
-          "expected_ranks": [
-            7
-          ]
         },
         {
           "question": "What does Melanie do to destress?",
@@ -402,15 +336,15 @@
           ],
           "returned_sources": [
             "locomo:conv-26:D7:20",
-            "locomo:conv-26:D17:22",
-            "locomo:conv-26:D13:2",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D11:13",
-            "locomo:conv-26:D14:16",
-            "locomo:conv-26:D19:2",
-            "locomo:conv-26:D1:9",
-            "locomo:conv-26:D5:11",
-            "locomo:conv-26:D14:18"
+            "locomo:conv-26:D6:2",
+            "locomo:conv-26:D18:13",
+            "locomo:conv-26:D18:14",
+            "locomo:conv-26:D14:22",
+            "locomo:conv-26:D7:27",
+            "locomo:conv-26:D19:12",
+            "locomo:conv-26:D17:25",
+            "locomo:conv-26:D15:25",
+            "locomo:conv-26:D12:3"
           ],
           "expected_ranks": []
         }
@@ -421,6 +355,10 @@
       },
       "meets_targets": false,
       "scope": "retrieval-only; not answer-generation accuracy"
+    },
+    "longmemeval_s": {
+      "status": "not_run",
+      "reason": "--longmemeval-s not provided"
     },
     "public_retrieval": {
       "MemBench": {
@@ -476,30 +414,30 @@
         "evaluated": 25,
         "excluded_cases": 0,
         "ingestion_excluded_cases": 0,
-        "evidence_recall_at_3": 0.2,
-        "evidence_recall_at_10": 0.56,
-        "full_evidence_recall_at_3": 0.2,
-        "full_evidence_recall_at_10": 0.56,
-        "mrr_at_10": 0.29543650793650794,
+        "evidence_recall_at_3": 0.24,
+        "evidence_recall_at_10": 0.6,
+        "full_evidence_recall_at_3": 0.24,
+        "full_evidence_recall_at_10": 0.6,
+        "mrr_at_10": 0.3046031746031746,
         "latency_ms": {
-          "p50": 2.8490000404417515,
-          "p95": 3.058632800821215
+          "p50": 2.2641249815933406,
+          "p95": 2.4433418293483555
         },
         "estimated_output_tokens": {
-          "p50": 295.0,
-          "p95": 330.2,
-          "max": 337
+          "p50": 290.0,
+          "p95": 327.0,
+          "max": 331
         },
         "by_category": {
           "FirstAgent/aggregative": {
             "cases": 25,
-            "hit3": 5,
-            "hit10": 14,
-            "full3": 5,
-            "full10": 14,
-            "recall_at_3": 0.2,
-            "recall_at_10": 0.56,
-            "full_recall_at_10": 0.56
+            "hit3": 6,
+            "hit10": 15,
+            "full3": 6,
+            "full10": 15,
+            "recall_at_3": 0.24,
+            "recall_at_10": 0.6,
+            "full_recall_at_10": 0.6
           }
         },
         "miss_examples": [
@@ -511,16 +449,16 @@
               "membench:FirstAgent:aggregative:5:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:5:0:43",
               "membench:FirstAgent:aggregative:5:0:50",
-              "membench:FirstAgent:aggregative:5:0:53",
+              "membench:FirstAgent:aggregative:5:0:43",
               "membench:FirstAgent:aggregative:5:0:37",
+              "membench:FirstAgent:aggregative:5:0:53",
               "membench:FirstAgent:aggregative:5:0:74",
               "membench:FirstAgent:aggregative:5:0:61",
               "membench:FirstAgent:aggregative:5:0:62",
               "membench:FirstAgent:aggregative:5:0:6",
               "membench:FirstAgent:aggregative:5:0:3",
-              "membench:FirstAgent:aggregative:5:0:73"
+              "membench:FirstAgent:aggregative:5:0:85"
             ],
             "expected_ranks": []
           },
@@ -532,20 +470,18 @@
               "membench:FirstAgent:aggregative:9:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:9:0:66",
-              "membench:FirstAgent:aggregative:9:0:50",
               "membench:FirstAgent:aggregative:9:0:76",
-              "membench:FirstAgent:aggregative:9:0:29",
-              "membench:FirstAgent:aggregative:9:0:84",
-              "membench:FirstAgent:aggregative:9:0:25",
+              "membench:FirstAgent:aggregative:9:0:50",
               "membench:FirstAgent:aggregative:9:0:96",
-              "membench:FirstAgent:aggregative:9:0:45",
-              "membench:FirstAgent:aggregative:9:0:0",
-              "membench:FirstAgent:aggregative:9:0:75"
+              "membench:FirstAgent:aggregative:9:0:29",
+              "membench:FirstAgent:aggregative:9:0:104",
+              "membench:FirstAgent:aggregative:9:0:12",
+              "membench:FirstAgent:aggregative:9:0:84",
+              "membench:FirstAgent:aggregative:9:0:66",
+              "membench:FirstAgent:aggregative:9:0:75",
+              "membench:FirstAgent:aggregative:9:0:102"
             ],
-            "expected_ranks": [
-              9
-            ]
+            "expected_ranks": []
           },
           {
             "case_id": "FirstAgent:aggregative:40:0",
@@ -556,15 +492,15 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:40:0:50",
-              "membench:FirstAgent:aggregative:40:0:18",
-              "membench:FirstAgent:aggregative:40:0:93",
               "membench:FirstAgent:aggregative:40:0:58",
               "membench:FirstAgent:aggregative:40:0:27",
-              "membench:FirstAgent:aggregative:40:0:19",
               "membench:FirstAgent:aggregative:40:0:95",
-              "membench:FirstAgent:aggregative:40:0:24",
               "membench:FirstAgent:aggregative:40:0:104",
-              "membench:FirstAgent:aggregative:40:0:103"
+              "membench:FirstAgent:aggregative:40:0:19",
+              "membench:FirstAgent:aggregative:40:0:93",
+              "membench:FirstAgent:aggregative:40:0:103",
+              "membench:FirstAgent:aggregative:40:0:18",
+              "membench:FirstAgent:aggregative:40:0:87"
             ],
             "expected_ranks": []
           },
@@ -576,15 +512,15 @@
               "membench:FirstAgent:aggregative:51:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:51:0:62",
               "membench:FirstAgent:aggregative:51:0:50",
               "membench:FirstAgent:aggregative:51:0:27",
               "membench:FirstAgent:aggregative:51:0:85",
               "membench:FirstAgent:aggregative:51:0:103",
-              "membench:FirstAgent:aggregative:51:0:9",
               "membench:FirstAgent:aggregative:51:0:73",
               "membench:FirstAgent:aggregative:51:0:5",
-              "membench:FirstAgent:aggregative:51:0:96",
+              "membench:FirstAgent:aggregative:51:0:62",
+              "membench:FirstAgent:aggregative:51:0:75",
+              "membench:FirstAgent:aggregative:51:0:56",
               "membench:FirstAgent:aggregative:51:0:74"
             ],
             "expected_ranks": []
@@ -599,17 +535,17 @@
             "returned_sources": [
               "membench:FirstAgent:aggregative:58:0:50",
               "membench:FirstAgent:aggregative:58:0:23",
-              "membench:FirstAgent:aggregative:58:0:17",
-              "membench:FirstAgent:aggregative:58:0:70",
               "membench:FirstAgent:aggregative:58:0:40",
+              "membench:FirstAgent:aggregative:58:0:70",
               "membench:FirstAgent:aggregative:58:0:0",
-              "membench:FirstAgent:aggregative:58:0:62",
+              "membench:FirstAgent:aggregative:58:0:17",
               "membench:FirstAgent:aggregative:58:0:84",
               "membench:FirstAgent:aggregative:58:0:60",
-              "membench:FirstAgent:aggregative:58:0:73"
+              "membench:FirstAgent:aggregative:58:0:73",
+              "membench:FirstAgent:aggregative:58:0:94"
             ],
             "expected_ranks": [
-              6
+              5
             ]
           },
           {
@@ -620,16 +556,16 @@
               "membench:FirstAgent:aggregative:76:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:76:0:79",
               "membench:FirstAgent:aggregative:76:0:19",
               "membench:FirstAgent:aggregative:76:0:69",
-              "membench:FirstAgent:aggregative:76:0:104",
-              "membench:FirstAgent:aggregative:76:0:0",
+              "membench:FirstAgent:aggregative:76:0:79",
               "membench:FirstAgent:aggregative:76:0:50",
-              "membench:FirstAgent:aggregative:76:0:47",
-              "membench:FirstAgent:aggregative:76:0:31",
-              "membench:FirstAgent:aggregative:76:0:18",
-              "membench:FirstAgent:aggregative:76:0:34"
+              "membench:FirstAgent:aggregative:76:0:0",
+              "membench:FirstAgent:aggregative:76:0:104",
+              "membench:FirstAgent:aggregative:76:0:49",
+              "membench:FirstAgent:aggregative:76:0:82",
+              "membench:FirstAgent:aggregative:76:0:93",
+              "membench:FirstAgent:aggregative:76:0:109"
             ],
             "expected_ranks": [
               5
@@ -645,17 +581,17 @@
             "returned_sources": [
               "membench:FirstAgent:aggregative:82:0:90",
               "membench:FirstAgent:aggregative:82:0:14",
-              "membench:FirstAgent:aggregative:82:0:30",
               "membench:FirstAgent:aggregative:82:0:105",
-              "membench:FirstAgent:aggregative:82:0:50",
               "membench:FirstAgent:aggregative:82:0:70",
+              "membench:FirstAgent:aggregative:82:0:50",
               "membench:FirstAgent:aggregative:82:0:83",
               "membench:FirstAgent:aggregative:82:0:0",
               "membench:FirstAgent:aggregative:82:0:33",
-              "membench:FirstAgent:aggregative:82:0:45"
+              "membench:FirstAgent:aggregative:82:0:45",
+              "membench:FirstAgent:aggregative:82:0:58"
             ],
             "expected_ranks": [
-              8
+              7
             ]
           },
           {
@@ -667,15 +603,15 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:103:0:50",
+              "membench:FirstAgent:aggregative:103:0:42",
               "membench:FirstAgent:aggregative:103:0:83",
               "membench:FirstAgent:aggregative:103:0:52",
-              "membench:FirstAgent:aggregative:103:0:84",
               "membench:FirstAgent:aggregative:103:0:63",
-              "membench:FirstAgent:aggregative:103:0:37",
+              "membench:FirstAgent:aggregative:103:0:25",
+              "membench:FirstAgent:aggregative:103:0:72",
               "membench:FirstAgent:aggregative:103:0:96",
-              "membench:FirstAgent:aggregative:103:0:42",
-              "membench:FirstAgent:aggregative:103:0:38",
-              "membench:FirstAgent:aggregative:103:0:19"
+              "membench:FirstAgent:aggregative:103:0:37",
+              "membench:FirstAgent:aggregative:103:0:109"
             ],
             "expected_ranks": []
           },
@@ -690,13 +626,13 @@
               "membench:FirstAgent:aggregative:121:0:50",
               "membench:FirstAgent:aggregative:121:0:96",
               "membench:FirstAgent:aggregative:121:0:95",
-              "membench:FirstAgent:aggregative:121:0:59",
               "membench:FirstAgent:aggregative:121:0:103",
-              "membench:FirstAgent:aggregative:121:0:64",
+              "membench:FirstAgent:aggregative:121:0:3",
               "membench:FirstAgent:aggregative:121:0:70",
-              "membench:FirstAgent:aggregative:121:0:4",
+              "membench:FirstAgent:aggregative:121:0:59",
               "membench:FirstAgent:aggregative:121:0:86",
-              "membench:FirstAgent:aggregative:121:0:106"
+              "membench:FirstAgent:aggregative:121:0:4",
+              "membench:FirstAgent:aggregative:121:0:14"
             ],
             "expected_ranks": []
           },
@@ -708,16 +644,16 @@
               "membench:FirstAgent:aggregative:139:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:139:0:29",
-              "membench:FirstAgent:aggregative:139:0:35",
               "membench:FirstAgent:aggregative:139:0:50",
-              "membench:FirstAgent:aggregative:139:0:72",
               "membench:FirstAgent:aggregative:139:0:31",
-              "membench:FirstAgent:aggregative:139:0:107",
+              "membench:FirstAgent:aggregative:139:0:35",
+              "membench:FirstAgent:aggregative:139:0:29",
               "membench:FirstAgent:aggregative:139:0:74",
-              "membench:FirstAgent:aggregative:139:0:2",
+              "membench:FirstAgent:aggregative:139:0:72",
+              "membench:FirstAgent:aggregative:139:0:107",
               "membench:FirstAgent:aggregative:139:0:108",
-              "membench:FirstAgent:aggregative:139:0:14"
+              "membench:FirstAgent:aggregative:139:0:14",
+              "membench:FirstAgent:aggregative:139:0:105"
             ],
             "expected_ranks": []
           },
@@ -729,16 +665,16 @@
               "membench:FirstAgent:aggregative:147:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:147:0:21",
               "membench:FirstAgent:aggregative:147:0:75",
               "membench:FirstAgent:aggregative:147:0:22",
               "membench:FirstAgent:aggregative:147:0:103",
               "membench:FirstAgent:aggregative:147:0:68",
-              "membench:FirstAgent:aggregative:147:0:0",
               "membench:FirstAgent:aggregative:147:0:50",
+              "membench:FirstAgent:aggregative:147:0:0",
+              "membench:FirstAgent:aggregative:147:0:21",
               "membench:FirstAgent:aggregative:147:0:18",
               "membench:FirstAgent:aggregative:147:0:85",
-              "membench:FirstAgent:aggregative:147:0:8"
+              "membench:FirstAgent:aggregative:147:0:94"
             ],
             "expected_ranks": [
               6
@@ -753,18 +689,18 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:177:0:91",
-              "membench:FirstAgent:aggregative:177:0:74",
               "membench:FirstAgent:aggregative:177:0:27",
               "membench:FirstAgent:aggregative:177:0:46",
               "membench:FirstAgent:aggregative:177:0:14",
               "membench:FirstAgent:aggregative:177:0:0",
+              "membench:FirstAgent:aggregative:177:0:74",
               "membench:FirstAgent:aggregative:177:0:82",
+              "membench:FirstAgent:aggregative:177:0:98",
               "membench:FirstAgent:aggregative:177:0:93",
-              "membench:FirstAgent:aggregative:177:0:62",
-              "membench:FirstAgent:aggregative:177:0:98"
+              "membench:FirstAgent:aggregative:177:0:62"
             ],
             "expected_ranks": [
-              6
+              5
             ]
           },
           {
@@ -777,37 +713,14 @@
             "returned_sources": [
               "membench:FirstAgent:aggregative:184:0:49",
               "membench:FirstAgent:aggregative:184:0:21",
-              "membench:FirstAgent:aggregative:184:0:93",
               "membench:FirstAgent:aggregative:184:0:100",
               "membench:FirstAgent:aggregative:184:0:76",
+              "membench:FirstAgent:aggregative:184:0:93",
               "membench:FirstAgent:aggregative:184:0:0",
               "membench:FirstAgent:aggregative:184:0:72",
               "membench:FirstAgent:aggregative:184:0:53",
               "membench:FirstAgent:aggregative:184:0:84",
               "membench:FirstAgent:aggregative:184:0:73"
-            ],
-            "expected_ranks": [
-              6
-            ]
-          },
-          {
-            "case_id": "FirstAgent:aggregative:187:0",
-            "category": "FirstAgent/aggregative",
-            "query": "How many events last for more than a week? | '2024-10-01 09:50' Tuesday",
-            "expected_sources": [
-              "membench:FirstAgent:aggregative:187:0:0"
-            ],
-            "returned_sources": [
-              "membench:FirstAgent:aggregative:187:0:50",
-              "membench:FirstAgent:aggregative:187:0:24",
-              "membench:FirstAgent:aggregative:187:0:48",
-              "membench:FirstAgent:aggregative:187:0:10",
-              "membench:FirstAgent:aggregative:187:0:32",
-              "membench:FirstAgent:aggregative:187:0:0",
-              "membench:FirstAgent:aggregative:187:0:42",
-              "membench:FirstAgent:aggregative:187:0:12",
-              "membench:FirstAgent:aggregative:187:0:74",
-              "membench:FirstAgent:aggregative:187:0:14"
             ],
             "expected_ranks": [
               6
@@ -822,17 +735,19 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:198:0:50",
-              "membench:FirstAgent:aggregative:198:0:97",
               "membench:FirstAgent:aggregative:198:0:33",
-              "membench:FirstAgent:aggregative:198:0:35",
+              "membench:FirstAgent:aggregative:198:0:97",
               "membench:FirstAgent:aggregative:198:0:81",
               "membench:FirstAgent:aggregative:198:0:100",
               "membench:FirstAgent:aggregative:198:0:34",
-              "membench:FirstAgent:aggregative:198:0:19",
               "membench:FirstAgent:aggregative:198:0:60",
-              "membench:FirstAgent:aggregative:198:0:1"
+              "membench:FirstAgent:aggregative:198:0:72",
+              "membench:FirstAgent:aggregative:198:0:61",
+              "membench:FirstAgent:aggregative:198:0:0"
             ],
-            "expected_ranks": []
+            "expected_ranks": [
+              10
+            ]
           },
           {
             "case_id": "FirstAgent:aggregative:214:0",
@@ -845,16 +760,16 @@
               "membench:FirstAgent:aggregative:214:0:81",
               "membench:FirstAgent:aggregative:214:0:38",
               "membench:FirstAgent:aggregative:214:0:15",
-              "membench:FirstAgent:aggregative:214:0:94",
               "membench:FirstAgent:aggregative:214:0:0",
-              "membench:FirstAgent:aggregative:214:0:16",
               "membench:FirstAgent:aggregative:214:0:23",
+              "membench:FirstAgent:aggregative:214:0:16",
               "membench:FirstAgent:aggregative:214:0:60",
-              "membench:FirstAgent:aggregative:214:0:50",
-              "membench:FirstAgent:aggregative:214:0:51"
+              "membench:FirstAgent:aggregative:214:0:51",
+              "membench:FirstAgent:aggregative:214:0:61",
+              "membench:FirstAgent:aggregative:214:0:94"
             ],
             "expected_ranks": [
-              5
+              4
             ]
           },
           {
@@ -865,16 +780,16 @@
               "membench:FirstAgent:aggregative:229:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:229:0:102",
               "membench:FirstAgent:aggregative:229:0:50",
+              "membench:FirstAgent:aggregative:229:0:102",
               "membench:FirstAgent:aggregative:229:0:83",
               "membench:FirstAgent:aggregative:229:0:5",
-              "membench:FirstAgent:aggregative:229:0:73",
+              "membench:FirstAgent:aggregative:229:0:4",
               "membench:FirstAgent:aggregative:229:0:16",
               "membench:FirstAgent:aggregative:229:0:97",
-              "membench:FirstAgent:aggregative:229:0:68",
               "membench:FirstAgent:aggregative:229:0:71",
-              "membench:FirstAgent:aggregative:229:0:4"
+              "membench:FirstAgent:aggregative:229:0:37",
+              "membench:FirstAgent:aggregative:229:0:73"
             ],
             "expected_ranks": []
           },
@@ -887,15 +802,15 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:240:0:61",
-              "membench:FirstAgent:aggregative:240:0:54",
-              "membench:FirstAgent:aggregative:240:0:39",
               "membench:FirstAgent:aggregative:240:0:81",
+              "membench:FirstAgent:aggregative:240:0:54",
               "membench:FirstAgent:aggregative:240:0:109",
-              "membench:FirstAgent:aggregative:240:0:66",
-              "membench:FirstAgent:aggregative:240:0:85",
               "membench:FirstAgent:aggregative:240:0:50",
               "membench:FirstAgent:aggregative:240:0:105",
-              "membench:FirstAgent:aggregative:240:0:87"
+              "membench:FirstAgent:aggregative:240:0:87",
+              "membench:FirstAgent:aggregative:240:0:93",
+              "membench:FirstAgent:aggregative:240:0:40",
+              "membench:FirstAgent:aggregative:240:0:85"
             ],
             "expected_ranks": []
           },
@@ -908,15 +823,15 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:267:0:50",
-              "membench:FirstAgent:aggregative:267:0:36",
               "membench:FirstAgent:aggregative:267:0:46",
               "membench:FirstAgent:aggregative:267:0:22",
-              "membench:FirstAgent:aggregative:267:0:18",
+              "membench:FirstAgent:aggregative:267:0:36",
               "membench:FirstAgent:aggregative:267:0:59",
               "membench:FirstAgent:aggregative:267:0:5",
               "membench:FirstAgent:aggregative:267:0:19",
               "membench:FirstAgent:aggregative:267:0:106",
-              "membench:FirstAgent:aggregative:267:0:48"
+              "membench:FirstAgent:aggregative:267:0:48",
+              "membench:FirstAgent:aggregative:267:0:72"
             ],
             "expected_ranks": []
           },
@@ -929,17 +844,19 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:278:0:83",
-              "membench:FirstAgent:aggregative:278:0:59",
-              "membench:FirstAgent:aggregative:278:0:9",
-              "membench:FirstAgent:aggregative:278:0:39",
-              "membench:FirstAgent:aggregative:278:0:11",
+              "membench:FirstAgent:aggregative:278:0:68",
+              "membench:FirstAgent:aggregative:278:0:96",
               "membench:FirstAgent:aggregative:278:0:50",
+              "membench:FirstAgent:aggregative:278:0:11",
+              "membench:FirstAgent:aggregative:278:0:107",
+              "membench:FirstAgent:aggregative:278:0:0",
+              "membench:FirstAgent:aggregative:278:0:59",
               "membench:FirstAgent:aggregative:278:0:30",
-              "membench:FirstAgent:aggregative:278:0:98",
-              "membench:FirstAgent:aggregative:278:0:71",
-              "membench:FirstAgent:aggregative:278:0:96"
+              "membench:FirstAgent:aggregative:278:0:39"
             ],
-            "expected_ranks": []
+            "expected_ranks": [
+              7
+            ]
           }
         ],
         "notes": "Retrieval-only adapter for MemBench; multiple-choice answer accuracy is not measured."
@@ -967,14 +884,14 @@
         "evaluated": 25,
         "excluded_cases": 0,
         "ingestion_excluded_cases": 0,
-        "evidence_recall_at_3": 0.96,
-        "evidence_recall_at_10": 0.96,
-        "full_evidence_recall_at_3": 0.96,
-        "full_evidence_recall_at_10": 0.96,
+        "evidence_recall_at_3": 1.0,
+        "evidence_recall_at_10": 1.0,
+        "full_evidence_recall_at_3": 1.0,
+        "full_evidence_recall_at_10": 1.0,
         "mrr_at_10": 1.0,
         "latency_ms": {
-          "p50": 1.2152909766882658,
-          "p95": 2.130975376348942
+          "p50": 1.1698330054059625,
+          "p95": 1.3975005946122108
         },
         "estimated_output_tokens": {
           "p50": 126.0,
@@ -984,27 +901,16 @@
         "by_category": {
           "conflict": {
             "cases": 25,
-            "hit3": 24,
-            "hit10": 24,
-            "full3": 24,
-            "full10": 24,
-            "recall_at_3": 0.96,
-            "recall_at_10": 0.96,
-            "full_recall_at_10": 0.96
+            "hit3": 25,
+            "hit10": 25,
+            "full3": 25,
+            "full10": 25,
+            "recall_at_3": 1.0,
+            "recall_at_10": 1.0,
+            "full_recall_at_10": 1.0
           }
         },
-        "miss_examples": [
-          {
-            "case_id": "conflict:0:factconsolidation_mh_6k_no1",
-            "category": "conflict",
-            "query": "In which location did the spouse of Igor of Kiev pass away?",
-            "expected_sources": [
-              "memoryagentbench:conflict:0:chunk:0000"
-            ],
-            "returned_sources": [],
-            "expected_ranks": []
-          }
-        ],
+        "miss_examples": [],
         "notes": "Retrieval proxy derived from accepted answers appearing in context chunks; official answer-generation accuracy is not measured."
       },
       "BEAM": {
@@ -1066,28 +972,28 @@
         "excluded_cases": 0,
         "ingestion_excluded_cases": 10,
         "evidence_recall_at_3": 0.6,
-        "evidence_recall_at_10": 0.84,
-        "full_evidence_recall_at_3": 0.44,
-        "full_evidence_recall_at_10": 0.52,
-        "mrr_at_10": 0.7126984126984127,
+        "evidence_recall_at_10": 0.72,
+        "full_evidence_recall_at_3": 0.36,
+        "full_evidence_recall_at_10": 0.4,
+        "mrr_at_10": 0.6932098765432099,
         "latency_ms": {
-          "p50": 5.3945419494993985,
-          "p95": 11.038166203070428
+          "p50": 2.1190830157138407,
+          "p95": 2.5501246214844286
         },
         "estimated_output_tokens": {
-          "p50": 356.0,
-          "p95": 357.0,
+          "p50": 357.0,
+          "p95": 357.8,
           "max": 358
         },
         "by_category": {
           "event_ordering": {
             "cases": 2,
             "hit3": 0,
-            "hit10": 1,
+            "hit10": 0,
             "full3": 0,
             "full10": 0,
             "recall_at_3": 0.0,
-            "recall_at_10": 0.5,
+            "recall_at_10": 0.0,
             "full_recall_at_10": 0.0
           },
           "information_extraction": {
@@ -1103,12 +1009,12 @@
           "instruction_following": {
             "cases": 4,
             "hit3": 1,
-            "hit10": 2,
+            "hit10": 1,
             "full3": 1,
-            "full10": 2,
+            "full10": 1,
             "recall_at_3": 0.25,
-            "recall_at_10": 0.5,
-            "full_recall_at_10": 0.5
+            "recall_at_10": 0.25,
+            "full_recall_at_10": 0.25
           },
           "knowledge_update": {
             "cases": 3,
@@ -1123,12 +1029,12 @@
           "multi_session_reasoning": {
             "cases": 4,
             "hit3": 1,
-            "hit10": 3,
-            "full3": 1,
-            "full10": 1,
+            "hit10": 2,
+            "full3": 0,
+            "full10": 0,
             "recall_at_3": 0.25,
-            "recall_at_10": 0.75,
-            "full_recall_at_10": 0.25
+            "recall_at_10": 0.5,
+            "full_recall_at_10": 0.0
           },
           "preference_following": {
             "cases": 4,
@@ -1144,11 +1050,11 @@
             "cases": 3,
             "hit3": 3,
             "hit10": 3,
-            "full3": 3,
-            "full10": 3,
+            "full3": 2,
+            "full10": 2,
             "recall_at_3": 1.0,
             "recall_at_10": 1.0,
-            "full_recall_at_10": 1.0
+            "full_recall_at_10": 0.6666666666666666
           },
           "contradiction_resolution": {
             "cases": 2,
@@ -1178,15 +1084,13 @@
               "beam:1:125",
               "beam:1:127",
               "beam:1:84",
-              "beam:1:181",
-              "beam:1:124",
-              "beam:1:134",
+              "beam:1:135",
+              "beam:1:50",
               "beam:1:28",
-              "beam:1:118"
+              "beam:1:175",
+              "beam:1:123"
             ],
-            "expected_ranks": [
-              10
-            ]
+            "expected_ranks": []
           },
           {
             "case_id": "1:instruction_following:0",
@@ -1203,8 +1107,8 @@
               "beam:1:2",
               "beam:1:28",
               "beam:1:9",
-              "beam:1:114",
               "beam:1:34",
+              "beam:1:114",
               "beam:1:109",
               "beam:1:87"
             ],
@@ -1225,10 +1129,10 @@
               "beam:1:110",
               "beam:1:177",
               "beam:1:114",
-              "beam:1:26",
+              "beam:1:152",
               "beam:1:176",
-              "beam:1:27",
-              "beam:1:121"
+              "beam:1:26",
+              "beam:1:153"
             ],
             "expected_ranks": [
               6
@@ -1244,16 +1148,16 @@
               "beam:1:150"
             ],
             "returned_sources": [
+              "beam:1:183",
+              "beam:1:179",
               "beam:1:178",
               "beam:1:182",
-              "beam:1:154",
-              "beam:1:179",
-              "beam:1:16",
-              "beam:1:34",
-              "beam:1:42",
-              "beam:1:183",
+              "beam:1:84",
+              "beam:1:85",
               "beam:1:184",
-              "beam:1:76"
+              "beam:1:187",
+              "beam:1:42",
+              "beam:1:154"
             ],
             "expected_ranks": [
               5
@@ -1269,17 +1173,17 @@
             "returned_sources": [
               "beam:1:122",
               "beam:1:182",
-              "beam:1:186",
-              "beam:1:178",
-              "beam:1:120",
-              "beam:1:42",
-              "beam:1:170",
               "beam:1:187",
-              "beam:1:118",
-              "beam:1:125"
+              "beam:1:125",
+              "beam:1:127",
+              "beam:1:42",
+              "beam:1:183",
+              "beam:1:120",
+              "beam:1:178",
+              "beam:1:123"
             ],
             "expected_ranks": [
-              4
+              9
             ]
           },
           {
@@ -1291,16 +1195,16 @@
               "beam:2:162"
             ],
             "returned_sources": [
-              "beam:2:141",
               "beam:2:163",
+              "beam:2:141",
+              "beam:2:131",
               "beam:2:53",
-              "beam:2:124",
-              "beam:2:164",
-              "beam:2:134",
+              "beam:2:26",
               "beam:2:77",
-              "beam:2:108",
-              "beam:2:109",
-              "beam:2:75"
+              "beam:2:164",
+              "beam:2:113",
+              "beam:2:112",
+              "beam:2:108"
             ],
             "expected_ranks": []
           },
@@ -1313,19 +1217,17 @@
             ],
             "returned_sources": [
               "beam:2:134",
-              "beam:2:54",
               "beam:2:151",
-              "beam:2:130",
+              "beam:2:135",
               "beam:2:115",
-              "beam:2:77",
-              "beam:2:114",
-              "beam:2:14",
-              "beam:2:85",
-              "beam:2:135"
+              "beam:2:109",
+              "beam:2:54",
+              "beam:2:95",
+              "beam:2:62",
+              "beam:2:63",
+              "beam:2:129"
             ],
-            "expected_ranks": [
-              4
-            ]
+            "expected_ranks": []
           },
           {
             "case_id": "2:instruction_following:1",
@@ -1335,16 +1237,16 @@
               "beam:2:130"
             ],
             "returned_sources": [
-              "beam:2:115",
-              "beam:2:134",
-              "beam:2:109",
               "beam:2:152",
-              "beam:2:114",
-              "beam:2:131",
-              "beam:2:139",
+              "beam:2:153",
+              "beam:2:134",
               "beam:2:85",
-              "beam:2:163",
-              "beam:2:133"
+              "beam:2:63",
+              "beam:2:135",
+              "beam:2:35",
+              "beam:2:14",
+              "beam:2:75",
+              "beam:2:131"
             ],
             "expected_ranks": []
           },
@@ -1360,16 +1262,16 @@
               "beam:2:190"
             ],
             "returned_sources": [
-              "beam:2:28",
-              "beam:2:77",
-              "beam:2:76",
-              "beam:2:125",
-              "beam:2:26",
-              "beam:2:14",
-              "beam:2:52",
-              "beam:2:43",
               "beam:2:139",
-              "beam:2:134"
+              "beam:2:134",
+              "beam:2:172",
+              "beam:2:28",
+              "beam:2:14",
+              "beam:2:43",
+              "beam:2:173",
+              "beam:2:137",
+              "beam:2:77",
+              "beam:2:76"
             ],
             "expected_ranks": []
           },
@@ -1383,19 +1285,17 @@
             ],
             "returned_sources": [
               "beam:2:94",
-              "beam:2:124",
-              "beam:2:52",
-              "beam:2:92",
+              "beam:2:95",
+              "beam:2:133",
+              "beam:2:151",
+              "beam:2:53",
+              "beam:2:149",
+              "beam:2:81",
+              "beam:2:75",
               "beam:2:150",
-              "beam:2:38",
-              "beam:2:114",
-              "beam:2:62",
-              "beam:2:74",
-              "beam:2:148"
+              "beam:2:39"
             ],
-            "expected_ranks": [
-              6
-            ]
+            "expected_ranks": []
           }
         ],
         "notes": "Retrieval-only adapter for BEAM probing questions with source_chat_ids."

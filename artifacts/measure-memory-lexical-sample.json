@@ -1,16 +1,32 @@
 {
   "passed": false,
   "command": "uv run --extra semantic --extra benchmark python benchmarks/measure_memory.py --lexical-only --limit 25 --capacity 50 --capacity-queries 5 --output artifacts/measure-memory-lexical-sample.json",
-  "started_at": "2026-10-02T08:08:27.351844+00:00",
-  "finished_at": "2026-10-02T08:08:32.639376+00:00",
-  "python": "3.14.7 (main, Sep 24 2026, 17:46:50) [Clang 22.1.3 ]",
+  "started_at": "2026-10-02T22:10:58.049137+00:00",
+  "finished_at": "2026-10-02T22:11:06.764479+00:00",
+  "python": "3.14.7 (main, Sep 29 2026, 14:50:11) [Clang 22.1.3 ]",
+  "enrichment": {
+    "enabled": false,
+    "model": null,
+    "generated": 0,
+    "generation_seconds": 0.0
+  },
+  "fts_column_weights": [
+    1.0,
+    0.5,
+    0.25
+  ],
   "semantic": {
     "enabled": false,
-    "model": null
+    "model": null,
+    "fusion": {
+      "fts_weight": 2.0,
+      "semantic_weight": 1.0,
+      "rrf_k": 60
+    }
   },
   "primary": {
     "name": "balanced_public_retrieval",
-    "value": 0.75,
+    "value": 0.79,
     "target": 0.95,
     "direction": "maximize"
   },
@@ -22,15 +38,15 @@
     "cli_mcp_parity": true
   },
   "diagnostics": {
-    "balanced_public_retrieval_at_3": 0.5700000000000001,
+    "balanced_public_retrieval_at_3": 0.63,
     "routing_f1": 1.0,
     "extraction_f1": 1.0,
-    "recall_latency_p95_ms": 6.911791779566554,
-    "estimated_output_tokens_p95": 162.0,
-    "max_recall_tokens": 357,
-    "max_rss_mb": 107.265625,
-    "cpu_seconds": 4.706656,
-    "wall_seconds": 5.2873559999861754
+    "recall_latency_p95_ms": 4.4014836312271655,
+    "estimated_output_tokens_p95": 161.0,
+    "max_recall_tokens": 358,
+    "max_rss_mb": 110.5,
+    "cpu_seconds": 5.136381999999999,
+    "wall_seconds": 8.715153457946144
   },
   "metrics": {
     "routing": {
@@ -65,8 +81,8 @@
       "recall_at_3": 1.0,
       "foreign_project_hits": 0,
       "latency_ms": {
-        "p50": 0.9248960122931749,
-        "p95": 1.0907917458098382
+        "p50": 1.0108119749929756,
+        "p95": 1.2449160276446491
       },
       "target": 0.8,
       "meets_target": true,
@@ -82,31 +98,31 @@
     "capacity_and_efficiency": {
       "memory_count": 50,
       "query_count": 5,
-      "insert_seconds": 0.05810866696992889,
-      "inserts_per_second": 860.4568407304007,
+      "insert_seconds": 0.055157999973744154,
+      "inserts_per_second": 906.4868201131401,
       "insert_latency_ms": {
-        "p50": 1.1146875040140003,
-        "p95": 1.596410051570274
+        "p50": 1.0978335049003363,
+        "p95": 1.2445104512153193
       },
       "recall_latency_ms": {
-        "p50": 1.074666972272098,
-        "p95": 1.384900405537337
+        "p50": 1.0325419716536999,
+        "p95": 1.066683023236692
       },
       "estimated_output_tokens": {
-        "p50": 162.0,
-        "p95": 162.0,
-        "max": 162
+        "p50": 161.0,
+        "p95": 161.0,
+        "max": 161
       }
     },
     "cli_mcp_parity": {
       "database_ids": [
-        "mem_578d42d190c44cfa"
+        "mem_e1a62023cc3e4a46"
       ],
       "mcp_ids": [
-        "mem_578d42d190c44cfa"
+        "mem_e1a62023cc3e4a46"
       ],
       "cli_ids": [
-        "mem_578d42d190c44cfa"
+        "mem_e1a62023cc3e4a46"
       ],
       "equal": true,
       "cli_returncode": 0
@@ -119,13 +135,15 @@
       "samples": 10,
       "questions": 25,
       "evidence_questions": 25,
-      "evidence_recall_at_3": 0.56,
-      "evidence_recall_at_10": 0.64,
-      "full_evidence_recall_at_10": 0.52,
-      "mrr_at_10": 0.6848958333333334,
+      "evidence_recall_at_3": 0.72,
+      "evidence_recall_at_10": 0.72,
+      "full_evidence_recall_at_10": 0.6,
+      "session_recall_at_10": 0.84,
+      "session_fractional_recall_at_10": 0.7733333333333334,
+      "mrr_at_10": 0.787037037037037,
       "latency_ms": {
-        "p50": 1.3861249899491668,
-        "p95": 1.8885499681346116
+        "p50": 1.4626249903813004,
+        "p95": 1.695466972887516
       },
       "by_category": {
         "temporal": {
@@ -141,22 +159,22 @@
         "commonsense": {
           "questions": 3,
           "evidence_questions": 3,
-          "hit3": 1,
+          "hit3": 2,
           "hit10": 2,
           "full10": 1,
-          "recall_at_3": 0.3333333333333333,
+          "recall_at_3": 0.6666666666666666,
           "recall_at_10": 0.6666666666666666,
           "full_recall_at_10": 0.3333333333333333
         },
         "multi_hop": {
           "questions": 10,
           "evidence_questions": 10,
-          "hit3": 2,
-          "hit10": 3,
-          "full10": 1,
-          "recall_at_3": 0.2,
-          "recall_at_10": 0.3,
-          "full_recall_at_10": 0.1
+          "hit3": 5,
+          "hit10": 5,
+          "full10": 3,
+          "recall_at_3": 0.5,
+          "recall_at_10": 0.5,
+          "full_recall_at_10": 0.3
         }
       },
       "miss_examples": [
@@ -169,15 +187,15 @@
           ],
           "returned_sources": [
             "locomo:conv-26:D4:14",
-            "locomo:conv-26:D13:7",
             "locomo:conv-26:D7:8",
-            "locomo:conv-26:D13:18",
-            "locomo:conv-26:D12:12",
-            "locomo:conv-26:D10:20",
-            "locomo:conv-26:D8:36",
-            "locomo:conv-26:D12:4",
-            "locomo:conv-26:D14:5",
-            "locomo:conv-26:D14:30"
+            "locomo:conv-26:D14:30",
+            "locomo:conv-26:D13:7",
+            "locomo:conv-26:D8:8",
+            "locomo:conv-26:D8:3",
+            "locomo:conv-26:D13:10",
+            "locomo:conv-26:D10:15",
+            "locomo:conv-26:D15:28",
+            "locomo:conv-26:D18:16"
           ],
           "expected_ranks": []
         },
@@ -191,13 +209,13 @@
             "locomo:conv-26:D11:12",
             "locomo:conv-26:D13:13",
             "locomo:conv-26:D16:9",
+            "locomo:conv-26:D17:19",
             "locomo:conv-26:D3:3",
-            "locomo:conv-26:D12:18",
-            "locomo:conv-26:D9:5",
-            "locomo:conv-26:D12:12",
-            "locomo:conv-26:D9:10",
-            "locomo:conv-26:D8:35",
-            "locomo:conv-26:D18:12"
+            "locomo:conv-26:D19:13",
+            "locomo:conv-26:D15:27",
+            "locomo:conv-26:D7:27",
+            "locomo:conv-26:D15:13",
+            "locomo:conv-26:D10:15"
           ],
           "expected_ranks": []
         },
@@ -209,16 +227,16 @@
             "locomo:conv-26:D2:14"
           ],
           "returned_sources": [
+            "locomo:conv-26:D8:26",
             "locomo:conv-26:D16:14",
             "locomo:conv-26:D16:15",
-            "locomo:conv-26:D12:18",
-            "locomo:conv-26:D9:5",
-            "locomo:conv-26:D12:12",
-            "locomo:conv-26:D9:10",
-            "locomo:conv-26:D8:35",
-            "locomo:conv-26:D18:12",
-            "locomo:conv-26:D16:17",
-            "locomo:conv-26:D12:19"
+            "locomo:conv-26:D19:13",
+            "locomo:conv-26:D15:27",
+            "locomo:conv-26:D7:27",
+            "locomo:conv-26:D15:13",
+            "locomo:conv-26:D10:15",
+            "locomo:conv-26:D7:21",
+            "locomo:conv-26:D18:24"
           ],
           "expected_ranks": []
         },
@@ -229,16 +247,16 @@
             "locomo:conv-26:D3:13"
           ],
           "returned_sources": [
-            "locomo:conv-26:D12:15",
             "locomo:conv-26:D6:11",
+            "locomo:conv-26:D12:15",
             "locomo:conv-26:D3:11",
+            "locomo:conv-26:D15:20",
+            "locomo:conv-26:D3:15",
             "locomo:conv-26:D6:1",
-            "locomo:conv-26:D1:7",
+            "locomo:conv-26:D8:38",
             "locomo:conv-26:D3:12",
-            "locomo:conv-26:D16:14",
-            "locomo:conv-26:D16:1",
-            "locomo:conv-26:D8:2",
-            "locomo:conv-26:D15:20"
+            "locomo:conv-26:D12:14",
+            "locomo:conv-26:D8:39"
           ],
           "expected_ranks": []
         },
@@ -251,85 +269,15 @@
           ],
           "returned_sources": [
             "locomo:conv-26:D4:12",
-            "locomo:conv-26:D15:23",
             "locomo:conv-26:D1:9",
+            "locomo:conv-26:D14:12",
             "locomo:conv-26:D4:11",
-            "locomo:conv-26:D6:1",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D1:7",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D7:24",
-            "locomo:conv-26:D7:7"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
-          "category": "commonsense",
-          "expected_sources": [
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D3:5"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D7:5",
-            "locomo:conv-26:D4:14",
-            "locomo:conv-26:D5:3",
             "locomo:conv-26:D7:7",
-            "locomo:conv-26:D4:12",
-            "locomo:conv-26:D17:16",
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D17:25",
-            "locomo:conv-26:D1:11"
-          ],
-          "expected_ranks": [
-            8
-          ]
-        },
-        {
-          "question": "What activities does Melanie partake in?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D5:4",
-            "locomo:conv-26:D9:1",
-            "locomo:conv-26:D1:12",
-            "locomo:conv-26:D1:18"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D17:22",
-            "locomo:conv-26:D15:10",
-            "locomo:conv-26:D13:2",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D11:13",
-            "locomo:conv-26:D5:4",
-            "locomo:conv-26:D7:27",
-            "locomo:conv-26:D10:1",
-            "locomo:conv-26:D8:18",
-            "locomo:conv-26:D19:14"
-          ],
-          "expected_ranks": [
-            6
-          ]
-        },
-        {
-          "question": "Where has Melanie camped?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D6:16",
-            "locomo:conv-26:D4:6",
-            "locomo:conv-26:D8:32"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D6:1",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D1:7",
-            "locomo:conv-26:D7:24",
-            "locomo:conv-26:D16:14",
-            "locomo:conv-26:D5:2",
-            "locomo:conv-26:D15:11",
-            "locomo:conv-26:D16:10",
-            "locomo:conv-26:D6:13"
+            "locomo:conv-26:D15:23",
+            "locomo:conv-26:D8:8",
+            "locomo:conv-26:D16:13",
+            "locomo:conv-26:D7:11",
+            "locomo:conv-26:D3:7"
           ],
           "expected_ranks": []
         },
@@ -343,35 +291,14 @@
           "returned_sources": [
             "locomo:conv-26:D8:3",
             "locomo:conv-26:D9:17",
+            "locomo:conv-26:D17:4",
             "locomo:conv-26:D11:7",
+            "locomo:conv-26:D13:10",
             "locomo:conv-26:D19:4",
             "locomo:conv-26:D3:14",
-            "locomo:conv-26:D13:10",
             "locomo:conv-26:D10:15",
             "locomo:conv-26:D16:16",
-            "locomo:conv-26:D15:28",
-            "locomo:conv-26:D18:8"
-          ],
-          "expected_ranks": []
-        },
-        {
-          "question": "What books has Melanie read?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D7:8",
-            "locomo:conv-26:D6:10"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D6:7",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D7:9",
-            "locomo:conv-26:D6:9",
-            "locomo:conv-26:D6:8",
-            "locomo:conv-26:D4:18",
-            "locomo:conv-26:D6:1",
-            "locomo:conv-26:D17:19",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D1:7"
+            "locomo:conv-26:D15:28"
           ],
           "expected_ranks": []
         },
@@ -383,16 +310,16 @@
             "locomo:conv-26:D5:4"
           ],
           "returned_sources": [
-            "locomo:conv-26:D17:22",
             "locomo:conv-26:D7:20",
-            "locomo:conv-26:D13:2",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D11:13",
             "locomo:conv-26:D7:27",
             "locomo:conv-26:D10:1",
             "locomo:conv-26:D8:18",
             "locomo:conv-26:D19:14",
-            "locomo:conv-26:D15:25"
+            "locomo:conv-26:D15:25",
+            "locomo:conv-26:D15:18",
+            "locomo:conv-26:D14:18",
+            "locomo:conv-26:D12:18",
+            "locomo:conv-26:D4:17"
           ],
           "expected_ranks": []
         }
@@ -403,6 +330,10 @@
       },
       "meets_targets": false,
       "scope": "retrieval-only; not answer-generation accuracy"
+    },
+    "longmemeval_s": {
+      "status": "not_run",
+      "reason": "--longmemeval-s not provided"
     },
     "public_retrieval": {
       "MemBench": {
@@ -459,16 +390,16 @@
         "excluded_cases": 0,
         "ingestion_excluded_cases": 0,
         "evidence_recall_at_3": 0.2,
-        "evidence_recall_at_10": 0.56,
+        "evidence_recall_at_10": 0.6,
         "full_evidence_recall_at_3": 0.2,
-        "full_evidence_recall_at_10": 0.56,
-        "mrr_at_10": 0.2383786848072562,
+        "full_evidence_recall_at_10": 0.6,
+        "mrr_at_10": 0.2474867724867725,
         "latency_ms": {
-          "p50": 2.473749977070838,
-          "p95": 2.65761639457196
+          "p50": 1.8499160069040954,
+          "p95": 2.608900191262364
         },
         "estimated_output_tokens": {
-          "p50": 299.0,
+          "p50": 298.0,
           "p95": 330.2,
           "max": 337
         },
@@ -476,12 +407,12 @@
           "FirstAgent/aggregative": {
             "cases": 25,
             "hit3": 5,
-            "hit10": 14,
+            "hit10": 15,
             "full3": 5,
-            "full10": 14,
+            "full10": 15,
             "recall_at_3": 0.2,
-            "recall_at_10": 0.56,
-            "full_recall_at_10": 0.56
+            "recall_at_10": 0.6,
+            "full_recall_at_10": 0.6
           }
         },
         "miss_examples": [
@@ -495,14 +426,14 @@
             "returned_sources": [
               "membench:FirstAgent:aggregative:5:0:43",
               "membench:FirstAgent:aggregative:5:0:50",
-              "membench:FirstAgent:aggregative:5:0:70",
-              "membench:FirstAgent:aggregative:5:0:12",
-              "membench:FirstAgent:aggregative:5:0:61",
-              "membench:FirstAgent:aggregative:5:0:73",
               "membench:FirstAgent:aggregative:5:0:62",
-              "membench:FirstAgent:aggregative:5:0:8",
+              "membench:FirstAgent:aggregative:5:0:74",
+              "membench:FirstAgent:aggregative:5:0:12",
+              "membench:FirstAgent:aggregative:5:0:105",
+              "membench:FirstAgent:aggregative:5:0:61",
               "membench:FirstAgent:aggregative:5:0:53",
-              "membench:FirstAgent:aggregative:5:0:26"
+              "membench:FirstAgent:aggregative:5:0:37",
+              "membench:FirstAgent:aggregative:5:0:42"
             ],
             "expected_ranks": []
           },
@@ -514,16 +445,16 @@
               "membench:FirstAgent:aggregative:40:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:40:0:18",
+              "membench:FirstAgent:aggregative:40:0:58",
               "membench:FirstAgent:aggregative:40:0:50",
               "membench:FirstAgent:aggregative:40:0:93",
-              "membench:FirstAgent:aggregative:40:0:58",
               "membench:FirstAgent:aggregative:40:0:9",
               "membench:FirstAgent:aggregative:40:0:19",
+              "membench:FirstAgent:aggregative:40:0:18",
               "membench:FirstAgent:aggregative:40:0:27",
               "membench:FirstAgent:aggregative:40:0:103",
               "membench:FirstAgent:aggregative:40:0:95",
-              "membench:FirstAgent:aggregative:40:0:46"
+              "membench:FirstAgent:aggregative:40:0:104"
             ],
             "expected_ranks": []
           },
@@ -535,16 +466,16 @@
               "membench:FirstAgent:aggregative:51:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:51:0:62",
-              "membench:FirstAgent:aggregative:51:0:9",
               "membench:FirstAgent:aggregative:51:0:50",
-              "membench:FirstAgent:aggregative:51:0:44",
               "membench:FirstAgent:aggregative:51:0:103",
-              "membench:FirstAgent:aggregative:51:0:49",
-              "membench:FirstAgent:aggregative:51:0:38",
               "membench:FirstAgent:aggregative:51:0:73",
-              "membench:FirstAgent:aggregative:51:0:20",
-              "membench:FirstAgent:aggregative:51:0:85"
+              "membench:FirstAgent:aggregative:51:0:62",
+              "membench:FirstAgent:aggregative:51:0:85",
+              "membench:FirstAgent:aggregative:51:0:15",
+              "membench:FirstAgent:aggregative:51:0:5",
+              "membench:FirstAgent:aggregative:51:0:27",
+              "membench:FirstAgent:aggregative:51:0:107",
+              "membench:FirstAgent:aggregative:51:0:9"
             ],
             "expected_ranks": []
           },
@@ -557,18 +488,18 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:58:0:50",
-              "membench:FirstAgent:aggregative:58:0:23",
-              "membench:FirstAgent:aggregative:58:0:17",
-              "membench:FirstAgent:aggregative:58:0:40",
               "membench:FirstAgent:aggregative:58:0:70",
-              "membench:FirstAgent:aggregative:58:0:62",
+              "membench:FirstAgent:aggregative:58:0:23",
+              "membench:FirstAgent:aggregative:58:0:40",
+              "membench:FirstAgent:aggregative:58:0:17",
               "membench:FirstAgent:aggregative:58:0:0",
-              "membench:FirstAgent:aggregative:58:0:83",
-              "membench:FirstAgent:aggregative:58:0:51",
-              "membench:FirstAgent:aggregative:58:0:56"
+              "membench:FirstAgent:aggregative:58:0:108",
+              "membench:FirstAgent:aggregative:58:0:48",
+              "membench:FirstAgent:aggregative:58:0:75",
+              "membench:FirstAgent:aggregative:58:0:85"
             ],
             "expected_ranks": [
-              7
+              6
             ]
           },
           {
@@ -579,19 +510,19 @@
               "membench:FirstAgent:aggregative:76:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:76:0:19",
               "membench:FirstAgent:aggregative:76:0:69",
+              "membench:FirstAgent:aggregative:76:0:19",
               "membench:FirstAgent:aggregative:76:0:79",
-              "membench:FirstAgent:aggregative:76:0:18",
-              "membench:FirstAgent:aggregative:76:0:31",
-              "membench:FirstAgent:aggregative:76:0:47",
               "membench:FirstAgent:aggregative:76:0:104",
               "membench:FirstAgent:aggregative:76:0:0",
+              "membench:FirstAgent:aggregative:76:0:109",
+              "membench:FirstAgent:aggregative:76:0:93",
               "membench:FirstAgent:aggregative:76:0:50",
-              "membench:FirstAgent:aggregative:76:0:82"
+              "membench:FirstAgent:aggregative:76:0:47",
+              "membench:FirstAgent:aggregative:76:0:75"
             ],
             "expected_ranks": [
-              8
+              5
             ]
           },
           {
@@ -604,14 +535,14 @@
             "returned_sources": [
               "membench:FirstAgent:aggregative:82:0:90",
               "membench:FirstAgent:aggregative:82:0:14",
-              "membench:FirstAgent:aggregative:82:0:30",
-              "membench:FirstAgent:aggregative:82:0:83",
               "membench:FirstAgent:aggregative:82:0:105",
+              "membench:FirstAgent:aggregative:82:0:30",
+              "membench:FirstAgent:aggregative:82:0:45",
+              "membench:FirstAgent:aggregative:82:0:83",
               "membench:FirstAgent:aggregative:82:0:70",
               "membench:FirstAgent:aggregative:82:0:58",
-              "membench:FirstAgent:aggregative:82:0:45",
               "membench:FirstAgent:aggregative:82:0:0",
-              "membench:FirstAgent:aggregative:82:0:50"
+              "membench:FirstAgent:aggregative:82:0:33"
             ],
             "expected_ranks": [
               9
@@ -625,16 +556,16 @@
               "membench:FirstAgent:aggregative:103:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:103:0:50",
-              "membench:FirstAgent:aggregative:103:0:84",
               "membench:FirstAgent:aggregative:103:0:42",
+              "membench:FirstAgent:aggregative:103:0:50",
               "membench:FirstAgent:aggregative:103:0:52",
+              "membench:FirstAgent:aggregative:103:0:84",
               "membench:FirstAgent:aggregative:103:0:39",
               "membench:FirstAgent:aggregative:103:0:7",
-              "membench:FirstAgent:aggregative:103:0:104",
-              "membench:FirstAgent:aggregative:103:0:9",
-              "membench:FirstAgent:aggregative:103:0:83",
-              "membench:FirstAgent:aggregative:103:0:2"
+              "membench:FirstAgent:aggregative:103:0:20",
+              "membench:FirstAgent:aggregative:103:0:63",
+              "membench:FirstAgent:aggregative:103:0:96",
+              "membench:FirstAgent:aggregative:103:0:104"
             ],
             "expected_ranks": []
           },
@@ -646,16 +577,16 @@
               "membench:FirstAgent:aggregative:121:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:121:0:70",
-              "membench:FirstAgent:aggregative:121:0:50",
-              "membench:FirstAgent:aggregative:121:0:86",
               "membench:FirstAgent:aggregative:121:0:3",
-              "membench:FirstAgent:aggregative:121:0:55",
-              "membench:FirstAgent:aggregative:121:0:48",
-              "membench:FirstAgent:aggregative:121:0:103",
+              "membench:FirstAgent:aggregative:121:0:50",
               "membench:FirstAgent:aggregative:121:0:95",
+              "membench:FirstAgent:aggregative:121:0:103",
+              "membench:FirstAgent:aggregative:121:0:70",
+              "membench:FirstAgent:aggregative:121:0:86",
+              "membench:FirstAgent:aggregative:121:0:40",
               "membench:FirstAgent:aggregative:121:0:96",
-              "membench:FirstAgent:aggregative:121:0:4"
+              "membench:FirstAgent:aggregative:121:0:4",
+              "membench:FirstAgent:aggregative:121:0:14"
             ],
             "expected_ranks": []
           },
@@ -667,16 +598,16 @@
               "membench:FirstAgent:aggregative:139:0:0"
             ],
             "returned_sources": [
+              "membench:FirstAgent:aggregative:139:0:72",
               "membench:FirstAgent:aggregative:139:0:35",
               "membench:FirstAgent:aggregative:139:0:29",
               "membench:FirstAgent:aggregative:139:0:50",
-              "membench:FirstAgent:aggregative:139:0:72",
-              "membench:FirstAgent:aggregative:139:0:2",
               "membench:FirstAgent:aggregative:139:0:107",
               "membench:FirstAgent:aggregative:139:0:14",
-              "membench:FirstAgent:aggregative:139:0:31",
               "membench:FirstAgent:aggregative:139:0:97",
-              "membench:FirstAgent:aggregative:139:0:84"
+              "membench:FirstAgent:aggregative:139:0:31",
+              "membench:FirstAgent:aggregative:139:0:93",
+              "membench:FirstAgent:aggregative:139:0:86"
             ],
             "expected_ranks": []
           },
@@ -688,19 +619,19 @@
               "membench:FirstAgent:aggregative:147:0:0"
             ],
             "returned_sources": [
+              "membench:FirstAgent:aggregative:147:0:103",
               "membench:FirstAgent:aggregative:147:0:22",
               "membench:FirstAgent:aggregative:147:0:75",
               "membench:FirstAgent:aggregative:147:0:68",
-              "membench:FirstAgent:aggregative:147:0:103",
-              "membench:FirstAgent:aggregative:147:0:21",
               "membench:FirstAgent:aggregative:147:0:0",
               "membench:FirstAgent:aggregative:147:0:50",
-              "membench:FirstAgent:aggregative:147:0:18",
-              "membench:FirstAgent:aggregative:147:0:87",
-              "membench:FirstAgent:aggregative:147:0:97"
+              "membench:FirstAgent:aggregative:147:0:85",
+              "membench:FirstAgent:aggregative:147:0:108",
+              "membench:FirstAgent:aggregative:147:0:77",
+              "membench:FirstAgent:aggregative:147:0:47"
             ],
             "expected_ranks": [
-              6
+              5
             ]
           },
           {
@@ -712,18 +643,18 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:177:0:91",
-              "membench:FirstAgent:aggregative:177:0:74",
               "membench:FirstAgent:aggregative:177:0:14",
               "membench:FirstAgent:aggregative:177:0:27",
               "membench:FirstAgent:aggregative:177:0:46",
+              "membench:FirstAgent:aggregative:177:0:74",
+              "membench:FirstAgent:aggregative:177:0:98",
+              "membench:FirstAgent:aggregative:177:0:82",
               "membench:FirstAgent:aggregative:177:0:0",
               "membench:FirstAgent:aggregative:177:0:62",
-              "membench:FirstAgent:aggregative:177:0:82",
-              "membench:FirstAgent:aggregative:177:0:98",
               "membench:FirstAgent:aggregative:177:0:40"
             ],
             "expected_ranks": [
-              6
+              8
             ]
           },
           {
@@ -734,19 +665,19 @@
               "membench:FirstAgent:aggregative:184:0:0"
             ],
             "returned_sources": [
+              "membench:FirstAgent:aggregative:184:0:53",
               "membench:FirstAgent:aggregative:184:0:21",
               "membench:FirstAgent:aggregative:184:0:100",
               "membench:FirstAgent:aggregative:184:0:76",
               "membench:FirstAgent:aggregative:184:0:93",
               "membench:FirstAgent:aggregative:184:0:49",
               "membench:FirstAgent:aggregative:184:0:0",
-              "membench:FirstAgent:aggregative:184:0:53",
               "membench:FirstAgent:aggregative:184:0:72",
               "membench:FirstAgent:aggregative:184:0:84",
-              "membench:FirstAgent:aggregative:184:0:104"
+              "membench:FirstAgent:aggregative:184:0:94"
             ],
             "expected_ranks": [
-              6
+              7
             ]
           },
           {
@@ -757,19 +688,19 @@
               "membench:FirstAgent:aggregative:187:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:187:0:24",
               "membench:FirstAgent:aggregative:187:0:50",
               "membench:FirstAgent:aggregative:187:0:48",
-              "membench:FirstAgent:aggregative:187:0:10",
               "membench:FirstAgent:aggregative:187:0:12",
               "membench:FirstAgent:aggregative:187:0:42",
-              "membench:FirstAgent:aggregative:187:0:32",
+              "membench:FirstAgent:aggregative:187:0:24",
               "membench:FirstAgent:aggregative:187:0:0",
               "membench:FirstAgent:aggregative:187:0:74",
-              "membench:FirstAgent:aggregative:187:0:78"
+              "membench:FirstAgent:aggregative:187:0:36",
+              "membench:FirstAgent:aggregative:187:0:5",
+              "membench:FirstAgent:aggregative:187:0:85"
             ],
             "expected_ranks": [
-              8
+              6
             ]
           },
           {
@@ -780,18 +711,20 @@
               "membench:FirstAgent:aggregative:198:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:198:0:97",
               "membench:FirstAgent:aggregative:198:0:50",
+              "membench:FirstAgent:aggregative:198:0:97",
               "membench:FirstAgent:aggregative:198:0:33",
-              "membench:FirstAgent:aggregative:198:0:19",
               "membench:FirstAgent:aggregative:198:0:81",
+              "membench:FirstAgent:aggregative:198:0:19",
               "membench:FirstAgent:aggregative:198:0:100",
-              "membench:FirstAgent:aggregative:198:0:76",
               "membench:FirstAgent:aggregative:198:0:60",
               "membench:FirstAgent:aggregative:198:0:72",
-              "membench:FirstAgent:aggregative:198:0:23"
+              "membench:FirstAgent:aggregative:198:0:15",
+              "membench:FirstAgent:aggregative:198:0:0"
             ],
-            "expected_ranks": []
+            "expected_ranks": [
+              10
+            ]
           },
           {
             "case_id": "FirstAgent:aggregative:214:0",
@@ -802,15 +735,15 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:214:0:81",
-              "membench:FirstAgent:aggregative:214:0:15",
               "membench:FirstAgent:aggregative:214:0:38",
+              "membench:FirstAgent:aggregative:214:0:15",
               "membench:FirstAgent:aggregative:214:0:0",
-              "membench:FirstAgent:aggregative:214:0:94",
-              "membench:FirstAgent:aggregative:214:0:50",
               "membench:FirstAgent:aggregative:214:0:16",
+              "membench:FirstAgent:aggregative:214:0:60",
+              "membench:FirstAgent:aggregative:214:0:94",
               "membench:FirstAgent:aggregative:214:0:70",
-              "membench:FirstAgent:aggregative:214:0:51",
-              "membench:FirstAgent:aggregative:214:0:60"
+              "membench:FirstAgent:aggregative:214:0:50",
+              "membench:FirstAgent:aggregative:214:0:51"
             ],
             "expected_ranks": [
               4
@@ -824,16 +757,16 @@
               "membench:FirstAgent:aggregative:229:0:0"
             ],
             "returned_sources": [
+              "membench:FirstAgent:aggregative:229:0:43",
+              "membench:FirstAgent:aggregative:229:0:62",
+              "membench:FirstAgent:aggregative:229:0:36",
               "membench:FirstAgent:aggregative:229:0:20",
               "membench:FirstAgent:aggregative:229:0:50",
+              "membench:FirstAgent:aggregative:229:0:4",
+              "membench:FirstAgent:aggregative:229:0:105",
               "membench:FirstAgent:aggregative:229:0:87",
-              "membench:FirstAgent:aggregative:229:0:83",
-              "membench:FirstAgent:aggregative:229:0:62",
-              "membench:FirstAgent:aggregative:229:0:31",
-              "membench:FirstAgent:aggregative:229:0:43",
-              "membench:FirstAgent:aggregative:229:0:102",
-              "membench:FirstAgent:aggregative:229:0:96",
-              "membench:FirstAgent:aggregative:229:0:71"
+              "membench:FirstAgent:aggregative:229:0:10",
+              "membench:FirstAgent:aggregative:229:0:83"
             ],
             "expected_ranks": []
           },
@@ -845,16 +778,16 @@
               "membench:FirstAgent:aggregative:240:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:240:0:61",
-              "membench:FirstAgent:aggregative:240:0:54",
               "membench:FirstAgent:aggregative:240:0:81",
+              "membench:FirstAgent:aggregative:240:0:61",
               "membench:FirstAgent:aggregative:240:0:109",
-              "membench:FirstAgent:aggregative:240:0:39",
-              "membench:FirstAgent:aggregative:240:0:66",
-              "membench:FirstAgent:aggregative:240:0:50",
-              "membench:FirstAgent:aggregative:240:0:91",
+              "membench:FirstAgent:aggregative:240:0:54",
               "membench:FirstAgent:aggregative:240:0:103",
-              "membench:FirstAgent:aggregative:240:0:63"
+              "membench:FirstAgent:aggregative:240:0:50",
+              "membench:FirstAgent:aggregative:240:0:6",
+              "membench:FirstAgent:aggregative:240:0:36",
+              "membench:FirstAgent:aggregative:240:0:3",
+              "membench:FirstAgent:aggregative:240:0:14"
             ],
             "expected_ranks": []
           },
@@ -866,16 +799,16 @@
               "membench:FirstAgent:aggregative:267:0:0"
             ],
             "returned_sources": [
-              "membench:FirstAgent:aggregative:267:0:46",
-              "membench:FirstAgent:aggregative:267:0:36",
               "membench:FirstAgent:aggregative:267:0:50",
-              "membench:FirstAgent:aggregative:267:0:22",
               "membench:FirstAgent:aggregative:267:0:59",
-              "membench:FirstAgent:aggregative:267:0:18",
+              "membench:FirstAgent:aggregative:267:0:46",
+              "membench:FirstAgent:aggregative:267:0:22",
+              "membench:FirstAgent:aggregative:267:0:36",
+              "membench:FirstAgent:aggregative:267:0:72",
               "membench:FirstAgent:aggregative:267:0:5",
-              "membench:FirstAgent:aggregative:267:0:87",
-              "membench:FirstAgent:aggregative:267:0:7",
-              "membench:FirstAgent:aggregative:267:0:72"
+              "membench:FirstAgent:aggregative:267:0:102",
+              "membench:FirstAgent:aggregative:267:0:92",
+              "membench:FirstAgent:aggregative:267:0:48"
             ],
             "expected_ranks": []
           },
@@ -891,11 +824,11 @@
               "membench:FirstAgent:aggregative:272:0:87",
               "membench:FirstAgent:aggregative:272:0:46",
               "membench:FirstAgent:aggregative:272:0:0",
-              "membench:FirstAgent:aggregative:272:0:7",
               "membench:FirstAgent:aggregative:272:0:17",
-              "membench:FirstAgent:aggregative:272:0:18",
-              "membench:FirstAgent:aggregative:272:0:50",
               "membench:FirstAgent:aggregative:272:0:99",
+              "membench:FirstAgent:aggregative:272:0:7",
+              "membench:FirstAgent:aggregative:272:0:79",
+              "membench:FirstAgent:aggregative:272:0:50",
               "membench:FirstAgent:aggregative:272:0:76"
             ],
             "expected_ranks": [
@@ -911,14 +844,14 @@
             ],
             "returned_sources": [
               "membench:FirstAgent:aggregative:278:0:83",
-              "membench:FirstAgent:aggregative:278:0:59",
-              "membench:FirstAgent:aggregative:278:0:9",
               "membench:FirstAgent:aggregative:278:0:50",
+              "membench:FirstAgent:aggregative:278:0:68",
+              "membench:FirstAgent:aggregative:278:0:59",
               "membench:FirstAgent:aggregative:278:0:39",
               "membench:FirstAgent:aggregative:278:0:96",
-              "membench:FirstAgent:aggregative:278:0:68",
+              "membench:FirstAgent:aggregative:278:0:6",
               "membench:FirstAgent:aggregative:278:0:107",
-              "membench:FirstAgent:aggregative:278:0:35",
+              "membench:FirstAgent:aggregative:278:0:30",
               "membench:FirstAgent:aggregative:278:0:11"
             ],
             "expected_ranks": []
@@ -949,14 +882,14 @@
         "evaluated": 25,
         "excluded_cases": 0,
         "ingestion_excluded_cases": 0,
-        "evidence_recall_at_3": 0.96,
-        "evidence_recall_at_10": 0.96,
-        "full_evidence_recall_at_3": 0.96,
-        "full_evidence_recall_at_10": 0.96,
+        "evidence_recall_at_3": 1.0,
+        "evidence_recall_at_10": 1.0,
+        "full_evidence_recall_at_3": 1.0,
+        "full_evidence_recall_at_10": 1.0,
         "mrr_at_10": 1.0,
         "latency_ms": {
-          "p50": 1.0941249784082174,
-          "p95": 1.5937671880237756
+          "p50": 1.1009590234607458,
+          "p95": 1.3898745994083583
         },
         "estimated_output_tokens": {
           "p50": 126.0,
@@ -966,27 +899,16 @@
         "by_category": {
           "conflict": {
             "cases": 25,
-            "hit3": 24,
-            "hit10": 24,
-            "full3": 24,
-            "full10": 24,
-            "recall_at_3": 0.96,
-            "recall_at_10": 0.96,
-            "full_recall_at_10": 0.96
+            "hit3": 25,
+            "hit10": 25,
+            "full3": 25,
+            "full10": 25,
+            "recall_at_3": 1.0,
+            "recall_at_10": 1.0,
+            "full_recall_at_10": 1.0
           }
         },
-        "miss_examples": [
-          {
-            "case_id": "conflict:0:factconsolidation_mh_6k_no1",
-            "category": "conflict",
-            "query": "In which location did the spouse of Igor of Kiev pass away?",
-            "expected_sources": [
-              "memoryagentbench:conflict:0:chunk:0000"
-            ],
-            "returned_sources": [],
-            "expected_ranks": []
-          }
-        ],
+        "miss_examples": [],
         "notes": "Retrieval proxy derived from accepted answers appearing in context chunks; official answer-generation accuracy is not measured."
       },
       "BEAM": {
@@ -1047,19 +969,19 @@
         "evaluated": 25,
         "excluded_cases": 0,
         "ingestion_excluded_cases": 10,
-        "evidence_recall_at_3": 0.56,
+        "evidence_recall_at_3": 0.6,
         "evidence_recall_at_10": 0.84,
-        "full_evidence_recall_at_3": 0.48,
-        "full_evidence_recall_at_10": 0.52,
-        "mrr_at_10": 0.6718820861678004,
+        "full_evidence_recall_at_3": 0.4,
+        "full_evidence_recall_at_10": 0.48,
+        "mrr_at_10": 0.6261904761904762,
         "latency_ms": {
-          "p50": 3.7047499790787697,
-          "p95": 6.911791779566554
+          "p50": 2.2419580491259694,
+          "p95": 4.4014836312271655
         },
         "estimated_output_tokens": {
           "p50": 356.0,
           "p95": 357.0,
-          "max": 357
+          "max": 358
         },
         "by_category": {
           "event_ordering": {
@@ -1074,21 +996,21 @@
           },
           "information_extraction": {
             "cases": 3,
-            "hit3": 2,
+            "hit3": 3,
             "hit10": 3,
             "full3": 2,
             "full10": 2,
-            "recall_at_3": 0.6666666666666666,
+            "recall_at_3": 1.0,
             "recall_at_10": 1.0,
             "full_recall_at_10": 0.6666666666666666
           },
           "instruction_following": {
             "cases": 4,
-            "hit3": 2,
+            "hit3": 1,
             "hit10": 2,
-            "full3": 2,
+            "full3": 1,
             "full10": 2,
-            "recall_at_3": 0.5,
+            "recall_at_3": 0.25,
             "recall_at_10": 0.5,
             "full_recall_at_10": 0.5
           },
@@ -1106,19 +1028,19 @@
             "cases": 4,
             "hit3": 1,
             "hit10": 3,
-            "full3": 1,
-            "full10": 1,
+            "full3": 0,
+            "full10": 0,
             "recall_at_3": 0.25,
             "recall_at_10": 0.75,
-            "full_recall_at_10": 0.25
+            "full_recall_at_10": 0.0
           },
           "preference_following": {
             "cases": 4,
-            "hit3": 2,
+            "hit3": 3,
             "hit10": 4,
             "full3": 2,
             "full10": 3,
-            "recall_at_3": 0.5,
+            "recall_at_3": 0.75,
             "recall_at_10": 1.0,
             "full_recall_at_10": 0.75
           },
@@ -1156,19 +1078,17 @@
             ],
             "returned_sources": [
               "beam:1:171",
-              "beam:1:125",
               "beam:1:85",
               "beam:1:50",
-              "beam:1:124",
-              "beam:1:127",
+              "beam:1:125",
               "beam:1:84",
+              "beam:1:127",
+              "beam:1:124",
+              "beam:1:135",
               "beam:1:181",
-              "beam:1:134",
-              "beam:1:118"
+              "beam:1:28"
             ],
-            "expected_ranks": [
-              10
-            ]
+            "expected_ranks": []
           },
           {
             "case_id": "1:instruction_following:0",
@@ -1180,15 +1100,15 @@
             ],
             "returned_sources": [
               "beam:1:29",
-              "beam:1:2",
               "beam:1:150",
+              "beam:1:2",
               "beam:1:28",
               "beam:1:84",
               "beam:1:34",
-              "beam:1:8",
               "beam:1:114",
+              "beam:1:8",
               "beam:1:109",
-              "beam:1:86"
+              "beam:1:9"
             ],
             "expected_ranks": []
           },
@@ -1206,11 +1126,11 @@
               "beam:1:186",
               "beam:1:114",
               "beam:1:177",
+              "beam:1:152",
               "beam:1:176",
+              "beam:1:187",
               "beam:1:121",
-              "beam:1:24",
-              "beam:1:26",
-              "beam:1:119"
+              "beam:1:24"
             ],
             "expected_ranks": [
               4
@@ -1226,19 +1146,19 @@
               "beam:1:150"
             ],
             "returned_sources": [
+              "beam:1:183",
+              "beam:1:179",
+              "beam:1:85",
               "beam:1:178",
+              "beam:1:84",
               "beam:1:182",
               "beam:1:184",
-              "beam:1:179",
-              "beam:1:34",
-              "beam:1:154",
-              "beam:1:16",
-              "beam:1:186",
-              "beam:1:8",
-              "beam:1:183"
+              "beam:1:187",
+              "beam:1:42",
+              "beam:1:154"
             ],
             "expected_ranks": [
-              7
+              5
             ]
           },
           {
@@ -1249,19 +1169,19 @@
               "beam:1:178"
             ],
             "returned_sources": [
-              "beam:1:186",
               "beam:1:182",
               "beam:1:122",
-              "beam:1:178",
-              "beam:1:120",
-              "beam:1:184",
-              "beam:1:118",
               "beam:1:187",
+              "beam:1:120",
               "beam:1:125",
-              "beam:1:172"
+              "beam:1:183",
+              "beam:1:127",
+              "beam:1:42",
+              "beam:1:178",
+              "beam:1:184"
             ],
             "expected_ranks": [
-              4
+              9
             ]
           },
           {
@@ -1273,43 +1193,41 @@
               "beam:2:162"
             ],
             "returned_sources": [
-              "beam:2:134",
-              "beam:2:77",
               "beam:2:163",
+              "beam:2:131",
+              "beam:2:77",
+              "beam:2:26",
               "beam:2:53",
               "beam:2:141",
+              "beam:2:134",
               "beam:2:108",
-              "beam:2:76",
-              "beam:2:109",
-              "beam:2:26",
-              "beam:2:14"
-            ],
-            "expected_ranks": []
-          },
-          {
-            "case_id": "2:information_extraction:1",
-            "category": "information_extraction",
-            "query": "How did you recommend managing the flow of requests when my app risks overwhelming the service due to frequent retries and bursts of activity?",
-            "expected_sources": [
-              "beam:2:33",
-              "beam:2:35",
-              "beam:2:37"
-            ],
-            "returned_sources": [
-              "beam:2:122",
-              "beam:2:103",
-              "beam:2:93",
-              "beam:2:37",
-              "beam:2:156",
-              "beam:2:105",
-              "beam:2:151",
-              "beam:2:99",
-              "beam:2:172",
-              "beam:2:81"
+              "beam:2:28",
+              "beam:2:75"
             ],
             "expected_ranks": [
-              4
+              9
             ]
+          },
+          {
+            "case_id": "2:instruction_following:0",
+            "category": "instruction_following",
+            "query": "What are some common responses when something goes wrong with an API?",
+            "expected_sources": [
+              "beam:2:130"
+            ],
+            "returned_sources": [
+              "beam:2:134",
+              "beam:2:151",
+              "beam:2:135",
+              "beam:2:115",
+              "beam:2:54",
+              "beam:2:62",
+              "beam:2:63",
+              "beam:2:114",
+              "beam:2:129",
+              "beam:2:109"
+            ],
+            "expected_ranks": []
           },
           {
             "case_id": "2:instruction_following:1",
@@ -1319,18 +1237,20 @@
               "beam:2:130"
             ],
             "returned_sources": [
-              "beam:2:115",
-              "beam:2:114",
-              "beam:2:134",
-              "beam:2:109",
-              "beam:2:131",
               "beam:2:152",
-              "beam:2:139",
-              "beam:2:85",
+              "beam:2:134",
+              "beam:2:153",
+              "beam:2:135",
+              "beam:2:130",
+              "beam:2:128",
+              "beam:2:75",
               "beam:2:63",
-              "beam:2:53"
+              "beam:2:14",
+              "beam:2:131"
             ],
-            "expected_ranks": []
+            "expected_ranks": [
+              5
+            ]
           },
           {
             "case_id": "2:multi_session_reasoning:0",
@@ -1344,18 +1264,20 @@
               "beam:2:190"
             ],
             "returned_sources": [
-              "beam:2:77",
-              "beam:2:76",
-              "beam:2:28",
-              "beam:2:26",
-              "beam:2:14",
-              "beam:2:52",
+              "beam:2:172",
               "beam:2:134",
               "beam:2:139",
-              "beam:2:137",
-              "beam:2:146"
+              "beam:2:28",
+              "beam:2:14",
+              "beam:2:77",
+              "beam:2:80",
+              "beam:2:76",
+              "beam:2:122",
+              "beam:2:26"
             ],
-            "expected_ranks": []
+            "expected_ranks": [
+              9
+            ]
           },
           {
             "case_id": "2:multi_session_reasoning:1",
@@ -1367,43 +1289,17 @@
             ],
             "returned_sources": [
               "beam:2:94",
-              "beam:2:52",
+              "beam:2:95",
+              "beam:2:133",
+              "beam:2:53",
+              "beam:2:149",
               "beam:2:150",
-              "beam:2:92",
-              "beam:2:38",
+              "beam:2:75",
+              "beam:2:81",
               "beam:2:148",
-              "beam:2:114",
-              "beam:2:62",
-              "beam:2:124",
-              "beam:2:74"
+              "beam:2:151"
             ],
-            "expected_ranks": [
-              5
-            ]
-          },
-          {
-            "case_id": "2:preference_following:1",
-            "category": "preference_following",
-            "query": "How can I track the status and results of each step in my deployment workflow?",
-            "expected_sources": [
-              "beam:2:182",
-              "beam:2:184"
-            ],
-            "returned_sources": [
-              "beam:2:185",
-              "beam:2:176",
-              "beam:2:145",
-              "beam:2:184",
-              "beam:2:183",
-              "beam:2:135",
-              "beam:2:147",
-              "beam:2:193",
-              "beam:2:195",
-              "beam:2:174"
-            ],
-            "expected_ranks": [
-              4
-            ]
+            "expected_ranks": []
           }
         ],
         "notes": "Retrieval-only adapter for BEAM probing questions with source_chat_ids."

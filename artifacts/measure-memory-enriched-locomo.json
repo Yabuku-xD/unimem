@@ -1,8 +1,8 @@
 {
   "passed": false,
-  "command": "uv run --extra semantic --extra benchmark python benchmarks/measure_memory.py --lexical-only --enrich-model mlx-community/LFM2.5-1.2B-Instruct-4bit --membench /nonexistent --memoryagentbench --beam /nonexistent --capacity 50 --capacity-queries 5 --output artifacts/measure-memory-enriched-locomo.json",
-  "started_at": "2026-10-02T20:22:27.030221+00:00",
-  "finished_at": "2026-10-02T20:22:42.074869+00:00",
+  "command": "uv run --extra semantic --extra benchmark python benchmarks/measure_memory.py --lexical-only --enrich-model mlx-community/LFM2.5-1.2B-Instruct-4bit --membench /nonexistent --memoryagentbench --beam /nonexistent --output artifacts/measure-memory-enriched-locomo.json",
+  "started_at": "2026-10-02T22:00:03.097873+00:00",
+  "finished_at": "2026-10-02T22:00:19.451276+00:00",
   "python": "3.14.7 (main, Sep 29 2026, 14:50:11) [Clang 22.1.3 ]",
   "enrichment": {
     "enabled": true,
@@ -12,7 +12,7 @@
   },
   "fts_column_weights": [
     1.0,
-    1.0,
+    0.5,
     0.25
   ],
   "semantic": {
@@ -26,7 +26,7 @@
   },
   "primary": {
     "name": "balanced_public_retrieval",
-    "value": 0.7628657921291625,
+    "value": 0.7885973763874874,
     "target": 0.95,
     "direction": "maximize"
   },
@@ -38,15 +38,15 @@
     "cli_mcp_parity": true
   },
   "diagnostics": {
-    "balanced_public_retrieval_at_3": 0.6059535822401615,
+    "balanced_public_retrieval_at_3": 0.6200807265388496,
     "routing_f1": 1.0,
     "extraction_f1": 1.0,
-    "recall_latency_p95_ms": 1.1778004001826048,
-    "estimated_output_tokens_p95": 162.0,
-    "max_recall_tokens": 162,
-    "max_rss_mb": 121.96875,
-    "cpu_seconds": 13.877106000000001,
-    "wall_seconds": 15.044534166983794
+    "recall_latency_p95_ms": 2.632089253165759,
+    "estimated_output_tokens_p95": 163.0,
+    "max_recall_tokens": 163,
+    "max_rss_mb": 119.359375,
+    "cpu_seconds": 14.635113,
+    "wall_seconds": 16.353160790982656
   },
   "metrics": {
     "routing": {
@@ -81,8 +81,8 @@
       "recall_at_3": 1.0,
       "foreign_project_hits": 0,
       "latency_ms": {
-        "p50": 0.9085625060833991,
-        "p95": 0.9627817926229909
+        "p50": 1.12806202378124,
+        "p95": 1.3075832539470866
       },
       "target": 0.8,
       "meets_target": true,
@@ -96,33 +96,33 @@
       "forgetting_rate": 1.0
     },
     "capacity_and_efficiency": {
-      "memory_count": 50,
-      "query_count": 5,
-      "insert_seconds": 0.05593249999219552,
-      "inserts_per_second": 893.9346535015724,
+      "memory_count": 1000,
+      "query_count": 50,
+      "insert_seconds": 1.2855226660030894,
+      "inserts_per_second": 777.8937131533991,
       "insert_latency_ms": {
-        "p50": 1.1451044701971114,
-        "p95": 1.289516294491477
+        "p50": 1.2310414749663323,
+        "p95": 1.6727732116123657
       },
       "recall_latency_ms": {
-        "p50": 0.9213330340571702,
-        "p95": 1.1778004001826048
+        "p50": 2.3518335074186325,
+        "p95": 2.632089253165759
       },
       "estimated_output_tokens": {
-        "p50": 162.0,
-        "p95": 162.0,
-        "max": 162
+        "p50": 163.0,
+        "p95": 163.0,
+        "max": 163
       }
     },
     "cli_mcp_parity": {
       "database_ids": [
-        "mem_cee9ec90003a4257"
+        "mem_5a6ef02143184ea0"
       ],
       "mcp_ids": [
-        "mem_cee9ec90003a4257"
+        "mem_5a6ef02143184ea0"
       ],
       "cli_ids": [
-        "mem_cee9ec90003a4257"
+        "mem_5a6ef02143184ea0"
       ],
       "equal": true,
       "cli_returncode": 0
@@ -135,64 +135,66 @@
       "samples": 10,
       "questions": 1986,
       "evidence_questions": 1982,
-      "evidence_recall_at_3": 0.6059535822401615,
-      "evidence_recall_at_10": 0.7628657921291625,
-      "full_evidence_recall_at_10": 0.67255297679112,
-      "mrr_at_10": 0.6810221928277483,
+      "evidence_recall_at_3": 0.6200807265388496,
+      "evidence_recall_at_10": 0.7885973763874874,
+      "full_evidence_recall_at_10": 0.6871846619576185,
+      "session_recall_at_10": 0.9530776992936428,
+      "session_fractional_recall_at_10": 0.9121527278249333,
+      "mrr_at_10": 0.6681039210309844,
       "latency_ms": {
-        "p50": 2.1623329957947135,
-        "p95": 5.646422604331736
+        "p50": 2.004166482947767,
+        "p95": 2.4006527528399597
       },
       "by_category": {
         "temporal": {
           "questions": 321,
           "evidence_questions": 321,
-          "hit3": 224,
-          "hit10": 257,
-          "full10": 240,
-          "recall_at_3": 0.6978193146417445,
-          "recall_at_10": 0.8006230529595015,
-          "full_recall_at_10": 0.7476635514018691
+          "hit3": 214,
+          "hit10": 261,
+          "full10": 247,
+          "recall_at_3": 0.6666666666666666,
+          "recall_at_10": 0.8130841121495327,
+          "full_recall_at_10": 0.7694704049844237
         },
         "commonsense": {
           "questions": 96,
           "evidence_questions": 92,
-          "hit3": 30,
-          "hit10": 39,
-          "full10": 22,
-          "recall_at_3": 0.32608695652173914,
-          "recall_at_10": 0.42391304347826086,
-          "full_recall_at_10": 0.2391304347826087
+          "hit3": 33,
+          "hit10": 45,
+          "full10": 25,
+          "recall_at_3": 0.358695652173913,
+          "recall_at_10": 0.4891304347826087,
+          "full_recall_at_10": 0.2717391304347826
         },
         "multi_hop": {
           "questions": 282,
           "evidence_questions": 282,
-          "hit3": 108,
-          "hit10": 162,
-          "full10": 41,
-          "recall_at_3": 0.3829787234042553,
-          "recall_at_10": 0.574468085106383,
-          "full_recall_at_10": 0.1453900709219858
+          "hit3": 145,
+          "hit10": 202,
+          "full10": 59,
+          "recall_at_3": 0.5141843971631206,
+          "recall_at_10": 0.7163120567375887,
+          "full_recall_at_10": 0.20921985815602837
         },
         "single_hop": {
           "questions": 841,
           "evidence_questions": 841,
-          "hit3": 564,
-          "hit10": 691,
-          "full10": 673,
-          "recall_at_3": 0.6706302021403091,
-          "recall_at_10": 0.821640903686088,
-          "full_recall_at_10": 0.8002378121284186
+          "hit3": 562,
+          "hit10": 694,
+          "full10": 675,
+          "recall_at_3": 0.6682520808561236,
+          "recall_at_10": 0.8252080856123662,
+          "full_recall_at_10": 0.8026159334126041
         },
         "adversarial": {
           "questions": 446,
           "evidence_questions": 446,
           "hit3": 275,
-          "hit10": 363,
-          "full10": 357,
+          "hit10": 361,
+          "full10": 356,
           "recall_at_3": 0.6165919282511211,
-          "recall_at_10": 0.8139013452914798,
-          "full_recall_at_10": 0.8004484304932735
+          "recall_at_10": 0.8094170403587444,
+          "full_recall_at_10": 0.7982062780269058
         }
       },
       "miss_examples": [
@@ -205,15 +207,15 @@
           ],
           "returned_sources": [
             "locomo:conv-26:D4:14",
-            "locomo:conv-26:D13:7",
             "locomo:conv-26:D7:8",
             "locomo:conv-26:D5:4",
-            "locomo:conv-26:D1:10",
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D3:15",
-            "locomo:conv-26:D10:20",
-            "locomo:conv-26:D13:18",
-            "locomo:conv-26:D7:10"
+            "locomo:conv-26:D13:7",
+            "locomo:conv-26:D8:8",
+            "locomo:conv-26:D8:3",
+            "locomo:conv-26:D14:30",
+            "locomo:conv-26:D13:10",
+            "locomo:conv-26:D13:9",
+            "locomo:conv-26:D1:15"
           ],
           "expected_ranks": []
         },
@@ -227,13 +229,13 @@
             "locomo:conv-26:D11:12",
             "locomo:conv-26:D13:13",
             "locomo:conv-26:D16:9",
+            "locomo:conv-26:D17:19",
             "locomo:conv-26:D13:15",
             "locomo:conv-26:D3:3",
-            "locomo:conv-26:D17:24",
             "locomo:conv-26:D17:23",
             "locomo:conv-26:D16:13",
-            "locomo:conv-26:D7:12",
-            "locomo:conv-26:D11:13"
+            "locomo:conv-26:D17:24",
+            "locomo:conv-26:D7:17"
           ],
           "expected_ranks": []
         },
@@ -245,15 +247,15 @@
             "locomo:conv-26:D2:14"
           ],
           "returned_sources": [
+            "locomo:conv-26:D8:26",
             "locomo:conv-26:D1:1",
             "locomo:conv-26:D16:15",
             "locomo:conv-26:D16:14",
-            "locomo:conv-26:D3:12",
             "locomo:conv-26:D18:14",
-            "locomo:conv-26:D16:16",
             "locomo:conv-26:D3:15",
             "locomo:conv-26:D9:7",
-            "locomo:conv-26:D3:14",
+            "locomo:conv-26:D16:16",
+            "locomo:conv-26:D18:13",
             "locomo:conv-26:D4:1"
           ],
           "expected_ranks": []
@@ -267,14 +269,14 @@
           "returned_sources": [
             "locomo:conv-26:D6:11",
             "locomo:conv-26:D12:15",
-            "locomo:conv-26:D3:12",
-            "locomo:conv-26:D1:7",
             "locomo:conv-26:D3:11",
-            "locomo:conv-26:D6:1",
+            "locomo:conv-26:D16:17",
             "locomo:conv-26:D3:15",
-            "locomo:conv-26:D19:14",
-            "locomo:conv-26:D16:7",
-            "locomo:conv-26:D16:14"
+            "locomo:conv-26:D1:3",
+            "locomo:conv-26:D1:7",
+            "locomo:conv-26:D8:39",
+            "locomo:conv-26:D6:12",
+            "locomo:conv-26:D12:13"
           ],
           "expected_ranks": []
         },
@@ -287,40 +289,17 @@
           ],
           "returned_sources": [
             "locomo:conv-26:D4:11",
-            "locomo:conv-26:D15:23",
-            "locomo:conv-26:D4:12",
+            "locomo:conv-26:D14:12",
             "locomo:conv-26:D7:7",
             "locomo:conv-26:D1:10",
             "locomo:conv-26:D1:9",
+            "locomo:conv-26:D4:12",
+            "locomo:conv-26:D15:23",
             "locomo:conv-26:D16:13",
-            "locomo:conv-26:D7:24",
             "locomo:conv-26:D8:8",
             "locomo:conv-26:D3:7"
           ],
           "expected_ranks": []
-        },
-        {
-          "question": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up?",
-          "category": "commonsense",
-          "expected_sources": [
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D3:5"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D7:5",
-            "locomo:conv-26:D4:14",
-            "locomo:conv-26:D7:7",
-            "locomo:conv-26:D4:15",
-            "locomo:conv-26:D5:3",
-            "locomo:conv-26:D1:9",
-            "locomo:conv-26:D17:16",
-            "locomo:conv-26:D4:12",
-            "locomo:conv-26:D1:11"
-          ],
-          "expected_ranks": [
-            5
-          ]
         },
         {
           "question": "What activities does Melanie partake in?",
@@ -332,42 +311,43 @@
             "locomo:conv-26:D1:18"
           ],
           "returned_sources": [
-            "locomo:conv-26:D17:22",
-            "locomo:conv-26:D13:2",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D11:13",
+            "locomo:conv-26:D10:5",
             "locomo:conv-26:D15:10",
-            "locomo:conv-26:D5:4",
-            "locomo:conv-26:D8:35",
-            "locomo:conv-26:D8:5",
+            "locomo:conv-26:D12:18",
             "locomo:conv-26:D8:34",
-            "locomo:conv-26:D2:9"
+            "locomo:conv-26:D5:4",
+            "locomo:conv-26:D2:9",
+            "locomo:conv-26:D9:1",
+            "locomo:conv-26:D10:6",
+            "locomo:conv-26:D18:21",
+            "locomo:conv-26:D2:7"
           ],
           "expected_ranks": [
-            6
+            5,
+            7
           ]
         },
         {
-          "question": "Where has Melanie camped?",
-          "category": "multi_hop",
+          "question": "When did Melanie sign up for a pottery class?",
+          "category": "temporal",
           "expected_sources": [
-            "locomo:conv-26:D6:16",
-            "locomo:conv-26:D4:6",
-            "locomo:conv-26:D8:32"
+            "locomo:conv-26:D5:4"
           ],
           "returned_sources": [
-            "locomo:conv-26:D7:24",
-            "locomo:conv-26:D6:15",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D6:1",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D16:10",
-            "locomo:conv-26:D1:7",
-            "locomo:conv-26:D16:14",
-            "locomo:conv-26:D6:13",
-            "locomo:conv-26:D5:2"
+            "locomo:conv-26:D5:5",
+            "locomo:conv-26:D5:6",
+            "locomo:conv-26:D14:4",
+            "locomo:conv-26:D5:4",
+            "locomo:conv-26:D5:12",
+            "locomo:conv-26:D8:2",
+            "locomo:conv-26:D5:8",
+            "locomo:conv-26:D5:10",
+            "locomo:conv-26:D5:11",
+            "locomo:conv-26:D16:8"
           ],
-          "expected_ranks": []
+          "expected_ranks": [
+            4
+          ]
         },
         {
           "question": "What do Melanie's kids like?",
@@ -377,41 +357,18 @@
             "locomo:conv-26:D4:8"
           ],
           "returned_sources": [
+            "locomo:conv-26:D17:4",
             "locomo:conv-26:D8:3",
             "locomo:conv-26:D9:17",
-            "locomo:conv-26:D16:2",
             "locomo:conv-26:D4:9",
+            "locomo:conv-26:D16:2",
             "locomo:conv-26:D11:7",
             "locomo:conv-26:D16:16",
             "locomo:conv-26:D16:3",
-            "locomo:conv-26:D8:5",
-            "locomo:conv-26:D3:14",
-            "locomo:conv-26:D19:4"
+            "locomo:conv-26:D15:28",
+            "locomo:conv-26:D1:2"
           ],
           "expected_ranks": []
-        },
-        {
-          "question": "What books has Melanie read?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D7:8",
-            "locomo:conv-26:D6:10"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D6:7",
-            "locomo:conv-26:D7:10",
-            "locomo:conv-26:D6:9",
-            "locomo:conv-26:D4:18",
-            "locomo:conv-26:D7:9",
-            "locomo:conv-26:D6:8",
-            "locomo:conv-26:D6:10",
-            "locomo:conv-26:D17:19",
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D7:24"
-          ],
-          "expected_ranks": [
-            7
-          ]
         },
         {
           "question": "What does Melanie do to destress?",
@@ -422,17 +379,39 @@
           ],
           "returned_sources": [
             "locomo:conv-26:D7:20",
-            "locomo:conv-26:D17:22",
-            "locomo:conv-26:D13:2",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D11:13",
-            "locomo:conv-26:D14:16",
-            "locomo:conv-26:D19:2",
-            "locomo:conv-26:D1:9",
-            "locomo:conv-26:D5:11",
-            "locomo:conv-26:D14:18"
+            "locomo:conv-26:D6:2",
+            "locomo:conv-26:D18:13",
+            "locomo:conv-26:D18:14",
+            "locomo:conv-26:D14:22",
+            "locomo:conv-26:D7:27",
+            "locomo:conv-26:D19:12",
+            "locomo:conv-26:D17:25",
+            "locomo:conv-26:D15:25",
+            "locomo:conv-26:D1:15"
           ],
           "expected_ranks": []
+        },
+        {
+          "question": "When did Melanie read the book \"nothing is impossible\"?",
+          "category": "temporal",
+          "expected_sources": [
+            "locomo:conv-26:D7:8"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D6:10",
+            "locomo:conv-26:D6:7",
+            "locomo:conv-26:D17:10",
+            "locomo:conv-26:D7:8",
+            "locomo:conv-26:D4:18",
+            "locomo:conv-26:D6:8",
+            "locomo:conv-26:D7:10",
+            "locomo:conv-26:D6:9",
+            "locomo:conv-26:D7:9",
+            "locomo:conv-26:D17:11"
+          ],
+          "expected_ranks": [
+            4
+          ]
         },
         {
           "question": "Would Caroline pursue writing as a career option?",
@@ -449,8 +428,8 @@
             "locomo:conv-26:D4:11",
             "locomo:conv-26:D4:14",
             "locomo:conv-26:D7:8",
-            "locomo:conv-26:D1:12",
             "locomo:conv-26:D5:4",
+            "locomo:conv-26:D7:10",
             "locomo:conv-26:D2:8"
           ],
           "expected_ranks": []
@@ -462,43 +441,18 @@
             "locomo:conv-26:D4:8"
           ],
           "returned_sources": [
-            "locomo:conv-26:D9:1",
-            "locomo:conv-26:D4:6",
             "locomo:conv-26:D2:7",
             "locomo:conv-26:D8:32",
             "locomo:conv-26:D10:12",
-            "locomo:conv-26:D18:20",
-            "locomo:conv-26:D10:13",
+            "locomo:conv-26:D6:16",
             "locomo:conv-26:D18:19",
-            "locomo:conv-26:D16:2",
-            "locomo:conv-26:D10:14"
+            "locomo:conv-26:D9:1",
+            "locomo:conv-26:D10:6",
+            "locomo:conv-26:D1:18",
+            "locomo:conv-26:D4:6",
+            "locomo:conv-26:D4:18"
           ],
           "expected_ranks": []
-        },
-        {
-          "question": "What LGBTQ+ events has Caroline participated in?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D5:1",
-            "locomo:conv-26:D8:17",
-            "locomo:conv-26:D3:1",
-            "locomo:conv-26:D1:3"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D10:6",
-            "locomo:conv-26:D10:5",
-            "locomo:conv-26:D5:2",
-            "locomo:conv-26:D5:1",
-            "locomo:conv-26:D9:11",
-            "locomo:conv-26:D7:2",
-            "locomo:conv-26:D9:12",
-            "locomo:conv-26:D7:1",
-            "locomo:conv-26:D15:11",
-            "locomo:conv-26:D7:3"
-          ],
-          "expected_ranks": [
-            4
-          ]
         },
         {
           "question": "What events has Caroline participated in to help children?",
@@ -508,18 +462,40 @@
             "locomo:conv-26:D3:3"
           ],
           "returned_sources": [
+            "locomo:conv-26:D10:8",
+            "locomo:conv-26:D19:6",
+            "locomo:conv-26:D8:32",
+            "locomo:conv-26:D9:8",
             "locomo:conv-26:D10:6",
-            "locomo:conv-26:D15:11",
-            "locomo:conv-26:D6:15",
-            "locomo:conv-26:D16:10",
-            "locomo:conv-26:D7:24",
-            "locomo:conv-26:D19:11",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D7:2",
-            "locomo:conv-26:D6:13",
-            "locomo:conv-26:D10:8"
+            "locomo:conv-26:D6:7",
+            "locomo:conv-26:D5:15",
+            "locomo:conv-26:D18:8",
+            "locomo:conv-26:D8:3",
+            "locomo:conv-26:D10:9"
           ],
           "expected_ranks": []
+        },
+        {
+          "question": "When did Melanie go camping in July?",
+          "category": "temporal",
+          "expected_sources": [
+            "locomo:conv-26:D9:1"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D2:7",
+            "locomo:conv-26:D8:32",
+            "locomo:conv-26:D10:12",
+            "locomo:conv-26:D6:16",
+            "locomo:conv-26:D18:19",
+            "locomo:conv-26:D9:1",
+            "locomo:conv-26:D10:6",
+            "locomo:conv-26:D1:18",
+            "locomo:conv-26:D4:6",
+            "locomo:conv-26:D4:18"
+          ],
+          "expected_ranks": [
+            6
+          ]
         },
         {
           "question": "What did Melanie paint recently?",
@@ -528,14 +504,14 @@
           "returned_sources": [
             "locomo:conv-26:D14:30",
             "locomo:conv-26:D13:8",
-            "locomo:conv-26:D17:13",
-            "locomo:conv-26:D17:8",
-            "locomo:conv-26:D12:1",
-            "locomo:conv-26:D10:8",
-            "locomo:conv-26:D14:5",
             "locomo:conv-26:D11:8",
+            "locomo:conv-26:D13:11",
+            "locomo:conv-26:D13:10",
+            "locomo:conv-26:D13:12",
+            "locomo:conv-26:D17:13",
             "locomo:conv-26:D17:14",
-            "locomo:conv-26:D9:14"
+            "locomo:conv-26:D1:15",
+            "locomo:conv-26:D17:10"
           ],
           "expected_ranks": []
         },
@@ -551,42 +527,18 @@
             "locomo:conv-26:D3:14"
           ],
           "returned_sources": [
-            "locomo:conv-26:D6:13",
-            "locomo:conv-26:D7:24",
+            "locomo:conv-26:D2:9",
             "locomo:conv-26:D1:6",
-            "locomo:conv-26:D5:4",
-            "locomo:conv-26:D3:21",
-            "locomo:conv-26:D7:10",
+            "locomo:conv-26:D12:18",
+            "locomo:conv-26:D8:34",
             "locomo:conv-26:D8:35",
-            "locomo:conv-26:D6:15",
-            "locomo:conv-26:D7:22",
-            "locomo:conv-26:D2:9"
+            "locomo:conv-26:D3:21",
+            "locomo:conv-26:D6:13",
+            "locomo:conv-26:D12:16",
+            "locomo:conv-26:D5:4",
+            "locomo:conv-26:D4:9"
           ],
           "expected_ranks": []
-        },
-        {
-          "question": "How many times has Melanie gone to the beach in 2023?",
-          "category": "multi_hop",
-          "expected_sources": [
-            "locomo:conv-26:D10:8",
-            "locomo:conv-26:D6:16"
-          ],
-          "returned_sources": [
-            "locomo:conv-26:D4:11",
-            "locomo:conv-26:D10:10",
-            "locomo:conv-26:D10:18",
-            "locomo:conv-26:D7:1",
-            "locomo:conv-26:D10:8",
-            "locomo:conv-26:D17:3",
-            "locomo:conv-26:D10:3",
-            "locomo:conv-26:D14:8",
-            "locomo:conv-26:D6:16",
-            "locomo:conv-26:D10:11"
-          ],
-          "expected_ranks": [
-            5,
-            9
-          ]
         },
         {
           "question": "Would Melanie be more interested in going to a national park or a theme park?",
@@ -596,16 +548,16 @@
             "locomo:conv-26:D10:14"
           ],
           "returned_sources": [
-            "locomo:conv-26:D3:18",
             "locomo:conv-26:D15:2",
             "locomo:conv-26:D16:19",
+            "locomo:conv-26:D3:18",
+            "locomo:conv-26:D16:16",
             "locomo:conv-26:D15:3",
             "locomo:conv-26:D16:20",
+            "locomo:conv-26:D11:13",
             "locomo:conv-26:D15:12",
-            "locomo:conv-26:D6:11",
-            "locomo:conv-26:D16:16",
-            "locomo:conv-26:D5:13",
-            "locomo:conv-26:D17:1"
+            "locomo:conv-26:D11:3",
+            "locomo:conv-26:D6:11"
           ],
           "expected_ranks": []
         },
@@ -620,14 +572,57 @@
           "returned_sources": [
             "locomo:conv-26:D14:9",
             "locomo:conv-26:D2:16",
-            "locomo:conv-26:D13:15",
-            "locomo:conv-26:D3:18",
+            "locomo:conv-26:D14:11",
             "locomo:conv-26:D11:13",
+            "locomo:conv-26:D3:18",
             "locomo:conv-26:D14:10",
-            "locomo:conv-26:D17:22",
-            "locomo:conv-26:D14:35",
-            "locomo:conv-26:D17:13",
-            "locomo:conv-26:D6:8"
+            "locomo:conv-26:D16:5",
+            "locomo:conv-26:D14:28",
+            "locomo:conv-26:D17:21",
+            "locomo:conv-26:D17:13"
+          ],
+          "expected_ranks": []
+        },
+        {
+          "question": "Who supports Caroline when she has a negative experience?",
+          "category": "multi_hop",
+          "expected_sources": [
+            "locomo:conv-26:D12:1",
+            "locomo:conv-26:D3:11"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D5:2",
+            "locomo:conv-26:D3:5",
+            "locomo:conv-26:D14:10",
+            "locomo:conv-26:D7:8",
+            "locomo:conv-26:D12:1",
+            "locomo:conv-26:D19:5",
+            "locomo:conv-26:D15:5",
+            "locomo:conv-26:D9:3",
+            "locomo:conv-26:D11:2",
+            "locomo:conv-26:D12:2"
+          ],
+          "expected_ranks": [
+            5
+          ]
+        },
+        {
+          "question": "What would Caroline's political leaning likely be?",
+          "category": "commonsense",
+          "expected_sources": [
+            "locomo:conv-26:D12:1"
+          ],
+          "returned_sources": [
+            "locomo:conv-26:D18:14",
+            "locomo:conv-26:D8:3",
+            "locomo:conv-26:D13:10",
+            "locomo:conv-26:D13:9",
+            "locomo:conv-26:D1:15",
+            "locomo:conv-26:D10:15",
+            "locomo:conv-26:D14:21",
+            "locomo:conv-26:D3:19",
+            "locomo:conv-26:D9:7",
+            "locomo:conv-26:D5:1"
           ],
           "expected_ranks": []
         }
@@ -638,6 +633,10 @@
       },
       "meets_targets": false,
       "scope": "retrieval-only; not answer-generation accuracy"
+    },
+    "longmemeval_s": {
+      "status": "not_run",
+      "reason": "--longmemeval-s not provided"
     },
     "public_retrieval": {},
     "longmemeval_v2": {

@@ -20,7 +20,7 @@ import tempfile
 import time
 from datetime import date, datetime, timezone
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, Iterator
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,7 +29,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from unimem.config import Settings  # noqa: E402
-from unimem.db import Database  # noqa: E402
+from unimem.db import Database, MemoryError  # noqa: E402
 from unimem.extract import distill_messages  # noqa: E402
 from unimem.mcp import run_tool  # noqa: E402
 from unimem.policy import classify_route, compact_recall_items  # noqa: E402
@@ -47,7 +47,7 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def ratio(numerator: int, denominator: int) -> float:
+def ratio(numerator: float, denominator: int) -> float:
     return numerator / denominator if denominator else 1.0
 
 
@@ -572,7 +572,8 @@ def run_locomo(
         5: "adversarial",
     }
     total_questions = evidence_questions = 0
-    hit3 = hit10 = full10 = 0
+    hit3 = hit10 = full10 = session_hit10 = 0
+    session_fraction_sum = 0.0
     reciprocal_ranks: list[float] = []
     latencies: list[float] = []
     by_category: dict[str, dict[str, int]] = {}
@@ -609,6 +610,8 @@ def run_locomo(
             stats = by_category.setdefault(category, {"questions": 0, "evidence_questions": 0, "hit3": 0, "hit10": 0, "full10": 0})
             stats["questions"] += 1
             if not evidence:
+                # Published session-recall scores count these as 1.0.
+                session_fraction_sum += 1.0
                 continue
             evidence_questions += 1
             stats["evidence_questions"] += 1
@@ -635,6 +638,12 @@ def run_locomo(
             if ranks and len(ranks) == len(expected):
                 full10 += 1
                 stats["full10"] += 1
+            # Dialog IDs look like "D3:5"; the prefix is the LoCoMo session.
+            evidence_sessions = {item.split(":")[0] for item in evidence}
+            returned_sessions = {source.rsplit(":", 2)[1] for source in returned}
+            if evidence_sessions & returned_sessions:
+                session_hit10 += 1
+            session_fraction_sum += len(evidence_sessions & returned_sessions) / len(evidence_sessions)
             if not ranks or min(ranks) > 3:
                 if len(miss_examples) < 20:
                     miss_examples.append(
@@ -667,6 +676,11 @@ def run_locomo(
         "evidence_recall_at_3": ratio(hit3, evidence_questions),
         "evidence_recall_at_10": ratio(hit10, evidence_questions),
         "full_evidence_recall_at_10": ratio(full10, evidence_questions),
+        "session_recall_at_10": ratio(session_hit10, evidence_questions),
+        # Mean fraction of evidence sessions among the sessions of the ten
+        # returned memories, over all questions: the formula other systems
+        # publish for session-granularity LoCoMo recall.
+        "session_fractional_recall_at_10": ratio(session_fraction_sum, total_questions),
         "mrr_at_10": sum(reciprocal_ranks) / len(reciprocal_ranks) if reciprocal_ranks else 0.0,
         "latency_ms": {
             "p50": percentile(latencies, 0.5),
@@ -684,59 +698,110 @@ def run_locomo(
     }
 
 
+def iter_longmemeval(path: Path) -> Iterator[dict[str, Any]]:
+    """Stream questions so the 265 MB file never sits in memory at once."""
+    try:
+        import ijson
+    except ImportError:
+        yield from json.loads(path.read_text(encoding="utf-8"))
+        return
+    with path.open("rb") as handle:
+        yield from ijson.items(handle, "item")
+
+
 def run_longmemeval(path: Path, *, database: Database, limit: int | None = None) -> dict[str, Any]:
-    data = json.loads(path.read_text(encoding="utf-8"))
-    hit3 = hit10 = 0
+    """Session-evidence recall with one memory per turn.
+
+    Follows the official retrieval evaluation in skipping abstention
+    questions, which have no evidence location. A question counts as a hit
+    when any evidence session appears among the sessions of the returned
+    memories.
+    """
+    counts = {"hit5": 0, "hit10": 0, "distinct5": 0}
+    by_type: dict[str, dict[str, int]] = {}
     reciprocal_ranks: list[float] = []
-    evaluated = 0
-    for item in data[: limit or len(data)]:
+    latencies: list[float] = []
+    evaluated = abstention_skipped = turns = rejected_turns = 0
+    for item in iter_longmemeval(path):
         question_id = str(item["question_id"])
+        if question_id.endswith("_abs"):
+            abstention_skipped += 1
+            continue
+        if limit and evaluated >= limit:
+            break
         project_id = f"longmemeval:{question_id}"
-        session_sources: dict[str, list[str]] = {}
         for session_index, session_id_value in enumerate(item.get("haystack_session_ids", [])):
             session_id = str(session_id_value)
-            session_turns = item.get("haystack_sessions", [])[session_index]
-            for turn_index, turn in enumerate(session_turns):
-                source = f"lme|{question_id}|{session_id}|{turn_index}"
-                session_sources.setdefault(session_id, []).append(source)
-                database.add_memory(
-                    content=f"{turn.get('role', 'user')}: {turn.get('content', '')}"[:4000],
-                    scope="project",
-                    lifecycle="episodic",
-                    kind="fact",
-                    source=source,
-                    evidence=f"LongMemEval session {session_id}.",
-                    project_id=project_id,
-                    confidence=1.0,
-                )
+            for turn_index, turn in enumerate(item.get("haystack_sessions", [])[session_index]):
+                try:
+                    database.add_memory(
+                        content=f"{turn.get('role', 'user')}: {turn.get('content', '')}"[:4000],
+                        scope="project",
+                        lifecycle="episodic",
+                        kind="fact",
+                        source=f"lme|{question_id}|{session_id}|{turn_index}",
+                        evidence=f"LongMemEval session {session_id}.",
+                        project_id=project_id,
+                        confidence=1.0,
+                    )
+                    turns += 1
+                except MemoryError:
+                    # The store refuses secret-looking or empty turns.
+                    rejected_turns += 1
         if database.semantic_embedder:
             database.embed_pending()
-        records = database.recall(
-            query=str(item["question"]),
-            project_id=project_id,
-            session_id=None,
-            limit=10,
-            scopes=("project",),
+        records, latency = timed(
+            lambda: database.recall(
+                query=str(item["question"]),
+                project_id=project_id,
+                session_id=None,
+                limit=20,
+                scopes=("project",),
+            )
         )
-        returned_sessions = [record.source.split("|")[2] for record in records]
-        expected_sessions = [str(value) for value in item.get("answer_session_ids", [])]
-        ranks = [returned_sessions.index(session) + 1 for session in expected_sessions if session in returned_sessions]
-        evaluated += 1
-        if any(rank <= 3 for rank in ranks):
-            hit3 += 1
+        latencies.append(latency)
+        returned = [record.source.split("|")[2] for record in records]
+        expected = {str(value) for value in item.get("answer_session_ids", [])}
+        distinct = list(dict.fromkeys(returned))
+        hits = {
+            "hit5": bool(expected & set(returned[:5])),
+            "hit10": bool(expected & set(returned[:10])),
+            "distinct5": bool(expected & set(distinct[:5])),
+        }
+        stats = by_type.setdefault(
+            str(item.get("question_type", "unknown")),
+            {"questions": 0, "hit5": 0, "hit10": 0, "distinct5": 0},
+        )
+        stats["questions"] += 1
+        for key, hit in hits.items():
+            counts[key] += hit
+            stats[key] += hit
+        ranks = [index + 1 for index, session in enumerate(returned[:10]) if session in expected]
         if ranks:
-            hit10 += 1
-            reciprocal_ranks.append(1.0 / min(ranks))
+            reciprocal_ranks.append(1.0 / ranks[0])
+        evaluated += 1
+    for stats in by_type.values():
+        stats["session_recall_at_5"] = ratio(stats["hit5"], stats["questions"])
+        stats["session_recall_at_10"] = ratio(stats["hit10"], stats["questions"])
     return {
-        "dataset": "LongMemEval",
+        "dataset": "LongMemEval-S (cleaned)",
         "dataset_url": "https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned",
         "dataset_license": "MIT",
-        "dataset_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         "evaluated": evaluated,
-        "session_recall_at_3": ratio(hit3, evaluated),
-        "session_recall_at_10": ratio(hit10, evaluated),
+        "abstention_skipped": abstention_skipped,
+        "turns_stored": turns,
+        "turns_rejected_by_store": rejected_turns,
+        "session_recall_at_5": ratio(counts["hit5"], evaluated),
+        "session_recall_at_10": ratio(counts["hit10"], evaluated),
+        "session_recall_at_5_distinct_sessions": ratio(counts["distinct5"], evaluated),
         "session_mrr_at_10": sum(reciprocal_ranks) / len(reciprocal_ranks) if reciprocal_ranks else 0.0,
-        "scope": "retrieval-only; official answer evaluation requires an LLM judge",
+        "latency_ms": {"p50": percentile(latencies, 0.5), "p95": percentile(latencies, 0.95)},
+        "by_type": by_type,
+        "scope": (
+            "retrieval-only, one memory per turn; session_recall_at_5 uses the five "
+            "returned memories, the distinct-sessions variant the first five distinct "
+            "sessions among twenty returned memories"
+        ),
     }
 
 
