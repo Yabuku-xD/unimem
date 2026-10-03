@@ -20,10 +20,12 @@ uv sync
 uv run unimem doctor
 ```
 
-To install the CLI as a standalone uv tool:
+To install the CLI as a standalone uv tool from a checkout, or straight from GitHub:
 
 ```bash
 uv tool install .
+uv tool install git+https://github.com/Yabuku-xD/unimem
+unimem --version
 unimem doctor
 ```
 
@@ -166,3 +168,10 @@ The tradeoffs are small but real: contributors need uv installed, `uv.lock` must
 The extractor is intentionally high-precision and rule-based: it captures explicit durable claims but will miss implicit preferences that need a model-based editor. The default retrieval index is lexical FTS5/BM25 with Porter stemming; local embeddings (`--extra semantic`) and write-time enrichment are opt-in and do not change the scope or lifecycle contract.
 
 The no-routine-call requirement is enforced by the router, the tool contract, and generated client guidance. A specific coding host can still decide to call a tool incorrectly, so acceptance for a new host should include a trace showing zero `unimem` calls on routine turns and one bounded call on a missing-context turn.
+
+## Project
+
+- [CHANGELOG.md](CHANGELOG.md) lists changes per release, including database migrations.
+- [CONTRIBUTING.md](CONTRIBUTING.md) has the development setup and the checks CI runs.
+- [SECURITY.md](SECURITY.md) explains how to report a vulnerability and what unimem stores.
+- Licensed under the [MIT License](LICENSE).

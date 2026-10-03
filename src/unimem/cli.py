@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from . import __version__
 from .config import Settings, parse_iso
 from .db import Database, MemoryError
 from .extract import distill_messages, load_messages
@@ -17,6 +18,7 @@ from .policy import classify_route, compact_recall_items, validate_recall
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="unimem", description="Local-first lazy memory for coding agents")
+    parser.add_argument("--version", action="version", version=f"unimem {__version__}")
     parser.add_argument("--home", help="Override UNIMEM_HOME")
     parser.add_argument("--project-dir", help="Project directory used for project scope")
     parser.add_argument("--project-id", help="Override the derived project id")
@@ -70,7 +72,7 @@ def _parser() -> argparse.ArgumentParser:
     session_end = session_sub.add_parser("end")
     session_end.add_argument("session_id")
     session_end.add_argument("--status", choices=["closed", "expired"], default="closed")
-    session_expire = session_sub.add_parser("expire")
+    session_sub.add_parser("expire")
     session_status = session_sub.add_parser("status")
     session_status.add_argument("session_id")
 

@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Python ${{ matrix.python }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.11", "3.13"]
+    env:
+      # Pin every `uv run` to the matrix interpreter.
+      UV_PYTHON: ${{ matrix.python }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Verify the lockfile
+        run: uv lock --check
+      - name: Lint
+        run: uvx ruff check src tests benchmarks
+      - name: End-to-end CLI and MCP checks
+        run: uv run python tests/e2e_unimem.py
+      - name: Offline memory-quality suite
+        run: uv run python benchmarks/run_memory_quality.py
+      - name: Build the package
+        run: uv build
