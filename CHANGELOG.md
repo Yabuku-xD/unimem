@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 (2026-10-02)
+
+### Fixed
+
+- Session-end capture no longer saves a reworded copy of something the agent already stored in the same scope. Found in a live Pi session, where "Always use pytest" and "From now on always use pytest" were both kept.
+- The README shows how to include the local model with the one-line installer.
+
 ## 0.2.0 (2026-10-02)
 
 ### Added

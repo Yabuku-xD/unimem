@@ -631,6 +631,27 @@ def main() -> int:
             across,
         )
 
+        # Capture skips what the agent already saved in other words, but keeps opposites.
+        harness.run(
+            ["remember", "Always use pytest for Python tests.", "--scope", "user", "--kind", "preference",
+             "--evidence", "Saved by the agent during the session", "--json"],
+            name="remember_before_capture",
+        )
+        end_tool_session(
+            "dup-1",
+            implicit_project,
+            ["From now on always use pytest for Python tests.", "Never use pytest for Python tests in notebooks."],
+        )
+        pytest_memories = recall_json("pytest Python tests", harness.project_b, "recall_after_duplicate_capture")
+        pytest_contents = [item["content"] for item in pytest_memories.get("items", [])]
+        harness.check(
+            "capture_skips_reworded_duplicates_only",
+            "Always use pytest for Python tests." in pytest_contents
+            and "From now on always use pytest for Python tests." not in pytest_contents
+            and any(content.startswith("Never use pytest") for content in pytest_contents),
+            pytest_contents,
+        )
+
         # Two tool sessions open in one project keep their notes apart. Each
         # wrapper shell stands in for a tool process that runs its own commands.
         shared_project = harness.base / "shared-project"

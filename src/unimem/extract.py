@@ -6,7 +6,12 @@ import re
 from pathlib import Path
 from typing import Any
 
-from .candidates import ImplicitStatement, classify_implicit, record_implicit
+from .candidates import (
+    ImplicitStatement,
+    classify_implicit,
+    record_implicit,
+    same_statement,
+)
 from .config import Settings, iso_after
 from .db import Database, MemoryError
 from .policy import Candidate, candidate_to_dict, classify_candidate
@@ -102,6 +107,21 @@ def distill_messages(
                 "expires_at": expires_at if candidate.scope == "session" else None,
             }
             if apply:
+                # The agent may already have saved this in its own words.
+                known = database.recall(
+                    query=candidate.content,
+                    project_id=settings.project_id,
+                    session_id=session_id,
+                    limit=5,
+                    scopes=(candidate.scope,),
+                    semantic=False,
+                )
+                if any(
+                    item.content != candidate.content and same_statement(item.content, candidate.content)
+                    for item in known
+                ):
+                    rejected.append({"content": segment[:160], "reason": "already_known"})
+                    continue
                 try:
                     memory, created = database.add_memory(
                         content=candidate.content,

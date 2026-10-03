@@ -23,6 +23,7 @@ SESSIONS_TO_PROMOTE = 2
 # Two statements match when most of the shorter one's words appear in the other.
 MATCH_THRESHOLD = 0.66
 MIN_SHARED_WORDS = 2
+DUPLICATE_THRESHOLD = 0.85
 MAX_WORDS = 30
 RETENTION_DAYS = 90
 
@@ -48,7 +49,7 @@ FILLER = {
     "asked", "you", "as", "said", "the", "a", "an", "to", "of", "for", "in", "on", "we",
     "our", "and", "or", "is", "are", "be", "should", "must", "want", "like", "would",
     "already", "dont", "don", "t", "do", "not", "stop", "quit", "avoid", "never", "always",
-    "so", "many", "much", "very", "too", "every",
+    "so", "many", "much", "very", "too", "every", "from", "now", "remember", "that",
 }
 
 
@@ -63,6 +64,26 @@ class ImplicitStatement:
 def _stem(word: str) -> str:
     stemmed = re.sub(r"(ing|es|s|e)$", "", word)
     return stemmed if len(stemmed) >= 2 else word
+
+
+def content_tokens(text: str) -> frozenset[str]:
+    """Stemmed content words, used to compare two statements."""
+    words = (
+        word.strip("./-")
+        for word in re.findall(r"[a-z0-9_@./-]+", text.lower().replace("'", ""))
+    )
+    return frozenset(_stem(word) for word in words if word and word not in FILLER)
+
+
+def same_statement(left: str, right: str) -> bool:
+    """Whether two statements say the same thing in different words.
+
+    Stricter than candidate matching: a false match here drops a memory,
+    which is worse than keeping a near-duplicate.
+    """
+    if bool(NEGATION.search(left)) != bool(NEGATION.search(right)):
+        return False
+    return _similarity(content_tokens(left), content_tokens(right)) >= DUPLICATE_THRESHOLD
 
 
 def classify_implicit(text: str) -> ImplicitStatement | tuple[None, str]:
@@ -81,11 +102,7 @@ def classify_implicit(text: str) -> ImplicitStatement | tuple[None, str]:
     if CONTEXT_BOUND.search(stated):
         return None, "context_bound"
     content = LEADING_FILLER.sub("", cleaned).strip()
-    words = (
-        word.strip("./-")
-        for word in re.findall(r"[a-z0-9_@./-]+", content.lower().replace("'", ""))
-    )
-    tokens = frozenset(_stem(word) for word in words if word and word not in FILLER)
+    tokens = content_tokens(content)
     if len(tokens) < 2:
         return None, "too_vague"
     content = content[0].upper() + content[1:]

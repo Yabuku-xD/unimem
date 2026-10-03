@@ -5,7 +5,7 @@
 <p>One local memory for all your coding agents. It stays quiet until an agent actually needs to remember something.</p>
 
 [![CI](https://github.com/Yabuku-xD/unimem/actions/workflows/ci.yml/badge.svg)](https://github.com/Yabuku-xD/unimem/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-0.2.0-blue?style=flat-square)
+![Version](https://img.shields.io/badge/version-0.2.1-blue?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue?style=flat-square)
 ![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux-lightgrey?style=flat-square)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
@@ -36,14 +36,13 @@ sh install.sh
 
 On a Mac with Apple Silicon (M1 or newer), the installer asks whether you also want the local model. It's [LFM2.5 1.2B Instruct](https://huggingface.co/mlx-community/LFM2.5-1.2B-Instruct-4bit), a 660 MB download that runs entirely on your Mac. unimem uses it to rewrite each saved memory into plain facts and likely questions, which helps it find memories when you phrase things differently. On the LoCoMo benchmark it raised recall from 69% to 79%.
 
-You don't need the model; unimem works fully without it. To answer the question in advance:
+You don't need the model; unimem works fully without it. The one-line install above skips the question and leaves the model out. To include it:
 
 ```bash
-sh install.sh --with-model   # install unimem and download the model now
-sh install.sh --no-model     # install unimem only
+curl -LsSf https://raw.githubusercontent.com/Yabuku-xD/unimem/main/install.sh | sh -s -- --with-model
 ```
 
-You can add the model later by running the installer again with `--with-model`. The model never runs during normal recall. It only runs when you type `unimem enrich`, then it exits and frees the memory.
+From a downloaded copy, `sh install.sh --with-model` does the same, and `sh install.sh --no-model` never asks. You can add the model later by running the installer again with `--with-model`. The model never runs during normal recall. It only runs when you type `unimem enrich`, then it exits and frees the memory.
 
 ### Check that it worked
 
