@@ -7,7 +7,7 @@
 [![CI](https://github.com/Yabuku-xD/unimem/actions/workflows/ci.yml/badge.svg)](https://github.com/Yabuku-xD/unimem/actions/workflows/ci.yml)
 ![Version](https://img.shields.io/badge/version-0.2.0-blue?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue?style=flat-square)
-![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey?style=flat-square)
+![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux-lightgrey?style=flat-square)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 
 </div>
@@ -16,7 +16,7 @@ unimem gives Claude Code, Codex, Cursor, and terminal agents one shared memory o
 
 ## Install
 
-### macOS and Linux
+unimem runs on macOS and Linux.
 
 Open Terminal and paste this line:
 
@@ -44,17 +44,6 @@ sh install.sh --no-model     # install unimem only
 ```
 
 You can add the model later by running the installer again with `--with-model`. The model never runs during normal recall. It only runs when you type `unimem enrich`, then it exits and frees the memory.
-
-### Windows
-
-Open PowerShell and run these two commands. The first installs uv, the second installs unimem.
-
-```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-uv tool install "unimem @ git+https://github.com/Yabuku-xD/unimem"
-```
-
-The local model is not available on Windows.
 
 ### Check that it worked
 
@@ -86,7 +75,7 @@ Restart the Claude Desktop app, the ChatGPT or Codex app, Pi, or Hermes afterwar
 Here is what each command writes, so you know what changed:
 
 - Claude Code adds `.mcp.json` and `.claude/skills/unimem/SKILL.md` to the project.
-- Claude Desktop adds unimem to `claude_desktop_config.json` (on macOS in `~/Library/Application Support/Claude/`, on Windows in `%APPDATA%\Claude\`).
+- Claude Desktop adds unimem to `claude_desktop_config.json` (in `~/Library/Application Support/Claude/` on macOS).
 - Codex in one project adds `.codex/config.toml` and `.agents/skills/unimem/SKILL.md`. Codex only reads a project's `.codex/config.toml` after you trust that project.
 - The ChatGPT / Codex app adds unimem to `~/.codex/config.toml`, which the desktop app, the CLI, and the IDE extension share, plus a skill in `~/.agents/skills/`.
 - Cursor adds `.cursor/mcp.json` and `.cursor/skills/unimem/SKILL.md` to the project.

@@ -28,7 +28,7 @@ step() { printf '\n==> %s\n' "$*"; }
 
 case "$(uname -s)" in
     Darwin|Linux) ;;
-    *) say "This installer supports macOS and Linux. On Windows, follow the README."; exit 1 ;;
+    *) say "unimem currently supports macOS and Linux."; exit 1 ;;
 esac
 
 apple_silicon=no
