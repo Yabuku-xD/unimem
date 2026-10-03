@@ -116,13 +116,15 @@ class Harness:
         return payload if ok else {}
 
 
-def mcp_call(harness: Harness, arguments: dict[str, Any]) -> dict[str, Any]:
+def mcp_call(
+    harness: Harness, arguments: dict[str, Any], *, extra_env: dict[str, str] | None = None
+) -> dict[str, Any]:
     """Run one initialize/list/call sequence against the stdio MCP server."""
     command = [sys.executable, "-m", "unimem", "mcp"]
     process = subprocess.Popen(
         command,
         cwd=str(harness.project_a),
-        env=harness.env,
+        env={**harness.env, **(extra_env or {})},
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -217,7 +219,7 @@ def main() -> int:
     try:
         # 1. Install tiny, memory-free integration surfaces.
         init_a, init_payload = harness.run(
-            ["init", "--client", "all", "--json"],
+            ["init", "--client", "all", "--project", "--json"],
             cwd=harness.project_a,
             name="init_project_a",
         )
@@ -273,7 +275,7 @@ def main() -> int:
             client_dir = harness.base / f"client-{client}"
             client_dir.mkdir()
             client_result, client_payload = harness.run(
-                ["init", "--client", client, "--json"],
+                ["init", "--client", client, "--project", "--json"],
                 cwd=client_dir,
                 name=f"init_client_{client}",
             )
@@ -292,6 +294,9 @@ def main() -> int:
             'model = "gpt-5"\n\n[mcp_servers.other]\ncommand = "other"\n', encoding="utf-8"
         )
         (home / ".hermes").mkdir(parents=True, exist_ok=True)
+        (home / ".claude.json").write_text(
+            json.dumps({"numStartups": 3, "projects": {"/x": {"mcpServers": {}}}}), encoding="utf-8"
+        )
         (home / ".hermes/config.yaml").write_text(
             "model: test\nmcp_servers:\n  other:\n    command: other\ntoolsets: [web]\n",
             encoding="utf-8",
@@ -300,13 +305,36 @@ def main() -> int:
         global_dir.mkdir()
         global_files: dict[str, list[str]] = {}
         for _ in range(2):
-            for client in ("claude-desktop", "codex-app", "pi", "hermes"):
+            for client in ("claude", "claude-desktop", "codex", "cursor", "pi", "hermes"):
                 result, payload = harness.run(
                     ["init", "--client", client, "--json"], cwd=global_dir, name=f"init_global_{client}"
                 )
                 payload = harness.json_or_fail(f"init_global_{client}_payload", result, payload)
                 global_files[client] = payload.get("files", [])
-        desktop_path = Path(global_files["claude-desktop"][0])
+        desktop_path = Path(next(p for p in global_files["claude-desktop"] if p.endswith(".json")))
+        claude_user = json.loads((home / ".claude.json").read_text(encoding="utf-8"))
+        harness.check(
+            "claude_code_user_scope_keeps_existing_state",
+            claude_user.get("numStartups") == 3
+            and "/x" in claude_user.get("projects", {})
+            and claude_user.get("mcpServers", {}).get("unimem", {}).get("args") == ["mcp"]
+            and (home / ".claude/skills/unimem/SKILL.md").exists(),
+            claude_user,
+        )
+        cursor_user = json.loads((home / ".cursor/mcp.json").read_text(encoding="utf-8"))
+        harness.check("cursor_user_config_has_unimem", "unimem" in cursor_user.get("mcpServers", {}), cursor_user)
+        project_only_result, _ = harness.run(
+            ["init", "--client", "pi", "--project", "--json"], cwd=global_dir, expect=2, name="init_pi_project_rejected"
+        )
+        default_result, default_payload = harness.run(["init", "--json"], cwd=global_dir, name="init_default")
+        default_payload = harness.json_or_fail("init_default_payload", default_result, default_payload)
+        harness.check(
+            "default_init_sets_up_every_client_for_the_user",
+            default_payload.get("mode") == "user"
+            and set(default_payload.get("clients", [])) == {"agents", "claude", "claude-desktop", "codex", "cursor", "pi", "hermes"}
+            and not any(global_dir.iterdir()),
+            default_payload,
+        )
         harness.check(
             "global_clients_write_only_user_config",
             not any(global_dir.iterdir())
@@ -322,7 +350,7 @@ def main() -> int:
         codex_text = (home / ".codex/config.toml").read_text(encoding="utf-8")
         codex = tomllib.loads(codex_text)
         harness.check(
-            "codex_app_config_merges_and_stays_idempotent",
+            "codex_user_config_merges_and_stays_idempotent",
             codex.get("model") == "gpt-5"
             and set(codex.get("mcp_servers", {})) == {"other", "unimem"}
             and codex_text.count("# BEGIN UNIMEM") == 1,
@@ -435,7 +463,7 @@ def main() -> int:
             "remember_project_a_payload", project_a_result, project_a_payload
         )
         init_b, _ = harness.run(
-            ["init", "--client", "agents", "--json"],
+            ["init", "--client", "agents", "--project", "--json"],
             cwd=harness.project_b,
             name="init_project_b",
         )
@@ -871,6 +899,22 @@ def main() -> int:
             "mcp_project_dir_scopes_global_clients",
             "Postgres is the project store" in scoped_text and "SQLite is the project store" not in scoped_text,
             scoped_mcp,
+        )
+        claude_scoped = mcp_call(
+            harness,
+            {
+                "action": "recall",
+                "query": "project store",
+                "trigger": "missing_context",
+                "evidence": "Claude Code session in the second repository.",
+            },
+            extra_env={"CLAUDE_PROJECT_DIR": str(harness.project_b)},
+        )
+        claude_text = json.dumps(claude_scoped.get("call", {}).get("result", {}))
+        harness.check(
+            "mcp_uses_claude_project_dir",
+            "Postgres is the project store" in claude_text and "SQLite is the project store" not in claude_text,
+            claude_scoped,
         )
         invalid_mcp = mcp_call(
             harness,

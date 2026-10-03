@@ -7,8 +7,8 @@
 - `unimem enrich`: optional write-time enrichment with a local MLX model (default LFM2.5 1.2B Instruct, Apple Silicon). Each memory is rewritten once into standalone facts, questions, and keywords that are indexed next to the original text; recall never calls a model.
 - Optional local semantic recall (`--extra semantic`, FastEmbed) fused with keyword recall by weighted reciprocal rank.
 - `unimem --version`.
-- `unimem init` targets for the Claude Desktop app (`claude-desktop`), the ChatGPT / Codex desktop app and Codex everywhere (`codex-app`), Pi (`pi`), and Hermes Agent (`hermes`), next to the existing Claude Code, Codex, Cursor, and `AGENTS.md` targets. Existing config files are merged, never overwritten, and unreadable ones are left alone.
-- The MCP tool accepts `project_dir`, so desktop apps that run one server for every workspace still scope project memories correctly.
+- `unimem init` sets up every supported tool once for your user account: Claude Code, the Claude Desktop app, Codex (CLI, IDE extension, and the ChatGPT / Codex desktop app), Cursor, Pi, Hermes Agent, and other Agent Skills clients. `--client` picks one tool, and `--project` writes repository config to share with a team. Existing config files are merged, never overwritten, and unreadable ones are left alone.
+- One user-wide server still scopes project memories: it follows Claude Code's `CLAUDE_PROJECT_DIR`, the directory it starts in, or a `project_dir` argument on the MCP tool.
 - `install.sh` installs uv when needed, unimem, and optionally the local model in one step; `unimem enrich --download` fetches the model ahead of time.
 - Benchmarks: LongMemEval-S session recall, LoCoMo session-level recall, a multi-corpus runner (LoCoMo, MemBench, MemoryAgentBench, BEAM), and a provider for the open Agent Memory Benchmark harness. Results and caveats are in `benchmarks/README.md`.
 - CI on Linux and macOS, `LICENSE`, `SECURITY.md`, and `CONTRIBUTING.md`.

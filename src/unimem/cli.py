@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Any
@@ -39,12 +40,17 @@ def _parser() -> argparse.ArgumentParser:
         choices=["all", *CLIENTS, *CLIENT_ALIASES],
         default="all",
         help=(
-            "Client to connect: claude (Claude Code), claude-desktop, codex (Codex CLI in this "
-            "project), codex-app (ChatGPT/Codex desktop app and Codex everywhere), cursor, pi, "
-            "hermes, terminal (AGENTS.md agents), or all"
+            "Client to connect for your user account: claude (Claude Code), claude-desktop, "
+            "codex (Codex CLI, IDE extension, and ChatGPT/Codex desktop app), cursor, pi, "
+            "hermes, agents (other skill-aware agents), or all"
         ),
     )
     init.add_argument("--project-dir", help="Project directory to configure")
+    init.add_argument(
+        "--project",
+        action="store_true",
+        help="Write the config into the project folder instead, to share it with a team",
+    )
 
     remember = sub.add_parser("remember", help="Store a durable memory")
     remember.add_argument("content")
@@ -200,7 +206,9 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         if args.command == "mcp":
-            settings = _settings(args)
+            # A user-wide server is shared by every workspace; Claude Code names the
+            # open project in CLAUDE_PROJECT_DIR, other clients start it in the workspace.
+            settings = _settings(args, project_dir=os.environ.get("CLAUDE_PROJECT_DIR") or None)
             return serve_mcp(settings)
 
         project_dir = getattr(args, "project_dir", None)
@@ -231,6 +239,7 @@ def main(argv: list[str] | None = None) -> int:
                 project_dir=settings.cwd,
                 clients=(args.client,),
                 mcp_tool_schema_bytes=tool_schema_bytes(),
+                project=args.project,
             )
             lines = [f"Connected {', '.join(result['clients'])}. Updated:"]
             lines += [f"  {path}" for path in result["files"]]

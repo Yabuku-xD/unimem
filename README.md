@@ -56,36 +56,50 @@ unimem doctor
 
 ## Connect your coding tools
 
-Run one command per tool you use. Every tool shares the same memory file, `~/.unimem/unimem.db`, so something saved in Codex is there in Claude, Cursor, and the rest.
+Connect everything at once, from any folder:
 
-| Tool | Command | Where to run it |
-|---|---|---|
-| Claude Code | `unimem init --client claude` | in your project folder |
-| Claude Desktop app | `unimem init --client claude-desktop` | anywhere, once |
-| Codex CLI, one project | `unimem init --client codex` | in your project folder |
-| ChatGPT / Codex desktop app, plus Codex CLI and IDE everywhere | `unimem init --client codex-app` | anywhere, once |
-| Cursor | `unimem init --client cursor` | in your project folder |
-| Pi | `unimem init --client pi` | anywhere, once |
-| Hermes Agent | `unimem init --client hermes` | anywhere, once |
-| Other agents that read `AGENTS.md` | `unimem init --client terminal` | in your project folder |
-| All of the above | `unimem init --client all` | in your project folder |
+```bash
+unimem init
+```
 
-Restart the Claude Desktop app, the ChatGPT or Codex app, Pi, or Hermes afterwards so it picks up the new tool. In Hermes you can run `/reload-mcp` instead of restarting.
+That's a one-time setup for your user account. Every session in every project, and in your home folder, then shares the same memory file, `~/.unimem/unimem.db`. Something saved in Codex is there in Claude, Cursor, and the rest.
 
-Here is what each command writes, so you know what changed:
+To connect only some tools, run the command for each one you use:
 
-- Claude Code adds `.mcp.json` and `.claude/skills/unimem/SKILL.md` to the project.
-- Claude Desktop adds unimem to `claude_desktop_config.json` (in `~/Library/Application Support/Claude/` on macOS).
-- Codex in one project adds `.codex/config.toml` and `.agents/skills/unimem/SKILL.md`. Codex only reads a project's `.codex/config.toml` after you trust that project.
-- The ChatGPT / Codex app adds unimem to `~/.codex/config.toml`, which the desktop app, the CLI, and the IDE extension share, plus a skill in `~/.agents/skills/`.
-- Cursor adds `.cursor/mcp.json` and `.cursor/skills/unimem/SKILL.md` to the project.
-- Pi adds unimem to `~/.pi/agent/mcp.json`, plus a skill in `~/.agents/skills/`.
-- Hermes adds unimem under `mcp_servers` in `~/.hermes/config.yaml`, plus a skill in `~/.hermes/skills/`.
-- Project commands also add a short pointer to `AGENTS.md`.
+| Tool | Command |
+|---|---|
+| Claude Code | `unimem init --client claude` |
+| Claude Desktop app | `unimem init --client claude-desktop` |
+| Codex (CLI, IDE extension, and the ChatGPT / Codex desktop app) | `unimem init --client codex` |
+| Cursor | `unimem init --client cursor` |
+| Pi | `unimem init --client pi` |
+| Hermes Agent | `unimem init --client hermes` |
+| Other agents that load skills from `~/.agents/skills` | `unimem init --client agents` |
 
-None of these files ever receive your memories. unimem only adds its own entry and leaves the rest of each file as it was. It stops with an error instead of editing a config file it can't read. To set up a different folder, add `--project-dir /path/to/repo`.
+Restart the tool afterwards so it loads unimem. In Hermes you can run `/reload-mcp` instead.
 
-Desktop apps start one unimem for all your projects. The skill tells the agent to pass the workspace path, so project memories still stay with their project.
+Here is what each command writes, all inside your home folder:
+
+- Claude Code adds unimem to `~/.claude.json` and a skill to `~/.claude/skills/`.
+- Claude Desktop adds unimem to `~/Library/Application Support/Claude/claude_desktop_config.json` on macOS.
+- Codex adds unimem to `~/.codex/config.toml`, which the CLI, the IDE extension, and the desktop app share, and a skill to `~/.agents/skills/`.
+- Cursor adds unimem to `~/.cursor/mcp.json` and a skill to `~/.agents/skills/`.
+- Pi adds unimem to `~/.pi/agent/mcp.json` and a skill to `~/.agents/skills/`.
+- Hermes adds unimem under `mcp_servers` in `~/.hermes/config.yaml` and a skill to `~/.hermes/skills/`.
+
+None of these files ever receive your memories. unimem adds only its own entry and leaves the rest of each file as it was. If a config file can't be read, it stops with an error rather than editing it.
+
+Project memories still stay with their project. Claude Code tells unimem which project is open, the other tools start it inside the project, and the skill asks the agent to pass the workspace path when it can.
+
+### Sharing the setup with a team
+
+To commit the configuration to a repository so everyone who clones it gets unimem, run this inside the project instead:
+
+```bash
+unimem init --client claude --project
+```
+
+`--project` works for `claude`, `codex`, `cursor`, `agents`, and `all`. It writes `.mcp.json`, `.codex/config.toml`, `.cursor/mcp.json`, project skills, and a short pointer in `AGENTS.md`. Codex reads a project's `.codex/config.toml` only after you trust the project.
 
 ## Use it
 
