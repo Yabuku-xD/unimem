@@ -1,177 +1,197 @@
-# unimem
+<div align="center">
 
-`unimem` is a local-first memory layer for coding agents. It keeps durable user, project, and session facts in one SQLite store and exposes one lazy memory tool to MCP clients. The normal path does not copy conversation logs into prompts, does not query memory for routine code work, and does not require an API key, vector database, container, or daemon.
+<h1>unimem</h1>
 
-## Guarantees
+<p>One local memory for all your coding agents. It stays quiet until an agent actually needs to remember something.</p>
 
-- **Lazy read path:** `recall` requires a missing-context trigger and concrete evidence. The deterministic `route` command returns `should_recall: false` for routine tasks without opening the database.
-- **Bounded context:** recall returns at most three compact claims and reports an estimated token count. Raw transcripts and tool output are never returned as memory.
-- **Strict scopes:** `user`, `project`, and `session` are separate. Project records are keyed by Git identity; session records are filtered by active session and expiry on every read.
-- **Picky writes:** `distill` accepts explicit durable cues and rejects greetings, secrets, code blocks, tool output, and claims without a durable cue. Session hypotheses are kept only in the session lane.
-- **Local operation:** standard-library Python, SQLite FTS5/BM25, and no external model or service.
-- **Cross-client surface:** one stdio MCP tool plus generated skill guidance for Codex, Claude Code, Cursor, and generic `AGENTS.md` clients.
+[![CI](https://github.com/Yabuku-xD/unimem/actions/workflows/ci.yml/badge.svg)](https://github.com/Yabuku-xD/unimem/actions/workflows/ci.yml)
+![Version](https://img.shields.io/badge/version-0.2.0-blue?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue?style=flat-square)
+![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey?style=flat-square)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
+
+</div>
+
+unimem gives Claude Code, Codex, Cursor, and terminal agents one shared memory on your own computer. It remembers your preferences, your project's decisions, and short-lived notes from the current task, all in one SQLite file. Agents only look things up when they are missing context, so ordinary coding turns cost nothing extra. No account, API key, or background service is involved.
 
 ## Install
 
-For a normal project environment:
+### macOS and Linux
+
+Open Terminal and paste this line:
 
 ```bash
-uv sync
-uv run unimem doctor
+curl -LsSf https://raw.githubusercontent.com/Yabuku-xD/unimem/main/install.sh | sh
 ```
 
-To install the CLI as a standalone uv tool from a checkout, or straight from GitHub:
+The installer sets up [uv](https://docs.astral.sh/uv/) if you don't have it, installs unimem as its own isolated app, and checks that it runs. It doesn't touch your system Python. When it finishes, open a new Terminal window so the `unimem` command is found.
+
+If you downloaded the project as a ZIP instead, unzip it, open Terminal in that folder, and run:
 
 ```bash
-uv tool install .
-uv tool install git+https://github.com/Yabuku-xD/unimem
+sh install.sh
+```
+
+### The optional local model
+
+On a Mac with Apple Silicon (M1 or newer), the installer asks whether you also want the local model. It's [LFM2.5 1.2B Instruct](https://huggingface.co/mlx-community/LFM2.5-1.2B-Instruct-4bit), a 660 MB download that runs entirely on your Mac. unimem uses it to rewrite each saved memory into plain facts and likely questions, which helps it find memories when you phrase things differently. On the LoCoMo benchmark it raised recall from 69% to 79%.
+
+You don't need the model; unimem works fully without it. To answer the question in advance:
+
+```bash
+sh install.sh --with-model   # install unimem and download the model now
+sh install.sh --no-model     # install unimem only
+```
+
+You can add the model later by running the installer again with `--with-model`. The model never runs during normal recall. It only runs when you type `unimem enrich`, then it exits and frees the memory.
+
+### Windows
+
+Open PowerShell and run these two commands. The first installs uv, the second installs unimem.
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+uv tool install "unimem @ git+https://github.com/Yabuku-xD/unimem"
+```
+
+The local model is not available on Windows.
+
+### Check that it worked
+
+```bash
 unimem --version
 unimem doctor
 ```
 
-The database is `~/.unimem/unimem.db` by default. Override it with `UNIMEM_HOME` or `UNIMEM_DB`.
+`doctor` prints where your memory file lives and whether the local model runtime is installed.
 
-## Initialize a project
+## Connect your coding tools
 
-Configure every supported client in one repository:
+Run one command per tool you use. Every tool shares the same memory file, `~/.unimem/unimem.db`, so something saved in Codex is there in Claude, Cursor, and the rest.
 
-```bash
-unimem init --client all
-```
+| Tool | Command | Where to run it |
+|---|---|---|
+| Claude Code | `unimem init --client claude` | in your project folder |
+| Claude Desktop app | `unimem init --client claude-desktop` | anywhere, once |
+| Codex CLI, one project | `unimem init --client codex` | in your project folder |
+| ChatGPT / Codex desktop app, plus Codex CLI and IDE everywhere | `unimem init --client codex-app` | anywhere, once |
+| Cursor | `unimem init --client cursor` | in your project folder |
+| Pi | `unimem init --client pi` | anywhere, once |
+| Hermes Agent | `unimem init --client hermes` | anywhere, once |
+| Other agents that read `AGENTS.md` | `unimem init --client terminal` | in your project folder |
+| All of the above | `unimem init --client all` | in your project folder |
 
-Or configure only the surface you use:
+Restart the Claude Desktop app, the ChatGPT or Codex app, Pi, or Hermes afterwards so it picks up the new tool. In Hermes you can run `/reload-mcp` instead of restarting.
 
-```bash
-unimem init --client claude     # Claude Code
-unimem init --client cursor     # Cursor
-unimem init --client codex      # Codex
-unimem init --client terminal   # terminal agents using AGENTS.md
-```
+Here is what each command writes, so you know what changed:
 
-`claude-code` is an alias for `claude`, and `agents` is the underlying name for `terminal`. To configure a different repository from anywhere:
+- Claude Code adds `.mcp.json` and `.claude/skills/unimem/SKILL.md` to the project.
+- Claude Desktop adds unimem to `claude_desktop_config.json` (on macOS in `~/Library/Application Support/Claude/`, on Windows in `%APPDATA%\Claude\`).
+- Codex in one project adds `.codex/config.toml` and `.agents/skills/unimem/SKILL.md`. Codex only reads a project's `.codex/config.toml` after you trust that project.
+- The ChatGPT / Codex app adds unimem to `~/.codex/config.toml`, which the desktop app, the CLI, and the IDE extension share, plus a skill in `~/.agents/skills/`.
+- Cursor adds `.cursor/mcp.json` and `.cursor/skills/unimem/SKILL.md` to the project.
+- Pi adds unimem to `~/.pi/agent/mcp.json`, plus a skill in `~/.agents/skills/`.
+- Hermes adds unimem under `mcp_servers` in `~/.hermes/config.yaml`, plus a skill in `~/.hermes/skills/`.
+- Project commands also add a short pointer to `AGENTS.md`.
 
-```bash
-unimem --project-dir /path/to/repo init --client cursor
-```
+None of these files ever receive your memories. unimem only adds its own entry and leaves the rest of each file as it was. It stops with an error instead of editing a config file it can't read. To set up a different folder, add `--project-dir /path/to/repo`.
 
-Each command writes only the selected client surface plus the shared `AGENTS.md` pointer and skill guidance. All clients still use the same local database at `~/.unimem/unimem.db`.
+Desktop apps start one unimem for all your projects. The skill tells the agent to pass the workspace path, so project memories still stay with their project.
 
-This creates:
+## Use it
 
-- `AGENTS.md` and the selected client's skill file;
-- project MCP configuration only for the selected client;
-- no memory content in generated prompt files.
+Most of the time your agent calls unimem for you. You can also use it directly.
 
-The generated guidance tells agents to inspect the repository first and use memory only for prior-work references, missing constraints, handoffs, or conflicts.
-
-## Store and recall
+Save a preference that applies everywhere, and a decision for the current project:
 
 ```bash
 unimem remember "Always use pnpm for package management." \
-  --scope user --lifecycle semantic --kind preference \
-  --source user-statement --evidence "Explicit user instruction"
+  --scope user --kind preference --evidence "Explicit user instruction"
 
 unimem remember "SQLite is the project store because it needs no service." \
-  --scope project --lifecycle semantic --kind decision \
-  --source architecture-decision --evidence "Recorded project decision"
-
-unimem recall "package management" \
-  --trigger explicit_reference \
-  --evidence "User referenced a prior preference"
+  --scope project --kind decision --evidence "Recorded project decision"
 ```
 
-The trigger must be one of `explicit_reference`, `missing_context`, `cross_session`, `conflict`, or `memory_query`. Empty evidence is rejected.
+Look something up. Recall asks for a reason, so agents can't query memory out of habit:
 
-## Sessions
+```bash
+unimem recall "package manager" \
+  --trigger explicit_reference --evidence "User referenced a prior preference"
+```
+
+The trigger is one of `explicit_reference`, `missing_context`, `cross_session`, `conflict`, or `memory_query`.
+
+Keep a short-lived note for one task. It disappears when the session ends or expires:
 
 ```bash
 unimem session start --title "debugging" --ttl-seconds 3600
-UNIMEM_SESSION_ID=ses_... unimem remember \
-  "Temporary hypothesis: the retry bug may be caused by cache." \
-  --scope session --lifecycle episodic --kind hypothesis \
-  --source session-note --evidence "Short-lived debugging hypothesis"
+UNIMEM_SESSION_ID=ses_... unimem remember "The retry bug may come from the cache." \
+  --scope session --kind hypothesis --evidence "Debugging hypothesis"
 unimem session end ses_...
 ```
 
-Session memories are unavailable after their expiry or when their session is closed. Expiry is checked in the read query, so cleanup timing cannot resurrect old hypotheses.
-
-## Distill a transcript
-
-`distill` accepts JSONL messages or a plain-text transcript and applies a conservative deterministic extractor:
+Pull durable facts out of a chat transcript. Greetings, secrets, code output, and guesses are rejected:
 
 ```bash
-unimem distill transcript.jsonl --apply --session-id ses_...
+unimem distill transcript.jsonl --apply
 ```
 
-Accepted claims are limited to explicit durable cues. The command reports accepted and rejected candidates, including rejection reasons. It does not persist the input transcript.
-
-## Enrich the index (optional, Apple Silicon)
-
-`enrich` runs a small local model once over memories that have not been enriched yet. For each memory it writes standalone facts with names and absolute dates, the questions the memory answers, and related keywords, and adds that text to the keyword index. Recall still returns only the original memory, so output size and recall latency do not change.
+With the local model installed, improve how well saved memories can be found:
 
 ```bash
-uv sync --extra enrich
-uv run unimem enrich            # LFM2.5 1.2B Instruct, 4-bit MLX
-uv run unimem enrich --limit 200
+unimem enrich
 ```
 
-The model loads only for the duration of the command and exits with it, so there is no daemon and no cost on routine turns. Relative dates ("yesterday", "last year") are resolved in code from each memory's date before the model sees them. Run it after `distill --apply`, from a scheduled job, or whenever convenient; unenriched memories remain searchable by their original text. Pass `--model` to try another MLX model; memories enriched by a different model are re-enriched. On LoCoMo this raised evidence recall @10 from 0.69 to 0.79; see [`benchmarks/README.md`](benchmarks/README.md).
+`unimem forget <id>` hides a memory from recall, and `unimem audit` lists every lookup with its reason.
 
-## MCP clients
+## How it behaves
 
-`unimem init` writes the local MCP command into the supported client configuration. The server exposes one tool, `unimem`, with three actions:
+- Memories live in one of three places. User memories follow you across projects. Project memories belong to one Git repository. Session memories expire with the task.
+- Routine work triggers no lookups. The `route` command decides whether a task needs memory without opening the database.
+- A lookup returns at most three short memories, about 400 tokens. Raw transcripts are never returned.
+- Writes that look like API keys, tokens, or passwords are refused.
+- Everything runs locally on Python's standard library and SQLite. The optional model and embeddings download once, then run offline.
 
-- `recall`: bounded, trigger-gated retrieval;
-- `remember`: durable write;
-- `status`: local counts and runtime contract.
+## How well it remembers
 
-The tool description and schema are intentionally small. Clients that support deferred tool discovery can defer the tool until the missing-context branch fires.
+unimem was measured on the public benchmarks memory products report. The full numbers, methods, and caveats are in [benchmarks/README.md](benchmarks/README.md).
 
-## Audit and diagnostics
+| Benchmark | unimem | For comparison |
+|---|---|---|
+| LongMemEval-S, finding the right conversation in the top 5, no LLM | 96.0% | MemPalace 96.6%, BM25 86.2% |
+| LoCoMo, finding the right conversation in the top 10, no LLM | 89.9% (91.2% with the local model) | MemPalace 88.9% to 92.4% |
+| LongMemEval-S, answers judged correct, with Gemini answering | 91.5% (estimate) | Hindsight 94.6%, hybrid search 74.0% |
+| LoCoMo, answers judged correct, with Gemini answering | 88.7% (estimate) | Hindsight 92.0%, cognee 80.3% |
+
+The answer-accuracy rows come from the open [Agent Memory Benchmark](https://github.com/vectorize-io/agent-memory-benchmark) and from partial runs, which stopped when the model quota ran out. unimem used about half of Hindsight's context per question on LongMemEval and under a third on LoCoMo. A typical lookup takes a few milliseconds.
+
+## Questions
+
+**Does unimem send my data anywhere?**
+No. It makes no network calls of its own. The memory file stays on your computer at `~/.unimem/unimem.db`. Set `UNIMEM_HOME` or `UNIMEM_DB` to keep it somewhere else.
+
+**Do I need the local model?**
+No. Without it, unimem uses keyword search with word stemming, which already scores well on the benchmarks above. The model helps most when you phrase a question differently from how the memory was written.
+
+**How do I uninstall it?**
 
 ```bash
-unimem audit --json
-unimem doctor --json
+uv tool uninstall unimem
+rm -rf ~/.unimem
+rm -rf ~/.cache/huggingface/hub/models--mlx-community--LFM2.5-1.2B-Instruct-4bit
 ```
 
-Every successful or blocked retrieval is audited. `doctor` reports the local database, FTS5 availability, external API count, daemon requirement, resident instruction bytes, and MCP schema bytes.
+The second line deletes your memories; the third deletes the local model.
 
-## Verification
-
-The reproducible end-to-end acceptance run is:
+## Development
 
 ```bash
+uv sync
 uv run python tests/e2e_unimem.py
 ```
 
-It writes [`artifacts/e2e-unimem.json`](artifacts/e2e-unimem.json) and covers routine routing, trigger gating, scope isolation, session expiry, extraction filtering, output budgets, MCP parity, and local operation.
+[CONTRIBUTING.md](CONTRIBUTING.md) lists every check CI runs. [CHANGELOG.md](CHANGELOG.md) has release notes and database migration notes. Report security problems as described in [SECURITY.md](SECURITY.md). The research behind the design is in [MEMORY_SYSTEM_RESEARCH.md](MEMORY_SYSTEM_RESEARCH.md).
 
-For memory-quality metrics and public-corpus retrieval tests:
+## License
 
-```bash
-uv run python benchmarks/run_memory_quality.py
-uv run python benchmarks/check_sources.py
-```
-
-The benchmark methodology, real LoCoMo command, source mapping, and current limitations are documented in [`benchmarks/README.md`](benchmarks/README.md).
-
-On the development machine used for this build, `doctor`, `route`, and a bounded `recall` each stayed at roughly 29-30 MB maximum resident memory and completed in about 0.1 seconds. Exact figures vary by Python runtime and database size.
-
-## Toolchain
-
-uv is the primary development and installation workflow. It gives reproducible environments through `uv.lock`, fast command execution through `uv run`, and standalone CLI installation through `uv tool install`.
-
-The tradeoffs are small but real: contributors need uv installed, `uv.lock` must be refreshed when Python constraints change, and `uv tool install` may require adding its tool directory to `PATH`. The package still uses standard `pyproject.toml` metadata, so downstream packaging tools remain compatible with the project.
-
-## Limitations
-
-The extractor is intentionally high-precision and rule-based: it captures explicit durable claims but will miss implicit preferences that need a model-based editor. The default retrieval index is lexical FTS5/BM25 with Porter stemming; local embeddings (`--extra semantic`) and write-time enrichment are opt-in and do not change the scope or lifecycle contract.
-
-The no-routine-call requirement is enforced by the router, the tool contract, and generated client guidance. A specific coding host can still decide to call a tool incorrectly, so acceptance for a new host should include a trace showing zero `unimem` calls on routine turns and one bounded call on a missing-context turn.
-
-## Project
-
-- [CHANGELOG.md](CHANGELOG.md) lists changes per release, including database migrations.
-- [CONTRIBUTING.md](CONTRIBUTING.md) has the development setup and the checks CI runs.
-- [SECURITY.md](SECURITY.md) explains how to report a vulnerability and what unimem stores.
-- Licensed under the [MIT License](LICENSE).
+[MIT](LICENSE)
