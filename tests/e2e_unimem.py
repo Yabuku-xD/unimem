@@ -426,6 +426,40 @@ def main() -> int:
             sorted(str(path) for path in no_hooks_home.rglob("*") if path.is_file()),
         )
 
+        # Uninstall removes exactly what init wrote and leaves other settings alone.
+        clean_home = harness.base / "uninstall-home"
+        seeds = {
+            ".claude.json": json.dumps({"numStartups": 3, "mcpServers": {"other": {"command": "other"}}}, indent=2) + "\n",
+            ".claude/settings.json": json.dumps(
+                {"model": "opus", "hooks": {"SessionStart": [{"hooks": [{"type": "command", "command": "echo mine"}]}]}},
+                indent=2,
+            ) + "\n",
+            ".codex/config.toml": 'model = "gpt-5"\n\n[mcp_servers.other]\ncommand = "other"\n',
+            ".hermes/config.yaml": "model: test\nmcp_servers:\n  other:\n    command: other\ntoolsets: [web]\n",
+        }
+        for relative, text in seeds.items():
+            (clean_home / relative).parent.mkdir(parents=True, exist_ok=True)
+            (clean_home / relative).write_text(text, encoding="utf-8")
+        harness.env["HOME"] = str(clean_home)
+        harness.env["APPDATA"] = str(clean_home / "AppData/Roaming")
+        harness.run(["init", "--json"], cwd=global_dir, name="init_before_uninstall")
+        installed = sorted(str(p.relative_to(clean_home)) for p in clean_home.rglob("*") if p.is_file())
+        _, removed_payload = harness.run(["uninstall", "--json"], cwd=global_dir, name="uninstall_all")
+        harness.run(["uninstall", "--json"], cwd=global_dir, name="uninstall_twice")
+        remaining = {str(p.relative_to(clean_home)): p.read_text(encoding="utf-8") for p in clean_home.rglob("*") if p.is_file()}
+        harness.env["HOME"] = str(home)
+        harness.env["APPDATA"] = str(home / "AppData/Roaming")
+        harness.check(
+            "uninstall_restores_seeded_configs_and_removes_the_rest",
+            remaining == seeds and len(installed) > len(seeds),
+            {"installed": installed, "remaining": sorted(remaining), "removed": removed_payload},
+        )
+        _, kept = harness.run(
+            ["recall", "package management", "--trigger", "memory_query", "--evidence", "Data survives uninstall", "--json"],
+            name="recall_after_uninstall",
+        )
+        harness.check("uninstall_keeps_memories_without_purge", harness.home.exists(), str(harness.home))
+
         # A tool session opens a unimem session, and its end captures durable facts.
         hook_project = harness.base / "hook-project"
         hook_project.mkdir()

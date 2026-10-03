@@ -430,3 +430,174 @@ def install_integrations(
         "mcp_tool_schema_bytes": mcp_tool_schema_bytes,
         "launcher": config,
     }
+
+
+def _strip_block(path: Path, start: str, end: str) -> bool:
+    """Remove a marked block from a text config. Returns whether anything changed."""
+    if not path.exists():
+        return False
+    original = path.read_text(encoding="utf-8")
+    if start not in original or end not in original:
+        return False
+    prefix, rest = original.split(start, 1)
+    suffix = rest.split(end, 1)[1]
+    updated = (prefix.rstrip() + "\n" + suffix.lstrip("\n")).strip("\n")
+    if updated.strip():
+        path.write_text(updated + "\n", encoding="utf-8")
+    else:
+        path.unlink()
+    return True
+
+
+def _strip_yaml_block(path: Path, key: str, start: str, end: str) -> bool:
+    if not path.exists():
+        return False
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if f"  {start}" not in lines or f"  {end}" not in lines:
+        return False
+    first, last = lines.index(f"  {start}"), lines.index(f"  {end}")
+    del lines[first : last + 1]
+    # Drop the parent key when unimem's block was its only content.
+    if f"{key}:" in lines:
+        section = lines.index(f"{key}:")
+        following = lines[section + 1 :]
+        body_end = next(
+            (i for i, line in enumerate(following) if line.strip() and not line[0].isspace()),
+            len(following),
+        )
+        if not any(line.strip() for line in following[:body_end]):
+            del lines[section : section + 1 + body_end]
+    while lines and not lines[-1].strip():
+        lines.pop()
+    if lines:
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    else:
+        path.unlink()
+    return True
+
+
+def _write_or_remove_json(path: Path, data: dict[str, Any]) -> None:
+    # An empty object means unimem's entry was the file's only content.
+    if data:
+        path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    else:
+        path.unlink()
+
+
+def _remove_json_server(path: Path) -> bool:
+    if not path.exists():
+        return False
+    data = _load_json_object(path)
+    servers = data.get("mcpServers")
+    if not isinstance(servers, dict) or "unimem" not in servers:
+        return False
+    del servers["unimem"]
+    if not servers:
+        del data["mcpServers"]
+    _write_or_remove_json(path, data)
+    return True
+
+
+def _remove_json_hooks(path: Path, *, cursor: bool = False) -> bool:
+    if not path.exists():
+        return False
+    data = _load_json_object(path)
+    hooks = data.get("hooks")
+    if not isinstance(hooks, dict):
+        return False
+    changed = False
+    for event in list(hooks):
+        entries = hooks[event] if isinstance(hooks[event], list) else []
+        if cursor:
+            kept = [entry for entry in entries if not _is_unimem_hook(entry.get("command"))]
+        else:
+            kept = []
+            for group in entries:
+                inner = [h for h in group.get("hooks", []) if not _is_unimem_hook(h.get("command"))]
+                if inner:
+                    kept.append({**group, "hooks": inner})
+        if kept != entries:
+            changed = True
+            if kept:
+                hooks[event] = kept
+            else:
+                del hooks[event]
+    if not changed:
+        return False
+    if not hooks:
+        del data["hooks"]
+    if cursor and set(data) == {"version"}:
+        data = {}
+    _write_or_remove_json(path, data)
+    return True
+
+
+def _remove_skill(directory: Path) -> bool:
+    skill = directory / "SKILL.md"
+    if not skill.exists():
+        return False
+    skill.unlink()
+    # Remove the folders init created, but only while they are empty.
+    for folder in (directory, directory.parent):
+        try:
+            folder.rmdir()
+        except OSError:
+            break
+    return True
+
+
+def uninstall_integrations(
+    *, project_dir: Path, clients: tuple[str, ...], project: bool = False
+) -> dict[str, Any]:
+    """Remove what `install_integrations` wrote; other settings are left as they were."""
+    selected = resolve_clients(clients, project=project)
+    home = Path.home()
+    removed: list[str] = []
+
+    def did(changed: bool, path: Path) -> None:
+        if changed and str(path) not in removed:
+            removed.append(str(path))
+
+    if project:
+        did(_strip_block(project_dir / "AGENTS.md", MARKER_START, MARKER_END), project_dir / "AGENTS.md")
+        if selected & {"agents", "claude", "codex"}:
+            did(_remove_skill(project_dir / ".agents/skills/unimem"), project_dir / ".agents/skills/unimem")
+        if "claude" in selected:
+            did(_remove_skill(project_dir / ".claude/skills/unimem"), project_dir / ".claude/skills/unimem")
+            did(_remove_json_server(project_dir / ".mcp.json"), project_dir / ".mcp.json")
+        if "cursor" in selected:
+            did(_remove_skill(project_dir / ".cursor/skills/unimem"), project_dir / ".cursor/skills/unimem")
+            did(_remove_json_server(project_dir / ".cursor/mcp.json"), project_dir / ".cursor/mcp.json")
+        if "codex" in selected:
+            path = project_dir / ".codex/config.toml"
+            did(_strip_block(path, BLOCK_START, BLOCK_END), path)
+        return {"ok": True, "mode": "project", "clients": sorted(selected), "removed": removed}
+
+    # The shared skill stays while another selected-out client may still use it.
+    if selected >= {"agents", "codex", "pi", "cursor"}:
+        did(_remove_skill(home / ".agents/skills/unimem"), home / ".agents/skills/unimem")
+    if "claude" in selected:
+        did(_remove_skill(home / ".claude/skills/unimem"), home / ".claude/skills/unimem")
+        did(_remove_json_server(home / ".claude.json"), home / ".claude.json")
+        did(_remove_json_hooks(home / ".claude/settings.json"), home / ".claude/settings.json")
+    if "claude-desktop" in selected:
+        path = claude_desktop_config_path()
+        did(_remove_json_server(path), path)
+    if "codex" in selected:
+        did(_strip_block(home / ".codex/config.toml", BLOCK_START, BLOCK_END), home / ".codex/config.toml")
+        did(_remove_json_hooks(home / ".codex/hooks.json"), home / ".codex/hooks.json")
+    if "cursor" in selected:
+        did(_remove_json_server(home / ".cursor/mcp.json"), home / ".cursor/mcp.json")
+        did(_remove_json_hooks(home / ".cursor/hooks.json", cursor=True), home / ".cursor/hooks.json")
+    if "pi" in selected:
+        did(_remove_json_server(home / ".pi/agent/mcp.json"), home / ".pi/agent/mcp.json")
+        extension = home / ".pi/agent/extensions/unimem.ts"
+        if extension.exists():
+            extension.unlink()
+            did(True, extension)
+    if "hermes" in selected:
+        config = home / ".hermes/config.yaml"
+        did(_strip_yaml_block(config, "mcp_servers", BLOCK_START, BLOCK_END), config)
+        did(_strip_yaml_block(config, "hooks", f"{BLOCK_START} HOOKS", f"{BLOCK_END} HOOKS"), config)
+        did(_remove_skill(home / ".hermes/skills/unimem"), home / ".hermes/skills/unimem")
+    return {"ok": True, "mode": "user", "clients": sorted(selected), "removed": removed}

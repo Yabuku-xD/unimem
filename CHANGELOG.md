@@ -13,6 +13,7 @@
 - Implicit preferences: corrections and repeated instructions without an explicit cue ("no, use pnpm") are kept as candidates that recall never returns, and are promoted to a memory once a matching statement appears in a second session. `unimem candidates` lists them.
 - Concurrent sessions in one project stay separate: a session hook records its process ancestry, and later calls from the same tool process use that session.
 - One user-wide server still scopes project memories: it follows Claude Code's `CLAUDE_PROJECT_DIR`, the directory it starts in, or a `project_dir` argument on the MCP tool.
+- `unimem uninstall` removes exactly what `init` wrote from each tool and leaves the rest of each config untouched; `--purge` also deletes stored memories and the local model.
 - `install.sh` installs uv when needed, unimem, and optionally the local model in one step; `unimem enrich --download` fetches the model ahead of time.
 - Benchmarks: LongMemEval-S session recall, LoCoMo session-level recall, a multi-corpus runner (LoCoMo, MemBench, MemoryAgentBench, BEAM), and a provider for the open Agent Memory Benchmark harness. Results and caveats are in `benchmarks/README.md`.
 - CI on Linux and macOS, `LICENSE`, `SECURITY.md`, and `CONTRIBUTING.md`.

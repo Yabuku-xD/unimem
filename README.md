@@ -203,12 +203,12 @@ No. Without it, unimem uses keyword search with word stemming, which already sco
 **How do I uninstall it?**
 
 ```bash
-uv tool uninstall unimem
-rm -rf ~/.unimem
-rm -rf ~/.cache/huggingface/hub/models--mlx-community--LFM2.5-1.2B-Instruct-4bit
+unimem uninstall          # disconnect every tool; your memories stay
+unimem uninstall --purge  # also delete your memories and the local model
+uv tool uninstall unimem  # remove the program
 ```
 
-The second line deletes your memories; the third deletes the local model.
+`unimem uninstall` removes only what `unimem init` added: its entries, hooks, and skill files. Everything else in those config files is left as it was. Add `--client cursor` to disconnect one tool, or `--project` inside a repository you set up with `init --project`.
 
 ## Development
 

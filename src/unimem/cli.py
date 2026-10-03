@@ -4,6 +4,7 @@ import argparse
 import importlib.util
 import json
 import os
+import shutil
 import subprocess
 import sys
 from dataclasses import replace
@@ -14,6 +15,7 @@ from . import __version__
 from .candidates import list_candidates
 from .config import Settings, now_iso, parse_iso
 from .db import Database, MemoryError
+from .enrich import DEFAULT_ENRICH_MODEL
 from .extract import distill_messages, load_messages
 from .hooks import normalize_payload, session_end, session_start
 from .integrations import (
@@ -23,6 +25,7 @@ from .integrations import (
     agents_section,
     install_integrations,
     skill_text,
+    uninstall_integrations,
 )
 from .mcp import serve as serve_mcp
 from .mcp import tool_schema_bytes
@@ -64,6 +67,25 @@ def _parser() -> argparse.ArgumentParser:
         "--no-hooks",
         action="store_true",
         help="Skip the session hooks that open sessions and save durable facts automatically",
+    )
+
+    uninstall = sub.add_parser(
+        "uninstall", help="Remove unimem from your coding tools, and optionally its data"
+    )
+    uninstall.add_argument(
+        "--client",
+        choices=["all", *CLIENTS, *CLIENT_ALIASES],
+        default="all",
+        help="Tool to disconnect (default: all)",
+    )
+    uninstall.add_argument("--project-dir", help="Project directory to clean with --project")
+    uninstall.add_argument(
+        "--project", action="store_true", help="Remove the config written by init --project"
+    )
+    uninstall.add_argument(
+        "--purge",
+        action="store_true",
+        help="Also delete every stored memory and the local model (cannot be undone)",
     )
 
     remember = sub.add_parser("remember", help="Store a durable memory")
@@ -293,6 +315,29 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "hook":
             return _run_hook(args)
 
+        if args.command == "uninstall":
+            settings = _settings(args)
+            result = uninstall_integrations(
+                project_dir=settings.cwd, clients=(args.client,), project=args.project
+            )
+            if args.purge:
+                # Hugging Face keeps the optional enrichment model here.
+                model_cache = (
+                    Path.home() / ".cache/huggingface/hub"
+                    / f"models--{DEFAULT_ENRICH_MODEL.replace('/', '--')}"
+                )
+                for target in (settings.home, model_cache):
+                    if target.exists():
+                        shutil.rmtree(target)
+                        result["removed"].append(str(target))
+            lines = [f"Removed unimem from {len(result['removed'])} place(s):"]
+            lines += [f"  {path}" for path in result["removed"]]
+            if not args.purge:
+                lines.append(f"Your memories are still in {settings.home}. Add --purge to delete them.")
+            lines.append("To remove the program itself, run: uv tool uninstall unimem")
+            _emit(result, json_mode=json_mode, text="\n".join(lines))
+            return 0
+
         project_dir = getattr(args, "project_dir", None)
         settings = _settings(args, project_dir=project_dir)
         if args.command == "route":
@@ -446,7 +491,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
 
         if args.command == "enrich":
-            from .enrich import DEFAULT_ENRICH_MODEL, EnrichUnavailableError, LocalEnricher
+            from .enrich import EnrichUnavailableError, LocalEnricher
 
             try:
                 enricher = LocalEnricher(args.model or DEFAULT_ENRICH_MODEL)
