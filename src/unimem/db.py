@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS memories (
     supersedes TEXT,
     content_hash TEXT NOT NULL,
     enrichment TEXT NOT NULL DEFAULT '',
-    enrichment_model TEXT
+    enrichment_model TEXT,
+    scope_key TEXT NOT NULL DEFAULT ''
 );
 CREATE INDEX IF NOT EXISTS idx_memories_scope_project
     ON memories(scope, project_id, status, expires_at);
@@ -86,31 +87,41 @@ CREATE TABLE IF NOT EXISTS memory_embeddings (
 );
 """
 
-FTS_SCHEMA = """
+FTS_COLUMNS = ("content", "evidence", "enrichment", "scope_key")
+_FTS_NEW = ", ".join(f"new.{column}" for column in FTS_COLUMNS)
+_FTS_OLD = ", ".join(f"old.{column}" for column in FTS_COLUMNS)
+
+# `scope_key` is one token per scope owner, so MATCH can narrow to the caller's
+# scopes inside the index instead of scoring every project's rows.
+FTS_SCHEMA = f"""
 CREATE VIRTUAL TABLE IF NOT EXISTS memories_fts USING fts5(
-    content,
-    evidence,
-    enrichment,
+    {", ".join(FTS_COLUMNS)},
     content='memories',
-    content_rowid='rowid'
+    content_rowid='rowid',
+    tokenize='porter unicode61'
 );
 CREATE TRIGGER IF NOT EXISTS memories_fts_ai AFTER INSERT ON memories BEGIN
-    INSERT INTO memories_fts(rowid, content, evidence, enrichment)
-    VALUES (new.rowid, new.content, new.evidence, new.enrichment);
+    INSERT INTO memories_fts(rowid, {", ".join(FTS_COLUMNS)})
+    VALUES (new.rowid, {_FTS_NEW});
 END;
 CREATE TRIGGER IF NOT EXISTS memories_fts_ad AFTER DELETE ON memories BEGIN
-    INSERT INTO memories_fts(memories_fts, rowid, content, evidence, enrichment)
-    VALUES ('delete', old.rowid, old.content, old.evidence, old.enrichment);
+    INSERT INTO memories_fts(memories_fts, rowid, {", ".join(FTS_COLUMNS)})
+    VALUES ('delete', old.rowid, {_FTS_OLD});
 END;
-CREATE TRIGGER IF NOT EXISTS memories_fts_au AFTER UPDATE ON memories BEGIN
-    INSERT INTO memories_fts(memories_fts, rowid, content, evidence, enrichment)
-    VALUES ('delete', old.rowid, old.content, old.evidence, old.enrichment);
-    INSERT INTO memories_fts(rowid, content, evidence, enrichment)
-    VALUES (new.rowid, new.content, new.evidence, new.enrichment);
+CREATE TRIGGER IF NOT EXISTS memories_fts_au
+AFTER UPDATE OF {", ".join(FTS_COLUMNS)} ON memories BEGIN
+    INSERT INTO memories_fts(memories_fts, rowid, {", ".join(FTS_COLUMNS)})
+    VALUES ('delete', old.rowid, {_FTS_OLD});
+    INSERT INTO memories_fts(rowid, {", ".join(FTS_COLUMNS)})
+    VALUES (new.rowid, {_FTS_NEW});
 END;
 """
 
 FTS_OBJECTS = ("memories_fts_ai", "memories_fts_ad", "memories_fts_au")
+# Library ceiling; the CLI and MCP surfaces clamp lower and bound output tokens.
+MAX_RECALL_LIMIT = 200
+# Shorter query terms match exactly; prefix matching them floods the candidates.
+MIN_PREFIX_TERM_CHARS = 4
 
 SEARCH_STOPWORDS = {
     "a",
@@ -144,7 +155,28 @@ SEARCH_STOPWORDS = {
     "why",
     "with",
     "would",
+    "i", "me", "my", "we", "our", "you", "your", "he", "she", "his", "her",
+    "they", "them", "their", "this", "that", "these", "those", "has", "have",
+    "had", "does", "am", "been", "being", "will", "can", "could", "should",
+    "about", "into", "than", "then", "there", "so", "if", "but", "not", "no",
+    "any", "some", "all", "also", "just", "s", "t",
 }
+
+
+def search_terms(query: str) -> list[str]:
+    words = [word.lower() for word in re.findall(r"[A-Za-z0-9_]+", query)]
+    return [word for word in words if word not in SEARCH_STOPWORDS] or words
+
+
+def build_fts_query(terms: list[str]) -> str:
+    return " OR ".join(
+        f"{term}*" if len(term) >= MIN_PREFIX_TERM_CHARS else f'"{term}"' for term in terms
+    )
+
+
+def scope_key(scope: str, project_id: str | None, session_id: str | None) -> str:
+    owner = {"user": "", "project": project_id or "", "session": session_id or ""}[scope]
+    return "k" + hashlib.sha256(f"{scope}\0{owner}".encode()).hexdigest()[:16]
 
 
 class MemoryError(Exception):
@@ -204,7 +236,7 @@ class Database:
         # bm25 column weights for (content, evidence, enrichment). Enrichment is
         # down-weighted so generated text widens matching without outranking
         # the original memory; measured in benchmarks/README.md.
-        self.fts_column_weights = (1.0, 1.0, 0.25)
+        self.fts_column_weights = (1.0, 0.5, 0.25)
 
     @contextmanager
     def connection(self) -> Iterator[sqlite3.Connection]:
@@ -225,7 +257,7 @@ class Database:
     def initialize(self) -> None:
         with self.connection() as connection:
             connection.executescript(SCHEMA)
-            self._migrate_enrichment_columns(connection)
+            self._migrate_columns(connection)
             try:
                 self._migrate_fts(connection)
                 connection.executescript(FTS_SCHEMA)
@@ -239,7 +271,7 @@ class Database:
             self.expire_sessions(connection)
 
     @staticmethod
-    def _migrate_enrichment_columns(connection: sqlite3.Connection) -> None:
+    def _migrate_columns(connection: sqlite3.Connection) -> None:
         columns = {row["name"] for row in connection.execute("PRAGMA table_info(memories)")}
         if "enrichment" not in columns:
             connection.execute(
@@ -247,17 +279,31 @@ class Database:
             )
         if "enrichment_model" not in columns:
             connection.execute("ALTER TABLE memories ADD COLUMN enrichment_model TEXT")
+        if "scope_key" not in columns:
+            connection.execute(
+                "ALTER TABLE memories ADD COLUMN scope_key TEXT NOT NULL DEFAULT ''"
+            )
+            rows = connection.execute(
+                "SELECT rowid, scope, project_id, session_id FROM memories"
+            ).fetchall()
+            connection.executemany(
+                "UPDATE memories SET scope_key = ? WHERE rowid = ?",
+                [
+                    (scope_key(row["scope"], row["project_id"], row["session_id"]), row["rowid"])
+                    for row in rows
+                ],
+            )
 
     @staticmethod
     def _migrate_fts(connection: sqlite3.Connection) -> None:
-        """Rebuild an FTS index created before the enrichment column existed."""
-        exists = connection.execute(
-            "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'memories_fts'"
+        """Rebuild an FTS index created with older columns or tokenizer."""
+        existing = connection.execute(
+            "SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'memories_fts'"
         ).fetchone()
-        if not exists:
+        if not existing:
             return
-        columns = {row["name"] for row in connection.execute("PRAGMA table_info(memories_fts)")}
-        if "enrichment" in columns:
+        columns = [row["name"] for row in connection.execute("PRAGMA table_info(memories_fts)")]
+        if columns == list(FTS_COLUMNS) and "porter" in existing["sql"]:
             return
         for trigger in FTS_OBJECTS:
             connection.execute(f"DROP TRIGGER IF EXISTS {trigger}")
@@ -572,13 +618,14 @@ class Database:
                 return MemoryRecord.from_row(row), False
 
             memory_id = f"mem_{uuid.uuid4().hex[:16]}"
+            key = scope_key(scope, project_id, session_id)
             connection.execute(
                 """
                 INSERT INTO memories (
                     id, scope, project_id, session_id, lifecycle, kind, content, source,
                     evidence, confidence, status, created_at, updated_at, last_confirmed_at,
-                    expires_at, supersedes, content_hash
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', ?, ?, ?, ?, ?, ?)
+                    expires_at, supersedes, content_hash, scope_key
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'active', ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     memory_id,
@@ -597,6 +644,7 @@ class Database:
                     expires_at,
                     supersedes,
                     content_hash,
+                    key,
                 ),
             )
             if supersedes:
@@ -645,23 +693,29 @@ class Database:
     ) -> list[sqlite3.Row]:
         scope_clauses: list[str] = []
         scope_args: list[str] = []
+        scope_keys: list[str] = []
         if "user" in scopes:
             scope_clauses.append("m.scope = 'user'")
+            scope_keys.append(scope_key("user", None, None))
         if "project" in scopes:
             scope_clauses.append("(m.scope = 'project' AND m.project_id = ?)")
             scope_args.append(project_id)
+            scope_keys.append(scope_key("project", project_id, None))
         if "session" in scopes and session_id:
             scope_clauses.append("(m.scope = 'session' AND m.session_id = ?)")
             scope_args.append(session_id)
+            scope_keys.append(scope_key("session", None, session_id))
         if not scope_clauses:
             return []
 
-        terms = [
-            term.lower()
-            for term in re.findall(r"[A-Za-z0-9_]+", query)
-            if term.lower() not in SEARCH_STOPWORDS
-        ] or [term.lower() for term in re.findall(r"[A-Za-z0-9_]+", query)]
-        fts_query = " OR ".join(f"{term}*" for term in terms)
+        terms = search_terms(query)
+        fts_query = build_fts_query(terms)
+        if fts_query:
+            # The SQL scope clauses below stay authoritative; this only prunes.
+            fts_query = (
+                f"{{content evidence enrichment}} : ({fts_query}) "
+                f"AND scope_key : ({' OR '.join(scope_keys)})"
+            )
         active_sql = self._active_memory_sql("m")
         scope_sql = " OR ".join(scope_clauses)
         if self.fts_enabled and fts_query:
@@ -669,7 +723,7 @@ class Database:
                 return list(
                     connection.execute(
                         f"""
-                        SELECT m.*, bm25(memories_fts, ?, ?, ?) AS rank
+                        SELECT m.*, bm25(memories_fts, ?, ?, ?, 0.0) AS rank
                         FROM memories m
                         JOIN memories_fts ON m.rowid = memories_fts.rowid
                         WHERE memories_fts MATCH ?
@@ -793,7 +847,7 @@ class Database:
         semantic: bool = True,
     ) -> list[MemoryRecord]:
         self.initialize()
-        limit = max(1, min(int(limit), 20))
+        limit = max(1, min(int(limit), MAX_RECALL_LIMIT))
         with self.connection() as connection:
             self.expire_sessions(connection)
             lexical_rows = self._search_rows(
