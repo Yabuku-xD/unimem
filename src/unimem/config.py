@@ -5,13 +5,13 @@ import math
 import os
 import subprocess
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import urlsplit
 
 
 def now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 def parse_iso(value: str | None) -> datetime | None:
@@ -20,8 +20,8 @@ def parse_iso(value: str | None) -> datetime | None:
     normalized = value.strip().replace("Z", "+00:00")
     parsed = datetime.fromisoformat(normalized)
     if parsed.tzinfo is None:
-        parsed = parsed.replace(tzinfo=timezone.utc)
-    return parsed.astimezone(timezone.utc)
+        parsed = parsed.replace(tzinfo=UTC)
+    return parsed.astimezone(UTC)
 
 
 def iso_after(seconds: float) -> str:
@@ -29,8 +29,8 @@ def iso_after(seconds: float) -> str:
         raise ValueError("duration must be finite")
     try:
         return datetime.fromtimestamp(
-            datetime.now(timezone.utc).timestamp() + seconds,
-            tz=timezone.utc,
+            datetime.now(UTC).timestamp() + seconds,
+            tz=UTC,
         ).isoformat()
     except (OverflowError, OSError) as error:
         raise ValueError("duration is outside the supported range") from error
@@ -100,7 +100,7 @@ class Settings:
         project_id: str | None = None,
         home: str | Path | None = None,
         session_id: str | None = None,
-    ) -> "Settings":
+    ) -> Settings:
         cwd = Path(project_dir or Path.cwd()).expanduser().resolve()
         resolved_home = Path(
             home or os.environ.get("UNIMEM_HOME") or (Path.home() / ".unimem")

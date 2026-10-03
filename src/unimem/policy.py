@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Sequence
+from typing import Any
 
 from .models import RouteDecision
-
 
 TRIGGER_TYPES = (
     "explicit_reference",

@@ -12,11 +12,9 @@ import hashlib
 import json
 import re
 import subprocess
-import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
-
 
 URL_PATTERN = re.compile(r"https://[^)\s]+")
 
@@ -63,7 +61,7 @@ def check_sources(report: Path, *, max_chars: int, batch_size: int) -> dict[str,
             )
     failed = [record for record in records if record["status"] != "ok"]
     return {
-        "checked_at": datetime.now(timezone.utc).isoformat(),
+        "checked_at": datetime.now(UTC).isoformat(),
         "report": str(report),
         "report_sha256": hashlib.sha256(report.read_bytes()).hexdigest(),
         "source_count": len(records),

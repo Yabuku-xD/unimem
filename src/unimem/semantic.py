@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from collections import OrderedDict
-from typing import Any, Iterable
-
+from collections.abc import Iterable
+from typing import Any
 
 DEFAULT_SEMANTIC_MODEL = "BAAI/bge-small-en-v1.5"
 SEMANTIC_TEXT_CHARS = 2000
@@ -98,7 +98,7 @@ class LocalSemanticEmbedder:
             scores = matrix @ query_vector
             ranked.extend(
                 (candidate_id, float(score))
-                for (candidate_id, _), score in zip(chunk, scores)
+                for (candidate_id, _), score in zip(chunk, scores, strict=True)
             )
             chunk.clear()
             if limit is not None:

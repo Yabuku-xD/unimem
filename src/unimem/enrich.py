@@ -8,12 +8,11 @@ only inside an explicit enrichment pass, never on the recall path.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import date, timedelta
-from typing import Sequence
 
 from .policy import contains_secret
-
 
 DEFAULT_ENRICH_MODEL = "mlx-community/LFM2.5-1.2B-Instruct-4bit"
 # Measured on LoCoMo: 16-way batches were 2.5x faster than sequential calls

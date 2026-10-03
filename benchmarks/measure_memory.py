@@ -14,7 +14,6 @@ import time
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 for import_root in (ROOT, SRC):
@@ -30,6 +29,7 @@ from benchmarks.adapters import (  # noqa: E402
 )
 from benchmarks.run_memory_quality import (  # noqa: E402
     compact_recall_items,
+    make_enricher,
     now_iso,
     percentile,
     ratio,
@@ -43,11 +43,9 @@ from benchmarks.run_memory_quality import (  # noqa: E402
     run_routing,
     seed_fixture_memories,
     timed,
-    make_enricher,
 )
 from unimem.config import Settings  # noqa: E402
 from unimem.db import Database  # noqa: E402
-
 
 DEFAULT_PATHS = {
     "locomo": Path("/tmp/unimem-locomo10.json"),

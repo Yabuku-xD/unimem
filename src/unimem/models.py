@@ -25,7 +25,7 @@ class MemoryRecord:
     content_hash: str
 
     @classmethod
-    def from_row(cls, row: Any) -> "MemoryRecord":
+    def from_row(cls, row: Any) -> MemoryRecord:
         return cls(
             id=row["id"],
             scope=row["scope"],

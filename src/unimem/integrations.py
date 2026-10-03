@@ -8,7 +8,6 @@ from typing import Any
 
 from .config import Settings
 
-
 MARKER_START = "<!-- unimem:start -->"
 MARKER_END = "<!-- unimem:end -->"
 TOML_START = "# BEGIN UNIMEM"

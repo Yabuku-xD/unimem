@@ -9,7 +9,6 @@ from .db import Database, MemoryError
 from .policy import TRIGGER_TYPES, compact_recall_items, contains_secret, validate_recall
 from .semantic import DEFAULT_SEMANTIC_MODEL
 
-
 TOOL_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {

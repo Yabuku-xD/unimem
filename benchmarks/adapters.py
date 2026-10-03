@@ -5,9 +5,10 @@ from __future__ import annotations
 import ast
 import hashlib
 import re
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Iterable, Iterator
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -95,7 +96,7 @@ def _parquet_rows(path: Path, *, batch_size: int = 1) -> Iterator[dict[str, Any]
         columns = [item[0] for item in cursor.description or []]
         while rows := cursor.fetchmany(batch_size):
             for row in rows:
-                yield dict(zip(columns, row))
+                yield dict(zip(columns, row, strict=True))
     finally:
         connection.close()
 

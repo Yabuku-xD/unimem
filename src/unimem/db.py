@@ -5,10 +5,11 @@ import math
 import re
 import sqlite3
 import uuid
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import date
-from typing import TYPE_CHECKING, Any, Callable, Iterator
+from typing import TYPE_CHECKING, Any
 
 from .config import Settings, iso_after, now_iso, parse_iso
 from .models import MemoryRecord
@@ -196,7 +197,7 @@ class SessionRecord:
     expires_at: str | None
 
     @classmethod
-    def from_row(cls, row: sqlite3.Row) -> "SessionRecord":
+    def from_row(cls, row: sqlite3.Row) -> SessionRecord:
         return cls(
             id=row["id"],
             project_id=row["project_id"],
@@ -313,7 +314,7 @@ class Database:
 
     def enrich_pending(
         self,
-        enricher: "LocalEnricher",
+        enricher: LocalEnricher,
         *,
         limit: int | None = None,
         observed_on: Callable[[sqlite3.Row], date | None] | None = None,
@@ -370,7 +371,7 @@ class Database:
             with self.connection() as connection:
                 connection.executemany(
                     "UPDATE memories SET enrichment = ?, enrichment_model = ? WHERE id = ?",
-                    [(text, enricher.model_name, row["id"]) for row, text in zip(rows, texts)],
+                    [(text, enricher.model_name, row["id"]) for row, text in zip(rows, texts, strict=True)],
                 )
             enriched += len(rows)
         return enriched
@@ -445,7 +446,7 @@ class Database:
                 if not rows:
                     break
                 vectors = self.semantic_embedder.embed_many([row["content"] for row in rows])
-                for row, embedding in zip(rows, vectors):
+                for row, embedding in zip(rows, vectors, strict=True):
                     connection.execute(
                         """
                         INSERT INTO memory_embeddings
@@ -818,7 +819,6 @@ class Database:
         if not semantic_rows:
             return lexical_rows[:limit]
         lexical_ids = [row["id"] for row in lexical_rows]
-        semantic_ids = [row["id"] for row, _ in semantic_rows]
         scores: dict[str, float] = {}
         rows: dict[str, sqlite3.Row] = {}
         for rank, memory_id in enumerate(lexical_ids):

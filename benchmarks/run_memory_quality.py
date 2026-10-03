@@ -18,10 +18,10 @@ import subprocess
 import sys
 import tempfile
 import time
-from datetime import date, datetime, timezone
+from collections.abc import Callable, Iterator
+from datetime import UTC, date, datetime
 from pathlib import Path
-from typing import Any, Callable, Iterator
-
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -34,7 +34,6 @@ from unimem.extract import distill_messages  # noqa: E402
 from unimem.mcp import run_tool  # noqa: E402
 from unimem.policy import classify_route, compact_recall_items  # noqa: E402
 
-
 ROUTING_TARGET = 0.90
 EXTRACTION_PRECISION_TARGET = 0.90
 EXTRACTION_RECALL_TARGET = 0.80
@@ -44,7 +43,7 @@ LOCOMO_RECALL10_TARGET = 0.90
 
 
 def now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 def ratio(numerator: float, denominator: int) -> float:
@@ -540,7 +539,7 @@ class CachedEnricher:
             texts = self._enricher.enrich_many([items[index] for index in missing])
             self.generation_seconds += time.perf_counter() - start
             self.generated += len(missing)
-            for index, text in zip(missing, texts):
+            for index, text in zip(missing, texts, strict=True):
                 self._cache[keys[index]] = text
             self.cache_path.parent.mkdir(parents=True, exist_ok=True)
             self.cache_path.write_text(json.dumps(self._cache), encoding="utf-8")
