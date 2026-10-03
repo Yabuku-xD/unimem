@@ -191,6 +191,89 @@ def _emit(payload: dict[str, Any], *, json_mode: bool, text: str | None = None) 
         print(text if text is not None else json.dumps(payload, indent=2, sort_keys=True))
 
 
+CLIENT_LABELS = {
+    "claude": "Claude Code",
+    "claude-desktop": "Claude Desktop",
+    "codex": "Codex",
+    "cursor": "Cursor",
+    "pi": "Pi",
+    "hermes": "Hermes Agent",
+    "agents": "Other agents",
+}
+
+
+def _style() -> dict[str, str]:
+    """Terminal styling, only when a person is watching a colour terminal."""
+    if sys.stdout.isatty() and not os.environ.get("NO_COLOR") and os.environ.get("TERM") != "dumb":
+        return {"bold": "\033[1m", "dim": "\033[2m", "green": "\033[32m", "reset": "\033[0m"}
+    return {"bold": "", "dim": "", "green": "", "reset": ""}
+
+
+def _short(path: str) -> str:
+    home = str(Path.home())
+    return "~" + path[len(home):] if path.startswith(home) else path
+
+
+def _init_report(result: dict[str, Any]) -> str:
+    style = _style()
+    clients = [client for client in CLIENT_LABELS if client in result["clients"]]
+    count = len(clients)
+    where = "this project" if result["mode"] == "project" else "your account"
+    lines = [
+        "",
+        f"{style['bold']}unimem is connected to {count} tool{'s' if count != 1 else ''}{style['reset']}"
+        f" {style['dim']}for {where}{style['reset']}",
+        "",
+    ]
+    for client in clients:
+        parts = [] if client == "agents" else ["memory tool"]
+        if client != "claude-desktop":
+            parts.append("skill")
+        if client in result["session_hooks"]:
+            parts.append("session hooks")
+        lines.append(
+            f"  {style['green']}✓{style['reset']} {CLIENT_LABELS[client]:<15} "
+            f"{style['dim']}{', '.join(parts)}{style['reset']}"
+        )
+    steps = []
+    if result["restart_required"]:
+        steps.append("Restart those tools so they load unimem.")
+    if "codex" in result["session_hooks"]:
+        steps.append("In Codex, run /hooks once and trust the two unimem hooks.")
+    if "hermes" in result["session_hooks"]:
+        steps.append("Hermes asks for your consent the first time each hook runs.")
+    if steps:
+        lines += ["", f"{style['bold']}Next{style['reset']}", *(f"  {step}" for step in steps)]
+    lines += [
+        "",
+        f"{style['dim']}{len(result['files'])} files changed. List them with --json. "
+        f"Undo with: unimem uninstall{style['reset']}",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def _uninstall_report(result: dict[str, Any], settings: Settings, *, purged: bool) -> str:
+    style = _style()
+    removed = result["removed"]
+    lines = [""]
+    if not removed:
+        lines.append(f"{style['bold']}Nothing to remove.{style['reset']} unimem was not set up here.")
+    else:
+        lines.append(f"{style['bold']}unimem is removed from your tools{style['reset']}")
+        lines.append("")
+        lines += [f"  {style['green']}✓{style['reset']} {_short(path)}" for path in removed]
+    lines.append("")
+    if purged:
+        lines.append("Your memories and the local model are deleted.")
+    else:
+        lines.append(f"Your memories are still in {_short(str(settings.home))}.")
+        lines.append(f"{style['dim']}Delete them too with: unimem uninstall --purge{style['reset']}")
+    lines.append(f"{style['dim']}Remove the program with: uv tool uninstall unimem{style['reset']}")
+    lines.append("")
+    return "\n".join(lines)
+
+
 def _fail(code: str, message: str, *, json_mode: bool) -> int:
     payload = {"ok": False, "error": {"code": code, "message": message}}
     _emit(payload, json_mode=json_mode, text=message)
@@ -247,7 +330,7 @@ def _recall_payload(
 
 
 def _run_hook(args: argparse.Namespace) -> int:
-    """Handle a session hook. Prints nothing on stdout and never fails the tool."""
+    """Handle a session hook. Never adds to the model's context or fails the tool."""
     try:
         raw: dict[str, Any] = {}
         if not args.session_id and not sys.stdin.isatty():
@@ -281,7 +364,16 @@ def _run_hook(args: argparse.Namespace) -> int:
         settings = Settings.load(project_dir=payload["cwd"], home=args.home)
         handler = session_start if args.event == "session-start" else session_end
         result = handler(settings, client=args.client, payload=payload)
+        notice = result.pop("notice", None)
         _log_hook(settings, {"event": args.event, "client": args.client, **result})
+        if notice and not os.environ.get("UNIMEM_HOOK_QUIET"):
+            # Shown to the person only. Claude Code and Codex display
+            # `systemMessage` without adding it to the model's context; the Pi
+            # extension passes the line to Pi's notifier. Other tools get nothing.
+            if args.client in {"claude", "codex"}:
+                print(json.dumps({"systemMessage": notice}))
+            elif args.client == "pi":
+                print(notice)
     except Exception as error:  # noqa: BLE001 - a hook must never break the tool that ran it
         print(f"unimem hook: {error}", file=sys.stderr)
     return 0
@@ -330,12 +422,11 @@ def main(argv: list[str] | None = None) -> int:
                     if target.exists():
                         shutil.rmtree(target)
                         result["removed"].append(str(target))
-            lines = [f"Removed unimem from {len(result['removed'])} place(s):"]
-            lines += [f"  {path}" for path in result["removed"]]
-            if not args.purge:
-                lines.append(f"Your memories are still in {settings.home}. Add --purge to delete them.")
-            lines.append("To remove the program itself, run: uv tool uninstall unimem")
-            _emit(result, json_mode=json_mode, text="\n".join(lines))
+            _emit(
+                result,
+                json_mode=json_mode,
+                text=_uninstall_report(result, settings, purged=args.purge),
+            )
             return 0
 
         project_dir = getattr(args, "project_dir", None)
@@ -372,15 +463,7 @@ def main(argv: list[str] | None = None) -> int:
                 project=args.project,
                 hooks=not args.no_hooks,
             )
-            lines = [f"Connected {', '.join(result['clients'])}. Updated:"]
-            lines += [f"  {path}" for path in result["files"]]
-            if result["restart_required"]:
-                lines.append(f"Restart {', '.join(result['restart_required'])} to load unimem.")
-            if "codex" in result["session_hooks"]:
-                lines.append("Codex asks you to review new hooks: run /hooks in Codex once and trust them.")
-            if "hermes" in result["session_hooks"]:
-                lines.append("Hermes asks for consent the first time each hook runs.")
-            _emit(result, json_mode=json_mode, text="\n".join(lines))
+            _emit(result, json_mode=json_mode, text=_init_report(result))
             return 0
 
         if args.command == "remember":

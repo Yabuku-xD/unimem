@@ -551,6 +551,41 @@ def main() -> int:
             {"user": captured_user, "project": captured_project, "leaked": leaked},
         )
 
+        # The start notice is for the person: tools that can show it get it in the
+        # field they display without sending to the model.
+        notice_payload = json.dumps({"session_id": "notice-1", "cwd": str(hook_project)})
+        claude_start, _ = harness.run(
+            ["hook", "session-start", "--client", "claude"], stdin=notice_payload, name="hook_notice_claude"
+        )
+        pi_start, _ = harness.run(
+            ["hook", "session-start", "--client", "pi"], stdin=notice_payload, name="hook_notice_pi"
+        )
+        claude_notice = json.loads(claude_start.stdout)
+        harness.check(
+            "start_notice_is_user_facing_only",
+            set(claude_notice) == {"systemMessage"}
+            and claude_notice["systemMessage"].startswith("unimem: memory is on")
+            and pi_start.stdout.strip() == claude_notice["systemMessage"],
+            {"claude": claude_start.stdout, "pi": pi_start.stdout},
+        )
+        # Hermes fires its end hook after every turn, so its session must stay open.
+        hermes_payload = json.dumps({"session_id": "hermes-1", "cwd": str(hook_project)})
+        harness.run(["hook", "session-start", "--client", "hermes"], stdin=hermes_payload, name="hook_hermes_start")
+        harness.run(
+            ["hook", "session-end", "--client", "hermes", "--foreground"], stdin=hermes_payload, name="hook_hermes_turn_end"
+        )
+        _, hermes_note = harness.run(
+            ["remember", "Hermes turn two note about retries.", "--scope", "session",
+             "--kind", "hypothesis", "--evidence", "Second turn note", "--json"],
+            cwd=hook_project,
+            name="remember_after_hermes_turn",
+        )
+        harness.check(
+            "hermes_session_survives_turn_end",
+            bool((hermes_note or {}).get("session_id")),
+            hermes_note,
+        )
+
         # Implicit preferences wait as candidates until a second session repeats them.
         def end_tool_session(session: str, project: Path, lines: list[str]) -> None:
             path = harness.base / f"transcript-{session}.jsonl"
@@ -666,7 +701,7 @@ def main() -> int:
             [
                 "sh",
                 "-c",
-                f"{unimem} hook session-start --client codex --session-id first --cwd '{shared_project}'; "
+                f"{unimem} hook session-start --client codex --session-id first --cwd '{shared_project}' >/dev/null; "
                 f"while [ ! -e '{flag}' ]; do sleep 0.1; done; " + note % "First",
             ],
             cwd=str(shared_project),
@@ -679,7 +714,7 @@ def main() -> int:
             [
                 "sh",
                 "-c",
-                f"{unimem} hook session-start --client codex --session-id second --cwd '{shared_project}'; "
+                f"{unimem} hook session-start --client codex --session-id second --cwd '{shared_project}' >/dev/null; "
                 f": > '{flag}'; " + note % "Second",
             ],
             cwd=str(shared_project),

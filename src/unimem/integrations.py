@@ -275,7 +275,9 @@ export default function (pi: ExtensionAPI) {{
     args.push("--session-id", sessionId);
     if (sessionFile) args.push("--transcript", sessionFile);
     try {{
-      await pi.exec(UNIMEM[0], args);
+      const result: any = await pi.exec(UNIMEM[0], args);
+      const notice = String(result?.stdout ?? "").trim();
+      if (notice && ctx.hasUI) ctx.ui.notify(notice, "info");
     }} catch {{
       // Memory is optional; never interrupt the session.
     }}

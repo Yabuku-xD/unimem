@@ -99,6 +99,8 @@ Project memories still stay with their project. Claude Code tells unimem which p
 
 The hooks never add anything to the prompt, and the transcript itself is not stored. Assistant replies, tool output, code, secrets, and text you only quoted are ignored.
 
+In Claude Code, Codex, and Pi you see one line when a session starts, for example `unimem: memory is on (3 personal memories, 2 for this project). Your last session here saved 1 new memory.` It is shown to you only and is not sent to the model. Set `UNIMEM_HOOK_QUIET=1` to hide it. Cursor and Hermes have no way to show such a line.
+
 unimem also notices preferences you never spell out as a rule. If you correct the agent, for example "no, use pnpm" or "stop adding so many comments", that is noted as a candidate. A candidate is never recalled. If you say much the same thing in a second session, it becomes a real memory: a project memory when both sessions were in the same project, a user memory when they were in different ones. One-off instructions like "don't run it yet" are ignored. `unimem candidates` lists what is waiting.
 
 If you have two sessions open in the same project, each keeps its own short-lived notes in Claude Code, Codex, Pi, and Hermes. In desktop apps that run every chat from one process, such as Cursor, notes go to the most recently started session.
@@ -109,7 +111,7 @@ If you have two sessions open in the same project, each keeps its own short-live
 | Codex | `~/.codex/hooks.json` | run `/hooks` in Codex once and trust the two new hooks |
 | Cursor | `~/.cursor/hooks.json` | |
 | Pi | `~/.pi/agent/extensions/unimem.ts` | |
-| Hermes Agent | `hooks:` in `~/.hermes/config.yaml` | Hermes asks for consent the first time each hook runs |
+| Hermes Agent | `hooks:` in `~/.hermes/config.yaml` | Hermes asks for consent the first time each hook runs. It fires its end hook after every turn, so facts are saved as you go and the session stays open |
 | Claude Desktop app | none | the app has no hooks, so the agent saves memories itself |
 
 To skip the hooks, run `unimem init --no-hooks`. Each hook run is logged to `~/.unimem/hooks.log`.

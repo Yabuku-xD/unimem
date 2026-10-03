@@ -4,8 +4,9 @@
 notes have somewhere to live. `session-end` distills durable facts from the
 transcript, then closes the session so its notes stop being recalled.
 
-Hooks never write to stdout: several tools add a hook's stdout to the model's
-context, and unimem must not put anything in the prompt.
+Hooks must not put anything in the prompt. Several tools add a hook's plain
+stdout to the model's context, so the only output is a one-line notice in the
+form each tool shows to the person without sending it to the model.
 """
 
 from __future__ import annotations
@@ -159,7 +160,66 @@ def session_start(settings: Settings, *, client: str, payload: dict[str, str | N
     if env_file:
         with open(env_file, "a", encoding="utf-8") as handle:
             handle.write(f"export UNIMEM_SESSION_ID={session_id}\n")
-    return {"ok": True, "session_id": session_id}
+    return {
+        "ok": True,
+        "session_id": session_id,
+        "project_id": settings.project_id,
+        "notice": start_notice(settings),
+    }
+
+
+def _count(count: int, singular: str, plural: str) -> str:
+    return f"{count} {singular if count == 1 else plural}"
+
+
+def last_capture(settings: Settings) -> dict[str, Any] | None:
+    """The most recent session-end record for this project, from the hook log."""
+    path = settings.home / "hooks.log"
+    if not path.exists():
+        return None
+    for line in reversed(path.read_text(encoding="utf-8").splitlines()[-200:]):
+        try:
+            record = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if record.get("event") == "session-end" and record.get("project_id") == settings.project_id:
+            return record
+    return None
+
+
+def start_notice(settings: Settings) -> str:
+    """One line shown to the person, never to the model, when a session starts."""
+    database = Database(settings)
+    database.initialize()
+    with database.connection() as connection:
+        rows = connection.execute(
+            f"""
+            SELECT scope, COUNT(*) AS count FROM memories
+            WHERE {database._active_memory_sql()}
+              AND (scope = 'user' OR (scope = 'project' AND project_id = ?))
+            GROUP BY scope
+            """,
+            (settings.project_id,),
+        ).fetchall()
+    counts = {row["scope"]: row["count"] for row in rows}
+    personal, project = counts.get("user", 0), counts.get("project", 0)
+    if personal or project:
+        available = (
+            f"{_count(personal, 'personal memory', 'personal memories')}, {project} for this project"
+        )
+    else:
+        available = "nothing saved yet"
+    notice = f"unimem: memory is on ({available})."
+    last = last_capture(settings)
+    if last:
+        saved = int(last.get("saved", 0)) + int(last.get("promoted", 0))
+        waiting = int(last.get("candidates", 0)) - int(last.get("promoted", 0))
+        if saved:
+            notice += f" Your last session here saved {_count(saved, 'new memory', 'new memories')}."
+        elif waiting > 0:
+            noted = _count(waiting, "possible preference", "possible preferences")
+            notice += f" Your last session here noted {noted}, saved once repeated."
+    return notice
 
 
 def session_end(settings: Settings, *, client: str, payload: dict[str, str | None]) -> dict[str, Any]:
@@ -174,7 +234,7 @@ def session_end(settings: Settings, *, client: str, payload: dict[str, str | Non
         messages = read_hermes_session(payload["session_id"])
     else:
         messages = []
-    accepted = candidates = promoted = 0
+    accepted = saved = candidates = promoted = 0
     if messages:
         # A session that was never opened (hook added mid-session) still gets captured.
         database.ensure_session(
@@ -189,14 +249,20 @@ def session_end(settings: Settings, *, client: str, payload: dict[str, str | Non
             apply=True,
         )
         accepted = int(result["accepted_count"])
+        saved = sum(1 for item in result["accepted"] if item.get("created"))
         candidates = len(result["candidates"])
         promoted = int(result["promoted_count"])
-    database.end_session(session_id)
+    # Hermes fires its end hook after every turn, so the session stays open there
+    # and lapses on its own.
+    if client != "hermes":
+        database.end_session(session_id)
     return {
         "ok": True,
         "session_id": session_id,
+        "project_id": settings.project_id,
         "messages": len(messages),
         "accepted": accepted,
+        "saved": saved,
         "candidates": candidates,
         "promoted": promoted,
     }

@@ -6,6 +6,12 @@
 
 - Session-end capture no longer saves a reworded copy of something the agent already stored in the same scope. Found in a live Pi session, where "Always use pytest" and "From now on always use pytest" were both kept.
 - The README shows how to include the local model with the one-line installer.
+- Hermes fires its session-end hook after every turn. unimem now captures on each of those and leaves the session open instead of closing it after the first turn.
+
+### Changed
+
+- Session start shows one line to the person in Claude Code, Codex, and Pi with how many memories are available and what the last session saved. It uses each tool's user-facing channel and is not sent to the model.
+- The installer, `unimem init`, and `unimem uninstall` print short, readable summaries instead of raw tool output and file lists; `--json` still has every detail.
 
 ## 0.2.0 (2026-10-02)
 
