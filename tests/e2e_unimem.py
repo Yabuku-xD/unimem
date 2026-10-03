@@ -517,6 +517,133 @@ def main() -> int:
             {"user": captured_user, "project": captured_project, "leaked": leaked},
         )
 
+        # Implicit preferences wait as candidates until a second session repeats them.
+        def end_tool_session(session: str, project: Path, lines: list[str]) -> None:
+            path = harness.base / f"transcript-{session}.jsonl"
+            path.write_text(
+                "\n".join(json.dumps({"role": "user", "content": line}) for line in lines), encoding="utf-8"
+            )
+            payload = json.dumps({"session_id": session, "cwd": str(project), "transcript_path": str(path)})
+            harness.run(
+                ["hook", "session-end", "--client", "claude", "--foreground"],
+                stdin=payload,
+                name=f"implicit_session_{session}",
+            )
+
+        def recall_json(query: str, project: Path, name: str) -> dict[str, Any]:
+            _, payload = harness.run(
+                ["recall", query, "--trigger", "memory_query", "--evidence", "Verify implicit capture", "--json"],
+                cwd=project,
+                name=name,
+            )
+            return payload or {}
+
+        implicit_project = harness.base / "implicit-project"
+        implicit_project.mkdir()
+        end_tool_session(
+            "imp-1",
+            implicit_project,
+            [
+                "no, use pnpm",
+                "no, use pnpm",
+                "Don't run it yet.",
+                "stop adding comments everywhere",
+                "no, use the key sk-abcdefghijklmnopqrstuvwxyz123456 instead",
+            ],
+        )
+        after_one = recall_json("pnpm", implicit_project, "implicit_recall_after_one")
+        _, pending = harness.run(["candidates", "--json"], name="implicit_candidates_pending")
+        pending_text = json.dumps(pending)
+        harness.check(
+            "single_session_correction_stays_a_candidate",
+            after_one.get("count") == 0
+            and sorted(item["status"] for item in (pending or {}).get("candidates", [])) == ["pending", "pending"]
+            and "run it yet" not in pending_text
+            and "sk-abcdefghijklmnopqrstuvwxyz" not in pending_text,
+            {"recall": after_one, "candidates": pending},
+        )
+        end_tool_session(
+            "imp-2",
+            implicit_project,
+            ["Use pnpm instead of npm.", "don't use pnpm", "Please stop adding so many comments"],
+        )
+        promoted_here = recall_json("pnpm npm", implicit_project, "implicit_recall_promoted")
+        promoted_elsewhere = recall_json("pnpm npm", harness.project_b, "implicit_recall_other_project")
+        _, after_two = harness.run(["candidates", "--json"], name="implicit_candidates_after_two")
+        statuses = {item["content"]: item["status"] for item in (after_two or {}).get("candidates", [])}
+        harness.check(
+            "repeated_correction_is_promoted_in_its_project_only",
+            "Use pnpm instead of npm." in json.dumps(promoted_here)
+            and promoted_elsewhere.get("count") == 0
+            and statuses.get("Use pnpm instead of npm.") == "promoted"
+            and statuses.get("Stop adding so many comments") == "promoted",
+            {"here": promoted_here, "elsewhere": promoted_elsewhere, "statuses": statuses},
+        )
+        harness.check(
+            "opposite_statement_is_not_merged",
+            statuses.get("Don't use pnpm") == "pending",
+            statuses,
+        )
+        for index, (session, wording) in enumerate(
+            [("imp-3", "I told you to use double quotes"), ("imp-4", "no, use double quotes")]
+        ):
+            other = harness.base / f"implicit-other-{index}"
+            other.mkdir()
+            end_tool_session(session, other, [wording])
+        across = recall_json("double quotes", harness.project_b, "implicit_recall_user_scope")
+        harness.check(
+            "correction_across_projects_becomes_a_user_memory",
+            across.get("count") == 1 and across["items"][0]["scope"] == "user",
+            across,
+        )
+
+        # Two tool sessions open in one project keep their notes apart. Each
+        # wrapper shell stands in for a tool process that runs its own commands.
+        shared_project = harness.base / "shared-project"
+        shared_project.mkdir()
+        flag = harness.base / "second-session-started"
+        unimem = f"{sys.executable} -m unimem"
+        note = (
+            f"{unimem} remember '%s note about the cache' --scope session --kind hypothesis "
+            "--evidence 'Session note' --json"
+        )
+        first = subprocess.Popen(
+            [
+                "sh",
+                "-c",
+                f"{unimem} hook session-start --client codex --session-id first --cwd '{shared_project}'; "
+                f"while [ ! -e '{flag}' ]; do sleep 0.1; done; " + note % "First",
+            ],
+            cwd=str(shared_project),
+            env=harness.env,
+            text=True,
+            stdout=subprocess.PIPE,
+        )
+        time.sleep(0.5)
+        second = subprocess.run(
+            [
+                "sh",
+                "-c",
+                f"{unimem} hook session-start --client codex --session-id second --cwd '{shared_project}'; "
+                f": > '{flag}'; " + note % "Second",
+            ],
+            cwd=str(shared_project),
+            env=harness.env,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        first_out, _ = first.communicate(timeout=30)
+        first_note = json.loads(first_out)
+        second_note = json.loads(second.stdout)
+        harness.check(
+            "concurrent_sessions_keep_separate_notes",
+            first_note.get("session_id")
+            and second_note.get("session_id")
+            and first_note["session_id"] != second_note["session_id"],
+            {"first": first_note.get("session_id"), "second": second_note.get("session_id")},
+        )
+
         broken = home / ".pi/agent/mcp.json"
         broken.write_text("{not json", encoding="utf-8")
         broken_result, _ = harness.run(

@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from . import __version__
+from .candidates import list_candidates
 from .config import Settings, now_iso, parse_iso
 from .db import Database, MemoryError
 from .extract import distill_messages, load_messages
@@ -26,6 +27,7 @@ from .integrations import (
 from .mcp import serve as serve_mcp
 from .mcp import tool_schema_bytes
 from .policy import classify_route, compact_recall_items, validate_recall
+from .process import ancestor_pids
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -133,6 +135,11 @@ def _parser() -> argparse.ArgumentParser:
         "--download",
         action="store_true",
         help="Download the model now and exit, so later runs work offline",
+    )
+
+    sub.add_parser(
+        "candidates",
+        help="List implicit preferences waiting to recur in a second session",
     )
 
     hook = sub.add_parser("hook", help="Run by coding tools when a session starts or ends")
@@ -301,7 +308,7 @@ def main(argv: list[str] | None = None) -> int:
         database.initialize()
         if not settings.session_id and args.command in {"remember", "recall", "distill"}:
             # Use the session a tool's hook opened for this project, if one is active.
-            settings = replace(settings, session_id=database.hook_session_for(settings.project_id))
+            settings = replace(settings, session_id=database.hook_session_for(settings.project_id, ancestor_pids()))
         semantic_model = getattr(args, "semantic_model", None)
         if semantic_model:
             database.enable_semantic(
@@ -453,6 +460,15 @@ def main(argv: list[str] | None = None) -> int:
             count = database.enrich_pending(enricher, limit=args.limit)
             result = {"ok": True, "enriched": count, "model": enricher.model_name}
             _emit(result, json_mode=json_mode, text=f"enriched {count} with {enricher.model_name}")
+            return 0
+
+        if args.command == "candidates":
+            items = list_candidates(database)
+            result = {"ok": True, "candidates": items, "count": len(items)}
+            text = "\n".join(
+                f"{item['status']:8} {item['sessions']} session(s)  {item['content']}" for item in items
+            )
+            _emit(result, json_mode=json_mode, text=text or "No candidates.")
             return 0
 
         if args.command == "doctor":

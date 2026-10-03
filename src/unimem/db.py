@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import math
 import re
 import sqlite3
@@ -59,7 +60,8 @@ CREATE TABLE IF NOT EXISTS sessions (
     created_at TEXT NOT NULL,
     last_activity_at TEXT NOT NULL,
     ended_at TEXT,
-    expires_at TEXT
+    expires_at TEXT,
+    ancestors TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_sessions_scope_status
     ON sessions(project_id, status, expires_at);
@@ -75,6 +77,26 @@ CREATE TABLE IF NOT EXISTS audit_log (
     estimated_tokens INTEGER NOT NULL DEFAULT 0,
     retrieval_performed INTEGER NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL
+);
+
+-- Implicit preferences seen in a session; never recalled until promoted.
+CREATE TABLE IF NOT EXISTS candidates (
+    id TEXT PRIMARY KEY,
+    content TEXT NOT NULL,
+    tokens TEXT NOT NULL,
+    negative INTEGER NOT NULL,
+    status TEXT NOT NULL CHECK (status IN ('pending', 'promoted')),
+    memory_id TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS candidate_sightings (
+    candidate_id TEXT NOT NULL,
+    session_id TEXT NOT NULL,
+    project_id TEXT NOT NULL,
+    project_worded INTEGER NOT NULL,
+    seen_at TEXT NOT NULL,
+    PRIMARY KEY (candidate_id, session_id)
 );
 
 CREATE TABLE IF NOT EXISTS memory_embeddings (
@@ -280,6 +302,9 @@ class Database:
             )
         if "enrichment_model" not in columns:
             connection.execute("ALTER TABLE memories ADD COLUMN enrichment_model TEXT")
+        session_columns = {row["name"] for row in connection.execute("PRAGMA table_info(sessions)")}
+        if "ancestors" not in session_columns:
+            connection.execute("ALTER TABLE sessions ADD COLUMN ancestors TEXT")
         if "scope_key" not in columns:
             connection.execute(
                 "ALTER TABLE memories ADD COLUMN scope_key TEXT NOT NULL DEFAULT ''"
@@ -924,10 +949,13 @@ class Database:
         project_id: str,
         client: str,
         ttl_seconds: float = 24 * 60 * 60,
+        ancestors: tuple[int, ...] = (),
     ) -> SessionRecord:
         """Open the session with this id, creating or reopening it as needed.
 
         Client hooks call this on every start and resume, so it must be idempotent.
+        `ancestors` is the hook's process ancestry, kept so later calls from the
+        same tool process can be matched to this session.
         """
         self.initialize()
         now = now_iso()
@@ -936,32 +964,55 @@ class Database:
             connection.execute(
                 """
                 INSERT INTO sessions
-                (id, project_id, client, title, status, created_at, last_activity_at, ended_at, expires_at)
-                VALUES (?, ?, ?, NULL, 'active', ?, ?, NULL, ?)
+                (id, project_id, client, title, status, created_at, last_activity_at, ended_at,
+                 expires_at, ancestors)
+                VALUES (?, ?, ?, NULL, 'active', ?, ?, NULL, ?, ?)
                 ON CONFLICT(id) DO UPDATE SET
                     status = 'active', project_id = excluded.project_id,
                     last_activity_at = excluded.last_activity_at,
-                    ended_at = NULL, expires_at = excluded.expires_at
+                    ended_at = NULL, expires_at = excluded.expires_at,
+                    ancestors = COALESCE(excluded.ancestors, sessions.ancestors)
                 """,
-                (session_id, project_id, client, now, now, expires_at),
+                (
+                    session_id,
+                    project_id,
+                    client,
+                    now,
+                    now,
+                    expires_at,
+                    json.dumps(list(ancestors)) if ancestors else None,
+                ),
             )
             row = connection.execute("SELECT * FROM sessions WHERE id = ?", (session_id,)).fetchone()
         return SessionRecord.from_row(row)
 
-    def hook_session_for(self, project_id: str) -> str | None:
-        """The most recent session a client hook opened for this project, if still active."""
+    def hook_session_for(self, project_id: str, chain: tuple[int, ...] = ()) -> str | None:
+        """The active hook-opened session for this project that the caller belongs to.
+
+        `chain` is the caller's process ancestry. The session whose hook shares
+        the caller's nearest ancestor wins, which separates two tool sessions
+        open in the same project. Without a match, the most recent one is used.
+        """
         self.initialize()
         with self.connection() as connection:
             self.expire_sessions(connection)
-            row = connection.execute(
+            rows = connection.execute(
                 """
-                SELECT id FROM sessions
+                SELECT id, ancestors FROM sessions
                 WHERE project_id = ? AND status = 'active' AND client LIKE 'hook:%'
-                ORDER BY last_activity_at DESC LIMIT 1
+                ORDER BY last_activity_at DESC
                 """,
                 (project_id,),
-            ).fetchone()
-        return row["id"] if row else None
+            ).fetchall()
+        if not rows:
+            return None
+        best_id, best_distance = rows[0]["id"], len(chain)
+        for row in rows:
+            recorded = set(json.loads(row["ancestors"])) if row["ancestors"] else set()
+            distance = next((i for i, pid in enumerate(chain) if pid in recorded), len(chain))
+            if distance < best_distance:
+                best_id, best_distance = row["id"], distance
+        return best_id
 
     def end_session(self, session_id: str, *, status: str = "closed") -> SessionRecord | None:
         if status not in {"closed", "expired"}:

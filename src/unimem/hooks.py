@@ -20,6 +20,7 @@ from typing import Any
 from .config import Settings
 from .db import Database
 from .extract import distill_messages
+from .process import ancestor_pids
 
 HOOK_CLIENT_PREFIX = "hook:"
 # Transcripts can be large; only the tail is scanned, enough for a long session.
@@ -148,7 +149,10 @@ def session_start(settings: Settings, *, client: str, payload: dict[str, str | N
         return {"ok": False, "reason": "no session id in hook payload"}
     session_id = unimem_session_id(client, payload["session_id"])
     Database(settings).ensure_session(
-        session_id, project_id=settings.project_id, client=f"{HOOK_CLIENT_PREFIX}{client}"
+        session_id,
+        project_id=settings.project_id,
+        client=f"{HOOK_CLIENT_PREFIX}{client}",
+        ancestors=ancestor_pids(),
     )
     # Claude Code sources this file before each Bash command.
     env_file = os.environ.get("CLAUDE_ENV_FILE")
@@ -170,7 +174,7 @@ def session_end(settings: Settings, *, client: str, payload: dict[str, str | Non
         messages = read_hermes_session(payload["session_id"])
     else:
         messages = []
-    accepted = 0
+    accepted = candidates = promoted = 0
     if messages:
         # A session that was never opened (hook added mid-session) still gets captured.
         database.ensure_session(
@@ -185,5 +189,14 @@ def session_end(settings: Settings, *, client: str, payload: dict[str, str | Non
             apply=True,
         )
         accepted = int(result["accepted_count"])
+        candidates = len(result["candidates"])
+        promoted = int(result["promoted_count"])
     database.end_session(session_id)
-    return {"ok": True, "session_id": session_id, "messages": len(messages), "accepted": accepted}
+    return {
+        "ok": True,
+        "session_id": session_id,
+        "messages": len(messages),
+        "accepted": accepted,
+        "candidates": candidates,
+        "promoted": promoted,
+    }

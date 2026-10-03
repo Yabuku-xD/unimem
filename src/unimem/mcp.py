@@ -8,6 +8,7 @@ from typing import Any
 from .config import Settings
 from .db import Database, MemoryError
 from .policy import TRIGGER_TYPES, compact_recall_items, contains_secret, validate_recall
+from .process import ancestor_pids
 from .semantic import DEFAULT_SEMANTIC_MODEL
 
 TOOL_SCHEMA: dict[str, Any] = {
@@ -68,7 +69,7 @@ def run_tool(arguments: dict[str, Any], settings: Settings) -> dict[str, Any]:
     database.initialize()
     if not settings.session_id:
         # Use the session a tool's hook opened for this project, if one is active.
-        settings = replace(settings, session_id=database.hook_session_for(settings.project_id))
+        settings = replace(settings, session_id=database.hook_session_for(settings.project_id, ancestor_pids()))
     semantic_model = str(arguments.get("semantic_model") or "").strip()
     use_semantic = bool(arguments.get("semantic")) or bool(semantic_model)
     action = str(arguments.get("action", ""))

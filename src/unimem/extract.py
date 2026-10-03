@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 from typing import Any
 
+from .candidates import ImplicitStatement, classify_implicit, record_implicit
 from .config import Settings, iso_after
 from .db import Database, MemoryError
 from .policy import Candidate, candidate_to_dict, classify_candidate
@@ -53,6 +54,7 @@ def distill_messages(
         raise MemoryError("session_ttl_hours must be a finite non-negative number")
     accepted: list[dict[str, Any]] = []
     rejected: list[dict[str, Any]] = []
+    candidates: list[dict[str, Any]] = []
     expires_at = iso_after(max(0.0, session_ttl_hours) * 60 * 60)
 
     for message in messages:
@@ -71,6 +73,21 @@ def distill_messages(
             candidate_or_reason = classify_candidate(segment)
             if isinstance(candidate_or_reason, tuple):
                 _, reason = candidate_or_reason
+                implicit = classify_implicit(segment) if reason == "no_durable_cue" else None
+                if isinstance(implicit, ImplicitStatement) and session_id:
+                    # Kept as a candidate; it becomes a memory only if it recurs
+                    # in another session.
+                    sighting: dict[str, Any] = {"content": implicit.content, "status": "pending"}
+                    if apply:
+                        sighting = record_implicit(
+                            database,
+                            implicit,
+                            session_id=session_id,
+                            project_id=settings.project_id,
+                            source=source,
+                        )
+                    candidates.append(sighting)
+                    continue
                 rejected.append({"content": segment[:160], "reason": reason})
                 continue
             candidate: Candidate = candidate_or_reason
@@ -111,6 +128,8 @@ def distill_messages(
         "applied": bool(apply),
         "accepted": accepted,
         "rejected": rejected,
+        "candidates": candidates,
+        "promoted_count": sum(1 for item in candidates if item.get("status") == "promoted"),
         "accepted_count": len(accepted),
         "rejected_count": len(rejected),
     }
